@@ -1,18 +1,33 @@
 package cedanagosdk
 
 import (
+	"context"
 	"log"
+	"net/url"
 
 	auth "github.com/microsoft/kiota-abstractions-go/authentication"
-	bundle "github.com/microsoft/kiota-bundle-go"
-	// http "github.com/microsoft/kiota-http-go"
+	http "github.com/microsoft/kiota-http-go"
 )
 
-func NewCedanaClient(url string) *ApiClient {
-	authProvider := auth.AnonymousAuthenticationProvider{}
+type StaticAccessTokenProvider struct {
+	AccessToken string
+}
 
-	// Create request adapter using the net/http-based implementation
-	adapter, err := bundle.NewDefaultRequestAdapter(&authProvider)
+func (s *StaticAccessTokenProvider) GetAuthorizationToken(_ context.Context, _ *url.URL, _ map[string]any) (string, error) {
+	return s.AccessToken, nil
+}
+
+// GetAllowedHostsValidator returns the hosts validator.
+func (*StaticAccessTokenProvider) GetAllowedHostsValidator() *auth.AllowedHostsValidator {
+	return nil
+}
+
+func NewCedanaClient(url, api_key string) *ApiClient {
+	authProvider := auth.NewBaseBearerTokenAuthenticationProvider(&StaticAccessTokenProvider{
+		AccessToken: api_key,
+	})
+
+	adapter, err := http.NewNetHttpRequestAdapter(authProvider)
 	if err != nil {
 		log.Fatalf("Error creating request adapter: %v\n", err)
 	}

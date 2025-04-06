@@ -1,1 +1,382 @@
-{"openapi":"3.1.0","info":{"title":"cedana-propagator","description":"","license":{"name":""},"version":"0.5.0"},"paths":{"/v2/checkpoints":{"get":{"tags":["cedana"],"summary":"List Checkpoints","description":"Use query params to filter checkpoints","operationId":"list","parameters":[{"name":"ids","in":"query","required":false,"schema":{"type":"array","items":{"$ref":"#/components/schemas/CheckpointID"}}}],"responses":{"200":{"description":"Returns checkpoints","content":{"application/json":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/Checkpoint"}}}}},"500":{"description":"Failed to connect/fetch from database"}},"security":[{"api_key":[]}]},"post":{"tags":["cedana"],"summary":"Create Checkpoint","description":"Builds a new checkpoint without the metadata and information about the checkpoint with status initializing","operationId":"add","responses":{"200":{"description":"Returns the checkpoint id for the new checkpoint","content":{"text/plain":{"schema":{"type":"string","format":"uuid"},"example":"<uuid-v4-here>"}}},"500":{"description":"Failed to connect/fetch from jobs table from database"}},"security":[{"api_key":[]}]}},"/v2/checkpoints/{id}/deprecate":{"patch":{"tags":["cedana"],"summary":"Deprecate Checkpoint","description":"Checkpoints can't directly be deleted as use them as versioning points and might be required for restores that might be in-flight\nsetting them deprecated marks them to be cleaned up as soon as possible(likely within a day).\n\nUse the re-sync endpoint to force removal of checkpoint files after it has been marked deprecated.","operationId":"deprecate","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"string"}}],"responses":{"200":{"description":"Successfully deprecated checkpoint and returns id","content":{"text/plain":{"schema":{"type":"string"},"example":"<uuid-for-checkpoint>"}}},"404":{"description":"Failed to find checkpoint from id"},"500":{"description":"Failed to connect/execute request against db"}},"security":[{"api_key":[]}]}},"/v2/checkpoints/{id}/processinfo":{"put":{"tags":["cedana"],"summary":"Append Checkpoint Process Info","description":"Add information about the checkpoint process","operationId":"append_proc_info","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"string"}}],"responses":{"200":{"description":"Successfully deprecated checkpoint and returns id","content":{"text/plain":{"schema":{"type":"string"},"example":"<uuid-for-checkpoint>"}}},"404":{"description":"Failed to find checkpoint from id"},"500":{"description":"Failed to connect/execute request against db"}},"security":[{"api_key":[]}]}},"/v2/checkpoints/{id}/upload":{"patch":{"tags":["cedana"],"summary":"Push Checkpoint Content","description":"Checkpoints can't directly be deleted as use them as versioning points and might be required for restores that might be in-flight\nsetting them deprecated marks them to be cleaned up as soon as possible(likely within a day).\n\nUse the re-sync endpoint to force removal of checkpoint files after it has been marked deprecated.","operationId":"push","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"string"}}],"responses":{"200":{"description":"Returns the url, to upload the checkpoint to","content":{"text/plain":{"schema":{"type":"string"},"example":"<presigned-bucket-url-for-uploading-checkpoint-tar>"}}},"404":{"description":"Failed to find checkpoint from id"},"500":{"description":"Failed to connect/execute request against db"}},"security":[{"api_key":[]}]}},"/v2/jobs":{"get":{"tags":["cedana"],"operationId":"list","responses":{"200":{"description":"Returns list of jobs from db","content":{"application/json":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/Job"}},"example":[{"jid":"xenodochial_jones4","type":"containerd"},{"jid":"dreamy_nobel1","type":"containerd"}]}}},"500":{"description":"Failed to connect/fetch from jobs table from database"}},"security":[{"api_key":[]}]}},"/v2/user":{"post":{"tags":["cedana"],"operationId":"get_user","responses":{"200":{"description":"Returns your `user-id` (a uuid)","content":{"text/plain":{"schema":{"type":"string"}}}},"401":{"description":"Invalid Key/Token"},"404":{"description":"User not attached to valid api key"}},"security":[{"api_key":[]}]}}},"components":{"schemas":{"Checkpoint":{"type":"object","description":"Checkpoint is basic unit for cedana service operation\nit stores all the information regarding the snapshot we can use to save and then restore state","required":["id","url","process_info","status"],"properties":{"id":{"$ref":"#/components/schemas/CheckpointID"},"process_info":{"type":"string"},"status":{"type":"string"},"url":{"type":"string"}}},"CheckpointID":{"type":"string","description":"CheckpointID is a simple wrapper around `sqlx::Uuid` type, exists to make usage of CheckpointID more type safe and convenient"},"Job":{"type":"object","required":["jid","type"],"properties":{"jid":{"type":"string"},"type":{"type":"string"}}}},"securitySchemes":{"api_key":{"type":"http","scheme":"bearer"}}},"tags":[{"name":"cedana","description":"Cedana Propagator API for managing workloads, and our checkpoints across clusters/workspaces"}]}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "cedana-propagator",
+    "description": "",
+    "license": {
+      "name": ""
+    },
+    "version": "0.5.0"
+  },
+  "paths": {
+    "/v2/checkpoints": {
+      "get": {
+        "tags": [
+          "cedana"
+        ],
+        "summary": "List Checkpoints",
+        "description": "Use query params to filter checkpoints",
+        "operationId": "list",
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CheckpointID"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns checkpoints",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Checkpoint"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect/fetch from database"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "cedana"
+        ],
+        "summary": "Create Checkpoint",
+        "description": "Builds a new checkpoint without the metadata and information about the checkpoint with status initializing",
+        "operationId": "add",
+        "responses": {
+          "200": {
+            "description": "Returns the checkpoint id for the new checkpoint",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "example": "<uuid-v4-here>"
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect/fetch from jobs table from database"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/v2/checkpoints/{id}/deprecate": {
+      "patch": {
+        "tags": [
+          "cedana"
+        ],
+        "summary": "Deprecate Checkpoint",
+        "description": "Checkpoints can't directly be deleted as use them as versioning points and might be required for restores that might be in-flight\nsetting them deprecated marks them to be cleaned up as soon as possible(likely within a day).\n\nUse the re-sync endpoint to force removal of checkpoint files after it has been marked deprecated.",
+        "operationId": "deprecate",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deprecated checkpoint and returns id",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "<uuid-for-checkpoint>"
+              }
+            }
+          },
+          "404": {
+            "description": "Failed to find checkpoint from id"
+          },
+          "500": {
+            "description": "Failed to connect/execute request against db"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/v2/checkpoints/{id}/processinfo": {
+      "put": {
+        "tags": [
+          "cedana"
+        ],
+        "summary": "Append Checkpoint Process Info",
+        "description": "Add information about the checkpoint process",
+        "operationId": "append_proc_info",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deprecated checkpoint and returns id",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "<uuid-for-checkpoint>"
+              }
+            }
+          },
+          "404": {
+            "description": "Failed to find checkpoint from id"
+          },
+          "500": {
+            "description": "Failed to connect/execute request against db"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/v2/checkpoints/{id}/upload": {
+      "patch": {
+        "tags": [
+          "cedana"
+        ],
+        "summary": "Push Checkpoint Content",
+        "description": "Checkpoints can't directly be deleted as use them as versioning points and might be required for restores that might be in-flight\nsetting them deprecated marks them to be cleaned up as soon as possible(likely within a day).\n\nUse the re-sync endpoint to force removal of checkpoint files after it has been marked deprecated.",
+        "operationId": "push",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the url, to upload the checkpoint to",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "<presigned-bucket-url-for-uploading-checkpoint-tar>"
+              }
+            }
+          },
+          "404": {
+            "description": "Failed to find checkpoint from id"
+          },
+          "500": {
+            "description": "Failed to connect/execute request against db"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/v2/jobs": {
+      "get": {
+        "tags": [
+          "cedana"
+        ],
+        "operationId": "list",
+        "responses": {
+          "200": {
+            "description": "Returns list of jobs from db",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Job"
+                  }
+                },
+                "example": [
+                  {
+                    "jid": "xenodochial_jones4",
+                    "type": "containerd"
+                  },
+                  {
+                    "jid": "dreamy_nobel1",
+                    "type": "containerd"
+                  }
+                ]
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect/fetch from jobs table from database"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/v2/user": {
+      "post": {
+        "tags": [
+          "cedana"
+        ],
+        "operationId": "get_user",
+        "responses": {
+          "200": {
+            "description": "Returns your `user-id` (a uuid)",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Key/Token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not attached to valid api key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Checkpoint": {
+        "type": "object",
+        "description": "Checkpoint is basic unit for cedana service operation\nit stores all the information regarding the snapshot we can use to save and then restore state",
+        "required": [
+          "id",
+          "url",
+          "process_info",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/CheckpointID"
+          },
+          "process_info": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      },
+      "CheckpointID": {
+        "type": "string",
+        "description": "CheckpointID is a simple wrapper around `sqlx::Uuid` type, exists to make usage of CheckpointID more type safe and convenient"
+      },
+      "HttpError": {
+        "type": "object",
+        "required": [
+          "message",
+          "cedana_error_code"
+        ],
+        "properties": {
+          "cedana_error_code": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "Job": {
+        "type": "object",
+        "required": [
+          "jid",
+          "type"
+        ],
+        "properties": {
+          "jid": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "api_key": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "cedana",
+      "description": "Cedana Propagator API for managing workloads, and our checkpoints across clusters/workspaces"
+    }
+  ]
+}
