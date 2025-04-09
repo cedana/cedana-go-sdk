@@ -208,7 +208,7 @@
         ],
         "summary": "Append Checkpoint Info",
         "description": "Add information about the checkpoint process",
-        "operationId": "append_proc_info",
+        "operationId": "put_info",
         "parameters": [
           {
             "name": "id",
@@ -220,6 +220,16 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckpointInfo"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "Successfully deprecated checkpoint and returns id",
@@ -428,6 +438,21 @@
           },
           "status": {
             "$ref": "#/components/schemas/CheckpointStatus"
+          }
+        }
+      },
+      "CheckpointInfo": {
+        "type": "object",
+        "required": [
+          "gpu",
+          "platform"
+        ],
+        "properties": {
+          "gpu": {
+            "type": "string"
+          },
+          "platform": {
+            "type": "string"
           }
         }
       },
