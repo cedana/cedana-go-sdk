@@ -13,12 +13,12 @@ type Checkpoint struct {
     additionalData map[string]any
     // CheckpointID is a simple wrapper around `sqlx::Uuid` type, exists to make usage of CheckpointID more type safe and convenient
     id *string
+    // OrgId is a simple wrapper around `sqlx::Uuid` type, exists to make usage of OrgId more type safe and convenient
+    org_id *string
     // The process_info property
     process_info *string
     // The status property
     status *string
-    // The url property
-    url *string
 }
 // NewCheckpoint instantiates a new Checkpoint and sets the default values.
 func NewCheckpoint()(*Checkpoint) {
@@ -51,6 +51,16 @@ func (m *Checkpoint) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         }
         return nil
     }
+    res["org_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOrgId(val)
+        }
+        return nil
+    }
     res["process_info"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -71,22 +81,17 @@ func (m *Checkpoint) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         }
         return nil
     }
-    res["url"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetUrl(val)
-        }
-        return nil
-    }
     return res
 }
 // GetId gets the id property value. CheckpointID is a simple wrapper around `sqlx::Uuid` type, exists to make usage of CheckpointID more type safe and convenient
 // returns a *string when successful
 func (m *Checkpoint) GetId()(*string) {
     return m.id
+}
+// GetOrgId gets the org_id property value. OrgId is a simple wrapper around `sqlx::Uuid` type, exists to make usage of OrgId more type safe and convenient
+// returns a *string when successful
+func (m *Checkpoint) GetOrgId()(*string) {
+    return m.org_id
 }
 // GetProcessInfo gets the process_info property value. The process_info property
 // returns a *string when successful
@@ -98,15 +103,16 @@ func (m *Checkpoint) GetProcessInfo()(*string) {
 func (m *Checkpoint) GetStatus()(*string) {
     return m.status
 }
-// GetUrl gets the url property value. The url property
-// returns a *string when successful
-func (m *Checkpoint) GetUrl()(*string) {
-    return m.url
-}
 // Serialize serializes information the current object
 func (m *Checkpoint) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
         err := writer.WriteStringValue("id", m.GetId())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("org_id", m.GetOrgId())
         if err != nil {
             return err
         }
@@ -119,12 +125,6 @@ func (m *Checkpoint) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     }
     {
         err := writer.WriteStringValue("status", m.GetStatus())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("url", m.GetUrl())
         if err != nil {
             return err
         }
@@ -145,6 +145,10 @@ func (m *Checkpoint) SetAdditionalData(value map[string]any)() {
 func (m *Checkpoint) SetId(value *string)() {
     m.id = value
 }
+// SetOrgId sets the org_id property value. OrgId is a simple wrapper around `sqlx::Uuid` type, exists to make usage of OrgId more type safe and convenient
+func (m *Checkpoint) SetOrgId(value *string)() {
+    m.org_id = value
+}
 // SetProcessInfo sets the process_info property value. The process_info property
 func (m *Checkpoint) SetProcessInfo(value *string)() {
     m.process_info = value
@@ -153,19 +157,15 @@ func (m *Checkpoint) SetProcessInfo(value *string)() {
 func (m *Checkpoint) SetStatus(value *string)() {
     m.status = value
 }
-// SetUrl sets the url property value. The url property
-func (m *Checkpoint) SetUrl(value *string)() {
-    m.url = value
-}
 type Checkpointable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetId()(*string)
+    GetOrgId()(*string)
     GetProcessInfo()(*string)
     GetStatus()(*string)
-    GetUrl()(*string)
     SetId(value *string)()
+    SetOrgId(value *string)()
     SetProcessInfo(value *string)()
     SetStatus(value *string)()
-    SetUrl(value *string)()
 }
