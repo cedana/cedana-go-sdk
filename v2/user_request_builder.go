@@ -13,8 +13,8 @@ import (
 type UserRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
-// UserRequestBuilderPostRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
-type UserRequestBuilderPostRequestConfiguration struct {
+// UserRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
+type UserRequestBuilderGetRequestConfiguration struct {
     // Request headers
     Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
     // Request options
@@ -36,8 +36,8 @@ func NewUserRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1
 // returns a *string when successful
 // returns a HttpError error when the service returns a 401 status code
 // returns a HttpError error when the service returns a 404 status code
-func (m *UserRequestBuilder) Post(ctx context.Context, requestConfiguration *UserRequestBuilderPostRequestConfiguration)(*string, error) {
-    requestInfo, err := m.ToPostRequestInformation(ctx, requestConfiguration);
+func (m *UserRequestBuilder) Get(ctx context.Context, requestConfiguration *UserRequestBuilderGetRequestConfiguration)(*string, error) {
+    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
@@ -55,8 +55,8 @@ func (m *UserRequestBuilder) Post(ctx context.Context, requestConfiguration *Use
     return res.(*string), nil
 }
 // returns a *RequestInformation when successful
-func (m *UserRequestBuilder) ToPostRequestInformation(ctx context.Context, requestConfiguration *UserRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+func (m *UserRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *UserRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
     if requestConfiguration != nil {
         requestInfo.Headers.AddAll(requestConfiguration.Headers)
         requestInfo.AddRequestOptions(requestConfiguration.Options)

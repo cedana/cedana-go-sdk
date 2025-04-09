@@ -350,7 +350,7 @@
       }
     },
     "/v2/user": {
-      "post": {
+      "get": {
         "tags": [
           "cedana"
         ],
