@@ -34,18 +34,6 @@ type CheckpointsRequestBuilderPostRequestConfiguration struct {
     // Request options
     Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
-// ById gets an item from the github.com/cedana/cedana-go-sdk.v2.checkpoints.item collection
-// returns a *CheckpointsCheckpointsItemRequestBuilder when successful
-func (m *CheckpointsRequestBuilder) ById(id string)(*CheckpointsCheckpointsItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if id != "" {
-        urlTplParams["id"] = id
-    }
-    return NewCheckpointsCheckpointsItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
-}
 // NewCheckpointsRequestBuilderInternal instantiates a new CheckpointsRequestBuilder and sets the default values.
 func NewCheckpointsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*CheckpointsRequestBuilder) {
     m := &CheckpointsRequestBuilder{
@@ -58,6 +46,16 @@ func NewCheckpointsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee26
     urlParams := make(map[string]string)
     urlParams["request-raw-url"] = rawUrl
     return NewCheckpointsRequestBuilderInternal(urlParams, requestAdapter)
+}
+// Deprecate the deprecate property
+// returns a *CheckpointsDeprecateRequestBuilder when successful
+func (m *CheckpointsRequestBuilder) Deprecate()(*CheckpointsDeprecateRequestBuilder) {
+    return NewCheckpointsDeprecateRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Download the download property
+// returns a *CheckpointsDownloadRequestBuilder when successful
+func (m *CheckpointsRequestBuilder) Download()(*CheckpointsDownloadRequestBuilder) {
+    return NewCheckpointsDownloadRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Get use query params to filter checkpoints
 // returns a []Checkpointable when successful
@@ -81,6 +79,11 @@ func (m *CheckpointsRequestBuilder) Get(ctx context.Context, requestConfiguratio
         }
     }
     return val, nil
+}
+// Info the info property
+// returns a *CheckpointsInfoRequestBuilder when successful
+func (m *CheckpointsRequestBuilder) Info()(*CheckpointsInfoRequestBuilder) {
+    return NewCheckpointsInfoRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Post builds a new checkpoint without the metadata and information about the checkpoint with status initializing
 // returns a *string when successful
@@ -128,6 +131,11 @@ func (m *CheckpointsRequestBuilder) ToPostRequestInformation(ctx context.Context
     }
     requestInfo.Headers.TryAdd("Accept", "text/plain;q=0.9")
     return requestInfo, nil
+}
+// Upload the upload property
+// returns a *CheckpointsUploadRequestBuilder when successful
+func (m *CheckpointsRequestBuilder) Upload()(*CheckpointsUploadRequestBuilder) {
+    return NewCheckpointsUploadRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *CheckpointsRequestBuilder when successful

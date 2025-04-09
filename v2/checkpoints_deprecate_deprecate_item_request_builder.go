@@ -8,33 +8,33 @@ import (
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
-// CheckpointsItemDeprecateRequestBuilder builds and executes requests for operations under \v2\checkpoints\{id}\deprecate
-type CheckpointsItemDeprecateRequestBuilder struct {
+// CheckpointsDeprecateDeprecateItemRequestBuilder builds and executes requests for operations under \v2\checkpoints\deprecate\{id}
+type CheckpointsDeprecateDeprecateItemRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
-// CheckpointsItemDeprecateRequestBuilderPatchRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
-type CheckpointsItemDeprecateRequestBuilderPatchRequestConfiguration struct {
+// CheckpointsDeprecateDeprecateItemRequestBuilderPatchRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
+type CheckpointsDeprecateDeprecateItemRequestBuilderPatchRequestConfiguration struct {
     // Request headers
     Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
     // Request options
     Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
-// NewCheckpointsItemDeprecateRequestBuilderInternal instantiates a new CheckpointsItemDeprecateRequestBuilder and sets the default values.
-func NewCheckpointsItemDeprecateRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*CheckpointsItemDeprecateRequestBuilder) {
-    m := &CheckpointsItemDeprecateRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v2/checkpoints/{id}/deprecate", pathParameters),
+// NewCheckpointsDeprecateDeprecateItemRequestBuilderInternal instantiates a new CheckpointsDeprecateDeprecateItemRequestBuilder and sets the default values.
+func NewCheckpointsDeprecateDeprecateItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*CheckpointsDeprecateDeprecateItemRequestBuilder) {
+    m := &CheckpointsDeprecateDeprecateItemRequestBuilder{
+        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v2/checkpoints/deprecate/{id}", pathParameters),
     }
     return m
 }
-// NewCheckpointsItemDeprecateRequestBuilder instantiates a new CheckpointsItemDeprecateRequestBuilder and sets the default values.
-func NewCheckpointsItemDeprecateRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*CheckpointsItemDeprecateRequestBuilder) {
+// NewCheckpointsDeprecateDeprecateItemRequestBuilder instantiates a new CheckpointsDeprecateDeprecateItemRequestBuilder and sets the default values.
+func NewCheckpointsDeprecateDeprecateItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*CheckpointsDeprecateDeprecateItemRequestBuilder) {
     urlParams := make(map[string]string)
     urlParams["request-raw-url"] = rawUrl
-    return NewCheckpointsItemDeprecateRequestBuilderInternal(urlParams, requestAdapter)
+    return NewCheckpointsDeprecateDeprecateItemRequestBuilderInternal(urlParams, requestAdapter)
 }
 // Patch checkpoints can't directly be deleted as use them as versioning points and might be required for restores that might be in-flightsetting them deprecated marks them to be cleaned up as soon as possible(likely within a day).Use the re-sync endpoint to force removal of checkpoint files after it has been marked deprecated.
 // returns a *string when successful
-func (m *CheckpointsItemDeprecateRequestBuilder) Patch(ctx context.Context, requestConfiguration *CheckpointsItemDeprecateRequestBuilderPatchRequestConfiguration)(*string, error) {
+func (m *CheckpointsDeprecateDeprecateItemRequestBuilder) Patch(ctx context.Context, requestConfiguration *CheckpointsDeprecateDeprecateItemRequestBuilderPatchRequestConfiguration)(*string, error) {
     requestInfo, err := m.ToPatchRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
@@ -50,7 +50,7 @@ func (m *CheckpointsItemDeprecateRequestBuilder) Patch(ctx context.Context, requ
 }
 // ToPatchRequestInformation checkpoints can't directly be deleted as use them as versioning points and might be required for restores that might be in-flightsetting them deprecated marks them to be cleaned up as soon as possible(likely within a day).Use the re-sync endpoint to force removal of checkpoint files after it has been marked deprecated.
 // returns a *RequestInformation when successful
-func (m *CheckpointsItemDeprecateRequestBuilder) ToPatchRequestInformation(ctx context.Context, requestConfiguration *CheckpointsItemDeprecateRequestBuilderPatchRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+func (m *CheckpointsDeprecateDeprecateItemRequestBuilder) ToPatchRequestInformation(ctx context.Context, requestConfiguration *CheckpointsDeprecateDeprecateItemRequestBuilderPatchRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.PATCH, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
     if requestConfiguration != nil {
         requestInfo.Headers.AddAll(requestConfiguration.Headers)
@@ -60,7 +60,7 @@ func (m *CheckpointsItemDeprecateRequestBuilder) ToPatchRequestInformation(ctx c
     return requestInfo, nil
 }
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
-// returns a *CheckpointsItemDeprecateRequestBuilder when successful
-func (m *CheckpointsItemDeprecateRequestBuilder) WithUrl(rawUrl string)(*CheckpointsItemDeprecateRequestBuilder) {
-    return NewCheckpointsItemDeprecateRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+// returns a *CheckpointsDeprecateDeprecateItemRequestBuilder when successful
+func (m *CheckpointsDeprecateDeprecateItemRequestBuilder) WithUrl(rawUrl string)(*CheckpointsDeprecateDeprecateItemRequestBuilder) {
+    return NewCheckpointsDeprecateDeprecateItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
 }
