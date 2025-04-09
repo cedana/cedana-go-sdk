@@ -25,7 +25,8 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/CheckpointID"
+                "type": "string",
+                "format": "uuid"
               }
             }
           }
@@ -74,15 +75,31 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "type": "string",
-                  "format": "uuid"
+                  "type": "string"
                 },
                 "example": "<uuid-v4-here>"
               }
             }
           },
+          "404": {
+            "description": "Failed create checkpoint",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
           "500": {
-            "description": "Failed to connect/fetch from jobs table from database"
+            "description": "Failed to connect/fetch from jobs table from database",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -136,7 +153,7 @@
         ]
       }
     },
-    "/v2/checkpoints/{id}/processinfo": {
+    "/v2/checkpoints/{id}/process_info": {
       "put": {
         "tags": [
           "cedana_checkpoints"
@@ -150,7 +167,8 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "uuid"
             }
           }
         ],
@@ -188,16 +206,6 @@
         "summary": "Push Checkpoint Content",
         "description": "Checkpoints can't directly be deleted as use them as versioning points and might be required for restores that might be in-flight\nsetting them deprecated marks them to be cleaned up as soon as possible(likely within a day).\n\nUse the re-sync endpoint to force removal of checkpoint files after it has been marked deprecated.",
         "operationId": "push",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "Returns the url, to upload the checkpoint to",
@@ -318,28 +326,44 @@
         "description": "Checkpoint is basic unit for cedana service operation\nit stores all the information regarding the snapshot we can use to save and then restore state",
         "required": [
           "id",
-          "process_info",
           "status",
           "org_id"
         ],
         "properties": {
+          "checksum": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
           "id": {
-            "$ref": "#/components/schemas/CheckpointID"
+            "type": "string",
+            "format": "uuid"
           },
           "org_id": {
-            "$ref": "#/components/schemas/OrgId"
+            "type": "string",
+            "format": "uuid"
           },
           "process_info": {
-            "type": "string"
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "status": {
-            "type": "string"
+            "$ref": "#/components/schemas/CheckpointStatus"
           }
         }
       },
-      "CheckpointID": {
+      "CheckpointStatus": {
         "type": "string",
-        "description": "CheckpointID is a simple wrapper around `sqlx::Uuid` type, exists to make usage of CheckpointID more type safe and convenient"
+        "enum": [
+          "initializing",
+          "updated_info",
+          "possibly_uploaded",
+          "ready",
+          "deprecated"
+        ]
       },
       "HttpError": {
         "type": "object",
@@ -371,10 +395,6 @@
             "type": "string"
           }
         }
-      },
-      "OrgId": {
-        "type": "string",
-        "description": "OrgId is a simple wrapper around `sqlx::Uuid` type, exists to make usage of OrgId more type safe and convenient"
       }
     },
     "securitySchemes": {

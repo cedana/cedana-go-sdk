@@ -29,10 +29,10 @@ func NewCheckpointsCheckpointsItemRequestBuilder(rawUrl string, requestAdapter i
 func (m *CheckpointsCheckpointsItemRequestBuilder) Deprecate()(*CheckpointsItemDeprecateRequestBuilder) {
     return NewCheckpointsItemDeprecateRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
-// Processinfo the processinfo property
-// returns a *CheckpointsItemProcessinfoRequestBuilder when successful
-func (m *CheckpointsCheckpointsItemRequestBuilder) Processinfo()(*CheckpointsItemProcessinfoRequestBuilder) {
-    return NewCheckpointsItemProcessinfoRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+// Process_info the process_info property
+// returns a *CheckpointsItemProcess_infoRequestBuilder when successful
+func (m *CheckpointsCheckpointsItemRequestBuilder) Process_info()(*CheckpointsItemProcess_infoRequestBuilder) {
+    return NewCheckpointsItemProcess_infoRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Upload the upload property
 // returns a *CheckpointsItemUploadRequestBuilder when successful

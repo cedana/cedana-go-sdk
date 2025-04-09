@@ -16,7 +16,7 @@ type CheckpointsRequestBuilder struct {
 }
 // CheckpointsRequestBuilderGetQueryParameters use query params to filter checkpoints
 type CheckpointsRequestBuilderGetQueryParameters struct {
-    Ids []string `uriparametername:"ids"`
+    Ids []i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID `uriparametername:"ids"`
 }
 // CheckpointsRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type CheckpointsRequestBuilderGetRequestConfiguration struct {
@@ -83,20 +83,26 @@ func (m *CheckpointsRequestBuilder) Get(ctx context.Context, requestConfiguratio
     return val, nil
 }
 // Post builds a new checkpoint without the metadata and information about the checkpoint with status initializing
-// returns a *UUID when successful
-func (m *CheckpointsRequestBuilder) Post(ctx context.Context, requestConfiguration *CheckpointsRequestBuilderPostRequestConfiguration)(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID, error) {
+// returns a *string when successful
+// returns a HttpError error when the service returns a 404 status code
+// returns a HttpError error when the service returns a 500 status code
+func (m *CheckpointsRequestBuilder) Post(ctx context.Context, requestConfiguration *CheckpointsRequestBuilderPostRequestConfiguration)(*string, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "uuid", nil)
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "404": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", errorMapping)
     if err != nil {
         return nil, err
     }
     if res == nil {
         return nil, nil
     }
-    return res.(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID), nil
+    return res.(*string), nil
 }
 // ToGetRequestInformation use query params to filter checkpoints
 // returns a *RequestInformation when successful

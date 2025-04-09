@@ -4,6 +4,7 @@
 package models
 
 import (
+    i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -11,14 +12,16 @@ import (
 type Checkpoint struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // CheckpointID is a simple wrapper around `sqlx::Uuid` type, exists to make usage of CheckpointID more type safe and convenient
-    id *string
-    // OrgId is a simple wrapper around `sqlx::Uuid` type, exists to make usage of OrgId more type safe and convenient
-    org_id *string
+    // The checksum property
+    checksum *string
+    // The id property
+    id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+    // The org_id property
+    org_id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The process_info property
     process_info *string
     // The status property
-    status *string
+    status *CheckpointStatus
 }
 // NewCheckpoint instantiates a new Checkpoint and sets the default values.
 func NewCheckpoint()(*Checkpoint) {
@@ -37,12 +40,27 @@ func CreateCheckpointFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3
 func (m *Checkpoint) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
+// GetChecksum gets the checksum property value. The checksum property
+// returns a *string when successful
+func (m *Checkpoint) GetChecksum()(*string) {
+    return m.checksum
+}
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *Checkpoint) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+    res["checksum"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetChecksum(val)
+        }
+        return nil
+    }
+    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetUUIDValue()
         if err != nil {
             return err
         }
@@ -52,7 +70,7 @@ func (m *Checkpoint) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         return nil
     }
     res["org_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
+        val, err := n.GetUUIDValue()
         if err != nil {
             return err
         }
@@ -72,25 +90,25 @@ func (m *Checkpoint) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         return nil
     }
     res["status"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
+        val, err := n.GetEnumValue(ParseCheckpointStatus)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetStatus(val)
+            m.SetStatus(val.(*CheckpointStatus))
         }
         return nil
     }
     return res
 }
-// GetId gets the id property value. CheckpointID is a simple wrapper around `sqlx::Uuid` type, exists to make usage of CheckpointID more type safe and convenient
-// returns a *string when successful
-func (m *Checkpoint) GetId()(*string) {
+// GetId gets the id property value. The id property
+// returns a *UUID when successful
+func (m *Checkpoint) GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
     return m.id
 }
-// GetOrgId gets the org_id property value. OrgId is a simple wrapper around `sqlx::Uuid` type, exists to make usage of OrgId more type safe and convenient
-// returns a *string when successful
-func (m *Checkpoint) GetOrgId()(*string) {
+// GetOrgId gets the org_id property value. The org_id property
+// returns a *UUID when successful
+func (m *Checkpoint) GetOrgId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
     return m.org_id
 }
 // GetProcessInfo gets the process_info property value. The process_info property
@@ -99,20 +117,26 @@ func (m *Checkpoint) GetProcessInfo()(*string) {
     return m.process_info
 }
 // GetStatus gets the status property value. The status property
-// returns a *string when successful
-func (m *Checkpoint) GetStatus()(*string) {
+// returns a *CheckpointStatus when successful
+func (m *Checkpoint) GetStatus()(*CheckpointStatus) {
     return m.status
 }
 // Serialize serializes information the current object
 func (m *Checkpoint) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteStringValue("id", m.GetId())
+        err := writer.WriteStringValue("checksum", m.GetChecksum())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteStringValue("org_id", m.GetOrgId())
+        err := writer.WriteUUIDValue("id", m.GetId())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteUUIDValue("org_id", m.GetOrgId())
         if err != nil {
             return err
         }
@@ -123,8 +147,9 @@ func (m *Checkpoint) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
             return err
         }
     }
-    {
-        err := writer.WriteStringValue("status", m.GetStatus())
+    if m.GetStatus() != nil {
+        cast := (*m.GetStatus()).String()
+        err := writer.WriteStringValue("status", &cast)
         if err != nil {
             return err
         }
@@ -141,12 +166,16 @@ func (m *Checkpoint) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
 func (m *Checkpoint) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetId sets the id property value. CheckpointID is a simple wrapper around `sqlx::Uuid` type, exists to make usage of CheckpointID more type safe and convenient
-func (m *Checkpoint) SetId(value *string)() {
+// SetChecksum sets the checksum property value. The checksum property
+func (m *Checkpoint) SetChecksum(value *string)() {
+    m.checksum = value
+}
+// SetId sets the id property value. The id property
+func (m *Checkpoint) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.id = value
 }
-// SetOrgId sets the org_id property value. OrgId is a simple wrapper around `sqlx::Uuid` type, exists to make usage of OrgId more type safe and convenient
-func (m *Checkpoint) SetOrgId(value *string)() {
+// SetOrgId sets the org_id property value. The org_id property
+func (m *Checkpoint) SetOrgId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.org_id = value
 }
 // SetProcessInfo sets the process_info property value. The process_info property
@@ -154,18 +183,20 @@ func (m *Checkpoint) SetProcessInfo(value *string)() {
     m.process_info = value
 }
 // SetStatus sets the status property value. The status property
-func (m *Checkpoint) SetStatus(value *string)() {
+func (m *Checkpoint) SetStatus(value *CheckpointStatus)() {
     m.status = value
 }
 type Checkpointable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetId()(*string)
-    GetOrgId()(*string)
+    GetChecksum()(*string)
+    GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+    GetOrgId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetProcessInfo()(*string)
-    GetStatus()(*string)
-    SetId(value *string)()
-    SetOrgId(value *string)()
+    GetStatus()(*CheckpointStatus)
+    SetChecksum(value *string)()
+    SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
+    SetOrgId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetProcessInfo(value *string)()
-    SetStatus(value *string)()
+    SetStatus(value *CheckpointStatus)()
 }

@@ -71,3 +71,18 @@ func TestCheckpointsList(t *testing.T) {
 		}
 	}
 }
+
+func TestCheckpointsAdd(t *testing.T) {
+	client := sdk.NewCedanaClient(cedanaUrl, apiKey)
+	uuid, err := client.V2().Checkpoints().Post(context.Background(), nil)
+	if err != nil {
+		switch v := err.(type) {
+		case *sdk_models.HttpError:
+			t.Errorf("failed to create checkpoint: %s :error_code(%d)", *v.GetMessage(), *v.GetCedanaErrorCode())
+		default:
+			t.Errorf("unknown error: %v", v)
+		}
+	} else {
+		fmt.Printf("new checkpoint %v\n", *uuid)
+	}
+}
