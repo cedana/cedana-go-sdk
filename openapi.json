@@ -115,7 +115,7 @@
           "cedana_checkpoints"
         ],
         "summary": "Deprecate Checkpoint",
-        "description": "Checkpoints can't directly be deleted as use them as versioning points and might be required for restores that might be in-flight\nsetting them deprecated marks them to be cleaned up as soon as possible(likely within a day).\n\nUse the re-sync endpoint to force removal of checkpoint files after it has been marked deprecated.",
+        "description": "Marks checkpoint as deprecated, so that they can be removed on next internal state cleanup. Checkpoints marked deprecated are removed within a fixed number of days depending on our customer service agreement.\n\nNote: Checkpoints can't directly be deleted as use them as versioning points and might be required for restores that might be in-flight\nsetting them deprecated marks them to be cleaned up as soon as possible(likely within a day).",
         "operationId": "deprecate",
         "parameters": [
           {
@@ -206,9 +206,9 @@
         "tags": [
           "cedana_checkpoints"
         ],
-        "summary": "Append Checkpoint Info",
-        "description": "Add information about the checkpoint process",
-        "operationId": "put_info",
+        "summary": "Put Checkpoint Info",
+        "description": "Add information about the checkpointed pod and runtime",
+        "operationId": "update_info",
         "parameters": [
           {
             "name": "id",
@@ -276,7 +276,7 @@
           "cedana_checkpoints"
         ],
         "summary": "Upload Checkpoint Content",
-        "description": "Checkpoints can't directly be deleted as use them as versioning points and might be required for restores that might be in-flight\nsetting them deprecated marks them to be cleaned up as soon as possible(likely within a day).\n\nUse the re-sync endpoint to force removal of checkpoint files after it has been marked deprecated.",
+        "description": "Provides pre-signed URL to upload checkpoint to, based on checkpoint id and org configuration",
         "operationId": "upload",
         "responses": {
           "200": {

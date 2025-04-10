@@ -32,7 +32,7 @@ func NewCheckpointsDeprecateDeprecateItemRequestBuilder(rawUrl string, requestAd
     urlParams["request-raw-url"] = rawUrl
     return NewCheckpointsDeprecateDeprecateItemRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Patch checkpoints can't directly be deleted as use them as versioning points and might be required for restores that might be in-flightsetting them deprecated marks them to be cleaned up as soon as possible(likely within a day).Use the re-sync endpoint to force removal of checkpoint files after it has been marked deprecated.
+// Patch marks checkpoint as deprecated, so that they can be removed on next internal state cleanup. Checkpoints marked deprecated are removed within a fixed number of days depending on our customer service agreement.Note: Checkpoints can't directly be deleted as use them as versioning points and might be required for restores that might be in-flightsetting them deprecated marks them to be cleaned up as soon as possible(likely within a day).
 // returns a *string when successful
 func (m *CheckpointsDeprecateDeprecateItemRequestBuilder) Patch(ctx context.Context, requestConfiguration *CheckpointsDeprecateDeprecateItemRequestBuilderPatchRequestConfiguration)(*string, error) {
     requestInfo, err := m.ToPatchRequestInformation(ctx, requestConfiguration);
@@ -48,7 +48,7 @@ func (m *CheckpointsDeprecateDeprecateItemRequestBuilder) Patch(ctx context.Cont
     }
     return res.(*string), nil
 }
-// ToPatchRequestInformation checkpoints can't directly be deleted as use them as versioning points and might be required for restores that might be in-flightsetting them deprecated marks them to be cleaned up as soon as possible(likely within a day).Use the re-sync endpoint to force removal of checkpoint files after it has been marked deprecated.
+// ToPatchRequestInformation marks checkpoint as deprecated, so that they can be removed on next internal state cleanup. Checkpoints marked deprecated are removed within a fixed number of days depending on our customer service agreement.Note: Checkpoints can't directly be deleted as use them as versioning points and might be required for restores that might be in-flightsetting them deprecated marks them to be cleaned up as soon as possible(likely within a day).
 // returns a *RequestInformation when successful
 func (m *CheckpointsDeprecateDeprecateItemRequestBuilder) ToPatchRequestInformation(ctx context.Context, requestConfiguration *CheckpointsDeprecateDeprecateItemRequestBuilderPatchRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.PATCH, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

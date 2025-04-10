@@ -33,7 +33,7 @@ func NewCheckpointsUploadUploadItemRequestBuilder(rawUrl string, requestAdapter 
     urlParams["request-raw-url"] = rawUrl
     return NewCheckpointsUploadUploadItemRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Patch checkpoints can't directly be deleted as use them as versioning points and might be required for restores that might be in-flightsetting them deprecated marks them to be cleaned up as soon as possible(likely within a day).Use the re-sync endpoint to force removal of checkpoint files after it has been marked deprecated.
+// Patch provides pre-signed URL to upload checkpoint to, based on checkpoint id and org configuration
 // returns a *string when successful
 // returns a HttpError error when the service returns a 404 status code
 // returns a HttpError error when the service returns a 500 status code
@@ -55,7 +55,7 @@ func (m *CheckpointsUploadUploadItemRequestBuilder) Patch(ctx context.Context, r
     }
     return res.(*string), nil
 }
-// ToPatchRequestInformation checkpoints can't directly be deleted as use them as versioning points and might be required for restores that might be in-flightsetting them deprecated marks them to be cleaned up as soon as possible(likely within a day).Use the re-sync endpoint to force removal of checkpoint files after it has been marked deprecated.
+// ToPatchRequestInformation provides pre-signed URL to upload checkpoint to, based on checkpoint id and org configuration
 // returns a *RequestInformation when successful
 func (m *CheckpointsUploadUploadItemRequestBuilder) ToPatchRequestInformation(ctx context.Context, requestConfiguration *CheckpointsUploadUploadItemRequestBuilderPatchRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.PATCH, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
