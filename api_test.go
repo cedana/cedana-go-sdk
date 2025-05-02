@@ -24,7 +24,7 @@ var (
 
 func TestUser(t *testing.T) {
 	client := sdk.NewCedanaClient(cedanaUrl, apiKey)
-	user, err := client.V2().User().Post(context.Background(), nil)
+	user, err := client.V2().User().Get(context.Background(), nil)
 	if err != nil {
 		switch v := err.(type) {
 		case *sdk_models.HttpError:

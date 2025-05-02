@@ -9,6 +9,60 @@
     "version": "0.5.0"
   },
   "paths": {
+    "/v2/checkpoint/pod": {
+      "post": {
+        "summary": "Checkpoint a Pod and store related checkpoints",
+        "operationId": "checkpoint_pod",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckpointPod"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns the checkpoint id for the new checkpoint",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "<uuid-v4-here>"
+              }
+            }
+          },
+          "404": {
+            "description": "Failed create checkpoint",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect/fetch from jobs table from database",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
     "/v2/checkpoints": {
       "get": {
         "tags": [
@@ -452,6 +506,36 @@
             "type": "string"
           },
           "platform": {
+            "type": "string"
+          }
+        }
+      },
+      "CheckpointPod": {
+        "type": "object",
+        "required": [
+          "pod_name",
+          "runc_root",
+          "namespace",
+          "cluster_id"
+        ],
+        "properties": {
+          "action_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "readOnly": true
+          },
+          "cluster_id": {
+            "type": "string"
+          },
+          "namespace": {
+            "type": "string"
+          },
+          "pod_name": {
+            "type": "string"
+          },
+          "runc_root": {
             "type": "string"
           }
         }

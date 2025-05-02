@@ -11,6 +11,11 @@ import (
 type V2RequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+// Checkpoint the checkpoint property
+// returns a *CheckpointRequestBuilder when successful
+func (m *V2RequestBuilder) Checkpoint()(*CheckpointRequestBuilder) {
+    return NewCheckpointRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Checkpoints the checkpoints property
 // returns a *CheckpointsRequestBuilder when successful
 func (m *V2RequestBuilder) Checkpoints()(*CheckpointsRequestBuilder) {
