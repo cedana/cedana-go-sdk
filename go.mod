@@ -3,17 +3,19 @@ module github.com/cedana/cedana-go-sdk
 go 1.24.1
 
 require (
+	github.com/google/uuid v1.6.0
+	github.com/microsoft/kiota-abstractions-go v1.9.2
+	github.com/microsoft/kiota-http-go v1.5.2
+	github.com/microsoft/kiota-serialization-form-go v1.1.2
+	github.com/microsoft/kiota-serialization-json-go v1.1.2
+	github.com/microsoft/kiota-serialization-multipart-go v1.1.2
+	github.com/microsoft/kiota-serialization-text-go v1.1.2
+)
+
+require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/go-logr/logr v1.4.2 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
-	github.com/google/uuid v1.6.0 // indirect
-	github.com/microsoft/kiota-abstractions-go v1.9.2 // indirect
-	github.com/microsoft/kiota-bundle-go v1.4.2 // indirect
-	github.com/microsoft/kiota-http-go v1.5.2 // indirect
-	github.com/microsoft/kiota-serialization-form-go v1.1.2 // indirect
-	github.com/microsoft/kiota-serialization-json-go v1.1.2 // indirect
-	github.com/microsoft/kiota-serialization-multipart-go v1.1.2 // indirect
-	github.com/microsoft/kiota-serialization-text-go v1.1.2 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/std-uritemplate/std-uritemplate/go/v2 v2.0.3 // indirect
 	github.com/stretchr/testify v1.10.0 // indirect
