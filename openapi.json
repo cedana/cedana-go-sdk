@@ -25,7 +25,7 @@
         },
         "responses": {
           "200": {
-            "description": "Returns the checkpoint id for the new checkpoint",
+            "description": "Returns the id for the task",
             "content": {
               "text/plain": {
                 "schema": {
@@ -36,7 +36,7 @@
             }
           },
           "404": {
-            "description": "Failed create checkpoint",
+            "description": "Failed to find checkpointable resource",
             "content": {
               "application/json": {
                 "schema": {
@@ -372,6 +372,49 @@
         ]
       }
     },
+    "/v2/discover/{name}": {
+      "get": {
+        "summary": "Service Discovery endpoint",
+        "operationId": "discovery",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns url for the service named",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect/fetch from database",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
     "/v2/jobs": {
       "get": {
         "tags": [
@@ -404,6 +447,60 @@
           },
           "500": {
             "description": "Failed to connect/fetch from jobs table from database"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/v2/restore/pod": {
+      "post": {
+        "summary": "Restore a Pod",
+        "operationId": "restore_pod",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RestorePod"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns the checkpoint id for the new checkpoint",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "<uuid-v4-here>"
+              }
+            }
+          },
+          "404": {
+            "description": "Failed create checkpoint",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect/fetch from jobs table from database",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -577,6 +674,21 @@
             "type": "string"
           },
           "type": {
+            "type": "string"
+          }
+        }
+      },
+      "RestorePod": {
+        "type": "object",
+        "required": [
+          "action_id",
+          "cluster_id"
+        ],
+        "properties": {
+          "action_id": {
+            "type": "string"
+          },
+          "cluster_id": {
             "type": "string"
           }
         }
