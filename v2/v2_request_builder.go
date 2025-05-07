@@ -34,10 +34,20 @@ func NewV2RequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c9
     urlParams["request-raw-url"] = rawUrl
     return NewV2RequestBuilderInternal(urlParams, requestAdapter)
 }
+// Discover the discover property
+// returns a *DiscoverRequestBuilder when successful
+func (m *V2RequestBuilder) Discover()(*DiscoverRequestBuilder) {
+    return NewDiscoverRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Jobs the jobs property
 // returns a *JobsRequestBuilder when successful
 func (m *V2RequestBuilder) Jobs()(*JobsRequestBuilder) {
     return NewJobsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Restore the restore property
+// returns a *RestoreRequestBuilder when successful
+func (m *V2RequestBuilder) Restore()(*RestoreRequestBuilder) {
+    return NewRestoreRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // User the user property
 // returns a *UserRequestBuilder when successful
