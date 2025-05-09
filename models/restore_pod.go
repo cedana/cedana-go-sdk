@@ -14,6 +14,8 @@ type RestorePod struct {
     additionalData map[string]any
     // The cluster_id property
     cluster_id *string
+    // The pod_id property
+    pod_id *string
 }
 // NewRestorePod instantiates a new RestorePod and sets the default values.
 func NewRestorePod()(*RestorePod) {
@@ -66,18 +68,33 @@ func (m *RestorePod) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         }
         return nil
     }
+    res["pod_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPodId(val)
+        }
+        return nil
+    }
     return res
+}
+// GetPodId gets the pod_id property value. The pod_id property
+// returns a *string when successful
+func (m *RestorePod) GetPodId()(*string) {
+    return m.pod_id
 }
 // Serialize serializes information the current object
 func (m *RestorePod) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteStringValue("action_id", m.GetActionId())
+        err := writer.WriteStringValue("cluster_id", m.GetClusterId())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteStringValue("cluster_id", m.GetClusterId())
+        err := writer.WriteStringValue("pod_id", m.GetPodId())
         if err != nil {
             return err
         }
@@ -102,11 +119,17 @@ func (m *RestorePod) SetAdditionalData(value map[string]any)() {
 func (m *RestorePod) SetClusterId(value *string)() {
     m.cluster_id = value
 }
+// SetPodId sets the pod_id property value. The pod_id property
+func (m *RestorePod) SetPodId(value *string)() {
+    m.pod_id = value
+}
 type RestorePodable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetActionId()(*string)
     GetClusterId()(*string)
+    GetPodId()(*string)
     SetActionId(value *string)()
     SetClusterId(value *string)()
+    SetPodId(value *string)()
 }

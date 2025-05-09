@@ -35,6 +35,7 @@ func NewRestorePodRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263
 }
 // Post restore a Pod
 // returns a *string when successful
+// returns a HttpError error when the service returns a 400 status code
 // returns a HttpError error when the service returns a 404 status code
 // returns a HttpError error when the service returns a 500 status code
 func (m *RestorePodRequestBuilder) Post(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.RestorePodable, requestConfiguration *RestorePodRequestBuilderPostRequestConfiguration)(*string, error) {
@@ -43,6 +44,7 @@ func (m *RestorePodRequestBuilder) Post(ctx context.Context, body i4db02de4fa95d
         return nil, err
     }
     errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "400": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
         "404": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
         "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
     }

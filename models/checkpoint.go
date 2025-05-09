@@ -14,10 +14,16 @@ type Checkpoint struct {
     additionalData map[string]any
     // The checksum property
     checksum *string
+    // The gpu property
+    gpu *string
     // The id property
     id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+    // The image_name_with_tag property
+    image_name_with_tag *string
     // The org_id property
     org_id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+    // The platform property
+    platform *string
     // The process_info property
     process_info *string
     // The status property
@@ -59,6 +65,16 @@ func (m *Checkpoint) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         }
         return nil
     }
+    res["gpu"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetGpu(val)
+        }
+        return nil
+    }
     res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetUUIDValue()
         if err != nil {
@@ -69,6 +85,16 @@ func (m *Checkpoint) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         }
         return nil
     }
+    res["image_name_with_tag"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetImageNameWithTag(val)
+        }
+        return nil
+    }
     res["org_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetUUIDValue()
         if err != nil {
@@ -76,6 +102,16 @@ func (m *Checkpoint) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         }
         if val != nil {
             m.SetOrgId(val)
+        }
+        return nil
+    }
+    res["platform"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPlatform(val)
         }
         return nil
     }
@@ -101,15 +137,30 @@ func (m *Checkpoint) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
     }
     return res
 }
+// GetGpu gets the gpu property value. The gpu property
+// returns a *string when successful
+func (m *Checkpoint) GetGpu()(*string) {
+    return m.gpu
+}
 // GetId gets the id property value. The id property
 // returns a *UUID when successful
 func (m *Checkpoint) GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
     return m.id
 }
+// GetImageNameWithTag gets the image_name_with_tag property value. The image_name_with_tag property
+// returns a *string when successful
+func (m *Checkpoint) GetImageNameWithTag()(*string) {
+    return m.image_name_with_tag
+}
 // GetOrgId gets the org_id property value. The org_id property
 // returns a *UUID when successful
 func (m *Checkpoint) GetOrgId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
     return m.org_id
+}
+// GetPlatform gets the platform property value. The platform property
+// returns a *string when successful
+func (m *Checkpoint) GetPlatform()(*string) {
+    return m.platform
 }
 // GetProcessInfo gets the process_info property value. The process_info property
 // returns a *string when successful
@@ -130,13 +181,31 @@ func (m *Checkpoint) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
         }
     }
     {
+        err := writer.WriteStringValue("gpu", m.GetGpu())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteUUIDValue("id", m.GetId())
         if err != nil {
             return err
         }
     }
     {
+        err := writer.WriteStringValue("image_name_with_tag", m.GetImageNameWithTag())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteUUIDValue("org_id", m.GetOrgId())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("platform", m.GetPlatform())
         if err != nil {
             return err
         }
@@ -170,13 +239,25 @@ func (m *Checkpoint) SetAdditionalData(value map[string]any)() {
 func (m *Checkpoint) SetChecksum(value *string)() {
     m.checksum = value
 }
+// SetGpu sets the gpu property value. The gpu property
+func (m *Checkpoint) SetGpu(value *string)() {
+    m.gpu = value
+}
 // SetId sets the id property value. The id property
 func (m *Checkpoint) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.id = value
 }
+// SetImageNameWithTag sets the image_name_with_tag property value. The image_name_with_tag property
+func (m *Checkpoint) SetImageNameWithTag(value *string)() {
+    m.image_name_with_tag = value
+}
 // SetOrgId sets the org_id property value. The org_id property
 func (m *Checkpoint) SetOrgId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.org_id = value
+}
+// SetPlatform sets the platform property value. The platform property
+func (m *Checkpoint) SetPlatform(value *string)() {
+    m.platform = value
 }
 // SetProcessInfo sets the process_info property value. The process_info property
 func (m *Checkpoint) SetProcessInfo(value *string)() {
@@ -190,13 +271,19 @@ type Checkpointable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetChecksum()(*string)
+    GetGpu()(*string)
     GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+    GetImageNameWithTag()(*string)
     GetOrgId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+    GetPlatform()(*string)
     GetProcessInfo()(*string)
     GetStatus()(*CheckpointStatus)
     SetChecksum(value *string)()
+    SetGpu(value *string)()
     SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
+    SetImageNameWithTag(value *string)()
     SetOrgId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
+    SetPlatform(value *string)()
     SetProcessInfo(value *string)()
     SetStatus(value *CheckpointStatus)()
 }

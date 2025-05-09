@@ -456,6 +456,43 @@
         ]
       }
     },
+    "/v2/pods": {
+      "get": {
+        "summary": "List Pods",
+        "description": "Use query params to filter checkpoints",
+        "operationId": "list",
+        "responses": {
+          "200": {
+            "description": "Returns pods",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Pod"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect/fetch from database",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
     "/v2/restore/pod": {
       "post": {
         "summary": "Restore a Pod",
@@ -482,8 +519,18 @@
               }
             }
           },
-          "404": {
+          "400": {
             "description": "Failed create checkpoint",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Failed create restore",
             "content": {
               "application/json": {
                 "schema": {
@@ -564,6 +611,8 @@
         "required": [
           "id",
           "status",
+          "gpu",
+          "platform",
           "org_id"
         ],
         "properties": {
@@ -573,13 +622,25 @@
               "null"
             ]
           },
+          "gpu": {
+            "type": "string"
+          },
           "id": {
             "type": "string",
             "format": "uuid"
           },
+          "image_name_with_tag": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
           "org_id": {
             "type": "string",
             "format": "uuid"
+          },
+          "platform": {
+            "type": "string"
           },
           "process_info": {
             "type": [
@@ -678,17 +739,57 @@
           }
         }
       },
+      "Pod": {
+        "type": "object",
+        "required": [
+          "id",
+          "cluster_id",
+          "node_id",
+          "name",
+          "namespace",
+          "status"
+        ],
+        "properties": {
+          "cluster_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "namespace": {
+            "type": "string"
+          },
+          "node_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
       "RestorePod": {
         "type": "object",
         "required": [
-          "action_id",
-          "cluster_id"
+          "pod_id"
         ],
         "properties": {
           "action_id": {
-            "type": "string"
+            "type": [
+              "string",
+              "null"
+            ],
+            "readOnly": true
           },
           "cluster_id": {
+            "type": "string"
+          },
+          "pod_id": {
             "type": "string"
           }
         }

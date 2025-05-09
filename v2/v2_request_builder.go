@@ -44,6 +44,11 @@ func (m *V2RequestBuilder) Discover()(*DiscoverRequestBuilder) {
 func (m *V2RequestBuilder) Jobs()(*JobsRequestBuilder) {
     return NewJobsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Pods the pods property
+// returns a *PodsRequestBuilder when successful
+func (m *V2RequestBuilder) Pods()(*PodsRequestBuilder) {
+    return NewPodsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Restore the restore property
 // returns a *RestoreRequestBuilder when successful
 func (m *V2RequestBuilder) Restore()(*RestoreRequestBuilder) {
