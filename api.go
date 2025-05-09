@@ -22,10 +22,14 @@ func (*StaticAccessTokenProvider) GetAllowedHostsValidator() *auth.AllowedHostsV
 	return nil
 }
 
-func NewCedanaClient(url, api_key string) *ApiClient {
+func NewCedanaClient(rawUrl, api_key string) *ApiClient {
 	authProvider := auth.NewBaseBearerTokenAuthenticationProvider(&StaticAccessTokenProvider{
 		AccessToken: api_key,
 	})
+	url, err := url.Parse(rawUrl)
+	if err != nil {
+		log.Fatalf("Error parsing raw URL: %v\n", err)
+	}
 
 	adapter, err := http.NewNetHttpRequestAdapter(authProvider)
 	if err != nil {
@@ -34,7 +38,7 @@ func NewCedanaClient(url, api_key string) *ApiClient {
 
 	client := NewApiClient(adapter)
 	if client.BaseRequestBuilder.RequestAdapter.GetBaseUrl() == "" {
-		client.BaseRequestBuilder.RequestAdapter.SetBaseUrl(url)
+		client.BaseRequestBuilder.RequestAdapter.SetBaseUrl(url.Scheme + url.Host)
 	}
 	client.BaseRequestBuilder.PathParameters["baseurl"] = client.BaseRequestBuilder.RequestAdapter.GetBaseUrl()
 
