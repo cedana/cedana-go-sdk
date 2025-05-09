@@ -9,6 +9,66 @@
     "version": "0.5.0"
   },
   "paths": {
+    "/v2/actions": {
+      "get": {
+        "summary": "List actions",
+        "operationId": "list",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the actions with status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Action"
+                  }
+                },
+                "example": "<uuid-v4-here>"
+              }
+            }
+          },
+          "400": {
+            "description": "Failed list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect/fetch from jobs table from database",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
     "/v2/checkpoint/pod": {
       "post": {
         "summary": "Checkpoint a Pod and store related checkpoints",
@@ -605,6 +665,30 @@
   },
   "components": {
     "schemas": {
+      "Action": {
+        "type": "object",
+        "required": [
+          "id",
+          "status",
+          "type",
+          "timestamp"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
       "Checkpoint": {
         "type": "object",
         "description": "Checkpoint is basic unit for cedana service operation\nit stores all the information regarding the snapshot we can use to save and then restore state",
@@ -783,8 +867,7 @@
             "type": [
               "string",
               "null"
-            ],
-            "readOnly": true
+            ]
           },
           "cluster_id": {
             "type": "string"
