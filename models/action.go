@@ -5,18 +5,23 @@ package models
 
 import (
     i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
+    i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type Action struct {
+    // The action_id property
+    action_id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+    // The action_timestamp property
+    action_timestamp *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // The id property
-    id *string
+    // The checkpoint_completed_timestamp property
+    checkpoint_completed_timestamp *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // The checkpoint_id property
+    checkpoint_id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The status property
     status *string
-    // The timestamp property
-    timestamp *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The type property
     typeEscaped *string
 }
@@ -32,22 +37,72 @@ func NewAction()(*Action) {
 func CreateActionFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewAction(), nil
 }
+// GetActionId gets the action_id property value. The action_id property
+// returns a *UUID when successful
+func (m *Action) GetActionId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
+    return m.action_id
+}
+// GetActionTimestamp gets the action_timestamp property value. The action_timestamp property
+// returns a *Time when successful
+func (m *Action) GetActionTimestamp()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
+    return m.action_timestamp
+}
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
 func (m *Action) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
+// GetCheckpointCompletedTimestamp gets the checkpoint_completed_timestamp property value. The checkpoint_completed_timestamp property
+// returns a *Time when successful
+func (m *Action) GetCheckpointCompletedTimestamp()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
+    return m.checkpoint_completed_timestamp
+}
+// GetCheckpointId gets the checkpoint_id property value. The checkpoint_id property
+// returns a *UUID when successful
+func (m *Action) GetCheckpointId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
+    return m.checkpoint_id
+}
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *Action) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
+    res["action_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetUUIDValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetId(val)
+            m.SetActionId(val)
+        }
+        return nil
+    }
+    res["action_timestamp"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetActionTimestamp(val)
+        }
+        return nil
+    }
+    res["checkpoint_completed_timestamp"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCheckpointCompletedTimestamp(val)
+        }
+        return nil
+    }
+    res["checkpoint_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetUUIDValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCheckpointId(val)
         }
         return nil
     }
@@ -58,16 +113,6 @@ func (m *Action) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689638
         }
         if val != nil {
             m.SetStatus(val)
-        }
-        return nil
-    }
-    res["timestamp"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetTimeValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTimestamp(val)
         }
         return nil
     }
@@ -83,20 +128,10 @@ func (m *Action) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689638
     }
     return res
 }
-// GetId gets the id property value. The id property
-// returns a *string when successful
-func (m *Action) GetId()(*string) {
-    return m.id
-}
 // GetStatus gets the status property value. The status property
 // returns a *string when successful
 func (m *Action) GetStatus()(*string) {
     return m.status
-}
-// GetTimestamp gets the timestamp property value. The timestamp property
-// returns a *Time when successful
-func (m *Action) GetTimestamp()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.timestamp
 }
 // GetTypeEscaped gets the type property value. The type property
 // returns a *string when successful
@@ -106,19 +141,31 @@ func (m *Action) GetTypeEscaped()(*string) {
 // Serialize serializes information the current object
 func (m *Action) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteStringValue("id", m.GetId())
+        err := writer.WriteUUIDValue("action_id", m.GetActionId())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteTimeValue("action_timestamp", m.GetActionTimestamp())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteTimeValue("checkpoint_completed_timestamp", m.GetCheckpointCompletedTimestamp())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteUUIDValue("checkpoint_id", m.GetCheckpointId())
         if err != nil {
             return err
         }
     }
     {
         err := writer.WriteStringValue("status", m.GetStatus())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteTimeValue("timestamp", m.GetTimestamp())
         if err != nil {
             return err
         }
@@ -137,21 +184,29 @@ func (m *Action) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c
     }
     return nil
 }
+// SetActionId sets the action_id property value. The action_id property
+func (m *Action) SetActionId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
+    m.action_id = value
+}
+// SetActionTimestamp sets the action_timestamp property value. The action_timestamp property
+func (m *Action) SetActionTimestamp(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
+    m.action_timestamp = value
+}
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *Action) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetId sets the id property value. The id property
-func (m *Action) SetId(value *string)() {
-    m.id = value
+// SetCheckpointCompletedTimestamp sets the checkpoint_completed_timestamp property value. The checkpoint_completed_timestamp property
+func (m *Action) SetCheckpointCompletedTimestamp(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
+    m.checkpoint_completed_timestamp = value
+}
+// SetCheckpointId sets the checkpoint_id property value. The checkpoint_id property
+func (m *Action) SetCheckpointId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
+    m.checkpoint_id = value
 }
 // SetStatus sets the status property value. The status property
 func (m *Action) SetStatus(value *string)() {
     m.status = value
-}
-// SetTimestamp sets the timestamp property value. The timestamp property
-func (m *Action) SetTimestamp(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.timestamp = value
 }
 // SetTypeEscaped sets the type property value. The type property
 func (m *Action) SetTypeEscaped(value *string)() {
@@ -160,12 +215,16 @@ func (m *Action) SetTypeEscaped(value *string)() {
 type Actionable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetId()(*string)
+    GetActionId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+    GetActionTimestamp()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetCheckpointCompletedTimestamp()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetCheckpointId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetStatus()(*string)
-    GetTimestamp()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetTypeEscaped()(*string)
-    SetId(value *string)()
+    SetActionId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
+    SetActionTimestamp(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetCheckpointCompletedTimestamp(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetCheckpointId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetStatus(value *string)()
-    SetTimestamp(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetTypeEscaped(value *string)()
 }
