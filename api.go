@@ -38,7 +38,7 @@ func NewCedanaClient(rawUrl, api_key string) *ApiClient {
 
 	client := NewApiClient(adapter)
 	if client.BaseRequestBuilder.RequestAdapter.GetBaseUrl() == "" {
-		client.BaseRequestBuilder.RequestAdapter.SetBaseUrl(url.Scheme + url.Host)
+		client.BaseRequestBuilder.RequestAdapter.SetBaseUrl(url.Scheme + "://" + url.Host)
 	}
 	client.BaseRequestBuilder.PathParameters["baseurl"] = client.BaseRequestBuilder.RequestAdapter.GetBaseUrl()
 
