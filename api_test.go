@@ -19,11 +19,12 @@ func FromEnvOrElse(key, def string) string {
 
 var (
 	apiKey    = os.Getenv("CEDANA_AUTH_TOKEN_TEST")
-	cedanaUrl = FromEnvOrElse("CEDANA_URL_TEST", "http://localhost:1324")
+	cedanaUrl = FromEnvOrElse("CEDANA_URL_TEST", "http://ui.cedana.ai/v1")
 )
 
 func TestUser(t *testing.T) {
 	client := sdk.NewCedanaClient(cedanaUrl, apiKey)
+	fmt.Println("url: ", client.V2().User().RequestAdapter.GetBaseUrl())
 	user, err := client.V2().User().Get(context.Background(), nil)
 	if err != nil {
 		switch v := err.(type) {
