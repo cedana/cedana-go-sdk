@@ -668,21 +668,32 @@
       "Action": {
         "type": "object",
         "required": [
-          "id",
+          "action_id",
+          "checkpoint_id",
           "status",
           "type",
-          "timestamp"
+          "action_timestamp",
+          "checkpoint_completed_timestamp"
         ],
         "properties": {
-          "id": {
-            "type": "string"
+          "action_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "action_timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "checkpoint_completed_timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "checkpoint_id": {
+            "type": "string",
+            "format": "uuid"
           },
           "status": {
             "type": "string"
-          },
-          "timestamp": {
-            "type": "string",
-            "format": "date-time"
           },
           "type": {
             "type": "string"
@@ -860,19 +871,13 @@
       "RestorePod": {
         "type": "object",
         "required": [
-          "pod_id"
+          "action_id"
         ],
         "properties": {
           "action_id": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "cluster_id": {
             "type": "string"
           },
-          "pod_id": {
+          "cluster_id": {
             "type": "string"
           }
         }
