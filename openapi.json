@@ -432,6 +432,63 @@
         ]
       }
     },
+    "/v2/checkpoints/uploaded/{id}": {
+      "post": {
+        "tags": [
+          "cedana_checkpoints"
+        ],
+        "summary": "Uploaded Checkpoint",
+        "operationId": "uploaded",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Marks the checkpoint as successfully uploaded",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "<uuid-v4-here>"
+              }
+            }
+          },
+          "404": {
+            "description": "Failed mark checkpoint",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect/fetch from jobs table from database",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
     "/v2/discover/{name}": {
       "get": {
         "summary": "Service Discovery endpoint",

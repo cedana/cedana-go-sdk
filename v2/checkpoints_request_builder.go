@@ -137,6 +137,11 @@ func (m *CheckpointsRequestBuilder) ToPostRequestInformation(ctx context.Context
 func (m *CheckpointsRequestBuilder) Upload()(*CheckpointsUploadRequestBuilder) {
     return NewCheckpointsUploadRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Uploaded the uploaded property
+// returns a *CheckpointsUploadedRequestBuilder when successful
+func (m *CheckpointsRequestBuilder) Uploaded()(*CheckpointsUploadedRequestBuilder) {
+    return NewCheckpointsUploadedRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *CheckpointsRequestBuilder when successful
 func (m *CheckpointsRequestBuilder) WithUrl(rawUrl string)(*CheckpointsRequestBuilder) {
