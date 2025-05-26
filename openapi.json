@@ -267,6 +267,63 @@
         ]
       }
     },
+    "/v2/checkpoints/dir/{path}": {
+      "get": {
+        "tags": [
+          "cedana_checkpoints"
+        ],
+        "summary": "Download Checkpoint Content",
+        "operationId": "read_dir",
+        "parameters": [
+          {
+            "name": "path",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the url, to download the file from",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "<presigned-bucket-url-for-downloading-checkpoint-tar>"
+              }
+            }
+          },
+          "404": {
+            "description": "Failed to find checkpoint from id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect/execute request against db",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
     "/v2/checkpoints/download/{id}": {
       "get": {
         "tags": [
@@ -278,6 +335,118 @@
         "responses": {
           "200": {
             "description": "Returns the url, to download the checkpoint from",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "<presigned-bucket-url-for-downloading-checkpoint-tar>"
+              }
+            }
+          },
+          "404": {
+            "description": "Failed to find checkpoint from id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect/execute request against db",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/v2/checkpoints/files/{path}": {
+      "get": {
+        "tags": [
+          "cedana_checkpoints"
+        ],
+        "summary": "Download Checkpoint Content",
+        "operationId": "get_files",
+        "parameters": [
+          {
+            "name": "path",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the url, to download the file from",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "<presigned-bucket-url-for-downloading-checkpoint-tar>"
+              }
+            }
+          },
+          "404": {
+            "description": "Failed to find checkpoint from id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect/execute request against db",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "cedana_checkpoints"
+        ],
+        "summary": "Upload Checkpoint file",
+        "operationId": "push_files",
+        "parameters": [
+          {
+            "name": "path",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the url, to download the file from",
             "content": {
               "text/plain": {
                 "schema": {
@@ -432,7 +601,7 @@
         ]
       }
     },
-    "/v2/checkpoints/uploaded/{id}": {
+    "/v2/checkpoints/uploaded/{id}/{path}": {
       "post": {
         "tags": [
           "cedana_checkpoints"
@@ -449,6 +618,16 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckpointSuccessInfo"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "Marks the checkpoint as successfully uploaded",
@@ -859,6 +1038,17 @@
           "ready",
           "deprecated"
         ]
+      },
+      "CheckpointSuccessInfo": {
+        "type": "object",
+        "properties": {
+          "restore_path": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
       },
       "HttpError": {
         "type": "object",

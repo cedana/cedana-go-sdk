@@ -52,10 +52,20 @@ func NewCheckpointsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee26
 func (m *CheckpointsRequestBuilder) Deprecate()(*CheckpointsDeprecateRequestBuilder) {
     return NewCheckpointsDeprecateRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Dir the dir property
+// returns a *CheckpointsDirRequestBuilder when successful
+func (m *CheckpointsRequestBuilder) Dir()(*CheckpointsDirRequestBuilder) {
+    return NewCheckpointsDirRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Download the download property
 // returns a *CheckpointsDownloadRequestBuilder when successful
 func (m *CheckpointsRequestBuilder) Download()(*CheckpointsDownloadRequestBuilder) {
     return NewCheckpointsDownloadRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Files the files property
+// returns a *CheckpointsFilesRequestBuilder when successful
+func (m *CheckpointsRequestBuilder) Files()(*CheckpointsFilesRequestBuilder) {
+    return NewCheckpointsFilesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Get use query params to filter checkpoints
 // returns a []Checkpointable when successful
