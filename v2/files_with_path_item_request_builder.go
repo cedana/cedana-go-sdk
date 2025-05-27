@@ -20,6 +20,13 @@ type FilesWithPathItemRequestBuilderGetRequestConfiguration struct {
     // Request options
     Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+// FilesWithPathItemRequestBuilderPutRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
+type FilesWithPathItemRequestBuilderPutRequestConfiguration struct {
+    // Request headers
+    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+    // Request options
+    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+}
 // NewFilesWithPathItemRequestBuilderInternal instantiates a new FilesWithPathItemRequestBuilder and sets the default values.
 func NewFilesWithPathItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*FilesWithPathItemRequestBuilder) {
     m := &FilesWithPathItemRequestBuilder{
@@ -53,10 +60,41 @@ func (m *FilesWithPathItemRequestBuilder) Get(ctx context.Context, requestConfig
     }
     return res.(*string), nil
 }
+// Put upload file
+// returns a *string when successful
+// returns a HttpError error when the service returns a 500 status code
+func (m *FilesWithPathItemRequestBuilder) Put(ctx context.Context, requestConfiguration *FilesWithPathItemRequestBuilderPutRequestConfiguration)(*string, error) {
+    requestInfo, err := m.ToPutRequestInformation(ctx, requestConfiguration);
+    if err != nil {
+        return nil, err
+    }
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", errorMapping)
+    if err != nil {
+        return nil, err
+    }
+    if res == nil {
+        return nil, nil
+    }
+    return res.(*string), nil
+}
 // ToGetRequestInformation download file
 // returns a *RequestInformation when successful
 func (m *FilesWithPathItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *FilesWithPathItemRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+    if requestConfiguration != nil {
+        requestInfo.Headers.AddAll(requestConfiguration.Headers)
+        requestInfo.AddRequestOptions(requestConfiguration.Options)
+    }
+    requestInfo.Headers.TryAdd("Accept", "text/plain;q=0.9")
+    return requestInfo, nil
+}
+// ToPutRequestInformation upload file
+// returns a *RequestInformation when successful
+func (m *FilesWithPathItemRequestBuilder) ToPutRequestInformation(ctx context.Context, requestConfiguration *FilesWithPathItemRequestBuilderPutRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.PUT, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
     if requestConfiguration != nil {
         requestInfo.Headers.AddAll(requestConfiguration.Headers)
         requestInfo.AddRequestOptions(requestConfiguration.Options)

@@ -52,11 +52,6 @@ func NewCheckpointsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee26
 func (m *CheckpointsRequestBuilder) Deprecate()(*CheckpointsDeprecateRequestBuilder) {
     return NewCheckpointsDeprecateRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
-// Files the files property
-// returns a *CheckpointsFilesRequestBuilder when successful
-func (m *CheckpointsRequestBuilder) Files()(*CheckpointsFilesRequestBuilder) {
-    return NewCheckpointsFilesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
-}
 // Get use query params to filter checkpoints
 // returns a []Checkpointable when successful
 // returns a HttpError error when the service returns a 500 status code
