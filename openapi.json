@@ -3,14 +3,13 @@
   "info": {
     "title": "cedana-propagator",
     "description": "",
-    "license": {
-      "name": ""
-    },
+    "license": { "name": "" },
     "version": "0.5.0"
   },
   "paths": {
     "/v2/actions": {
       "get": {
+        "tags": ["Actions"],
         "summary": "List actions",
         "operationId": "list",
         "parameters": [
@@ -18,12 +17,7 @@
             "name": "type",
             "in": "query",
             "required": false,
-            "schema": {
-              "type": [
-                "string",
-                "null"
-              ]
-            }
+            "schema": { "type": ["string", "null"] }
           }
         ],
         "responses": {
@@ -33,9 +27,7 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Action"
-                  }
+                  "items": { "$ref": "#/components/schemas/Action" }
                 },
                 "example": "<uuid-v4-here>"
               }
@@ -45,9 +37,7 @@
             "description": "Failed list",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
+                "schema": { "$ref": "#/components/schemas/HttpError" }
               }
             }
           },
@@ -55,30 +45,23 @@
             "description": "Failed to connect/fetch from jobs table from database",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
+                "schema": { "$ref": "#/components/schemas/HttpError" }
               }
             }
           }
         },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
+        "security": [{ "api_key": [] }]
       }
     },
     "/v2/checkpoint/pod": {
       "post": {
-        "summary": "Checkpoint a Pod and store related checkpoints",
+        "tags": ["Actions"],
+        "summary": "Checkpoint a pod",
         "operationId": "checkpoint_pod",
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CheckpointPod"
-              }
+              "schema": { "$ref": "#/components/schemas/CheckpointPod" }
             }
           },
           "required": true
@@ -88,9 +71,7 @@
             "description": "Returns the id for the task",
             "content": {
               "text/plain": {
-                "schema": {
-                  "type": "string"
-                },
+                "schema": { "type": "string" },
                 "example": "<uuid-v4-here>"
               }
             }
@@ -99,9 +80,7 @@
             "description": "Failed to find checkpointable resource",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
+                "schema": { "$ref": "#/components/schemas/HttpError" }
               }
             }
           },
@@ -109,26 +88,18 @@
             "description": "Failed to connect/fetch from jobs table from database",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
+                "schema": { "$ref": "#/components/schemas/HttpError" }
               }
             }
           }
         },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
+        "security": [{ "api_key": [] }]
       }
     },
     "/v2/checkpoints": {
       "get": {
-        "tags": [
-          "cedana_checkpoints"
-        ],
-        "summary": "List Checkpoints",
+        "tags": ["Checkpoints"],
+        "summary": "List checkpoints",
         "description": "Use query params to filter checkpoints",
         "operationId": "list",
         "parameters": [
@@ -138,10 +109,7 @@
             "required": false,
             "schema": {
               "type": "array",
-              "items": {
-                "type": "string",
-                "format": "uuid"
-              }
+              "items": { "type": "string", "format": "uuid" }
             }
           }
         ],
@@ -152,9 +120,7 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Checkpoint"
-                  }
+                  "items": { "$ref": "#/components/schemas/Checkpoint" }
                 }
               }
             }
@@ -163,24 +129,16 @@
             "description": "Failed to connect/fetch from database",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
+                "schema": { "$ref": "#/components/schemas/HttpError" }
               }
             }
           }
         },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
+        "security": [{ "api_key": [] }]
       },
       "post": {
-        "tags": [
-          "cedana_checkpoints"
-        ],
-        "summary": "Create Checkpoint",
+        "tags": ["Checkpoints"],
+        "summary": "Create checkpoint",
         "description": "Builds a new checkpoint without the metadata and information about the checkpoint with status initializing",
         "operationId": "add",
         "responses": {
@@ -188,9 +146,7 @@
             "description": "Returns the checkpoint id for the new checkpoint",
             "content": {
               "text/plain": {
-                "schema": {
-                  "type": "string"
-                },
+                "schema": { "type": "string" },
                 "example": "<uuid-v4-here>"
               }
             }
@@ -199,9 +155,7 @@
             "description": "Failed create checkpoint",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
+                "schema": { "$ref": "#/components/schemas/HttpError" }
               }
             }
           },
@@ -209,26 +163,18 @@
             "description": "Failed to connect/fetch from jobs table from database",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
+                "schema": { "$ref": "#/components/schemas/HttpError" }
               }
             }
           }
         },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
+        "security": [{ "api_key": [] }]
       }
     },
     "/v2/checkpoints/deprecate/{id}": {
       "patch": {
-        "tags": [
-          "cedana_checkpoints"
-        ],
-        "summary": "Deprecate Checkpoint",
+        "tags": ["Checkpoints"],
+        "summary": "Deprecate checkpoint",
         "description": "Marks checkpoint as deprecated, so that they can be removed on next internal state cleanup. Checkpoints marked deprecated are removed within a fixed number of days depending on our customer service agreement.\n\nNote: Checkpoints can't directly be deleted as use them as versioning points and might be required for restores that might be in-flight\nsetting them deprecated marks them to be cleaned up as soon as possible(likely within a day).",
         "operationId": "deprecate",
         "parameters": [
@@ -236,9 +182,7 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -246,250 +190,58 @@
             "description": "Successfully deprecated checkpoint and returns id",
             "content": {
               "text/plain": {
-                "schema": {
-                  "type": "string"
-                },
+                "schema": { "type": "string" },
                 "example": "<uuid-for-checkpoint>"
               }
             }
           },
-          "404": {
-            "description": "Failed to find checkpoint from id"
-          },
+          "404": { "description": "Failed to find checkpoint from id" },
           "500": {
             "description": "Failed to connect/execute request against db"
           }
         },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/v2/checkpoints/dir/{path}": {
-      "get": {
-        "tags": [
-          "cedana_checkpoints"
-        ],
-        "summary": "Download Checkpoint Content",
-        "operationId": "read_dir",
-        "parameters": [
-          {
-            "name": "path",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Returns the url, to download the file from",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "<presigned-bucket-url-for-downloading-checkpoint-tar>"
-              }
-            }
-          },
-          "404": {
-            "description": "Failed to find checkpoint from id",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Failed to connect/execute request against db",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/v2/checkpoints/download/{id}": {
-      "get": {
-        "tags": [
-          "cedana_checkpoints"
-        ],
-        "summary": "Download Checkpoint Content",
-        "description": "Get the URL to download checkpoint from",
-        "operationId": "download",
-        "responses": {
-          "200": {
-            "description": "Returns the url, to download the checkpoint from",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "<presigned-bucket-url-for-downloading-checkpoint-tar>"
-              }
-            }
-          },
-          "404": {
-            "description": "Failed to find checkpoint from id",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Failed to connect/execute request against db",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
+        "security": [{ "api_key": [] }]
       }
     },
     "/v2/checkpoints/files/{path}": {
-      "get": {
-        "tags": [
-          "cedana_checkpoints"
-        ],
-        "summary": "Download Checkpoint Content",
-        "operationId": "get_files",
-        "parameters": [
-          {
-            "name": "path",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Returns the url, to download the file from",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "<presigned-bucket-url-for-downloading-checkpoint-tar>"
-              }
-            }
-          },
-          "404": {
-            "description": "Failed to find checkpoint from id",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Failed to connect/execute request against db",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
-      },
       "patch": {
-        "tags": [
-          "cedana_checkpoints"
-        ],
-        "summary": "Upload Checkpoint file",
+        "tags": ["Files"],
+        "summary": "Upload file",
         "operationId": "push_files",
         "parameters": [
           {
             "name": "path",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
-            "description": "Returns the url, to download the file from",
+            "description": "Returns the URL to upload the file to",
             "content": {
               "text/plain": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "<presigned-bucket-url-for-downloading-checkpoint-tar>"
-              }
-            }
-          },
-          "404": {
-            "description": "Failed to find checkpoint from id",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
+                "schema": { "type": "string" },
+                "example": "<presigned-bucket-url-for-uploading-file>"
               }
             }
           },
           "500": {
-            "description": "Failed to connect/execute request against db",
+            "description": "Failed to fulfill request",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
+                "schema": { "$ref": "#/components/schemas/HttpError" }
               }
             }
           }
         },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
+        "security": [{ "api_key": [] }]
       }
     },
     "/v2/checkpoints/info/{id}": {
       "put": {
-        "tags": [
-          "cedana_checkpoints"
-        ],
-        "summary": "Put Checkpoint Info",
+        "tags": ["Checkpoints"],
+        "summary": "Put checkpoint info",
         "description": "Add information about the checkpointed pod and runtime",
         "operationId": "update_info",
         "parameters": [
@@ -497,18 +249,13 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CheckpointInfo"
-              }
+              "schema": { "$ref": "#/components/schemas/CheckpointInfo" }
             }
           },
           "required": true
@@ -518,9 +265,7 @@
             "description": "Successfully deprecated checkpoint and returns id",
             "content": {
               "text/plain": {
-                "schema": {
-                  "type": "string"
-                },
+                "schema": { "type": "string" },
                 "example": "<uuid-for-checkpoint>"
               }
             }
@@ -529,9 +274,7 @@
             "description": "Failed to find checkpoint from id",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
+                "schema": { "$ref": "#/components/schemas/HttpError" }
               }
             }
           },
@@ -539,91 +282,31 @@
             "description": "Failed to connect/execute request against db",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
+                "schema": { "$ref": "#/components/schemas/HttpError" }
               }
             }
           }
         },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/v2/checkpoints/upload/{id}": {
-      "patch": {
-        "tags": [
-          "cedana_checkpoints"
-        ],
-        "summary": "Upload Checkpoint Content",
-        "description": "Provides pre-signed URL to upload checkpoint to, based on checkpoint id and org configuration",
-        "operationId": "upload",
-        "responses": {
-          "200": {
-            "description": "Returns the url, to upload the checkpoint to",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "<presigned-bucket-url-for-uploading-checkpoint-tar>"
-              }
-            }
-          },
-          "404": {
-            "description": "Failed to find checkpoint from id",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Failed to connect/execute request against db",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
+        "security": [{ "api_key": [] }]
       }
     },
     "/v2/checkpoints/uploaded/{id}/{path}": {
       "post": {
-        "tags": [
-          "cedana_checkpoints"
-        ],
-        "summary": "Uploaded Checkpoint",
+        "tags": ["Checkpoints"],
+        "summary": "Uploaded checkpoint",
         "operationId": "uploaded",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CheckpointSuccessInfo"
-              }
+              "schema": { "$ref": "#/components/schemas/CheckpointSuccessInfo" }
             }
           },
           "required": true
@@ -633,9 +316,7 @@
             "description": "Marks the checkpoint as successfully uploaded",
             "content": {
               "text/plain": {
-                "schema": {
-                  "type": "string"
-                },
+                "schema": { "type": "string" },
                 "example": "<uuid-v4-here>"
               }
             }
@@ -644,9 +325,7 @@
             "description": "Failed mark checkpoint",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
+                "schema": { "$ref": "#/components/schemas/HttpError" }
               }
             }
           },
@@ -654,68 +333,117 @@
             "description": "Failed to connect/fetch from jobs table from database",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
+                "schema": { "$ref": "#/components/schemas/HttpError" }
               }
             }
           }
         },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
+        "security": [{ "api_key": [] }]
       }
     },
     "/v2/discover/{name}": {
       "get": {
-        "summary": "Service Discovery endpoint",
+        "tags": ["Service"],
+        "summary": "Service discovery",
         "operationId": "discovery",
         "parameters": [
           {
             "name": "name",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
             "description": "Returns url for the service named",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
+            "content": { "text/plain": { "schema": { "type": "string" } } }
           },
           "500": {
             "description": "Failed to connect/fetch from database",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
+                "schema": { "$ref": "#/components/schemas/HttpError" }
               }
             }
           }
         },
-        "security": [
+        "security": [{ "api_key": [] }]
+      }
+    },
+    "/v2/files/dir/{path}": {
+      "get": {
+        "tags": ["Files"],
+        "summary": "Read directory contents",
+        "operationId": "read_dir",
+        "parameters": [
           {
-            "api_key": []
+            "name": "path",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the list of files in the directory",
+            "content": {
+              "application/json": {
+                "schema": { "type": "array", "items": { "type": "string" } },
+                "example": ["file1.txt", "file2.txt"]
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to fulfill request",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HttpError" }
+              }
+            }
+          }
+        },
+        "security": [{ "api_key": [] }]
+      }
+    },
+    "/v2/files/{path}": {
+      "get": {
+        "tags": ["Files"],
+        "summary": "Download file",
+        "operationId": "get_file",
+        "parameters": [
+          {
+            "name": "path",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the URL to download the file from",
+            "content": {
+              "text/plain": {
+                "schema": { "type": "string" },
+                "example": "<presigned-bucket-url-for-downloading-file>"
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to fulfill request",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HttpError" }
+              }
+            }
+          }
+        },
+        "security": [{ "api_key": [] }]
       }
     },
     "/v2/jobs": {
       "get": {
-        "tags": [
-          "cedana_jobs"
-        ],
+        "tags": ["Jobs"],
         "operationId": "list",
         "responses": {
           "200": {
@@ -724,19 +452,11 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Job"
-                  }
+                  "items": { "$ref": "#/components/schemas/Job" }
                 },
                 "example": [
-                  {
-                    "jid": "xenodochial_jones4",
-                    "type": "containerd"
-                  },
-                  {
-                    "jid": "dreamy_nobel1",
-                    "type": "containerd"
-                  }
+                  { "jid": "xenodochial_jones4", "type": "containerd" },
+                  { "jid": "dreamy_nobel1", "type": "containerd" }
                 ]
               }
             }
@@ -745,16 +465,13 @@
             "description": "Failed to connect/fetch from jobs table from database"
           }
         },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
+        "security": [{ "api_key": [] }]
       }
     },
     "/v2/pods": {
       "get": {
-        "summary": "List Pods",
+        "tags": ["Resources"],
+        "summary": "List pods",
         "description": "Use query params to filter checkpoints",
         "operationId": "list",
         "responses": {
@@ -764,9 +481,7 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Pod"
-                  }
+                  "items": { "$ref": "#/components/schemas/Pod" }
                 }
               }
             }
@@ -775,30 +490,23 @@
             "description": "Failed to connect/fetch from database",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
+                "schema": { "$ref": "#/components/schemas/HttpError" }
               }
             }
           }
         },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
+        "security": [{ "api_key": [] }]
       }
     },
     "/v2/restore/pod": {
       "post": {
-        "summary": "Restore a Pod",
+        "tags": ["Actions"],
+        "summary": "Restore a pod",
         "operationId": "restore_pod",
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RestorePod"
-              }
+              "schema": { "$ref": "#/components/schemas/RestorePod" }
             }
           },
           "required": true
@@ -808,9 +516,7 @@
             "description": "Returns the checkpoint id for the new checkpoint",
             "content": {
               "text/plain": {
-                "schema": {
-                  "type": "string"
-                },
+                "schema": { "type": "string" },
                 "example": "<uuid-v4-here>"
               }
             }
@@ -819,9 +525,7 @@
             "description": "Failed create checkpoint",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
+                "schema": { "$ref": "#/components/schemas/HttpError" }
               }
             }
           },
@@ -829,9 +533,7 @@
             "description": "Failed create restore",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
+                "schema": { "$ref": "#/components/schemas/HttpError" }
               }
             }
           },
@@ -839,44 +541,28 @@
             "description": "Failed to connect/fetch from jobs table from database",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
+                "schema": { "$ref": "#/components/schemas/HttpError" }
               }
             }
           }
         },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
+        "security": [{ "api_key": [] }]
       }
     },
     "/v2/user": {
       "get": {
-        "tags": [
-          "cedana"
-        ],
+        "tags": ["Authentication"],
         "operationId": "get_user",
         "responses": {
           "200": {
             "description": "Returns your `user-id` (a uuid)",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
+            "content": { "text/plain": { "schema": { "type": "string" } } }
           },
           "401": {
             "description": "Invalid Key/Token",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
+                "schema": { "$ref": "#/components/schemas/HttpError" }
               }
             }
           },
@@ -884,18 +570,12 @@
             "description": "User not attached to valid api key",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
+                "schema": { "$ref": "#/components/schemas/HttpError" }
               }
             }
           }
         },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
+        "security": [{ "api_key": [] }]
       }
     }
   },
@@ -912,121 +592,49 @@
           "checkpoint_completed_timestamp"
         ],
         "properties": {
-          "action_id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "action_timestamp": {
-            "type": "string",
-            "format": "date-time"
-          },
+          "action_id": { "type": "string", "format": "uuid" },
+          "action_timestamp": { "type": "string", "format": "date-time" },
           "checkpoint_completed_timestamp": {
             "type": "string",
             "format": "date-time"
           },
-          "checkpoint_id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "status": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string"
-          }
+          "checkpoint_id": { "type": "string", "format": "uuid" },
+          "status": { "type": "string" },
+          "type": { "type": "string" }
         }
       },
       "Checkpoint": {
         "type": "object",
         "description": "Checkpoint is basic unit for cedana service operation\nit stores all the information regarding the snapshot we can use to save and then restore state",
-        "required": [
-          "id",
-          "status",
-          "gpu",
-          "platform",
-          "org_id"
-        ],
+        "required": ["id", "status", "gpu", "platform", "org_id"],
         "properties": {
-          "checksum": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "gpu": {
-            "type": "string"
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "image_name_with_tag": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "org_id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "platform": {
-            "type": "string"
-          },
-          "process_info": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "status": {
-            "$ref": "#/components/schemas/CheckpointStatus"
-          }
+          "checksum": { "type": ["string", "null"] },
+          "gpu": { "type": "string" },
+          "id": { "type": "string", "format": "uuid" },
+          "image_name_with_tag": { "type": ["string", "null"] },
+          "org_id": { "type": "string", "format": "uuid" },
+          "platform": { "type": "string" },
+          "process_info": { "type": ["string", "null"] },
+          "status": { "$ref": "#/components/schemas/CheckpointStatus" }
         }
       },
       "CheckpointInfo": {
         "type": "object",
-        "required": [
-          "gpu",
-          "platform"
-        ],
+        "required": ["gpu", "platform"],
         "properties": {
-          "gpu": {
-            "type": "string"
-          },
-          "platform": {
-            "type": "string"
-          }
+          "gpu": { "type": "string" },
+          "platform": { "type": "string" }
         }
       },
       "CheckpointPod": {
         "type": "object",
-        "required": [
-          "pod_name",
-          "runc_root",
-          "namespace",
-          "cluster_id"
-        ],
+        "required": ["pod_name", "runc_root", "namespace", "cluster_id"],
         "properties": {
-          "action_id": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "readOnly": true
-          },
-          "cluster_id": {
-            "type": "string"
-          },
-          "namespace": {
-            "type": "string"
-          },
-          "pod_name": {
-            "type": "string"
-          },
-          "runc_root": {
-            "type": "string"
-          }
+          "action_id": { "type": ["string", "null"], "readOnly": true },
+          "cluster_id": { "type": "string" },
+          "namespace": { "type": "string" },
+          "pod_name": { "type": "string" },
+          "runc_root": { "type": "string" }
         }
       },
       "CheckpointStatus": {
@@ -1041,44 +649,22 @@
       },
       "CheckpointSuccessInfo": {
         "type": "object",
-        "properties": {
-          "restore_path": {
-            "type": [
-              "string",
-              "null"
-            ]
-          }
-        }
+        "properties": { "restore_path": { "type": ["string", "null"] } }
       },
       "HttpError": {
         "type": "object",
-        "required": [
-          "message",
-          "cedana_error_code"
-        ],
+        "required": ["message", "cedana_error_code"],
         "properties": {
-          "cedana_error_code": {
-            "type": "integer",
-            "minimum": 0
-          },
-          "message": {
-            "type": "string"
-          }
+          "cedana_error_code": { "type": "integer", "minimum": 0 },
+          "message": { "type": "string" }
         }
       },
       "Job": {
         "type": "object",
-        "required": [
-          "jid",
-          "type"
-        ],
+        "required": ["jid", "type"],
         "properties": {
-          "jid": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string"
-          }
+          "jid": { "type": "string" },
+          "type": { "type": "string" }
         }
       },
       "Pod": {
@@ -1092,63 +678,50 @@
           "status"
         ],
         "properties": {
-          "cluster_id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "name": {
-            "type": "string"
-          },
-          "namespace": {
-            "type": "string"
-          },
-          "node_id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "status": {
-            "type": "string"
-          }
+          "cluster_id": { "type": "string", "format": "uuid" },
+          "id": { "type": "string", "format": "uuid" },
+          "name": { "type": "string" },
+          "namespace": { "type": "string" },
+          "node_id": { "type": "string", "format": "uuid" },
+          "status": { "type": "string" }
         }
       },
       "RestorePod": {
         "type": "object",
-        "required": [
-          "action_id"
-        ],
+        "required": ["action_id"],
         "properties": {
-          "action_id": {
-            "type": "string"
-          },
-          "cluster_id": {
-            "type": "string"
-          }
+          "action_id": { "type": "string" },
+          "cluster_id": { "type": "string" }
         }
       }
     },
-    "securitySchemes": {
-      "api_key": {
-        "type": "http",
-        "scheme": "bearer"
-      }
-    }
+    "securitySchemes": { "api_key": { "type": "http", "scheme": "bearer" } }
   },
   "tags": [
     {
-      "name": "cedana",
-      "description": "Cedana Propagator API for managing workloads, and our checkpoints across clusters/workspaces"
+      "name": "Authentication",
+      "description": "Cedana Propagator API authentication"
     },
     {
-      "name": "cedana_jobs",
-      "description": "Cedana Propagator API for dealing with job(s)"
+      "name": "Service",
+      "description": "Cedana Propagator API for service discovery"
     },
     {
-      "name": "cedana_checkpoints",
-      "description": "Cedana Propagator API for dealing with checkpoint(s)"
+      "name": "Jobs",
+      "description": "Cedana Propagator API for managing jobs"
+    },
+    {
+      "name": "Checkpoints",
+      "description": "Cedana Propagator API for\n             managing checkpoints"
+    },
+    {
+      "name": "Files",
+      "description": "Cedana Propagator API for\n             managing files"
+    },
+    {
+      "name": "Resources",
+      "description": "Cedana Propagator API for\n             managing resources"
     }
   ]
 }
+

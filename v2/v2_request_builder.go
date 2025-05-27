@@ -44,6 +44,11 @@ func NewV2RequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c9
 func (m *V2RequestBuilder) Discover()(*DiscoverRequestBuilder) {
     return NewDiscoverRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Files the files property
+// returns a *FilesRequestBuilder when successful
+func (m *V2RequestBuilder) Files()(*FilesRequestBuilder) {
+    return NewFilesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Jobs the jobs property
 // returns a *JobsRequestBuilder when successful
 func (m *V2RequestBuilder) Jobs()(*JobsRequestBuilder) {

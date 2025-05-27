@@ -13,13 +13,6 @@ import (
 type CheckpointsFilesWithPathItemRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
-// CheckpointsFilesWithPathItemRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
-type CheckpointsFilesWithPathItemRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-}
 // CheckpointsFilesWithPathItemRequestBuilderPatchRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type CheckpointsFilesWithPathItemRequestBuilderPatchRequestConfiguration struct {
     // Request headers
@@ -40,31 +33,8 @@ func NewCheckpointsFilesWithPathItemRequestBuilder(rawUrl string, requestAdapter
     urlParams["request-raw-url"] = rawUrl
     return NewCheckpointsFilesWithPathItemRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get download Checkpoint Content
+// Patch upload file
 // returns a *string when successful
-// returns a HttpError error when the service returns a 404 status code
-// returns a HttpError error when the service returns a 500 status code
-func (m *CheckpointsFilesWithPathItemRequestBuilder) Get(ctx context.Context, requestConfiguration *CheckpointsFilesWithPathItemRequestBuilderGetRequestConfiguration)(*string, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "404": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", errorMapping)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(*string), nil
-}
-// Patch upload Checkpoint file
-// returns a *string when successful
-// returns a HttpError error when the service returns a 404 status code
 // returns a HttpError error when the service returns a 500 status code
 func (m *CheckpointsFilesWithPathItemRequestBuilder) Patch(ctx context.Context, requestConfiguration *CheckpointsFilesWithPathItemRequestBuilderPatchRequestConfiguration)(*string, error) {
     requestInfo, err := m.ToPatchRequestInformation(ctx, requestConfiguration);
@@ -72,7 +42,6 @@ func (m *CheckpointsFilesWithPathItemRequestBuilder) Patch(ctx context.Context, 
         return nil, err
     }
     errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "404": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
         "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
     }
     res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", errorMapping)
@@ -84,18 +53,7 @@ func (m *CheckpointsFilesWithPathItemRequestBuilder) Patch(ctx context.Context, 
     }
     return res.(*string), nil
 }
-// ToGetRequestInformation download Checkpoint Content
-// returns a *RequestInformation when successful
-func (m *CheckpointsFilesWithPathItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *CheckpointsFilesWithPathItemRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "text/plain;q=0.9")
-    return requestInfo, nil
-}
-// ToPatchRequestInformation upload Checkpoint file
+// ToPatchRequestInformation upload file
 // returns a *RequestInformation when successful
 func (m *CheckpointsFilesWithPathItemRequestBuilder) ToPatchRequestInformation(ctx context.Context, requestConfiguration *CheckpointsFilesWithPathItemRequestBuilderPatchRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.PATCH, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

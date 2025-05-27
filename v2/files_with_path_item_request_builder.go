@@ -9,34 +9,34 @@ import (
     i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
 )
 
-// DiscoverWithNameItemRequestBuilder builds and executes requests for operations under \v2\discover\{name}
-type DiscoverWithNameItemRequestBuilder struct {
+// FilesWithPathItemRequestBuilder builds and executes requests for operations under \v2\files\{path}
+type FilesWithPathItemRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
-// DiscoverWithNameItemRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
-type DiscoverWithNameItemRequestBuilderGetRequestConfiguration struct {
+// FilesWithPathItemRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
+type FilesWithPathItemRequestBuilderGetRequestConfiguration struct {
     // Request headers
     Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
     // Request options
     Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
-// NewDiscoverWithNameItemRequestBuilderInternal instantiates a new DiscoverWithNameItemRequestBuilder and sets the default values.
-func NewDiscoverWithNameItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*DiscoverWithNameItemRequestBuilder) {
-    m := &DiscoverWithNameItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v2/discover/{name}", pathParameters),
+// NewFilesWithPathItemRequestBuilderInternal instantiates a new FilesWithPathItemRequestBuilder and sets the default values.
+func NewFilesWithPathItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*FilesWithPathItemRequestBuilder) {
+    m := &FilesWithPathItemRequestBuilder{
+        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v2/files/{path}", pathParameters),
     }
     return m
 }
-// NewDiscoverWithNameItemRequestBuilder instantiates a new DiscoverWithNameItemRequestBuilder and sets the default values.
-func NewDiscoverWithNameItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*DiscoverWithNameItemRequestBuilder) {
+// NewFilesWithPathItemRequestBuilder instantiates a new FilesWithPathItemRequestBuilder and sets the default values.
+func NewFilesWithPathItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*FilesWithPathItemRequestBuilder) {
     urlParams := make(map[string]string)
     urlParams["request-raw-url"] = rawUrl
-    return NewDiscoverWithNameItemRequestBuilderInternal(urlParams, requestAdapter)
+    return NewFilesWithPathItemRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get service discovery
+// Get download file
 // returns a *string when successful
 // returns a HttpError error when the service returns a 500 status code
-func (m *DiscoverWithNameItemRequestBuilder) Get(ctx context.Context, requestConfiguration *DiscoverWithNameItemRequestBuilderGetRequestConfiguration)(*string, error) {
+func (m *FilesWithPathItemRequestBuilder) Get(ctx context.Context, requestConfiguration *FilesWithPathItemRequestBuilderGetRequestConfiguration)(*string, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
@@ -53,9 +53,9 @@ func (m *DiscoverWithNameItemRequestBuilder) Get(ctx context.Context, requestCon
     }
     return res.(*string), nil
 }
-// ToGetRequestInformation service discovery
+// ToGetRequestInformation download file
 // returns a *RequestInformation when successful
-func (m *DiscoverWithNameItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *DiscoverWithNameItemRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+func (m *FilesWithPathItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *FilesWithPathItemRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
     if requestConfiguration != nil {
         requestInfo.Headers.AddAll(requestConfiguration.Headers)
@@ -65,7 +65,7 @@ func (m *DiscoverWithNameItemRequestBuilder) ToGetRequestInformation(ctx context
     return requestInfo, nil
 }
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
-// returns a *DiscoverWithNameItemRequestBuilder when successful
-func (m *DiscoverWithNameItemRequestBuilder) WithUrl(rawUrl string)(*DiscoverWithNameItemRequestBuilder) {
-    return NewDiscoverWithNameItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+// returns a *FilesWithPathItemRequestBuilder when successful
+func (m *FilesWithPathItemRequestBuilder) WithUrl(rawUrl string)(*FilesWithPathItemRequestBuilder) {
+    return NewFilesWithPathItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
 }

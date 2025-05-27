@@ -52,16 +52,6 @@ func NewCheckpointsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee26
 func (m *CheckpointsRequestBuilder) Deprecate()(*CheckpointsDeprecateRequestBuilder) {
     return NewCheckpointsDeprecateRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
-// Dir the dir property
-// returns a *CheckpointsDirRequestBuilder when successful
-func (m *CheckpointsRequestBuilder) Dir()(*CheckpointsDirRequestBuilder) {
-    return NewCheckpointsDirRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
-}
-// Download the download property
-// returns a *CheckpointsDownloadRequestBuilder when successful
-func (m *CheckpointsRequestBuilder) Download()(*CheckpointsDownloadRequestBuilder) {
-    return NewCheckpointsDownloadRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
-}
 // Files the files property
 // returns a *CheckpointsFilesRequestBuilder when successful
 func (m *CheckpointsRequestBuilder) Files()(*CheckpointsFilesRequestBuilder) {
@@ -141,11 +131,6 @@ func (m *CheckpointsRequestBuilder) ToPostRequestInformation(ctx context.Context
     }
     requestInfo.Headers.TryAdd("Accept", "text/plain;q=0.9")
     return requestInfo, nil
-}
-// Upload the upload property
-// returns a *CheckpointsUploadRequestBuilder when successful
-func (m *CheckpointsRequestBuilder) Upload()(*CheckpointsUploadRequestBuilder) {
-    return NewCheckpointsUploadRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Uploaded the uploaded property
 // returns a *CheckpointsUploadedRequestBuilder when successful
