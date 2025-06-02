@@ -39,6 +39,11 @@ func NewActionsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371
     urlParams["request-raw-url"] = rawUrl
     return NewActionsRequestBuilderInternal(urlParams, requestAdapter)
 }
+// From_pod the from_pod property
+// returns a *ActionsFrom_podRequestBuilder when successful
+func (m *ActionsRequestBuilder) From_pod()(*ActionsFrom_podRequestBuilder) {
+    return NewActionsFrom_podRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Get list actions
 // returns a []Actionable when successful
 // returns a HttpError error when the service returns a 400 status code
