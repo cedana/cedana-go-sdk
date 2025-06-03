@@ -5,7 +5,6 @@ package v2
 
 import (
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
 )
 
 // ActionsFrom_podRequestBuilder builds and executes requests for operations under \v2\actions\from_pod
@@ -13,7 +12,6 @@ type ActionsFrom_podRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
 // ById gets an item from the github.com/cedana/cedana-go-sdk.v2.actions.from_pod.item collection
-// Deprecated: This indexer is deprecated and will be removed in the next major version. Use the one with the typed parameter instead.
 // returns a *ActionsFrom_podFrom_podItemRequestBuilder when successful
 func (m *ActionsFrom_podRequestBuilder) ById(id string)(*ActionsFrom_podFrom_podItemRequestBuilder) {
     urlTplParams := make(map[string]string)
@@ -23,16 +21,6 @@ func (m *ActionsFrom_podRequestBuilder) ById(id string)(*ActionsFrom_podFrom_pod
     if id != "" {
         urlTplParams["id"] = id
     }
-    return NewActionsFrom_podFrom_podItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
-}
-// ByIdGuid gets an item from the github.com/cedana/cedana-go-sdk.v2.actions.from_pod.item collection
-// returns a *ActionsFrom_podFrom_podItemRequestBuilder when successful
-func (m *ActionsFrom_podRequestBuilder) ByIdGuid(id i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)(*ActionsFrom_podFrom_podItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    urlTplParams["id"] = id.String()
     return NewActionsFrom_podFrom_podItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
 // NewActionsFrom_podRequestBuilderInternal instantiates a new ActionsFrom_podRequestBuilder and sets the default values.

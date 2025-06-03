@@ -6,7 +6,6 @@ package v2
 import (
     "context"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
     i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
 )
 
@@ -35,10 +34,10 @@ func NewActionsFrom_podFrom_podItemRequestBuilder(rawUrl string, requestAdapter 
     return NewActionsFrom_podFrom_podItemRequestBuilderInternal(urlParams, requestAdapter)
 }
 // Get get latest action_id of a pod
-// returns a *UUID when successful
+// returns a *string when successful
 // returns a HttpError error when the service returns a 400 status code
 // returns a HttpError error when the service returns a 500 status code
-func (m *ActionsFrom_podFrom_podItemRequestBuilder) Get(ctx context.Context, requestConfiguration *ActionsFrom_podFrom_podItemRequestBuilderGetRequestConfiguration)(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID, error) {
+func (m *ActionsFrom_podFrom_podItemRequestBuilder) Get(ctx context.Context, requestConfiguration *ActionsFrom_podFrom_podItemRequestBuilderGetRequestConfiguration)(*string, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
@@ -47,14 +46,14 @@ func (m *ActionsFrom_podFrom_podItemRequestBuilder) Get(ctx context.Context, req
         "400": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
         "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "uuid", errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", errorMapping)
     if err != nil {
         return nil, err
     }
     if res == nil {
         return nil, nil
     }
-    return res.(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID), nil
+    return res.(*string), nil
 }
 // ToGetRequestInformation get latest action_id of a pod
 // returns a *RequestInformation when successful
@@ -64,7 +63,7 @@ func (m *ActionsFrom_podFrom_podItemRequestBuilder) ToGetRequestInformation(ctx 
         requestInfo.Headers.AddAll(requestConfiguration.Headers)
         requestInfo.AddRequestOptions(requestConfiguration.Options)
     }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
+    requestInfo.Headers.TryAdd("Accept", "text/plain;q=0.9")
     return requestInfo, nil
 }
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
