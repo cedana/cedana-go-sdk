@@ -33,6 +33,7 @@ func NewUserRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1
     urlParams["request-raw-url"] = rawUrl
     return NewUserRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Get used to validate authentication token
 // returns a *string when successful
 // returns a HttpError error when the service returns a 401 status code
 // returns a HttpError error when the service returns a 404 status code
@@ -54,6 +55,7 @@ func (m *UserRequestBuilder) Get(ctx context.Context, requestConfiguration *User
     }
     return res.(*string), nil
 }
+// ToGetRequestInformation used to validate authentication token
 // returns a *RequestInformation when successful
 func (m *UserRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *UserRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

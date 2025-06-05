@@ -29,3 +29,8 @@ func NewCheckpointRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263
 func (m *CheckpointRequestBuilder) Pod()(*CheckpointPodRequestBuilder) {
     return NewCheckpointPodRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Status the status property
+// returns a *CheckpointStatusRequestBuilder when successful
+func (m *CheckpointRequestBuilder) Status()(*CheckpointStatusRequestBuilder) {
+    return NewCheckpointStatusRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}

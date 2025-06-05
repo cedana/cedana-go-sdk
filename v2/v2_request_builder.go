@@ -54,6 +54,11 @@ func (m *V2RequestBuilder) Files()(*FilesRequestBuilder) {
 func (m *V2RequestBuilder) Jobs()(*JobsRequestBuilder) {
     return NewJobsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// K8s the k8s property
+// returns a *K8sRequestBuilder when successful
+func (m *V2RequestBuilder) K8s()(*K8sRequestBuilder) {
+    return NewK8sRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Pods the pods property
 // returns a *PodsRequestBuilder when successful
 func (m *V2RequestBuilder) Pods()(*PodsRequestBuilder) {

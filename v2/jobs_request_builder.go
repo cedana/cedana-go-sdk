@@ -33,6 +33,7 @@ func NewJobsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1
     urlParams["request-raw-url"] = rawUrl
     return NewJobsRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Get list jobs
 // returns a []Jobable when successful
 func (m *JobsRequestBuilder) Get(ctx context.Context, requestConfiguration *JobsRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.Jobable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
@@ -51,6 +52,7 @@ func (m *JobsRequestBuilder) Get(ctx context.Context, requestConfiguration *Jobs
     }
     return val, nil
 }
+// ToGetRequestInformation list jobs
 // returns a *RequestInformation when successful
 func (m *JobsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *JobsRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
