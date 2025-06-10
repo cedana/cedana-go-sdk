@@ -83,6 +83,11 @@ func (m *ActionsRequestBuilder) ToGetRequestInformation(ctx context.Context, req
     requestInfo.Headers.TryAdd("Accept", "application/json")
     return requestInfo, nil
 }
+// Upload the upload property
+// returns a *ActionsUploadRequestBuilder when successful
+func (m *ActionsRequestBuilder) Upload()(*ActionsUploadRequestBuilder) {
+    return NewActionsUploadRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *ActionsRequestBuilder when successful
 func (m *ActionsRequestBuilder) WithUrl(rawUrl string)(*ActionsRequestBuilder) {

@@ -129,6 +129,63 @@
         ]
       }
     },
+    "/v2/actions/upload": {
+      "post": {
+        "tags": [
+          "Actions"
+        ],
+        "summary": "Upload podspec via rest api",
+        "operationId": "upload_podspec",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckpointStatusWithPodSpec"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Success"
+              }
+            }
+          },
+          "404": {
+            "description": "Failed to get action_id within the db",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect/fetch from pods_to_actions table from database",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
     "/v2/checkpoint/pod": {
       "post": {
         "tags": [
@@ -1008,8 +1065,7 @@
           "id",
           "status",
           "gpu",
-          "platform",
-          "org_id"
+          "platform"
         ],
         "properties": {
           "checksum": {
@@ -1030,10 +1086,6 @@
               "string",
               "null"
             ]
-          },
-          "org_id": {
-            "type": "string",
-            "format": "uuid"
           },
           "platform": {
             "type": "string"
@@ -1104,6 +1156,28 @@
           "error",
           "not_found"
         ]
+      },
+      "CheckpointStatusWithPodSpec": {
+        "type": "object",
+        "required": [
+          "status",
+          "action_id"
+        ],
+        "properties": {
+          "action_id": {
+            "type": "string"
+          },
+          "pod_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "pod_spec": {},
+          "status": {
+            "type": "string"
+          }
+        }
       },
       "CheckpointSuccessInfo": {
         "type": "object",
