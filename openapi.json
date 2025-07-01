@@ -11,9 +11,7 @@
   "paths": {
     "/v2/actions": {
       "get": {
-        "tags": [
-          "Actions"
-        ],
+        "tags": ["Actions"],
         "summary": "List actions",
         "operationId": "list",
         "parameters": [
@@ -22,10 +20,7 @@
             "in": "query",
             "required": false,
             "schema": {
-              "type": [
-                "string",
-                "null"
-              ]
+              "type": ["string", "null"]
             }
           }
         ],
@@ -74,9 +69,7 @@
     },
     "/v2/actions/from_pod/{id}": {
       "get": {
-        "tags": [
-          "Actions"
-        ],
+        "tags": ["Actions"],
         "summary": "Get latest action_id belonging to a given pod_id",
         "operationId": "latest_pod_action_id",
         "parameters": [
@@ -131,9 +124,7 @@
     },
     "/v2/actions/upload": {
       "post": {
-        "tags": [
-          "Actions"
-        ],
+        "tags": ["Actions"],
         "summary": "Upload podspec via rest api",
         "operationId": "upload_podspec",
         "requestBody": {
@@ -188,9 +179,7 @@
     },
     "/v2/checkpoint/pod": {
       "post": {
-        "tags": [
-          "Actions"
-        ],
+        "tags": ["Actions"],
         "summary": "Checkpoint a pod",
         "operationId": "checkpoint_pod",
         "requestBody": {
@@ -299,9 +288,7 @@
     },
     "/v2/checkpoints": {
       "get": {
-        "tags": [
-          "Checkpoints"
-        ],
+        "tags": ["Checkpoints"],
         "summary": "List checkpoints",
         "description": "Use query params to filter checkpoints",
         "operationId": "list",
@@ -351,9 +338,7 @@
         ]
       },
       "post": {
-        "tags": [
-          "Checkpoints"
-        ],
+        "tags": ["Checkpoints"],
         "summary": "Create checkpoint",
         "description": "Builds a new checkpoint without the metadata and information about the checkpoint with status initializing",
         "operationId": "add",
@@ -399,9 +384,7 @@
     },
     "/v2/checkpoints/deprecate/{id}": {
       "patch": {
-        "tags": [
-          "Checkpoints"
-        ],
+        "tags": ["Checkpoints"],
         "summary": "Deprecate checkpoint",
         "description": "Marks checkpoint as deprecated, so that they can be removed on next internal state cleanup. Checkpoints marked deprecated are removed within a fixed number of days depending on our customer service agreement.\n\nNote: Checkpoints can't directly be deleted as use them as versioning points and might be required for restores that might be in-flight\nsetting them deprecated marks them to be cleaned up as soon as possible(likely within a day).",
         "operationId": "deprecate",
@@ -443,9 +426,7 @@
     },
     "/v2/checkpoints/info/{id}": {
       "put": {
-        "tags": [
-          "Checkpoints"
-        ],
+        "tags": ["Checkpoints"],
         "summary": "Put checkpoint info",
         "description": "Add information about the checkpointed pod and runtime",
         "operationId": "update_info",
@@ -512,9 +493,7 @@
     },
     "/v2/checkpoints/uploaded/{id}": {
       "post": {
-        "tags": [
-          "Checkpoints"
-        ],
+        "tags": ["Checkpoints"],
         "summary": "Uploaded checkpoint",
         "operationId": "uploaded",
         "parameters": [
@@ -577,11 +556,179 @@
         ]
       }
     },
+    "/v2/cluster": {
+      "get": {
+        "tags": ["Clusters"],
+        "summary": "List clusters for the authenticated organization",
+        "description": "Returns all clusters associated with the authenticated user's organization.",
+        "operationId": "list",
+        "responses": {
+          "200": {
+            "description": "Returns a list of clusters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Cluster"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request or missing organization ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to fetch clusters from database",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "post": {
+        "tags": ["Clusters"],
+        "summary": "Create a cluster",
+        "description": "Creates or updates info regarding a Kubernetes cluster.\nIf a cluster with the given name already exists for the organization, it will be updated.",
+        "operationId": "create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateClusterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns the cluster id for the newly created or updated cluster",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "<uuid-v4-here>"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request or missing cluster name",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect/fetch from database",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/v2/cluster/{id}": {
+      "delete": {
+        "tags": ["Clusters"],
+        "summary": "Delete a cluster",
+        "description": "Marks a cluster as deleted in the Cedana propagator.\nThis does not physically delete the cluster record, but updates its status to \"deleted\".",
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "description": "The UUID of the cluster to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cluster successfully marked as deleted"
+          },
+          "400": {
+            "description": "Bad request or missing organization ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cluster not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to update cluster status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
     "/v2/discover/{name}": {
       "get": {
-        "tags": [
-          "Service"
-        ],
+        "tags": ["Service"],
         "summary": "Service discovery",
         "operationId": "discovery",
         "parameters": [
@@ -625,9 +772,7 @@
     },
     "/v2/files/dir/{path}": {
       "get": {
-        "tags": [
-          "Files"
-        ],
+        "tags": ["Files"],
         "summary": "Read directory contents",
         "operationId": "read_dir",
         "parameters": [
@@ -651,10 +796,7 @@
                     "type": "string"
                   }
                 },
-                "example": [
-                  "file1.txt",
-                  "file2.txt"
-                ]
+                "example": ["file1.txt", "file2.txt"]
               }
             }
           },
@@ -678,9 +820,7 @@
     },
     "/v2/files/{path}": {
       "get": {
-        "tags": [
-          "Files"
-        ],
+        "tags": ["Files"],
         "summary": "Download file",
         "operationId": "get_file",
         "parameters": [
@@ -723,9 +863,7 @@
         ]
       },
       "put": {
-        "tags": [
-          "Files"
-        ],
+        "tags": ["Files"],
         "summary": "Upload file",
         "operationId": "push_files",
         "parameters": [
@@ -770,9 +908,7 @@
     },
     "/v2/jobs": {
       "get": {
-        "tags": [
-          "Jobs"
-        ],
+        "tags": ["Jobs"],
         "summary": "List jobs",
         "operationId": "list",
         "responses": {
@@ -812,9 +948,7 @@
     },
     "/v2/k8s/sync": {
       "post": {
-        "tags": [
-          "SyncCluster"
-        ],
+        "tags": ["SyncCluster"],
         "summary": "Update K8s Cluster Resource",
         "operationId": "k8s_sync",
         "requestBody": {
@@ -866,14 +1000,50 @@
         ]
       }
     },
+    "/v2/nodes": {
+      "get": {
+        "tags": ["Resources"],
+        "summary": "List nodes",
+        "description": "Use query params to filter pods",
+        "operationId": "node_list",
+        "responses": {
+          "200": {
+            "description": "Returns nodes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Node"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect/fetch from database",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
     "/v2/pods": {
       "get": {
-        "tags": [
-          "Resources"
-        ],
+        "tags": ["Resources"],
         "summary": "List pods",
         "description": "Use query params to filter pods",
-        "operationId": "list",
+        "operationId": "pod_list",
         "responses": {
           "200": {
             "description": "Returns pods",
@@ -882,7 +1052,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Pod"
+                    "$ref": "#/components/schemas/PodResponse"
                   }
                 }
               }
@@ -908,9 +1078,7 @@
     },
     "/v2/restore/pod": {
       "post": {
-        "tags": [
-          "Actions"
-        ],
+        "tags": ["Actions"],
         "summary": "Restore a pod",
         "operationId": "restore_pod",
         "requestBody": {
@@ -973,14 +1141,67 @@
         ]
       }
     },
+    "/v2/tables/count/{name}": {
+      "get": {
+        "tags": ["Tables"],
+        "summary": "Get total_count for the given table",
+        "operationId": "count",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Name of the table to get total count for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Total count retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TotalCountResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid table name",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Database error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
     "/v2/user": {
       "get": {
-        "tags": [
-          "Authentication"
-        ],
+        "tags": ["User"],
         "summary": "Get User",
         "description": "Used to validate authentication token",
-        "operationId": "get_user",
+        "operationId": "get",
         "responses": {
           "200": {
             "description": "Returns your `user-id` (a uuid)",
@@ -1061,18 +1282,10 @@
       "Checkpoint": {
         "type": "object",
         "description": "Checkpoint is basic unit for cedana service operation\nit stores all the information regarding the snapshot we can use to save and then restore state",
-        "required": [
-          "id",
-          "status",
-          "gpu",
-          "platform"
-        ],
+        "required": ["id", "status", "gpu", "platform"],
         "properties": {
           "checksum": {
-            "type": [
-              "string",
-              "null"
-            ]
+            "type": ["string", "null"]
           },
           "gpu": {
             "type": "string"
@@ -1082,19 +1295,13 @@
             "format": "uuid"
           },
           "image_name_with_tag": {
-            "type": [
-              "string",
-              "null"
-            ]
+            "type": ["string", "null"]
+          },
+          "info": {
+            "type": ["string", "null"]
           },
           "platform": {
             "type": "string"
-          },
-          "process_info": {
-            "type": [
-              "string",
-              "null"
-            ]
           },
           "status": {
             "$ref": "#/components/schemas/CheckpointStatus"
@@ -1103,46 +1310,45 @@
       },
       "CheckpointInfo": {
         "type": "object",
-        "required": [
-          "gpu",
-          "platform"
-        ],
+        "required": ["gpu", "platform"],
         "properties": {
           "gpu": {
             "type": "string"
           },
+          "info": {},
           "platform": {
             "type": "string"
           }
         }
       },
+      "CheckpointKind": {
+        "type": "string",
+        "enum": ["simple", "rootfs"]
+      },
       "CheckpointPod": {
         "type": "object",
-        "required": [
-          "pod_name",
-          "runc_root",
-          "namespace",
-          "cluster_id"
-        ],
         "properties": {
           "action_id": {
-            "type": [
-              "string",
-              "null"
-            ],
+            "type": ["string", "null"],
             "readOnly": true
           },
           "cluster_id": {
-            "type": "string"
+            "type": ["string", "null"]
+          },
+          "kind": {
+            "$ref": "#/components/schemas/CheckpointKind"
           },
           "namespace": {
-            "type": "string"
+            "type": ["string", "null"]
+          },
+          "pod_id": {
+            "type": ["string", "null"]
           },
           "pod_name": {
-            "type": "string"
+            "type": ["string", "null"]
           },
           "runc_root": {
-            "type": "string"
+            "type": ["string", "null"]
           }
         }
       },
@@ -1159,19 +1365,13 @@
       },
       "CheckpointStatusWithPodSpec": {
         "type": "object",
-        "required": [
-          "status",
-          "action_id"
-        ],
+        "required": ["status", "action_id"],
         "properties": {
           "action_id": {
             "type": "string"
           },
           "pod_id": {
-            "type": [
-              "string",
-              "null"
-            ]
+            "type": ["string", "null"]
           },
           "pod_spec": {},
           "status": {
@@ -1183,19 +1383,44 @@
         "type": "object",
         "properties": {
           "restore_path": {
-            "type": [
-              "string",
-              "null"
-            ]
+            "type": ["string", "null"]
+          }
+        }
+      },
+      "Cluster": {
+        "type": "object",
+        "required": ["id", "org_id", "name", "status"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "metadata": {},
+          "name": {
+            "type": "string"
+          },
+          "org_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateClusterRequest": {
+        "type": "object",
+        "description": "CreateClusterRequest is the request body for creating a cluster",
+        "required": ["cluster_name"],
+        "properties": {
+          "cluster_name": {
+            "type": "string"
           }
         }
       },
       "HttpError": {
         "type": "object",
-        "required": [
-          "message",
-          "cedana_error_code"
-        ],
+        "required": ["message", "cedana_error_code"],
         "properties": {
           "cedana_error_code": {
             "type": "integer",
@@ -1208,10 +1433,7 @@
       },
       "Job": {
         "type": "object",
-        "required": [
-          "jid",
-          "type"
-        ],
+        "required": ["jid", "type"],
         "properties": {
           "jid": {
             "type": "string"
@@ -1225,15 +1447,11 @@
         "oneOf": [
           {
             "type": "object",
-            "required": [
-              "type"
-            ],
+            "required": ["type"],
             "properties": {
               "type": {
                 "type": "string",
-                "enum": [
-                  "None"
-                ]
+                "enum": ["None"]
               }
             }
           },
@@ -1244,15 +1462,11 @@
               },
               {
                 "type": "object",
-                "required": [
-                  "type"
-                ],
+                "required": ["type"],
                 "properties": {
                   "type": {
                     "type": "string",
-                    "enum": [
-                      "Pod"
-                    ]
+                    "enum": ["Pod"]
                   }
                 }
               }
@@ -1265,15 +1479,11 @@
               },
               {
                 "type": "object",
-                "required": [
-                  "type"
-                ],
+                "required": ["type"],
                 "properties": {
                   "type": {
                     "type": "string",
-                    "enum": [
-                      "Node"
-                    ]
+                    "enum": ["Node"]
                   }
                 }
               }
@@ -1285,18 +1495,12 @@
         "type": "object",
         "properties": {
           "cluster_id": {
-            "type": [
-              "string",
-              "null"
-            ],
+            "type": ["string", "null"],
             "format": "uuid"
           },
           "metadata": {},
           "org_id": {
-            "type": [
-              "string",
-              "null"
-            ],
+            "type": ["string", "null"],
             "format": "uuid"
           },
           "resource": {
@@ -1314,11 +1518,50 @@
         "title": "Pod",
         "description": "Entire json for the Kubernetes "
       },
-      "RestorePod": {
+      "PodResponse": {
         "type": "object",
         "required": [
-          "action_id"
+          "id",
+          "name",
+          "namespace",
+          "status",
+          "age",
+          "ready",
+          "node",
+          "restarts"
         ],
+        "properties": {
+          "age": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "namespace": {
+            "type": "string"
+          },
+          "node": {
+            "type": "string"
+          },
+          "ready": {
+            "type": "string"
+          },
+          "restarts": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "RestorePod": {
+        "type": "object",
+        "required": ["action_id"],
         "properties": {
           "action_id": {
             "type": "string"
@@ -1330,18 +1573,23 @@
       },
       "StatusResponse": {
         "type": "object",
-        "required": [
-          "status"
-        ],
+        "required": ["status"],
         "properties": {
           "details": {
-            "type": [
-              "string",
-              "null"
-            ]
+            "type": ["string", "null"]
           },
           "status": {
             "$ref": "#/components/schemas/CheckpointStatus"
+          }
+        }
+      },
+      "TotalCountResponse": {
+        "type": "object",
+        "required": ["total_count"],
+        "properties": {
+          "total_count": {
+            "type": "integer",
+            "format": "int64"
           }
         }
       }
@@ -1355,8 +1603,8 @@
   },
   "tags": [
     {
-      "name": "Authentication",
-      "description": "Cedana Propagator API for authentication"
+      "name": "User",
+      "description": "Cedana Propagator API to get user information"
     },
     {
       "name": "Service",
@@ -1381,6 +1629,10 @@
     {
       "name": "SyncCluster",
       "description": "Cedana Propagator API for syncing k8s cluster resources"
+    },
+    {
+      "name": "Tables",
+      "description": "Cedana Propagator API for listing tables"
     }
   ]
 }
