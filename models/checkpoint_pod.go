@@ -16,6 +16,8 @@ type CheckpointPod struct {
     cluster_id *string
     // The namespace property
     namespace *string
+    // The pod_id property
+    pod_id *string
     // The pod_name property
     pod_name *string
     // The runc_root property
@@ -82,6 +84,16 @@ func (m *CheckpointPod) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         }
         return nil
     }
+    res["pod_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPodId(val)
+        }
+        return nil
+    }
     res["pod_name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -109,6 +121,11 @@ func (m *CheckpointPod) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
 func (m *CheckpointPod) GetNamespace()(*string) {
     return m.namespace
 }
+// GetPodId gets the pod_id property value. The pod_id property
+// returns a *string when successful
+func (m *CheckpointPod) GetPodId()(*string) {
+    return m.pod_id
+}
 // GetPodName gets the pod_name property value. The pod_name property
 // returns a *string when successful
 func (m *CheckpointPod) GetPodName()(*string) {
@@ -129,6 +146,12 @@ func (m *CheckpointPod) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
     }
     {
         err := writer.WriteStringValue("namespace", m.GetNamespace())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("pod_id", m.GetPodId())
         if err != nil {
             return err
         }
@@ -169,6 +192,10 @@ func (m *CheckpointPod) SetClusterId(value *string)() {
 func (m *CheckpointPod) SetNamespace(value *string)() {
     m.namespace = value
 }
+// SetPodId sets the pod_id property value. The pod_id property
+func (m *CheckpointPod) SetPodId(value *string)() {
+    m.pod_id = value
+}
 // SetPodName sets the pod_name property value. The pod_name property
 func (m *CheckpointPod) SetPodName(value *string)() {
     m.pod_name = value
@@ -183,11 +210,13 @@ type CheckpointPodable interface {
     GetActionId()(*string)
     GetClusterId()(*string)
     GetNamespace()(*string)
+    GetPodId()(*string)
     GetPodName()(*string)
     GetRuncRoot()(*string)
     SetActionId(value *string)()
     SetClusterId(value *string)()
     SetNamespace(value *string)()
+    SetPodId(value *string)()
     SetPodName(value *string)()
     SetRuncRoot(value *string)()
 }

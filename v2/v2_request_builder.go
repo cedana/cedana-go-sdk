@@ -59,6 +59,11 @@ func (m *V2RequestBuilder) Jobs()(*JobsRequestBuilder) {
 func (m *V2RequestBuilder) K8s()(*K8sRequestBuilder) {
     return NewK8sRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Nodes the nodes property
+// returns a *NodesRequestBuilder when successful
+func (m *V2RequestBuilder) Nodes()(*NodesRequestBuilder) {
+    return NewNodesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Pods the pods property
 // returns a *PodsRequestBuilder when successful
 func (m *V2RequestBuilder) Pods()(*PodsRequestBuilder) {
@@ -68,6 +73,11 @@ func (m *V2RequestBuilder) Pods()(*PodsRequestBuilder) {
 // returns a *RestoreRequestBuilder when successful
 func (m *V2RequestBuilder) Restore()(*RestoreRequestBuilder) {
     return NewRestoreRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Tables the tables property
+// returns a *TablesRequestBuilder when successful
+func (m *V2RequestBuilder) Tables()(*TablesRequestBuilder) {
+    return NewTablesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // User the user property
 // returns a *UserRequestBuilder when successful
