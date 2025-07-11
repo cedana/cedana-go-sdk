@@ -14,8 +14,12 @@ type CheckpointPod struct {
     additionalData map[string]any
     // The cluster_id property
     cluster_id *string
+    // The kind property
+    kind *CheckpointKind
     // The namespace property
     namespace *string
+    // The pod_id property
+    pod_id *string
     // The pod_name property
     pod_name *string
     // The runc_root property
@@ -72,6 +76,16 @@ func (m *CheckpointPod) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         }
         return nil
     }
+    res["kind"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseCheckpointKind)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetKind(val.(*CheckpointKind))
+        }
+        return nil
+    }
     res["namespace"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -79,6 +93,16 @@ func (m *CheckpointPod) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         }
         if val != nil {
             m.SetNamespace(val)
+        }
+        return nil
+    }
+    res["pod_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPodId(val)
         }
         return nil
     }
@@ -104,10 +128,20 @@ func (m *CheckpointPod) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
     }
     return res
 }
+// GetKind gets the kind property value. The kind property
+// returns a *CheckpointKind when successful
+func (m *CheckpointPod) GetKind()(*CheckpointKind) {
+    return m.kind
+}
 // GetNamespace gets the namespace property value. The namespace property
 // returns a *string when successful
 func (m *CheckpointPod) GetNamespace()(*string) {
     return m.namespace
+}
+// GetPodId gets the pod_id property value. The pod_id property
+// returns a *string when successful
+func (m *CheckpointPod) GetPodId()(*string) {
+    return m.pod_id
 }
 // GetPodName gets the pod_name property value. The pod_name property
 // returns a *string when successful
@@ -127,8 +161,21 @@ func (m *CheckpointPod) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
             return err
         }
     }
+    if m.GetKind() != nil {
+        cast := (*m.GetKind()).String()
+        err := writer.WriteStringValue("kind", &cast)
+        if err != nil {
+            return err
+        }
+    }
     {
         err := writer.WriteStringValue("namespace", m.GetNamespace())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("pod_id", m.GetPodId())
         if err != nil {
             return err
         }
@@ -165,9 +212,17 @@ func (m *CheckpointPod) SetAdditionalData(value map[string]any)() {
 func (m *CheckpointPod) SetClusterId(value *string)() {
     m.cluster_id = value
 }
+// SetKind sets the kind property value. The kind property
+func (m *CheckpointPod) SetKind(value *CheckpointKind)() {
+    m.kind = value
+}
 // SetNamespace sets the namespace property value. The namespace property
 func (m *CheckpointPod) SetNamespace(value *string)() {
     m.namespace = value
+}
+// SetPodId sets the pod_id property value. The pod_id property
+func (m *CheckpointPod) SetPodId(value *string)() {
+    m.pod_id = value
 }
 // SetPodName sets the pod_name property value. The pod_name property
 func (m *CheckpointPod) SetPodName(value *string)() {
@@ -182,12 +237,16 @@ type CheckpointPodable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetActionId()(*string)
     GetClusterId()(*string)
+    GetKind()(*CheckpointKind)
     GetNamespace()(*string)
+    GetPodId()(*string)
     GetPodName()(*string)
     GetRuncRoot()(*string)
     SetActionId(value *string)()
     SetClusterId(value *string)()
+    SetKind(value *CheckpointKind)()
     SetNamespace(value *string)()
+    SetPodId(value *string)()
     SetPodName(value *string)()
     SetRuncRoot(value *string)()
 }

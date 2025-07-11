@@ -9,34 +9,34 @@ import (
     i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
 )
 
-// PodsRequestBuilder builds and executes requests for operations under \v2\pods
-type PodsRequestBuilder struct {
+// NodesRequestBuilder builds and executes requests for operations under \v2\nodes
+type NodesRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
-// PodsRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
-type PodsRequestBuilderGetRequestConfiguration struct {
+// NodesRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
+type NodesRequestBuilderGetRequestConfiguration struct {
     // Request headers
     Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
     // Request options
     Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
-// NewPodsRequestBuilderInternal instantiates a new PodsRequestBuilder and sets the default values.
-func NewPodsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PodsRequestBuilder) {
-    m := &PodsRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v2/pods", pathParameters),
+// NewNodesRequestBuilderInternal instantiates a new NodesRequestBuilder and sets the default values.
+func NewNodesRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*NodesRequestBuilder) {
+    m := &NodesRequestBuilder{
+        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v2/nodes", pathParameters),
     }
     return m
 }
-// NewPodsRequestBuilder instantiates a new PodsRequestBuilder and sets the default values.
-func NewPodsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PodsRequestBuilder) {
+// NewNodesRequestBuilder instantiates a new NodesRequestBuilder and sets the default values.
+func NewNodesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*NodesRequestBuilder) {
     urlParams := make(map[string]string)
     urlParams["request-raw-url"] = rawUrl
-    return NewPodsRequestBuilderInternal(urlParams, requestAdapter)
+    return NewNodesRequestBuilderInternal(urlParams, requestAdapter)
 }
 // Get use query params to filter pods
-// returns a []PodResponseable when successful
+// returns a []Nodeable when successful
 // returns a HttpError error when the service returns a 500 status code
-func (m *PodsRequestBuilder) Get(ctx context.Context, requestConfiguration *PodsRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PodResponseable, error) {
+func (m *NodesRequestBuilder) Get(ctx context.Context, requestConfiguration *NodesRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.Nodeable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
@@ -44,21 +44,21 @@ func (m *PodsRequestBuilder) Get(ctx context.Context, requestConfiguration *Pods
     errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
         "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreatePodResponseFromDiscriminatorValue, errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateNodeFromDiscriminatorValue, errorMapping)
     if err != nil {
         return nil, err
     }
-    val := make([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PodResponseable, len(res))
+    val := make([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.Nodeable, len(res))
     for i, v := range res {
         if v != nil {
-            val[i] = v.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PodResponseable)
+            val[i] = v.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.Nodeable)
         }
     }
     return val, nil
 }
 // ToGetRequestInformation use query params to filter pods
 // returns a *RequestInformation when successful
-func (m *PodsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *PodsRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+func (m *NodesRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *NodesRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
     if requestConfiguration != nil {
         requestInfo.Headers.AddAll(requestConfiguration.Headers)
@@ -68,7 +68,7 @@ func (m *PodsRequestBuilder) ToGetRequestInformation(ctx context.Context, reques
     return requestInfo, nil
 }
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
-// returns a *PodsRequestBuilder when successful
-func (m *PodsRequestBuilder) WithUrl(rawUrl string)(*PodsRequestBuilder) {
-    return NewPodsRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+// returns a *NodesRequestBuilder when successful
+func (m *NodesRequestBuilder) WithUrl(rawUrl string)(*NodesRequestBuilder) {
+    return NewNodesRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
 }

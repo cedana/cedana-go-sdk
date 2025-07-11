@@ -26,6 +26,11 @@ func (m *V2RequestBuilder) Checkpoint()(*CheckpointRequestBuilder) {
 func (m *V2RequestBuilder) Checkpoints()(*CheckpointsRequestBuilder) {
     return NewCheckpointsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Cluster the cluster property
+// returns a *ClusterRequestBuilder when successful
+func (m *V2RequestBuilder) Cluster()(*ClusterRequestBuilder) {
+    return NewClusterRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // NewV2RequestBuilderInternal instantiates a new V2RequestBuilder and sets the default values.
 func NewV2RequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*V2RequestBuilder) {
     m := &V2RequestBuilder{
@@ -59,6 +64,11 @@ func (m *V2RequestBuilder) Jobs()(*JobsRequestBuilder) {
 func (m *V2RequestBuilder) K8s()(*K8sRequestBuilder) {
     return NewK8sRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Nodes the nodes property
+// returns a *NodesRequestBuilder when successful
+func (m *V2RequestBuilder) Nodes()(*NodesRequestBuilder) {
+    return NewNodesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Pods the pods property
 // returns a *PodsRequestBuilder when successful
 func (m *V2RequestBuilder) Pods()(*PodsRequestBuilder) {
@@ -68,6 +78,11 @@ func (m *V2RequestBuilder) Pods()(*PodsRequestBuilder) {
 // returns a *RestoreRequestBuilder when successful
 func (m *V2RequestBuilder) Restore()(*RestoreRequestBuilder) {
     return NewRestoreRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Tables the tables property
+// returns a *TablesRequestBuilder when successful
+func (m *V2RequestBuilder) Tables()(*TablesRequestBuilder) {
+    return NewTablesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // User the user property
 // returns a *UserRequestBuilder when successful

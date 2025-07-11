@@ -20,10 +20,10 @@ type Checkpoint struct {
     id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The image_name_with_tag property
     image_name_with_tag *string
+    // The info property
+    info i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
     // The platform property
     platform *string
-    // The process_info property
-    process_info *string
     // The status property
     status *CheckpointStatus
 }
@@ -93,6 +93,16 @@ func (m *Checkpoint) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         }
         return nil
     }
+    res["info"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetInfo(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
+        }
+        return nil
+    }
     res["platform"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -100,16 +110,6 @@ func (m *Checkpoint) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         }
         if val != nil {
             m.SetPlatform(val)
-        }
-        return nil
-    }
-    res["process_info"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetProcessInfo(val)
         }
         return nil
     }
@@ -140,15 +140,15 @@ func (m *Checkpoint) GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e555
 func (m *Checkpoint) GetImageNameWithTag()(*string) {
     return m.image_name_with_tag
 }
+// GetInfo gets the info property value. The info property
+// returns a UntypedNodeable when successful
+func (m *Checkpoint) GetInfo()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
+    return m.info
+}
 // GetPlatform gets the platform property value. The platform property
 // returns a *string when successful
 func (m *Checkpoint) GetPlatform()(*string) {
     return m.platform
-}
-// GetProcessInfo gets the process_info property value. The process_info property
-// returns a *string when successful
-func (m *Checkpoint) GetProcessInfo()(*string) {
-    return m.process_info
 }
 // GetStatus gets the status property value. The status property
 // returns a *CheckpointStatus when successful
@@ -182,13 +182,13 @@ func (m *Checkpoint) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
         }
     }
     {
-        err := writer.WriteStringValue("platform", m.GetPlatform())
+        err := writer.WriteObjectValue("info", m.GetInfo())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteStringValue("process_info", m.GetProcessInfo())
+        err := writer.WriteStringValue("platform", m.GetPlatform())
         if err != nil {
             return err
         }
@@ -228,13 +228,13 @@ func (m *Checkpoint) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770
 func (m *Checkpoint) SetImageNameWithTag(value *string)() {
     m.image_name_with_tag = value
 }
+// SetInfo sets the info property value. The info property
+func (m *Checkpoint) SetInfo(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
+    m.info = value
+}
 // SetPlatform sets the platform property value. The platform property
 func (m *Checkpoint) SetPlatform(value *string)() {
     m.platform = value
-}
-// SetProcessInfo sets the process_info property value. The process_info property
-func (m *Checkpoint) SetProcessInfo(value *string)() {
-    m.process_info = value
 }
 // SetStatus sets the status property value. The status property
 func (m *Checkpoint) SetStatus(value *CheckpointStatus)() {
@@ -247,14 +247,14 @@ type Checkpointable interface {
     GetGpu()(*string)
     GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetImageNameWithTag()(*string)
+    GetInfo()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
     GetPlatform()(*string)
-    GetProcessInfo()(*string)
     GetStatus()(*CheckpointStatus)
     SetChecksum(value *string)()
     SetGpu(value *string)()
     SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetImageNameWithTag(value *string)()
+    SetInfo(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
     SetPlatform(value *string)()
-    SetProcessInfo(value *string)()
     SetStatus(value *CheckpointStatus)()
 }

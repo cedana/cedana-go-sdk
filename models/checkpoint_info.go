@@ -12,6 +12,8 @@ type CheckpointInfo struct {
     additionalData map[string]any
     // The gpu property
     gpu *string
+    // The info property
+    info i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
     // The platform property
     platform *string
 }
@@ -46,6 +48,16 @@ func (m *CheckpointInfo) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         }
         return nil
     }
+    res["info"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetInfo(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
+        }
+        return nil
+    }
     res["platform"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -63,6 +75,11 @@ func (m *CheckpointInfo) GetFieldDeserializers()(map[string]func(i878a80d2330e89
 func (m *CheckpointInfo) GetGpu()(*string) {
     return m.gpu
 }
+// GetInfo gets the info property value. The info property
+// returns a UntypedNodeable when successful
+func (m *CheckpointInfo) GetInfo()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
+    return m.info
+}
 // GetPlatform gets the platform property value. The platform property
 // returns a *string when successful
 func (m *CheckpointInfo) GetPlatform()(*string) {
@@ -72,6 +89,12 @@ func (m *CheckpointInfo) GetPlatform()(*string) {
 func (m *CheckpointInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
         err := writer.WriteStringValue("gpu", m.GetGpu())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteObjectValue("info", m.GetInfo())
         if err != nil {
             return err
         }
@@ -98,6 +121,10 @@ func (m *CheckpointInfo) SetAdditionalData(value map[string]any)() {
 func (m *CheckpointInfo) SetGpu(value *string)() {
     m.gpu = value
 }
+// SetInfo sets the info property value. The info property
+func (m *CheckpointInfo) SetInfo(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
+    m.info = value
+}
 // SetPlatform sets the platform property value. The platform property
 func (m *CheckpointInfo) SetPlatform(value *string)() {
     m.platform = value
@@ -106,7 +133,9 @@ type CheckpointInfoable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetGpu()(*string)
+    GetInfo()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
     GetPlatform()(*string)
     SetGpu(value *string)()
+    SetInfo(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
     SetPlatform(value *string)()
 }

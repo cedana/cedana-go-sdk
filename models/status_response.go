@@ -13,7 +13,7 @@ type StatusResponse struct {
     // The details property
     details *string
     // The status property
-    status *CheckpointStatus
+    status *CheckpointOperationStatus
 }
 // NewStatusResponse instantiates a new StatusResponse and sets the default values.
 func NewStatusResponse()(*StatusResponse) {
@@ -52,20 +52,20 @@ func (m *StatusResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         return nil
     }
     res["status"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseCheckpointStatus)
+        val, err := n.GetEnumValue(ParseCheckpointOperationStatus)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetStatus(val.(*CheckpointStatus))
+            m.SetStatus(val.(*CheckpointOperationStatus))
         }
         return nil
     }
     return res
 }
 // GetStatus gets the status property value. The status property
-// returns a *CheckpointStatus when successful
-func (m *StatusResponse) GetStatus()(*CheckpointStatus) {
+// returns a *CheckpointOperationStatus when successful
+func (m *StatusResponse) GetStatus()(*CheckpointOperationStatus) {
     return m.status
 }
 // Serialize serializes information the current object
@@ -100,14 +100,14 @@ func (m *StatusResponse) SetDetails(value *string)() {
     m.details = value
 }
 // SetStatus sets the status property value. The status property
-func (m *StatusResponse) SetStatus(value *CheckpointStatus)() {
+func (m *StatusResponse) SetStatus(value *CheckpointOperationStatus)() {
     m.status = value
 }
 type StatusResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetDetails()(*string)
-    GetStatus()(*CheckpointStatus)
+    GetStatus()(*CheckpointOperationStatus)
     SetDetails(value *string)()
-    SetStatus(value *CheckpointStatus)()
+    SetStatus(value *CheckpointOperationStatus)()
 }

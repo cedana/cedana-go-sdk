@@ -20,8 +20,18 @@ type Action struct {
     checkpoint_completed_timestamp *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The checkpoint_id property
     checkpoint_id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+    // The details property
+    details i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+    // The gpu property
+    gpu *string
+    // The node_name property
+    node_name *string
+    // The platform property
+    platform *string
     // The status property
     status *string
+    // The total_duration property
+    total_duration *string
     // The type property
     typeEscaped *string
 }
@@ -61,6 +71,11 @@ func (m *Action) GetCheckpointCompletedTimestamp()(*i336074805fc853987abe6f7fe3a
 // returns a *UUID when successful
 func (m *Action) GetCheckpointId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
     return m.checkpoint_id
+}
+// GetDetails gets the details property value. The details property
+// returns a UntypedNodeable when successful
+func (m *Action) GetDetails()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
+    return m.details
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -106,6 +121,46 @@ func (m *Action) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689638
         }
         return nil
     }
+    res["details"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDetails(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
+        }
+        return nil
+    }
+    res["gpu"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetGpu(val)
+        }
+        return nil
+    }
+    res["node_name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetNodeName(val)
+        }
+        return nil
+    }
+    res["platform"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPlatform(val)
+        }
+        return nil
+    }
     res["status"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -113,6 +168,16 @@ func (m *Action) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689638
         }
         if val != nil {
             m.SetStatus(val)
+        }
+        return nil
+    }
+    res["total_duration"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTotalDuration(val)
         }
         return nil
     }
@@ -128,10 +193,30 @@ func (m *Action) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689638
     }
     return res
 }
+// GetGpu gets the gpu property value. The gpu property
+// returns a *string when successful
+func (m *Action) GetGpu()(*string) {
+    return m.gpu
+}
+// GetNodeName gets the node_name property value. The node_name property
+// returns a *string when successful
+func (m *Action) GetNodeName()(*string) {
+    return m.node_name
+}
+// GetPlatform gets the platform property value. The platform property
+// returns a *string when successful
+func (m *Action) GetPlatform()(*string) {
+    return m.platform
+}
 // GetStatus gets the status property value. The status property
 // returns a *string when successful
 func (m *Action) GetStatus()(*string) {
     return m.status
+}
+// GetTotalDuration gets the total_duration property value. The total_duration property
+// returns a *string when successful
+func (m *Action) GetTotalDuration()(*string) {
+    return m.total_duration
 }
 // GetTypeEscaped gets the type property value. The type property
 // returns a *string when successful
@@ -165,7 +250,37 @@ func (m *Action) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c
         }
     }
     {
+        err := writer.WriteObjectValue("details", m.GetDetails())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("gpu", m.GetGpu())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("node_name", m.GetNodeName())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("platform", m.GetPlatform())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("status", m.GetStatus())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("total_duration", m.GetTotalDuration())
         if err != nil {
             return err
         }
@@ -204,9 +319,29 @@ func (m *Action) SetCheckpointCompletedTimestamp(value *i336074805fc853987abe6f7
 func (m *Action) SetCheckpointId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.checkpoint_id = value
 }
+// SetDetails sets the details property value. The details property
+func (m *Action) SetDetails(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
+    m.details = value
+}
+// SetGpu sets the gpu property value. The gpu property
+func (m *Action) SetGpu(value *string)() {
+    m.gpu = value
+}
+// SetNodeName sets the node_name property value. The node_name property
+func (m *Action) SetNodeName(value *string)() {
+    m.node_name = value
+}
+// SetPlatform sets the platform property value. The platform property
+func (m *Action) SetPlatform(value *string)() {
+    m.platform = value
+}
 // SetStatus sets the status property value. The status property
 func (m *Action) SetStatus(value *string)() {
     m.status = value
+}
+// SetTotalDuration sets the total_duration property value. The total_duration property
+func (m *Action) SetTotalDuration(value *string)() {
+    m.total_duration = value
 }
 // SetTypeEscaped sets the type property value. The type property
 func (m *Action) SetTypeEscaped(value *string)() {
@@ -219,12 +354,22 @@ type Actionable interface {
     GetActionTimestamp()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetCheckpointCompletedTimestamp()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetCheckpointId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+    GetDetails()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+    GetGpu()(*string)
+    GetNodeName()(*string)
+    GetPlatform()(*string)
     GetStatus()(*string)
+    GetTotalDuration()(*string)
     GetTypeEscaped()(*string)
     SetActionId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetActionTimestamp(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetCheckpointCompletedTimestamp(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetCheckpointId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
+    SetDetails(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
+    SetGpu(value *string)()
+    SetNodeName(value *string)()
+    SetPlatform(value *string)()
     SetStatus(value *string)()
+    SetTotalDuration(value *string)()
     SetTypeEscaped(value *string)()
 }

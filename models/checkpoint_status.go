@@ -5,32 +5,29 @@ package models
 type CheckpointStatus int
 
 const (
-    INITIALIZED_CHECKPOINTSTATUS CheckpointStatus = iota
-    PROCESSING_CHECKPOINTSTATUS
-    CHECKPOINT_CREATED_CHECKPOINTSTATUS
+    INITIALIZING_CHECKPOINTSTATUS CheckpointStatus = iota
+    UPDATED_INFO_CHECKPOINTSTATUS
+    POSSIBLY_UPLOADED_CHECKPOINTSTATUS
     READY_CHECKPOINTSTATUS
-    ERROR_CHECKPOINTSTATUS
-    NOT_FOUND_CHECKPOINTSTATUS
+    DEPRECATED_CHECKPOINTSTATUS
 )
 
 func (i CheckpointStatus) String() string {
-    return []string{"initialized", "processing", "checkpoint_created", "ready", "error", "not_found"}[i]
+    return []string{"initializing", "updated_info", "possibly_uploaded", "ready", "deprecated"}[i]
 }
 func ParseCheckpointStatus(v string) (any, error) {
-    result := INITIALIZED_CHECKPOINTSTATUS
+    result := INITIALIZING_CHECKPOINTSTATUS
     switch v {
-        case "initialized":
-            result = INITIALIZED_CHECKPOINTSTATUS
-        case "processing":
-            result = PROCESSING_CHECKPOINTSTATUS
-        case "checkpoint_created":
-            result = CHECKPOINT_CREATED_CHECKPOINTSTATUS
+        case "initializing":
+            result = INITIALIZING_CHECKPOINTSTATUS
+        case "updated_info":
+            result = UPDATED_INFO_CHECKPOINTSTATUS
+        case "possibly_uploaded":
+            result = POSSIBLY_UPLOADED_CHECKPOINTSTATUS
         case "ready":
             result = READY_CHECKPOINTSTATUS
-        case "error":
-            result = ERROR_CHECKPOINTSTATUS
-        case "not_found":
-            result = NOT_FOUND_CHECKPOINTSTATUS
+        case "deprecated":
+            result = DEPRECATED_CHECKPOINTSTATUS
         default:
             return nil, nil
     }
