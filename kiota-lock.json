@@ -1,8 +1,8 @@
 {
-  "descriptionHash": "882402CA79AD5729364D784CE92391D1DBFEC29045E3F172B7FB3B0A3C3C21568B3228E5F2C2C1709F3F804A6EE4BDAB0B0F0688BBB69D56A1CD4166CBB4B23A",
+  "descriptionHash": "174EF546062BFC75B5601E71C3CBE206FAAF6FC878929B70C170C583D722346F5A9B980E58D5F6C234CAAAABD96435329FDEE33B0AD50DE8182E32C07C8FF167",
   "descriptionLocation": "openapi.json",
   "lockFileVersion": "1.0.0",
-  "kiotaVersion": "1.26.1",
+  "kiotaVersion": "1.28.0",
   "clientClassName": "ApiClient",
   "typeAccessModifier": "Public",
   "clientNamespaceName": "github.com/cedana/cedana-go-sdk",

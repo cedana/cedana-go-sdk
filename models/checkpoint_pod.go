@@ -22,6 +22,8 @@ type CheckpointPod struct {
     pod_id *string
     // The pod_name property
     pod_name *string
+    // The reason property
+    reason *CheckpointReason
     // The runc_root property
     runc_root *string
 }
@@ -116,6 +118,16 @@ func (m *CheckpointPod) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         }
         return nil
     }
+    res["reason"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseCheckpointReason)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetReason(val.(*CheckpointReason))
+        }
+        return nil
+    }
     res["runc_root"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -147,6 +159,11 @@ func (m *CheckpointPod) GetPodId()(*string) {
 // returns a *string when successful
 func (m *CheckpointPod) GetPodName()(*string) {
     return m.pod_name
+}
+// GetReason gets the reason property value. The reason property
+// returns a *CheckpointReason when successful
+func (m *CheckpointPod) GetReason()(*CheckpointReason) {
+    return m.reason
 }
 // GetRuncRoot gets the runc_root property value. The runc_root property
 // returns a *string when successful
@@ -182,6 +199,13 @@ func (m *CheckpointPod) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
     }
     {
         err := writer.WriteStringValue("pod_name", m.GetPodName())
+        if err != nil {
+            return err
+        }
+    }
+    if m.GetReason() != nil {
+        cast := (*m.GetReason()).String()
+        err := writer.WriteStringValue("reason", &cast)
         if err != nil {
             return err
         }
@@ -228,6 +252,10 @@ func (m *CheckpointPod) SetPodId(value *string)() {
 func (m *CheckpointPod) SetPodName(value *string)() {
     m.pod_name = value
 }
+// SetReason sets the reason property value. The reason property
+func (m *CheckpointPod) SetReason(value *CheckpointReason)() {
+    m.reason = value
+}
 // SetRuncRoot sets the runc_root property value. The runc_root property
 func (m *CheckpointPod) SetRuncRoot(value *string)() {
     m.runc_root = value
@@ -241,6 +269,7 @@ type CheckpointPodable interface {
     GetNamespace()(*string)
     GetPodId()(*string)
     GetPodName()(*string)
+    GetReason()(*CheckpointReason)
     GetRuncRoot()(*string)
     SetActionId(value *string)()
     SetClusterId(value *string)()
@@ -248,5 +277,6 @@ type CheckpointPodable interface {
     SetNamespace(value *string)()
     SetPodId(value *string)()
     SetPodName(value *string)()
+    SetReason(value *CheckpointReason)()
     SetRuncRoot(value *string)()
 }

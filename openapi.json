@@ -1465,6 +1465,12 @@
           "rootfsonly"
         ]
       },
+      "CheckpointReason": {
+        "type": "string",
+        "enum": [
+          "heartbeat"
+        ]
+      },
       "CheckpointOperationStatus": {
         "type": "string",
         "enum": [
@@ -1518,6 +1524,9 @@
               "string",
               "null"
             ]
+          },
+          "reason": {
+            "$ref": "#/components/schemas/CheckpointReason"
           }
         }
       },
@@ -1800,8 +1809,18 @@
           },
           "cluster_id": {
             "type": "string"
+          },
+          "reason": {
+            "$ref": "#/components/schemas/RestoreReason"
           }
         }
+      },
+      "RestoreReason": {
+        "type": "string",
+        "enum": [
+          "nodetermination",
+          "nodeunschedulable"
+        ]
       },
       "StatusResponse": {
         "type": "object",
