@@ -6,16 +6,19 @@ type CheckpointReason int
 
 const (
     HEARTBEAT_CHECKPOINTREASON CheckpointReason = iota
+    MANUAL_CHECKPOINTREASON
 )
 
 func (i CheckpointReason) String() string {
-    return []string{"heartbeat"}[i]
+    return []string{"heartbeat", "manual"}[i]
 }
 func ParseCheckpointReason(v string) (any, error) {
     result := HEARTBEAT_CHECKPOINTREASON
     switch v {
         case "heartbeat":
             result = HEARTBEAT_CHECKPOINTREASON
+        case "manual":
+            result = MANUAL_CHECKPOINTREASON
         default:
             return nil, nil
     }

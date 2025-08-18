@@ -7,10 +7,11 @@ type RestoreReason int
 const (
     NODETERMINATION_RESTOREREASON RestoreReason = iota
     NODEUNSCHEDULABLE_RESTOREREASON
+    MANUAL_RESTOREREASON
 )
 
 func (i RestoreReason) String() string {
-    return []string{"nodeTermination", "nodeUnschedulable"}[i]
+    return []string{"nodeTermination", "nodeUnschedulable", "manual"}[i]
 }
 func ParseRestoreReason(v string) (any, error) {
     result := NODETERMINATION_RESTOREREASON
@@ -19,6 +20,8 @@ func ParseRestoreReason(v string) (any, error) {
             result = NODETERMINATION_RESTOREREASON
         case "nodeUnschedulable":
             result = NODEUNSCHEDULABLE_RESTOREREASON
+        case "manual":
+            result = MANUAL_RESTOREREASON
         default:
             return nil, nil
     }
