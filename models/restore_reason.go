@@ -10,14 +10,14 @@ const (
 )
 
 func (i RestoreReason) String() string {
-    return []string{"nodetermination", "nodeunschedulable"}[i]
+    return []string{"nodeTermination", "nodeUnschedulable"}[i]
 }
 func ParseRestoreReason(v string) (any, error) {
     result := NODETERMINATION_RESTOREREASON
     switch v {
-        case "nodetermination":
+        case "nodeTermination":
             result = NODETERMINATION_RESTOREREASON
-        case "nodeunschedulable":
+        case "nodeUnschedulable":
             result = NODEUNSCHEDULABLE_RESTOREREASON
         default:
             return nil, nil

@@ -1818,8 +1818,8 @@
       "RestoreReason": {
         "type": "string",
         "enum": [
-          "nodetermination",
-          "nodeunschedulable"
+          "nodeTermination",
+          "nodeUnschedulable"
         ]
       },
       "StatusResponse": {
