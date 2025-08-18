@@ -14,6 +14,8 @@ type RestorePod struct {
     additionalData map[string]any
     // The cluster_id property
     cluster_id *string
+    // The reason property
+    reason *RestoreReason
 }
 // NewRestorePod instantiates a new RestorePod and sets the default values.
 func NewRestorePod()(*RestorePod) {
@@ -66,7 +68,22 @@ func (m *RestorePod) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         }
         return nil
     }
+    res["reason"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseRestoreReason)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetReason(val.(*RestoreReason))
+        }
+        return nil
+    }
     return res
+}
+// GetReason gets the reason property value. The reason property
+// returns a *RestoreReason when successful
+func (m *RestorePod) GetReason()(*RestoreReason) {
+    return m.reason
 }
 // Serialize serializes information the current object
 func (m *RestorePod) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -78,6 +95,13 @@ func (m *RestorePod) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     }
     {
         err := writer.WriteStringValue("cluster_id", m.GetClusterId())
+        if err != nil {
+            return err
+        }
+    }
+    if m.GetReason() != nil {
+        cast := (*m.GetReason()).String()
+        err := writer.WriteStringValue("reason", &cast)
         if err != nil {
             return err
         }
@@ -102,11 +126,17 @@ func (m *RestorePod) SetAdditionalData(value map[string]any)() {
 func (m *RestorePod) SetClusterId(value *string)() {
     m.cluster_id = value
 }
+// SetReason sets the reason property value. The reason property
+func (m *RestorePod) SetReason(value *RestoreReason)() {
+    m.reason = value
+}
 type RestorePodable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetActionId()(*string)
     GetClusterId()(*string)
+    GetReason()(*RestoreReason)
     SetActionId(value *string)()
     SetClusterId(value *string)()
+    SetReason(value *RestoreReason)()
 }
