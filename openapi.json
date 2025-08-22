@@ -243,6 +243,93 @@
         ]
       }
     },
+"/v2/job/upload": {
+    "post": {
+      "tags": ["JobList"],
+      "summary": "Upload Checkpoint jobs",
+      "operationId": "job_list_upload",
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CheckpointPod"
+            }
+          }
+        },
+        "required": true
+      },
+      "responses": {
+        "200": {
+          "description": "Job list entry created successfully",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckpointPod"
+              },
+              "example": {
+                "id": "550e8400-e29b-41d4-a716-446655440000",
+                "reason": "heartbeat"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Invalid request body"
+        },
+        "500": {
+          "description": "Failed to insert into job_list table"
+        }
+      },
+      "security": [
+        {
+          "api_key": []
+        }
+      ]
+    }
+  },
+  "/v2/job/delete": {
+    "delete": {
+      "tags": ["JobList"],
+      "summary": "Delete Checkpoint jobs",
+      "operationId": "job_list_delete",
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/JobRequest"
+            }
+          }
+        },
+        "required": true
+      },
+      "responses": {
+        "200": {
+          "description": "Job list entry deleted successfully",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JobRequest"
+              },
+              "example": {
+                "id": "550e8400-e29b-41d4-a716-446655440000"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Invalid request body"
+        },
+        "500": {
+          "description": "Failed to delete from job_list table"
+        }
+      },
+      "security": [
+        {
+          "api_key": []
+        }
+      ]
+    }
+  },
     "/v2/checkpoint/status/{action_id}": {
       "get": {
         "tags": [
@@ -1799,6 +1886,21 @@
           }
         }
       },
+     "JobRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "heartbeat_time": {
+            "type": "string"
+          },
+          "details": {
+            "$ref": "#/components/schemas/CheckpointPod"
+          }
+        }
+     },
       "RestorePod": {
         "type": "object",
         "required": [

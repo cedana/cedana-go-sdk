@@ -54,6 +54,11 @@ func (m *V2RequestBuilder) Discover()(*DiscoverRequestBuilder) {
 func (m *V2RequestBuilder) Files()(*FilesRequestBuilder) {
     return NewFilesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Job the job property
+// returns a *JobRequestBuilder when successful
+func (m *V2RequestBuilder) Job()(*JobRequestBuilder) {
+    return NewJobRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Jobs the jobs property
 // returns a *JobsRequestBuilder when successful
 func (m *V2RequestBuilder) Jobs()(*JobsRequestBuilder) {
