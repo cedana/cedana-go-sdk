@@ -252,7 +252,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/CheckpointPod"
+              "$ref": "#/components/schemas/JobRequest"
             }
           }
         },
@@ -260,15 +260,11 @@
       },
       "responses": {
         "200": {
-          "description": "Job list entry created successfully",
+          "description": "Job list entry created/updated successfully",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CheckpointPod"
-              },
-              "example": {
-                "id": "550e8400-e29b-41d4-a716-446655440000",
-                "reason": "heartbeat"
+                "$ref": "#/components/schemas/JobRequest"
               }
             }
           }
@@ -296,7 +292,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/JobRequest"
+              "$ref": "#/components/schemas/JobDeleteRequest"
             }
           }
         },
@@ -308,7 +304,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/JobRequest"
+                "$ref": "#/components/schemas/JobDeleteRequest"
               },
               "example": {
                 "id": "550e8400-e29b-41d4-a716-446655440000"
@@ -1894,10 +1890,21 @@
             "format": "uuid"
           },
           "heartbeat_time": {
-            "type": "string"
+            "type": "integer",
+            "format": "int64",
+            "minimum": "0"
           },
           "details": {
             "$ref": "#/components/schemas/CheckpointPod"
+          }
+        }
+     },
+     "JobDeleteRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
           }
         }
      },
