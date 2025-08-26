@@ -34,24 +34,24 @@ func NewJobDeleteRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee2633
     return NewJobDeleteRequestBuilderInternal(urlParams, requestAdapter)
 }
 // Delete delete Checkpoint jobs
-// returns a JobRequestable when successful
-func (m *JobDeleteRequestBuilder) Delete(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.JobRequestable, requestConfiguration *JobDeleteRequestBuilderDeleteRequestConfiguration)(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.JobRequestable, error) {
+// returns a JobDeleteRequestable when successful
+func (m *JobDeleteRequestBuilder) Delete(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.JobDeleteRequestable, requestConfiguration *JobDeleteRequestBuilderDeleteRequestConfiguration)(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.JobDeleteRequestable, error) {
     requestInfo, err := m.ToDeleteRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateJobRequestFromDiscriminatorValue, nil)
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateJobDeleteRequestFromDiscriminatorValue, nil)
     if err != nil {
         return nil, err
     }
     if res == nil {
         return nil, nil
     }
-    return res.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.JobRequestable), nil
+    return res.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.JobDeleteRequestable), nil
 }
 // ToDeleteRequestInformation delete Checkpoint jobs
 // returns a *RequestInformation when successful
-func (m *JobDeleteRequestBuilder) ToDeleteRequestInformation(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.JobRequestable, requestConfiguration *JobDeleteRequestBuilderDeleteRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+func (m *JobDeleteRequestBuilder) ToDeleteRequestInformation(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.JobDeleteRequestable, requestConfiguration *JobDeleteRequestBuilderDeleteRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DELETE, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
     if requestConfiguration != nil {
         requestInfo.Headers.AddAll(requestConfiguration.Headers)
