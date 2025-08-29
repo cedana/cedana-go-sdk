@@ -34,20 +34,20 @@ func NewJobUploadRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee2633
     return NewJobUploadRequestBuilderInternal(urlParams, requestAdapter)
 }
 // Post upload Checkpoint jobs
-// returns a JobRequestable when successful
-func (m *JobUploadRequestBuilder) Post(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.JobRequestable, requestConfiguration *JobUploadRequestBuilderPostRequestConfiguration)(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.JobRequestable, error) {
+// returns a *string when successful
+func (m *JobUploadRequestBuilder) Post(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.JobRequestable, requestConfiguration *JobUploadRequestBuilderPostRequestConfiguration)(*string, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateJobRequestFromDiscriminatorValue, nil)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", nil)
     if err != nil {
         return nil, err
     }
     if res == nil {
         return nil, nil
     }
-    return res.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.JobRequestable), nil
+    return res.(*string), nil
 }
 // ToPostRequestInformation upload Checkpoint jobs
 // returns a *RequestInformation when successful

@@ -34,20 +34,20 @@ func NewJobDeleteRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee2633
     return NewJobDeleteRequestBuilderInternal(urlParams, requestAdapter)
 }
 // Delete delete Checkpoint jobs
-// returns a JobDeleteRequestable when successful
-func (m *JobDeleteRequestBuilder) Delete(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.JobDeleteRequestable, requestConfiguration *JobDeleteRequestBuilderDeleteRequestConfiguration)(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.JobDeleteRequestable, error) {
+// returns a *string when successful
+func (m *JobDeleteRequestBuilder) Delete(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.JobDeleteRequestable, requestConfiguration *JobDeleteRequestBuilderDeleteRequestConfiguration)(*string, error) {
     requestInfo, err := m.ToDeleteRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateJobDeleteRequestFromDiscriminatorValue, nil)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", nil)
     if err != nil {
         return nil, err
     }
     if res == nil {
         return nil, nil
     }
-    return res.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.JobDeleteRequestable), nil
+    return res.(*string), nil
 }
 // ToDeleteRequestInformation delete Checkpoint jobs
 // returns a *RequestInformation when successful
