@@ -11,6 +11,11 @@ import (
 type V2RequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+// Action the action property
+// returns a *ActionRequestBuilder when successful
+func (m *V2RequestBuilder) Action()(*ActionRequestBuilder) {
+    return NewActionRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Actions the actions property
 // returns a *ActionsRequestBuilder when successful
 func (m *V2RequestBuilder) Actions()(*ActionsRequestBuilder) {
@@ -54,10 +59,10 @@ func (m *V2RequestBuilder) Discover()(*DiscoverRequestBuilder) {
 func (m *V2RequestBuilder) Files()(*FilesRequestBuilder) {
     return NewFilesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
-// Job the job property
-// returns a *JobRequestBuilder when successful
-func (m *V2RequestBuilder) Job()(*JobRequestBuilder) {
-    return NewJobRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+// Heartbeat the heartbeat property
+// returns a *HeartbeatRequestBuilder when successful
+func (m *V2RequestBuilder) Heartbeat()(*HeartbeatRequestBuilder) {
+    return NewHeartbeatRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Jobs the jobs property
 // returns a *JobsRequestBuilder when successful

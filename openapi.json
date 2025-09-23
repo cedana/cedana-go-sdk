@@ -243,89 +243,93 @@
         ]
       }
     },
-"/v2/job/upload": {
-    "post": {
-      "tags": ["JobList"],
-      "summary": "Upload Checkpoint jobs",
-      "operationId": "job_list_upload",
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/JobRequest"
-            }
-          }
-        },
-        "required": true
-      },
-      "responses": {
-        "200": {
-          "description": "Job list entry created/updated successfully",
+    "/v2/heartbeat/upload": {
+      "post": {
+        "tags": [
+          "Actions"
+        ],
+        "summary": "Upload heartbeat checkpoints",
+        "operationId": "heartbeat_upload",
+        "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "type": "string"
+                "$ref": "#/components/schemas/HeartbeatRequest"
               }
             }
-          }
+          },
+          "required": true
         },
-        "400": {
-          "description": "Invalid request body"
-        },
-        "500": {
-          "description": "Failed to insert into job_list table"
-        }
-      },
-      "security": [
-        {
-          "api_key": []
-        }
-      ]
-    }
-  },
-  "/v2/job/delete": {
-    "delete": {
-      "tags": ["JobList"],
-      "summary": "Delete Checkpoint jobs",
-      "operationId": "job_list_delete",
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/JobDeleteRequest"
+        "responses": {
+          "200": {
+            "description": "Heartbeat checkpoint entry created/updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
             }
+          },
+          "400": {
+            "description": "Invalid request body"
+          },
+          "500": {
+            "description": "Failed to insert into actions table"
           }
         },
-        "required": true
-      },
-      "responses": {
-        "200": {
-          "description": "Job list entry deleted successfully",
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/v2/action/delete": {
+      "delete": {
+        "tags": [
+          "Actions"
+        ],
+        "summary": "Delete checkpoint actions",
+        "operationId": "action_delete",
+        "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "type": "string"
-              },
-              "example": {
-                "id": "550e8400-e29b-41d4-a716-446655440000"
+                "$ref": "#/components/schemas/ActionDeleteRequest"
               }
             }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Action deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": {
+                  "id": "550e8400-e29b-41d4-a716-446655440000"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body"
+          },
+          "500": {
+            "description": "Failed to delete action from database"
           }
         },
-        "400": {
-          "description": "Invalid request body"
-        },
-        "500": {
-          "description": "Failed to delete from job_list table"
-        }
-      },
-      "security": [
-        {
-          "api_key": []
-        }
-      ]
-    }
-  },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
     "/v2/checkpoint/status/{action_id}": {
       "get": {
         "tags": [
@@ -830,7 +834,7 @@
         "description": "Marks a cluster as deleted in the Cedana propagator.\nThis does not physically delete the cluster record, but updates its status to \"deleted\".",
         "operationId": "delete",
         "parameters": [
-         {
+          {
             "name": "id",
             "in": "path",
             "required": true,
@@ -1882,13 +1886,9 @@
           }
         }
       },
-     "JobRequest": {
+      "HeartbeatRequest": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
           "heartbeat_time": {
             "type": "integer",
             "format": "int64",
@@ -1898,8 +1898,8 @@
             "$ref": "#/components/schemas/CheckpointPod"
           }
         }
-     },
-     "JobDeleteRequest": {
+      },
+      "ActionDeleteRequest": {
         "type": "object",
         "properties": {
           "id": {
@@ -1907,7 +1907,7 @@
             "format": "uuid"
           }
         }
-     },
+      },
       "RestorePod": {
         "type": "object",
         "required": [
