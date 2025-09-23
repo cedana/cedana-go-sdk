@@ -39,6 +39,11 @@ func NewActionsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371
     urlParams["request-raw-url"] = rawUrl
     return NewActionsRequestBuilderInternal(urlParams, requestAdapter)
 }
+// DeletePath the deletePath property
+// returns a *ActionsDeleteRequestBuilder when successful
+func (m *ActionsRequestBuilder) DeletePath()(*ActionsDeleteRequestBuilder) {
+    return NewActionsDeleteRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // From_pod the from_pod property
 // returns a *ActionsFrom_podRequestBuilder when successful
 func (m *ActionsRequestBuilder) From_pod()(*ActionsFrom_podRequestBuilder) {

@@ -285,7 +285,7 @@
         ]
       }
     },
-    "/v2/action/delete": {
+    "/v2/actions/delete": {
       "delete": {
         "tags": [
           "Actions"

@@ -11,11 +11,6 @@ import (
 type V2RequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
-// Action the action property
-// returns a *ActionRequestBuilder when successful
-func (m *V2RequestBuilder) Action()(*ActionRequestBuilder) {
-    return NewActionRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
-}
 // Actions the actions property
 // returns a *ActionsRequestBuilder when successful
 func (m *V2RequestBuilder) Actions()(*ActionsRequestBuilder) {
