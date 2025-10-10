@@ -54,15 +54,15 @@ func (m *V2RequestBuilder) Discover()(*DiscoverRequestBuilder) {
 func (m *V2RequestBuilder) Files()(*FilesRequestBuilder) {
     return NewFilesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Instances the instances property
+// returns a *InstancesRequestBuilder when successful
+func (m *V2RequestBuilder) Instances()(*InstancesRequestBuilder) {
+    return NewInstancesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Jobs the jobs property
 // returns a *JobsRequestBuilder when successful
 func (m *V2RequestBuilder) Jobs()(*JobsRequestBuilder) {
     return NewJobsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
-}
-// K8s the k8s property
-// returns a *K8sRequestBuilder when successful
-func (m *V2RequestBuilder) K8s()(*K8sRequestBuilder) {
-    return NewK8sRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Nodes the nodes property
 // returns a *NodesRequestBuilder when successful
@@ -79,10 +79,10 @@ func (m *V2RequestBuilder) Pods()(*PodsRequestBuilder) {
 func (m *V2RequestBuilder) Restore()(*RestoreRequestBuilder) {
     return NewRestoreRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
-// Tables the tables property
-// returns a *TablesRequestBuilder when successful
-func (m *V2RequestBuilder) Tables()(*TablesRequestBuilder) {
-    return NewTablesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+// Slurm the slurm property
+// returns a *SlurmRequestBuilder when successful
+func (m *V2RequestBuilder) Slurm()(*SlurmRequestBuilder) {
+    return NewSlurmRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // User the user property
 // returns a *UserRequestBuilder when successful

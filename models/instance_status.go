@@ -4,81 +4,80 @@
 package models
 
 import (
-    i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-type Node struct {
+type InstanceStatus struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // The compute_type property
-    compute_type *string
-    // The id property
-    id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
-    // The instance_type property
-    instance_type *string
+    // The created_at property
+    created_at *string
+    // The instance_id property
+    instance_id *string
+    // The ip_address property
+    ip_address *string
     // The metadata property
     metadata i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
-    // The name property
-    name *string
-    // The region property
-    region *string
+    // The ssh_port property
+    ssh_port *int32
+    // The ssh_user property
+    ssh_user *string
     // The status property
     status *string
 }
-// NewNode instantiates a new Node and sets the default values.
-func NewNode()(*Node) {
-    m := &Node{
+// NewInstanceStatus instantiates a new InstanceStatus and sets the default values.
+func NewInstanceStatus()(*InstanceStatus) {
+    m := &InstanceStatus{
     }
     m.SetAdditionalData(make(map[string]any))
     return m
 }
-// CreateNodeFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
+// CreateInstanceStatusFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateNodeFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewNode(), nil
+func CreateInstanceStatusFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+    return NewInstanceStatus(), nil
 }
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *Node) GetAdditionalData()(map[string]any) {
+func (m *InstanceStatus) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetComputeType gets the compute_type property value. The compute_type property
+// GetCreatedAt gets the created_at property value. The created_at property
 // returns a *string when successful
-func (m *Node) GetComputeType()(*string) {
-    return m.compute_type
+func (m *InstanceStatus) GetCreatedAt()(*string) {
+    return m.created_at
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *Node) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
+func (m *InstanceStatus) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["compute_type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+    res["created_at"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetComputeType(val)
+            m.SetCreatedAt(val)
         }
         return nil
     }
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetUUIDValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
-        }
-        return nil
-    }
-    res["instance_type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+    res["instance_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetInstanceType(val)
+            m.SetInstanceId(val)
+        }
+        return nil
+    }
+    res["ip_address"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIpAddress(val)
         }
         return nil
     }
@@ -92,23 +91,23 @@ func (m *Node) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
         }
         return nil
     }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
+    res["ssh_port"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetName(val)
+            m.SetSshPort(val)
         }
         return nil
     }
-    res["region"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+    res["ssh_user"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetRegion(val)
+            m.SetSshUser(val)
         }
         return nil
     }
@@ -124,52 +123,52 @@ func (m *Node) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
     }
     return res
 }
-// GetId gets the id property value. The id property
-// returns a *UUID when successful
-func (m *Node) GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
-    return m.id
-}
-// GetInstanceType gets the instance_type property value. The instance_type property
+// GetInstanceId gets the instance_id property value. The instance_id property
 // returns a *string when successful
-func (m *Node) GetInstanceType()(*string) {
-    return m.instance_type
+func (m *InstanceStatus) GetInstanceId()(*string) {
+    return m.instance_id
+}
+// GetIpAddress gets the ip_address property value. The ip_address property
+// returns a *string when successful
+func (m *InstanceStatus) GetIpAddress()(*string) {
+    return m.ip_address
 }
 // GetMetadata gets the metadata property value. The metadata property
 // returns a UntypedNodeable when successful
-func (m *Node) GetMetadata()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
+func (m *InstanceStatus) GetMetadata()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
     return m.metadata
 }
-// GetName gets the name property value. The name property
-// returns a *string when successful
-func (m *Node) GetName()(*string) {
-    return m.name
+// GetSshPort gets the ssh_port property value. The ssh_port property
+// returns a *int32 when successful
+func (m *InstanceStatus) GetSshPort()(*int32) {
+    return m.ssh_port
 }
-// GetRegion gets the region property value. The region property
+// GetSshUser gets the ssh_user property value. The ssh_user property
 // returns a *string when successful
-func (m *Node) GetRegion()(*string) {
-    return m.region
+func (m *InstanceStatus) GetSshUser()(*string) {
+    return m.ssh_user
 }
 // GetStatus gets the status property value. The status property
 // returns a *string when successful
-func (m *Node) GetStatus()(*string) {
+func (m *InstanceStatus) GetStatus()(*string) {
     return m.status
 }
 // Serialize serializes information the current object
-func (m *Node) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+func (m *InstanceStatus) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteStringValue("compute_type", m.GetComputeType())
+        err := writer.WriteStringValue("created_at", m.GetCreatedAt())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteUUIDValue("id", m.GetId())
+        err := writer.WriteStringValue("instance_id", m.GetInstanceId())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteStringValue("instance_type", m.GetInstanceType())
+        err := writer.WriteStringValue("ip_address", m.GetIpAddress())
         if err != nil {
             return err
         }
@@ -181,13 +180,13 @@ func (m *Node) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
         }
     }
     {
-        err := writer.WriteStringValue("name", m.GetName())
+        err := writer.WriteInt32Value("ssh_port", m.GetSshPort())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteStringValue("region", m.GetRegion())
+        err := writer.WriteStringValue("ssh_user", m.GetSshUser())
         if err != nil {
             return err
         }
@@ -207,52 +206,52 @@ func (m *Node) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
     return nil
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Node) SetAdditionalData(value map[string]any)() {
+func (m *InstanceStatus) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetComputeType sets the compute_type property value. The compute_type property
-func (m *Node) SetComputeType(value *string)() {
-    m.compute_type = value
+// SetCreatedAt sets the created_at property value. The created_at property
+func (m *InstanceStatus) SetCreatedAt(value *string)() {
+    m.created_at = value
 }
-// SetId sets the id property value. The id property
-func (m *Node) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
-    m.id = value
+// SetInstanceId sets the instance_id property value. The instance_id property
+func (m *InstanceStatus) SetInstanceId(value *string)() {
+    m.instance_id = value
 }
-// SetInstanceType sets the instance_type property value. The instance_type property
-func (m *Node) SetInstanceType(value *string)() {
-    m.instance_type = value
+// SetIpAddress sets the ip_address property value. The ip_address property
+func (m *InstanceStatus) SetIpAddress(value *string)() {
+    m.ip_address = value
 }
 // SetMetadata sets the metadata property value. The metadata property
-func (m *Node) SetMetadata(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
+func (m *InstanceStatus) SetMetadata(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
     m.metadata = value
 }
-// SetName sets the name property value. The name property
-func (m *Node) SetName(value *string)() {
-    m.name = value
+// SetSshPort sets the ssh_port property value. The ssh_port property
+func (m *InstanceStatus) SetSshPort(value *int32)() {
+    m.ssh_port = value
 }
-// SetRegion sets the region property value. The region property
-func (m *Node) SetRegion(value *string)() {
-    m.region = value
+// SetSshUser sets the ssh_user property value. The ssh_user property
+func (m *InstanceStatus) SetSshUser(value *string)() {
+    m.ssh_user = value
 }
 // SetStatus sets the status property value. The status property
-func (m *Node) SetStatus(value *string)() {
+func (m *InstanceStatus) SetStatus(value *string)() {
     m.status = value
 }
-type Nodeable interface {
+type InstanceStatusable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetComputeType()(*string)
-    GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
-    GetInstanceType()(*string)
+    GetCreatedAt()(*string)
+    GetInstanceId()(*string)
+    GetIpAddress()(*string)
     GetMetadata()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
-    GetName()(*string)
-    GetRegion()(*string)
+    GetSshPort()(*int32)
+    GetSshUser()(*string)
     GetStatus()(*string)
-    SetComputeType(value *string)()
-    SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
-    SetInstanceType(value *string)()
+    SetCreatedAt(value *string)()
+    SetInstanceId(value *string)()
+    SetIpAddress(value *string)()
     SetMetadata(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
-    SetName(value *string)()
-    SetRegion(value *string)()
+    SetSshPort(value *int32)()
+    SetSshUser(value *string)()
     SetStatus(value *string)()
 }

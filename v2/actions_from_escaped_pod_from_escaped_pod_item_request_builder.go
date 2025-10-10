@@ -33,7 +33,7 @@ func NewActionsFrom_podFrom_podItemRequestBuilder(rawUrl string, requestAdapter 
     urlParams["request-raw-url"] = rawUrl
     return NewActionsFrom_podFrom_podItemRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get get latest action_id belonging to a given pod_id
+// Get get latest action belonging to a pod
 // returns a *string when successful
 // returns a HttpError error when the service returns a 404 status code
 // returns a HttpError error when the service returns a 500 status code
@@ -55,7 +55,7 @@ func (m *ActionsFrom_podFrom_podItemRequestBuilder) Get(ctx context.Context, req
     }
     return res.(*string), nil
 }
-// ToGetRequestInformation get latest action_id belonging to a given pod_id
+// ToGetRequestInformation get latest action belonging to a pod
 // returns a *RequestInformation when successful
 func (m *ActionsFrom_podFrom_podItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *ActionsFrom_podFrom_podItemRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

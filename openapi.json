@@ -77,7 +77,7 @@
         "tags": [
           "Actions"
         ],
-        "summary": "Get latest action_id belonging to a given pod_id",
+        "summary": "Get latest action belonging to a pod",
         "operationId": "latest_pod_action_id",
         "parameters": [
           {
@@ -186,12 +186,60 @@
         ]
       }
     },
+    "/v2/checkpoint/path": {
+      "get": {
+        "tags": [
+          "Actions"
+        ],
+        "summary": "Get path of the latest checkpoint",
+        "description": "Returns the path of the latest successful checkpoint for a given checkpoint name",
+        "operationId": "get_latest_checkpoint_for_container_in_action",
+        "responses": {
+          "200": {
+            "description": "Returns the restore path",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "<restore-path>"
+              }
+            }
+          },
+          "400": {
+            "description": "Failed to get action for request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect/fetch from jobs table from database",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
     "/v2/checkpoint/pod": {
       "post": {
         "tags": [
           "Actions"
         ],
-        "summary": "Checkpoint a pod",
+        "summary": "Checkpoint pod",
         "operationId": "checkpoint_pod",
         "requestBody": {
           "content": {
@@ -248,8 +296,8 @@
         "tags": [
           "Actions"
         ],
-        "summary": "Get status of a pod checkpoint operation",
-        "description": "Returns the current status of a pod checkpoint based on action ID",
+        "summary": "Get status of a checkpoint action",
+        "description": "Returns the current status of a checkpoint for an action ID",
         "operationId": "get_checkpoint_status",
         "parameters": [
           {
@@ -585,7 +633,7 @@
         "tags": [
           "Clusters"
         ],
-        "summary": "List clusters for the authenticated organization",
+        "summary": "List clusters",
         "description": "Returns all clusters associated with the authenticated user's organization.",
         "operationId": "list",
         "responses": {
@@ -633,7 +681,7 @@
         "tags": [
           "Clusters"
         ],
-        "summary": "Create a cluster",
+        "summary": "Create cluster",
         "description": "Creates or updates info regarding a Kubernetes cluster.\nIf a cluster with the given name already exists for the organization, it will be updated.",
         "operationId": "create",
         "requestBody": {
@@ -686,12 +734,114 @@
         ]
       }
     },
+    "/v2/cluster/count": {
+      "get": {
+        "tags": [
+          "Resources"
+        ],
+        "summary": "Get total count of clusters",
+        "operationId": "clusters_count",
+        "responses": {
+          "200": {
+            "description": "Total count retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TotalCountResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid table name",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Database error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/v2/cluster/sync": {
+      "post": {
+        "tags": [
+          "Clusters"
+        ],
+        "summary": "Sync cluster",
+        "operationId": "sync",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClusterSyncRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Resource id registered internally",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect to db",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
     "/v2/cluster/workload": {
       "post": {
         "tags": [
           "Clusters"
         ],
-        "summary": "Creates k8s pod on requested cluster",
+        "summary": "Create workload on cluster",
         "description": "Takes a cluster name and workload specification, then creates a Kubernetes job\non the specified cluster by publishing a workload creation event to the message queue.",
         "operationId": "create_workload",
         "requestBody": {
@@ -743,11 +893,11 @@
         "tags": [
           "Clusters"
         ],
-        "summary": "Delete a cluster",
+        "summary": "Delete cluster",
         "description": "Marks a cluster as deleted in the Cedana propagator.\nThis does not physically delete the cluster record, but updates its status to \"deleted\".",
         "operationId": "delete",
         "parameters": [
-         {
+          {
             "name": "id",
             "in": "path",
             "required": true,
@@ -990,6 +1140,276 @@
         ]
       }
     },
+    "/v2/instances": {
+      "get": {
+        "tags": [
+          "Cloud Bursting"
+        ],
+        "summary": "List instances",
+        "operationId": "list_instances",
+        "responses": {
+          "200": {
+            "description": "List of instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InstanceInfo"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Cloud Bursting"
+        ],
+        "summary": "Create a new instance",
+        "operationId": "create_instance",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInstanceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Instance created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateInstanceResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/v2/instances/bursting-status": {
+      "get": {
+        "tags": [
+          "Cloud Bursting"
+        ],
+        "summary": "Get cloud bursting configuration status",
+        "operationId": "get_bursting_status",
+        "responses": {
+          "200": {
+            "description": "Bursting configuration status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BurstingStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/instances/types": {
+      "get": {
+        "tags": [
+          "Cloud Bursting"
+        ],
+        "summary": "Get available instance types",
+        "operationId": "get_instance_types",
+        "parameters": [
+          {
+            "name": "num_gpus",
+            "in": "query",
+            "description": "Filter by number of GPUs",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "gpu_type",
+            "in": "query",
+            "description": "Filter by GPU type",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sort results (e.g., 'price')",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Available instance types",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InstanceType"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/instances/{instance_id}": {
+      "delete": {
+        "tags": [
+          "Cloud Bursting"
+        ],
+        "summary": "Delete an instance",
+        "operationId": "delete_instance",
+        "parameters": [
+          {
+            "name": "instance_id",
+            "in": "path",
+            "description": "Instance ID to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Instance deleted successfully"
+          },
+          "500": {
+            "description": "Failed to delete instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/v2/instances/{instance_id}/status": {
+      "get": {
+        "tags": [
+          "Cloud Bursting"
+        ],
+        "summary": "Get instance status",
+        "operationId": "get_instance_status",
+        "parameters": [
+          {
+            "name": "instance_id",
+            "in": "path",
+            "description": "Instance ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Instance status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstanceStatus"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Instance not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to get status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
     "/v2/jobs": {
       "get": {
         "tags": [
@@ -1032,70 +1452,28 @@
         ]
       }
     },
-    "/v2/k8s/sync": {
-      "post": {
-        "tags": [
-          "Clusters"
-        ],
-        "summary": "Sync cluster",
-        "operationId": "k8s_sync",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/K8sSyncRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Resource id registered internally",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Failed to connect to db",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
     "/v2/nodes": {
       "get": {
         "tags": [
           "Resources"
         ],
         "summary": "List nodes",
-        "description": "Use query params to filter pods",
+        "description": "Will only return nodes from clusters with status 'active' if no params are provided. Also, nodes\nwith last_sync older than 5 minutes are not returned.",
         "operationId": "node_list",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "uuid"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Returns nodes",
@@ -1128,14 +1506,74 @@
         ]
       }
     },
+    "/v2/nodes/count": {
+      "get": {
+        "tags": [
+          "Resources"
+        ],
+        "summary": "Get total count of nodes",
+        "operationId": "nodes_count",
+        "responses": {
+          "200": {
+            "description": "Total count retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TotalCountResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid table name",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Database error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
     "/v2/pods": {
       "get": {
         "tags": [
           "Resources"
         ],
         "summary": "List pods",
-        "description": "Use query params to filter pods",
+        "description": "Will not return pods with status 'deleted', and only from clusters with status 'active' and\npods belonging to nodes whose last_sync is within the last 5 minutes.",
         "operationId": "pod_list",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "uuid"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Returns pods",
@@ -1168,12 +1606,187 @@
         ]
       }
     },
+    "/v2/pods/count": {
+      "get": {
+        "tags": [
+          "Resources"
+        ],
+        "summary": "Get total count of pods",
+        "operationId": "pods_count",
+        "responses": {
+          "200": {
+            "description": "Total count retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TotalCountResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid table name",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Database error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/v2/pods/paginated": {
+      "get": {
+        "tags": [
+          "Resources"
+        ],
+        "operationId": "pod_list_paginated",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "format": "int64"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "format": "int64"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          {
+            "name": "ascending",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          {
+            "name": "namespace",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          {
+            "name": "pod_name",
+            "in": "query",
+            "description": "pod name to query against (uses postgres ILIKE pattern search)",
+            "required": false,
+            "schema": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns paginated pods with total count and available filters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedPodResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect/fetch from database",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
     "/v2/restore/pod": {
       "post": {
         "tags": [
           "Actions"
         ],
-        "summary": "Restore a pod",
+        "summary": "Restore pod",
         "operationId": "restore_pod",
         "requestBody": {
           "content": {
@@ -1235,37 +1848,36 @@
         ]
       }
     },
-    "/v2/tables/count/{name}": {
-      "get": {
+    "/v2/slurm/checkpoint/job": {
+      "post": {
         "tags": [
-          "Tables"
+          "Slurm"
         ],
-        "summary": "Get total_count for the given table",
-        "operationId": "count",
-        "parameters": [
-          {
-            "name": "name",
-            "in": "path",
-            "description": "Name of the table to get total count for",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Total count retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TotalCountResponse"
-                }
+        "operationId": "checkpoint_slurm_job",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckpointSlurmJob"
               }
             }
           },
-          "400": {
-            "description": "Invalid table name",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns the id for the task",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "<uuid-v4-here>"
+              }
+            }
+          },
+          "404": {
+            "description": "Failed to find checkpointable resource",
             "content": {
               "application/json": {
                 "schema": {
@@ -1275,7 +1887,74 @@
             }
           },
           "500": {
-            "description": "Database error",
+            "description": "Failed to connect/fetch from jobs table from database",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/v2/slurm/restore/job": {
+      "post": {
+        "tags": [
+          "Slurm"
+        ],
+        "summary": "Restore pod",
+        "operationId": "restore_slurm_job",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RestoreSlurmJob"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns the checkpoint id for the new checkpoint",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "<uuid-v4-here>"
+              }
+            }
+          },
+          "400": {
+            "description": "Failed create checkpoint",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Failed create restore",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect/fetch from jobs table from database",
             "content": {
               "application/json": {
                 "schema": {
@@ -1297,7 +1976,7 @@
         "tags": [
           "User"
         ],
-        "summary": "Get User",
+        "summary": "Get user",
         "description": "Used to validate authentication token",
         "operationId": "get",
         "responses": {
@@ -1389,17 +2068,106 @@
           "platform": {
             "type": "string"
           },
-          "status": {
-            "type": "string"
-          },
-          "total_duration": {
+          "reason": {
             "type": [
               "string",
               "null"
             ]
           },
+          "status": {
+            "type": "string"
+          },
+          "total_duration": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          },
           "type": {
             "type": "string"
+          }
+        }
+      },
+      "Alert": {
+        "type": "object",
+        "properties": {
+          "date_threshold": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "spend_threshold": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "AutoDelete": {
+        "type": "object",
+        "properties": {
+          "date_threshold": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "spend_threshold": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "AvailableFilters": {
+        "type": "object",
+        "required": [
+          "statuses",
+          "namespaces"
+        ],
+        "properties": {
+          "namespaces": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "statuses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "BurstingConfigStatus": {
+        "type": "string",
+        "enum": [
+          "not_configured",
+          "configured",
+          "invalid"
+        ]
+      },
+      "BurstingStatus": {
+        "type": "object",
+        "required": [
+          "status",
+          "message",
+          "can_use_bursting"
+        ],
+        "properties": {
+          "can_use_bursting": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/BurstingConfigStatus"
           }
         }
       },
@@ -1426,13 +2194,13 @@
             "type": "string",
             "format": "uuid"
           },
-          "image_name_with_tag": {
+          "info": {},
+          "name": {
             "type": [
               "string",
               "null"
             ]
           },
-          "info": {},
           "platform": {
             "type": "string"
           },
@@ -1463,13 +2231,6 @@
           "simple",
           "rootfs",
           "rootfsonly"
-        ]
-      },
-      "CheckpointReason": {
-        "type": "string",
-        "enum": [
-          "heartbeat",
-          "manual"
         ]
       },
       "CheckpointOperationStatus": {
@@ -1520,11 +2281,48 @@
               "null"
             ]
           },
+          "reason": {
+            "$ref": "#/components/schemas/CheckpointReason"
+          },
           "runc_root": {
             "type": [
               "string",
               "null"
             ]
+          }
+        }
+      },
+      "CheckpointReason": {
+        "type": "string",
+        "enum": [
+          "heartbeat",
+          "manual"
+        ]
+      },
+      "CheckpointSlurmJob": {
+        "type": "object",
+        "properties": {
+          "action_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "readOnly": true
+          },
+          "job_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "job_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "kind": {
+            "$ref": "#/components/schemas/CheckpointKind"
           },
           "reason": {
             "$ref": "#/components/schemas/CheckpointReason"
@@ -1551,12 +2349,14 @@
           "action_id": {
             "type": "string"
           },
+          "persistent_volume_claim": {},
           "pod_id": {
             "type": [
               "string",
               "null"
             ]
           },
+          "pod_metadata_spec": {},
           "pod_spec": {},
           "status": {
             "type": "string"
@@ -1586,12 +2386,35 @@
             "type": "string",
             "format": "uuid"
           },
+          "last_sync": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
           "metadata": {},
           "name": {
             "type": "string"
           },
           "status": {
             "type": "string"
+          }
+        }
+      },
+      "ClusterSyncRequest": {
+        "type": "object",
+        "properties": {
+          "cluster_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid"
+          },
+          "metadata": {},
+          "resource": {
+            "$ref": "#/components/schemas/K8sResource"
           }
         }
       },
@@ -1603,6 +2426,221 @@
         ],
         "properties": {
           "cluster_name": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateInstanceRequest": {
+        "type": "object",
+        "required": [
+          "cloud",
+          "region",
+          "shade_instance_type",
+          "shade_cloud",
+          "name"
+        ],
+        "properties": {
+          "alert": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Alert"
+              }
+            ]
+          },
+          "auto_delete": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/AutoDelete"
+              }
+            ]
+          },
+          "cloud": {
+            "type": "string"
+          },
+          "envs": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/EnvironmentVariable"
+            }
+          },
+          "launch_configuration": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/LaunchConfiguration"
+              }
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "os": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "region": {
+            "type": "string"
+          },
+          "shade_cloud": {
+            "type": "boolean"
+          },
+          "shade_instance_type": {
+            "type": "string"
+          },
+          "ssh_key_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "tags": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "template_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "volume_ids": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "volume_mount": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/VolumeMount"
+              }
+            ]
+          }
+        }
+      },
+      "CreateInstanceResponse": {
+        "type": "object",
+        "required": [
+          "instance_id",
+          "status",
+          "cloud_provider",
+          "region",
+          "instance_type"
+        ],
+        "properties": {
+          "cloud_provider": {
+            "type": "string"
+          },
+          "instance_id": {
+            "type": "string"
+          },
+          "instance_type": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "DockerConfiguration": {
+        "type": "object",
+        "required": [
+          "image"
+        ],
+        "properties": {
+          "args": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "envs": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/EnvironmentVariable"
+            }
+          },
+          "image": {
+            "type": "string"
+          },
+          "port_mappings": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/PortMapping"
+            }
+          },
+          "registry_credentials": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/RegistryCredentials"
+              }
+            ]
+          },
+          "shared_memory_in_gb": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32"
+          },
+          "volume_mounts": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/VolumeMapping"
+            }
+          }
+        }
+      },
+      "EnvironmentVariable": {
+        "type": "object",
+        "required": [
+          "name",
+          "value"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
             "type": "string"
           }
         }
@@ -1620,6 +2658,215 @@
           },
           "message": {
             "type": "string"
+          }
+        }
+      },
+      "InstanceInfo": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "status",
+          "cloud_provider",
+          "region",
+          "instance_type"
+        ],
+        "properties": {
+          "cloud_provider": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "id": {
+            "type": "string"
+          },
+          "instance_type": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "InstanceStatus": {
+        "type": "object",
+        "required": [
+          "instance_id",
+          "status",
+          "metadata"
+        ],
+        "properties": {
+          "created_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "instance_id": {
+            "type": "string"
+          },
+          "ip_address": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "metadata": {},
+          "ssh_port": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32"
+          },
+          "ssh_user": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "InstanceType": {
+        "type": "object",
+        "required": [
+          "cloud",
+          "shade_instance_type",
+          "cloud_instance_type",
+          "configuration",
+          "hourly_price",
+          "deployment_type",
+          "availability",
+          "boot_time"
+        ],
+        "properties": {
+          "availability": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InstanceTypeAvailability"
+            }
+          },
+          "boot_time": {
+            "$ref": "#/components/schemas/InstanceTypeBootTime"
+          },
+          "cloud": {
+            "type": "string"
+          },
+          "cloud_instance_type": {
+            "type": "string"
+          },
+          "configuration": {
+            "$ref": "#/components/schemas/InstanceTypeConfiguration"
+          },
+          "deployment_type": {
+            "type": "string"
+          },
+          "hourly_price": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "shade_instance_type": {
+            "type": "string"
+          }
+        }
+      },
+      "InstanceTypeAvailability": {
+        "type": "object",
+        "required": [
+          "region",
+          "available",
+          "display_name"
+        ],
+        "properties": {
+          "available": {
+            "type": "boolean"
+          },
+          "display_name": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          }
+        }
+      },
+      "InstanceTypeBootTime": {
+        "type": "object",
+        "required": [
+          "min_boot_in_sec",
+          "max_boot_in_sec"
+        ],
+        "properties": {
+          "max_boot_in_sec": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "min_boot_in_sec": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "InstanceTypeConfiguration": {
+        "type": "object",
+        "required": [
+          "memory_in_gb",
+          "storage_in_gb",
+          "vcpus",
+          "num_gpus",
+          "gpu_type",
+          "interconnect",
+          "nvlink",
+          "vram_per_gpu_in_gb",
+          "os_options"
+        ],
+        "properties": {
+          "gpu_type": {
+            "type": "string"
+          },
+          "interconnect": {
+            "type": "string"
+          },
+          "memory_in_gb": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "num_gpus": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nvlink": {
+            "type": "boolean"
+          },
+          "os_options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "storage_in_gb": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vcpus": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vram_per_gpu_in_gb": {
+            "type": "integer",
+            "format": "int32"
           }
         }
       },
@@ -1698,26 +2945,34 @@
           }
         ]
       },
-      "K8sSyncRequest": {
+      "LaunchConfiguration": {
         "type": "object",
+        "required": [
+          "type"
+        ],
         "properties": {
-          "cluster_id": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "uuid"
+          "docker_configuration": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/DockerConfiguration"
+              }
+            ]
           },
-          "metadata": {},
-          "org_id": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "uuid"
+          "script_configuration": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ScriptConfiguration"
+              }
+            ]
           },
-          "resource": {
-            "$ref": "#/components/schemas/K8sResource"
+          "type": {
+            "type": "string"
           }
         }
       },
@@ -1729,7 +2984,8 @@
           "status",
           "compute_type",
           "instance_type",
-          "region"
+          "region",
+          "metadata"
         ],
         "properties": {
           "compute_type": {
@@ -1742,6 +2998,7 @@
           "instance_type": {
             "type": "string"
           },
+          "metadata": {},
           "name": {
             "type": "string"
           },
@@ -1750,6 +3007,35 @@
           },
           "status": {
             "type": "string"
+          }
+        }
+      },
+      "PaginatedPodResponse": {
+        "type": "object",
+        "required": [
+          "pods",
+          "total_count"
+        ],
+        "properties": {
+          "available_filters": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/AvailableFilters"
+              }
+            ]
+          },
+          "pods": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PodResponse"
+            }
+          },
+          "total_count": {
+            "type": "integer",
+            "format": "int64"
           }
         }
       },
@@ -1794,7 +3080,45 @@
             "type": "integer",
             "format": "int32"
           },
+          "start_time": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
           "status": {
+            "type": "string"
+          }
+        }
+      },
+      "PortMapping": {
+        "type": "object",
+        "required": [
+          "host_port",
+          "container_port"
+        ],
+        "properties": {
+          "container_port": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "host_port": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "RegistryCredentials": {
+        "type": "object",
+        "required": [
+          "username",
+          "password"
+        ],
+        "properties": {
+          "password": {
+            "type": "string"
+          },
+          "username": {
             "type": "string"
           }
         }
@@ -1802,7 +3126,8 @@
       "RestorePod": {
         "type": "object",
         "required": [
-          "action_id"
+          "action_id",
+          "reason"
         ],
         "properties": {
           "action_id": {
@@ -1823,6 +3148,36 @@
           "nodeUnschedulable",
           "manual"
         ]
+      },
+      "RestoreSlurmJob": {
+        "type": "object",
+        "required": [
+          "action_id",
+          "cluster_id",
+          "reason"
+        ],
+        "properties": {
+          "action_id": {
+            "type": "string"
+          },
+          "cluster_id": {
+            "type": "string"
+          },
+          "reason": {
+            "$ref": "#/components/schemas/RestoreReason"
+          }
+        }
+      },
+      "ScriptConfiguration": {
+        "type": "object",
+        "required": [
+          "base64_script"
+        ],
+        "properties": {
+          "base64_script": {
+            "type": "string"
+          }
+        }
       },
       "StatusResponse": {
         "type": "object",
@@ -1853,17 +3208,51 @@
           }
         }
       },
+      "VolumeMapping": {
+        "type": "object",
+        "required": [
+          "host_path",
+          "container_path"
+        ],
+        "properties": {
+          "container_path": {
+            "type": "string"
+          },
+          "host_path": {
+            "type": "string"
+          }
+        }
+      },
+      "VolumeMount": {
+        "type": "object",
+        "properties": {
+          "auto": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          }
+        }
+      },
       "WorkloadReq": {
         "type": "object",
         "required": [
-          "cluster_name",
-          "workload"
+          "cluster_id"
         ],
         "properties": {
-          "cluster_name": {
+          "cluster_id": {
             "type": "string"
           },
-          "workload": {}
+          "cluster_name": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "deprecated": true
+          },
+          "deployment": {},
+          "job": {},
+          "pod": {}
         }
       }
     },
@@ -1904,8 +3293,8 @@
       "description": "Cedana Propagator API for clusters"
     },
     {
-      "name": "Tables",
-      "description": "Cedana Propagator API for listing tables"
+      "name": "Cloud Bursting",
+      "description": "Cedana Propagator API for cloud bursting"
     }
   ]
 }

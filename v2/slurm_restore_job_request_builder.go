@@ -9,36 +9,36 @@ import (
     i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
 )
 
-// RestorePodRequestBuilder builds and executes requests for operations under \v2\restore\pod
-type RestorePodRequestBuilder struct {
+// SlurmRestoreJobRequestBuilder builds and executes requests for operations under \v2\slurm\restore\job
+type SlurmRestoreJobRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
-// RestorePodRequestBuilderPostRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
-type RestorePodRequestBuilderPostRequestConfiguration struct {
+// SlurmRestoreJobRequestBuilderPostRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
+type SlurmRestoreJobRequestBuilderPostRequestConfiguration struct {
     // Request headers
     Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
     // Request options
     Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
-// NewRestorePodRequestBuilderInternal instantiates a new RestorePodRequestBuilder and sets the default values.
-func NewRestorePodRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*RestorePodRequestBuilder) {
-    m := &RestorePodRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v2/restore/pod", pathParameters),
+// NewSlurmRestoreJobRequestBuilderInternal instantiates a new SlurmRestoreJobRequestBuilder and sets the default values.
+func NewSlurmRestoreJobRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*SlurmRestoreJobRequestBuilder) {
+    m := &SlurmRestoreJobRequestBuilder{
+        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v2/slurm/restore/job", pathParameters),
     }
     return m
 }
-// NewRestorePodRequestBuilder instantiates a new RestorePodRequestBuilder and sets the default values.
-func NewRestorePodRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*RestorePodRequestBuilder) {
+// NewSlurmRestoreJobRequestBuilder instantiates a new SlurmRestoreJobRequestBuilder and sets the default values.
+func NewSlurmRestoreJobRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*SlurmRestoreJobRequestBuilder) {
     urlParams := make(map[string]string)
     urlParams["request-raw-url"] = rawUrl
-    return NewRestorePodRequestBuilderInternal(urlParams, requestAdapter)
+    return NewSlurmRestoreJobRequestBuilderInternal(urlParams, requestAdapter)
 }
 // Post restore pod
 // returns a *string when successful
 // returns a HttpError error when the service returns a 400 status code
 // returns a HttpError error when the service returns a 404 status code
 // returns a HttpError error when the service returns a 500 status code
-func (m *RestorePodRequestBuilder) Post(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.RestorePodable, requestConfiguration *RestorePodRequestBuilderPostRequestConfiguration)(*string, error) {
+func (m *SlurmRestoreJobRequestBuilder) Post(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.RestoreSlurmJobable, requestConfiguration *SlurmRestoreJobRequestBuilderPostRequestConfiguration)(*string, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
         return nil, err
@@ -59,7 +59,7 @@ func (m *RestorePodRequestBuilder) Post(ctx context.Context, body i4db02de4fa95d
 }
 // ToPostRequestInformation restore pod
 // returns a *RequestInformation when successful
-func (m *RestorePodRequestBuilder) ToPostRequestInformation(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.RestorePodable, requestConfiguration *RestorePodRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+func (m *SlurmRestoreJobRequestBuilder) ToPostRequestInformation(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.RestoreSlurmJobable, requestConfiguration *SlurmRestoreJobRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
     if requestConfiguration != nil {
         requestInfo.Headers.AddAll(requestConfiguration.Headers)
@@ -73,7 +73,7 @@ func (m *RestorePodRequestBuilder) ToPostRequestInformation(ctx context.Context,
     return requestInfo, nil
 }
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
-// returns a *RestorePodRequestBuilder when successful
-func (m *RestorePodRequestBuilder) WithUrl(rawUrl string)(*RestorePodRequestBuilder) {
-    return NewRestorePodRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+// returns a *SlurmRestoreJobRequestBuilder when successful
+func (m *SlurmRestoreJobRequestBuilder) WithUrl(rawUrl string)(*SlurmRestoreJobRequestBuilder) {
+    return NewSlurmRestoreJobRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
 }
