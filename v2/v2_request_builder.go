@@ -49,20 +49,25 @@ func NewV2RequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c9
 func (m *V2RequestBuilder) Discover()(*DiscoverRequestBuilder) {
     return NewDiscoverRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Events the events property
+// returns a *EventsRequestBuilder when successful
+func (m *V2RequestBuilder) Events()(*EventsRequestBuilder) {
+    return NewEventsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Files the files property
 // returns a *FilesRequestBuilder when successful
 func (m *V2RequestBuilder) Files()(*FilesRequestBuilder) {
     return NewFilesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Instances the instances property
+// returns a *InstancesRequestBuilder when successful
+func (m *V2RequestBuilder) Instances()(*InstancesRequestBuilder) {
+    return NewInstancesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Jobs the jobs property
 // returns a *JobsRequestBuilder when successful
 func (m *V2RequestBuilder) Jobs()(*JobsRequestBuilder) {
     return NewJobsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
-}
-// K8s the k8s property
-// returns a *K8sRequestBuilder when successful
-func (m *V2RequestBuilder) K8s()(*K8sRequestBuilder) {
-    return NewK8sRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Nodes the nodes property
 // returns a *NodesRequestBuilder when successful
@@ -74,15 +79,20 @@ func (m *V2RequestBuilder) Nodes()(*NodesRequestBuilder) {
 func (m *V2RequestBuilder) Pods()(*PodsRequestBuilder) {
     return NewPodsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Policy the policy property
+// returns a *PolicyRequestBuilder when successful
+func (m *V2RequestBuilder) Policy()(*PolicyRequestBuilder) {
+    return NewPolicyRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Restore the restore property
 // returns a *RestoreRequestBuilder when successful
 func (m *V2RequestBuilder) Restore()(*RestoreRequestBuilder) {
     return NewRestoreRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
-// Tables the tables property
-// returns a *TablesRequestBuilder when successful
-func (m *V2RequestBuilder) Tables()(*TablesRequestBuilder) {
-    return NewTablesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+// Slurm the slurm property
+// returns a *SlurmRequestBuilder when successful
+func (m *V2RequestBuilder) Slurm()(*SlurmRequestBuilder) {
+    return NewSlurmRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // User the user property
 // returns a *UserRequestBuilder when successful

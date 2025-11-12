@@ -33,7 +33,7 @@ func NewCheckpointPodRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee
     urlParams["request-raw-url"] = rawUrl
     return NewCheckpointPodRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Post checkpoint a pod
+// Post checkpoint pod
 // returns a *string when successful
 // returns a HttpError error when the service returns a 404 status code
 // returns a HttpError error when the service returns a 500 status code
@@ -55,7 +55,7 @@ func (m *CheckpointPodRequestBuilder) Post(ctx context.Context, body i4db02de4fa
     }
     return res.(*string), nil
 }
-// ToPostRequestInformation checkpoint a pod
+// ToPostRequestInformation checkpoint pod
 // returns a *RequestInformation when successful
 func (m *CheckpointPodRequestBuilder) ToPostRequestInformation(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CheckpointPodable, requestConfiguration *CheckpointPodRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

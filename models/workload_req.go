@@ -10,10 +10,17 @@ import (
 type WorkloadReq struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // The cluster_id property
+    cluster_id *string
     // The cluster_name property
+    // Deprecated: 
     cluster_name *string
-    // The workload property
-    workload i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+    // The deployment property
+    deployment i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+    // The job property
+    job i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+    // The pod property
+    pod i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
 }
 // NewWorkloadReq instantiates a new WorkloadReq and sets the default values.
 func NewWorkloadReq()(*WorkloadReq) {
@@ -32,15 +39,36 @@ func CreateWorkloadReqFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a
 func (m *WorkloadReq) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
+// GetClusterId gets the cluster_id property value. The cluster_id property
+// returns a *string when successful
+func (m *WorkloadReq) GetClusterId()(*string) {
+    return m.cluster_id
+}
 // GetClusterName gets the cluster_name property value. The cluster_name property
+// Deprecated: 
 // returns a *string when successful
 func (m *WorkloadReq) GetClusterName()(*string) {
     return m.cluster_name
+}
+// GetDeployment gets the deployment property value. The deployment property
+// returns a UntypedNodeable when successful
+func (m *WorkloadReq) GetDeployment()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
+    return m.deployment
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *WorkloadReq) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["cluster_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetClusterId(val)
+        }
+        return nil
+    }
     res["cluster_name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -51,25 +79,56 @@ func (m *WorkloadReq) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         }
         return nil
     }
-    res["workload"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+    res["deployment"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetWorkload(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
+            m.SetDeployment(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
+        }
+        return nil
+    }
+    res["job"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetJob(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
+        }
+        return nil
+    }
+    res["pod"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPod(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
         }
         return nil
     }
     return res
 }
-// GetWorkload gets the workload property value. The workload property
+// GetJob gets the job property value. The job property
 // returns a UntypedNodeable when successful
-func (m *WorkloadReq) GetWorkload()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
-    return m.workload
+func (m *WorkloadReq) GetJob()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
+    return m.job
+}
+// GetPod gets the pod property value. The pod property
+// returns a UntypedNodeable when successful
+func (m *WorkloadReq) GetPod()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
+    return m.pod
 }
 // Serialize serializes information the current object
 func (m *WorkloadReq) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    {
+        err := writer.WriteStringValue("cluster_id", m.GetClusterId())
+        if err != nil {
+            return err
+        }
+    }
     {
         err := writer.WriteStringValue("cluster_name", m.GetClusterName())
         if err != nil {
@@ -77,7 +136,19 @@ func (m *WorkloadReq) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     {
-        err := writer.WriteObjectValue("workload", m.GetWorkload())
+        err := writer.WriteObjectValue("deployment", m.GetDeployment())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteObjectValue("job", m.GetJob())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteObjectValue("pod", m.GetPod())
         if err != nil {
             return err
         }
@@ -94,19 +165,38 @@ func (m *WorkloadReq) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
 func (m *WorkloadReq) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
+// SetClusterId sets the cluster_id property value. The cluster_id property
+func (m *WorkloadReq) SetClusterId(value *string)() {
+    m.cluster_id = value
+}
 // SetClusterName sets the cluster_name property value. The cluster_name property
+// Deprecated: 
 func (m *WorkloadReq) SetClusterName(value *string)() {
     m.cluster_name = value
 }
-// SetWorkload sets the workload property value. The workload property
-func (m *WorkloadReq) SetWorkload(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
-    m.workload = value
+// SetDeployment sets the deployment property value. The deployment property
+func (m *WorkloadReq) SetDeployment(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
+    m.deployment = value
+}
+// SetJob sets the job property value. The job property
+func (m *WorkloadReq) SetJob(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
+    m.job = value
+}
+// SetPod sets the pod property value. The pod property
+func (m *WorkloadReq) SetPod(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
+    m.pod = value
 }
 type WorkloadReqable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetClusterId()(*string)
     GetClusterName()(*string)
-    GetWorkload()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+    GetDeployment()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+    GetJob()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+    GetPod()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+    SetClusterId(value *string)()
     SetClusterName(value *string)()
-    SetWorkload(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
+    SetDeployment(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
+    SetJob(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
+    SetPod(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
 }

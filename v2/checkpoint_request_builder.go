@@ -24,6 +24,11 @@ func NewCheckpointRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263
     urlParams["request-raw-url"] = rawUrl
     return NewCheckpointRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Path the path property
+// returns a *CheckpointPathRequestBuilder when successful
+func (m *CheckpointRequestBuilder) Path()(*CheckpointPathRequestBuilder) {
+    return NewCheckpointPathRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Pod the pod property
 // returns a *CheckpointPodRequestBuilder when successful
 func (m *CheckpointRequestBuilder) Pod()(*CheckpointPodRequestBuilder) {
