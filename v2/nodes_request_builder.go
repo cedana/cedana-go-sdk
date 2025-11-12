@@ -6,6 +6,7 @@ package v2
 import (
     "context"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+    i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
     i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
 )
 
@@ -13,17 +14,23 @@ import (
 type NodesRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+// NodesRequestBuilderGetQueryParameters will only return nodes from clusters with status 'active' if no params are provided. Also, nodeswith last_sync older than 5 minutes are not returned.
+type NodesRequestBuilderGetQueryParameters struct {
+    Id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID `uriparametername:"id"`
+}
 // NodesRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type NodesRequestBuilderGetRequestConfiguration struct {
     // Request headers
     Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
     // Request options
     Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+    // Request query parameters
+    QueryParameters *NodesRequestBuilderGetQueryParameters
 }
 // NewNodesRequestBuilderInternal instantiates a new NodesRequestBuilder and sets the default values.
 func NewNodesRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*NodesRequestBuilder) {
     m := &NodesRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v2/nodes", pathParameters),
+        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v2/nodes{?id*}", pathParameters),
     }
     return m
 }
@@ -33,7 +40,12 @@ func NewNodesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb
     urlParams["request-raw-url"] = rawUrl
     return NewNodesRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get use query params to filter pods
+// Count the count property
+// returns a *NodesCountRequestBuilder when successful
+func (m *NodesRequestBuilder) Count()(*NodesCountRequestBuilder) {
+    return NewNodesCountRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Get will only return nodes from clusters with status 'active' if no params are provided. Also, nodeswith last_sync older than 5 minutes are not returned.
 // returns a []Nodeable when successful
 // returns a HttpError error when the service returns a 500 status code
 func (m *NodesRequestBuilder) Get(ctx context.Context, requestConfiguration *NodesRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.Nodeable, error) {
@@ -56,11 +68,14 @@ func (m *NodesRequestBuilder) Get(ctx context.Context, requestConfiguration *Nod
     }
     return val, nil
 }
-// ToGetRequestInformation use query params to filter pods
+// ToGetRequestInformation will only return nodes from clusters with status 'active' if no params are provided. Also, nodeswith last_sync older than 5 minutes are not returned.
 // returns a *RequestInformation when successful
 func (m *NodesRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *NodesRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
     if requestConfiguration != nil {
+        if requestConfiguration.QueryParameters != nil {
+            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+        }
         requestInfo.Headers.AddAll(requestConfiguration.Headers)
         requestInfo.AddRequestOptions(requestConfiguration.Options)
     }

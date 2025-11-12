@@ -17,6 +17,8 @@ type Node struct {
     id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The instance_type property
     instance_type *string
+    // The metadata property
+    metadata i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
     // The name property
     name *string
     // The region property
@@ -80,6 +82,16 @@ func (m *Node) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
         }
         return nil
     }
+    res["metadata"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMetadata(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
+        }
+        return nil
+    }
     res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -122,6 +134,11 @@ func (m *Node) GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc
 func (m *Node) GetInstanceType()(*string) {
     return m.instance_type
 }
+// GetMetadata gets the metadata property value. The metadata property
+// returns a UntypedNodeable when successful
+func (m *Node) GetMetadata()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
+    return m.metadata
+}
 // GetName gets the name property value. The name property
 // returns a *string when successful
 func (m *Node) GetName()(*string) {
@@ -153,6 +170,12 @@ func (m *Node) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
     }
     {
         err := writer.WriteStringValue("instance_type", m.GetInstanceType())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteObjectValue("metadata", m.GetMetadata())
         if err != nil {
             return err
         }
@@ -199,6 +222,10 @@ func (m *Node) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e55599
 func (m *Node) SetInstanceType(value *string)() {
     m.instance_type = value
 }
+// SetMetadata sets the metadata property value. The metadata property
+func (m *Node) SetMetadata(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
+    m.metadata = value
+}
 // SetName sets the name property value. The name property
 func (m *Node) SetName(value *string)() {
     m.name = value
@@ -217,12 +244,14 @@ type Nodeable interface {
     GetComputeType()(*string)
     GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetInstanceType()(*string)
+    GetMetadata()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
     GetName()(*string)
     GetRegion()(*string)
     GetStatus()(*string)
     SetComputeType(value *string)()
     SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetInstanceType(value *string)()
+    SetMetadata(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
     SetName(value *string)()
     SetRegion(value *string)()
     SetStatus(value *string)()

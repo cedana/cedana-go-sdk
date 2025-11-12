@@ -4,6 +4,7 @@
 package models
 
 import (
+    i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
     i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
@@ -13,6 +14,8 @@ type Cluster struct {
     additionalData map[string]any
     // The id property
     id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+    // The last_sync property
+    last_sync *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The metadata property
     metadata i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
     // The name property
@@ -48,6 +51,16 @@ func (m *Cluster) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268963
         }
         if val != nil {
             m.SetId(val)
+        }
+        return nil
+    }
+    res["last_sync"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLastSync(val)
         }
         return nil
     }
@@ -88,6 +101,11 @@ func (m *Cluster) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268963
 func (m *Cluster) GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
     return m.id
 }
+// GetLastSync gets the last_sync property value. The last_sync property
+// returns a *Time when successful
+func (m *Cluster) GetLastSync()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
+    return m.last_sync
+}
 // GetMetadata gets the metadata property value. The metadata property
 // returns a UntypedNodeable when successful
 func (m *Cluster) GetMetadata()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
@@ -107,6 +125,12 @@ func (m *Cluster) GetStatus()(*string) {
 func (m *Cluster) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
         err := writer.WriteUUIDValue("id", m.GetId())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteTimeValue("last_sync", m.GetLastSync())
         if err != nil {
             return err
         }
@@ -145,6 +169,10 @@ func (m *Cluster) SetAdditionalData(value map[string]any)() {
 func (m *Cluster) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.id = value
 }
+// SetLastSync sets the last_sync property value. The last_sync property
+func (m *Cluster) SetLastSync(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
+    m.last_sync = value
+}
 // SetMetadata sets the metadata property value. The metadata property
 func (m *Cluster) SetMetadata(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
     m.metadata = value
@@ -161,10 +189,12 @@ type Clusterable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+    GetLastSync()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetMetadata()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
     GetName()(*string)
     GetStatus()(*string)
     SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
+    SetLastSync(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetMetadata(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
     SetName(value *string)()
     SetStatus(value *string)()

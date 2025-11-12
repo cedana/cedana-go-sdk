@@ -64,6 +64,11 @@ func NewClusterRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371
     urlParams["request-raw-url"] = rawUrl
     return NewClusterRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count the count property
+// returns a *ClusterCountRequestBuilder when successful
+func (m *ClusterRequestBuilder) Count()(*ClusterCountRequestBuilder) {
+    return NewClusterCountRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Get returns all clusters associated with the authenticated user's organization.
 // returns a []Clusterable when successful
 // returns a HttpError error when the service returns a 400 status code
@@ -110,6 +115,11 @@ func (m *ClusterRequestBuilder) Post(ctx context.Context, body i4db02de4fa95db61
         return nil, nil
     }
     return res.(*string), nil
+}
+// Sync the sync property
+// returns a *ClusterSyncRequestBuilder when successful
+func (m *ClusterRequestBuilder) Sync()(*ClusterSyncRequestBuilder) {
+    return NewClusterSyncRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // ToGetRequestInformation returns all clusters associated with the authenticated user's organization.
 // returns a *RequestInformation when successful

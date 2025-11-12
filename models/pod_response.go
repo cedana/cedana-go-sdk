@@ -25,6 +25,8 @@ type PodResponse struct {
     ready *string
     // The restarts property
     restarts *int32
+    // The start_time property
+    start_time *string
     // The status property
     status *string
 }
@@ -124,6 +126,16 @@ func (m *PodResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         }
         return nil
     }
+    res["start_time"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetStartTime(val)
+        }
+        return nil
+    }
     res["status"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -165,6 +177,11 @@ func (m *PodResponse) GetReady()(*string) {
 // returns a *int32 when successful
 func (m *PodResponse) GetRestarts()(*int32) {
     return m.restarts
+}
+// GetStartTime gets the start_time property value. The start_time property
+// returns a *string when successful
+func (m *PodResponse) GetStartTime()(*string) {
+    return m.start_time
 }
 // GetStatus gets the status property value. The status property
 // returns a *string when successful
@@ -216,6 +233,12 @@ func (m *PodResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     {
+        err := writer.WriteStringValue("start_time", m.GetStartTime())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("status", m.GetStatus())
         if err != nil {
             return err
@@ -261,6 +284,10 @@ func (m *PodResponse) SetReady(value *string)() {
 func (m *PodResponse) SetRestarts(value *int32)() {
     m.restarts = value
 }
+// SetStartTime sets the start_time property value. The start_time property
+func (m *PodResponse) SetStartTime(value *string)() {
+    m.start_time = value
+}
 // SetStatus sets the status property value. The status property
 func (m *PodResponse) SetStatus(value *string)() {
     m.status = value
@@ -275,6 +302,7 @@ type PodResponseable interface {
     GetNode()(*string)
     GetReady()(*string)
     GetRestarts()(*int32)
+    GetStartTime()(*string)
     GetStatus()(*string)
     SetAge(value *string)()
     SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
@@ -283,5 +311,6 @@ type PodResponseable interface {
     SetNode(value *string)()
     SetReady(value *string)()
     SetRestarts(value *int32)()
+    SetStartTime(value *string)()
     SetStatus(value *string)()
 }
