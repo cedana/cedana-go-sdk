@@ -33,7 +33,7 @@ func NewCheckpointsUploadedUploadedItemRequestBuilder(rawUrl string, requestAdap
     urlParams["request-raw-url"] = rawUrl
     return NewCheckpointsUploadedUploadedItemRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Post uploaded checkpoint
+// Post marks checkpoint as successfully uploaded and ready for restore
 // returns a *string when successful
 // returns a HttpError error when the service returns a 404 status code
 // returns a HttpError error when the service returns a 500 status code
@@ -55,7 +55,7 @@ func (m *CheckpointsUploadedUploadedItemRequestBuilder) Post(ctx context.Context
     }
     return res.(*string), nil
 }
-// ToPostRequestInformation uploaded checkpoint
+// ToPostRequestInformation marks checkpoint as successfully uploaded and ready for restore
 // returns a *RequestInformation when successful
 func (m *CheckpointsUploadedUploadedItemRequestBuilder) ToPostRequestInformation(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CheckpointSuccessInfoable, requestConfiguration *CheckpointsUploadedUploadedItemRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

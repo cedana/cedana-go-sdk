@@ -33,10 +33,9 @@ func NewClusterClusterItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f
     urlParams["request-raw-url"] = rawUrl
     return NewClusterClusterItemRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Delete marks a cluster as deleted in the Cedana propagator.This does not physically delete the cluster record, but updates its status to "deleted".
+// Delete this endpoint deletes a cluster and its dependent entities(pods and relation records) from the database.The operation is executed inside a single database transaction and performsthe following steps in order:1. Deletes all `pods` associated with the cluster via `pod_relations`.2. Deletes all `pod_relations` entries for the cluster.3. Deletes all `node_relations` entries for the cluster.4. Deletes the `cluster_relations` entry for the cluster.5. Deletes the `clusters` record itself.If any step fails, the transaction is rolled back and no partial deletionoccurs.
 // returns a []byte when successful
 // returns a HttpError error when the service returns a 400 status code
-// returns a HttpError error when the service returns a 404 status code
 // returns a HttpError error when the service returns a 500 status code
 func (m *ClusterClusterItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *ClusterClusterItemRequestBuilderDeleteRequestConfiguration)([]byte, error) {
     requestInfo, err := m.ToDeleteRequestInformation(ctx, requestConfiguration);
@@ -45,7 +44,6 @@ func (m *ClusterClusterItemRequestBuilder) Delete(ctx context.Context, requestCo
     }
     errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
         "400": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-        "404": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
         "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
     }
     res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", errorMapping)
@@ -57,7 +55,7 @@ func (m *ClusterClusterItemRequestBuilder) Delete(ctx context.Context, requestCo
     }
     return res.([]byte), nil
 }
-// ToDeleteRequestInformation marks a cluster as deleted in the Cedana propagator.This does not physically delete the cluster record, but updates its status to "deleted".
+// ToDeleteRequestInformation this endpoint deletes a cluster and its dependent entities(pods and relation records) from the database.The operation is executed inside a single database transaction and performsthe following steps in order:1. Deletes all `pods` associated with the cluster via `pod_relations`.2. Deletes all `pod_relations` entries for the cluster.3. Deletes all `node_relations` entries for the cluster.4. Deletes the `cluster_relations` entry for the cluster.5. Deletes the `clusters` record itself.If any step fails, the transaction is rolled back and no partial deletionoccurs.
 // returns a *RequestInformation when successful
 func (m *ClusterClusterItemRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *ClusterClusterItemRequestBuilderDeleteRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DELETE, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

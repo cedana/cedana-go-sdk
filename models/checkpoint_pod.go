@@ -18,6 +18,8 @@ type CheckpointPod struct {
     kind *CheckpointKind
     // The namespace property
     namespace *string
+    // The overrides property
+    overrides CheckpointPod_CheckpointPod_overridesable
     // The pod_id property
     pod_id *string
     // The pod_name property
@@ -26,6 +28,94 @@ type CheckpointPod struct {
     reason *CheckpointReason
     // The runc_root property
     runc_root *string
+}
+// CheckpointPod_CheckpointPod_overrides composed type wrapper for classes CheckpointOverridesable, CheckpointPod_overridesMember1able
+type CheckpointPod_CheckpointPod_overrides struct {
+    // Composed type representation for type CheckpointOverridesable
+    checkpointOverrides CheckpointOverridesable
+    // Composed type representation for type CheckpointPod_overridesMember1able
+    checkpointPod_overridesMember1 CheckpointPod_overridesMember1able
+}
+// NewCheckpointPod_CheckpointPod_overrides instantiates a new CheckpointPod_CheckpointPod_overrides and sets the default values.
+func NewCheckpointPod_CheckpointPod_overrides()(*CheckpointPod_CheckpointPod_overrides) {
+    m := &CheckpointPod_CheckpointPod_overrides{
+    }
+    return m
+}
+// CreateCheckpointPod_CheckpointPod_overridesFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
+// returns a Parsable when successful
+func CreateCheckpointPod_CheckpointPod_overridesFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+    result := NewCheckpointPod_CheckpointPod_overrides()
+    if parseNode != nil {
+        mappingValueNode, err := parseNode.GetChildNode("")
+        if err != nil {
+            return nil, err
+        }
+        if mappingValueNode != nil {
+            mappingValue, err := mappingValueNode.GetStringValue()
+            if err != nil {
+                return nil, err
+            }
+            if mappingValue != nil {
+            }
+        }
+    }
+    return result, nil
+}
+// GetCheckpointOverrides gets the CheckpointOverrides property value. Composed type representation for type CheckpointOverridesable
+// returns a CheckpointOverridesable when successful
+func (m *CheckpointPod_CheckpointPod_overrides) GetCheckpointOverrides()(CheckpointOverridesable) {
+    return m.checkpointOverrides
+}
+// GetCheckpointPodOverridesMember1 gets the CheckpointPod_overridesMember1 property value. Composed type representation for type CheckpointPod_overridesMember1able
+// returns a CheckpointPod_overridesMember1able when successful
+func (m *CheckpointPod_CheckpointPod_overrides) GetCheckpointPodOverridesMember1()(CheckpointPod_overridesMember1able) {
+    return m.checkpointPod_overridesMember1
+}
+// GetFieldDeserializers the deserialization information for the current model
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
+func (m *CheckpointPod_CheckpointPod_overrides) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
+    if m.GetCheckpointOverrides() != nil {
+        return m.GetCheckpointOverrides().GetFieldDeserializers()
+    } else if m.GetCheckpointPodOverridesMember1() != nil {
+        return m.GetCheckpointPodOverridesMember1().GetFieldDeserializers()
+    }
+    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+}
+// GetIsComposedType determines if the current object is a wrapper around a composed type
+// returns a bool when successful
+func (m *CheckpointPod_CheckpointPod_overrides) GetIsComposedType()(bool) {
+    return true
+}
+// Serialize serializes information the current object
+func (m *CheckpointPod_CheckpointPod_overrides) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    if m.GetCheckpointOverrides() != nil {
+        err := writer.WriteObjectValue("", m.GetCheckpointOverrides())
+        if err != nil {
+            return err
+        }
+    } else if m.GetCheckpointPodOverridesMember1() != nil {
+        err := writer.WriteObjectValue("", m.GetCheckpointPodOverridesMember1())
+        if err != nil {
+            return err
+        }
+    }
+    return nil
+}
+// SetCheckpointOverrides sets the CheckpointOverrides property value. Composed type representation for type CheckpointOverridesable
+func (m *CheckpointPod_CheckpointPod_overrides) SetCheckpointOverrides(value CheckpointOverridesable)() {
+    m.checkpointOverrides = value
+}
+// SetCheckpointPodOverridesMember1 sets the CheckpointPod_overridesMember1 property value. Composed type representation for type CheckpointPod_overridesMember1able
+func (m *CheckpointPod_CheckpointPod_overrides) SetCheckpointPodOverridesMember1(value CheckpointPod_overridesMember1able)() {
+    m.checkpointPod_overridesMember1 = value
+}
+type CheckpointPod_CheckpointPod_overridesable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCheckpointOverrides()(CheckpointOverridesable)
+    GetCheckpointPodOverridesMember1()(CheckpointPod_overridesMember1able)
+    SetCheckpointOverrides(value CheckpointOverridesable)()
+    SetCheckpointPodOverridesMember1(value CheckpointPod_overridesMember1able)()
 }
 // NewCheckpointPod instantiates a new CheckpointPod and sets the default values.
 func NewCheckpointPod()(*CheckpointPod) {
@@ -98,6 +188,16 @@ func (m *CheckpointPod) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         }
         return nil
     }
+    res["overrides"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateCheckpointPod_CheckpointPod_overridesFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOverrides(val.(CheckpointPod_CheckpointPod_overridesable))
+        }
+        return nil
+    }
     res["pod_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -150,6 +250,11 @@ func (m *CheckpointPod) GetKind()(*CheckpointKind) {
 func (m *CheckpointPod) GetNamespace()(*string) {
     return m.namespace
 }
+// GetOverrides gets the overrides property value. The overrides property
+// returns a CheckpointPod_CheckpointPod_overridesable when successful
+func (m *CheckpointPod) GetOverrides()(CheckpointPod_CheckpointPod_overridesable) {
+    return m.overrides
+}
 // GetPodId gets the pod_id property value. The pod_id property
 // returns a *string when successful
 func (m *CheckpointPod) GetPodId()(*string) {
@@ -187,6 +292,12 @@ func (m *CheckpointPod) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
     }
     {
         err := writer.WriteStringValue("namespace", m.GetNamespace())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteObjectValue("overrides", m.GetOverrides())
         if err != nil {
             return err
         }
@@ -244,6 +355,10 @@ func (m *CheckpointPod) SetKind(value *CheckpointKind)() {
 func (m *CheckpointPod) SetNamespace(value *string)() {
     m.namespace = value
 }
+// SetOverrides sets the overrides property value. The overrides property
+func (m *CheckpointPod) SetOverrides(value CheckpointPod_CheckpointPod_overridesable)() {
+    m.overrides = value
+}
 // SetPodId sets the pod_id property value. The pod_id property
 func (m *CheckpointPod) SetPodId(value *string)() {
     m.pod_id = value
@@ -267,6 +382,7 @@ type CheckpointPodable interface {
     GetClusterId()(*string)
     GetKind()(*CheckpointKind)
     GetNamespace()(*string)
+    GetOverrides()(CheckpointPod_CheckpointPod_overridesable)
     GetPodId()(*string)
     GetPodName()(*string)
     GetReason()(*CheckpointReason)
@@ -275,6 +391,7 @@ type CheckpointPodable interface {
     SetClusterId(value *string)()
     SetKind(value *CheckpointKind)()
     SetNamespace(value *string)()
+    SetOverrides(value CheckpointPod_CheckpointPod_overridesable)()
     SetPodId(value *string)()
     SetPodName(value *string)()
     SetReason(value *CheckpointReason)()

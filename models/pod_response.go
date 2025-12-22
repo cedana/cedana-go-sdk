@@ -15,6 +15,8 @@ type PodResponse struct {
     age *string
     // The id property
     id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+    // The monitored_by_policies property
+    monitored_by_policies []string
     // The name property
     name *string
     // The namespace property
@@ -25,6 +27,8 @@ type PodResponse struct {
     ready *string
     // The restarts property
     restarts *int32
+    // The start_time property
+    start_time *string
     // The status property
     status *string
 }
@@ -71,6 +75,22 @@ func (m *PodResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         }
         if val != nil {
             m.SetId(val)
+        }
+        return nil
+    }
+    res["monitored_by_policies"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
+            }
+            m.SetMonitoredByPolicies(res)
         }
         return nil
     }
@@ -124,6 +144,16 @@ func (m *PodResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         }
         return nil
     }
+    res["start_time"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetStartTime(val)
+        }
+        return nil
+    }
     res["status"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -140,6 +170,11 @@ func (m *PodResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
 // returns a *UUID when successful
 func (m *PodResponse) GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
     return m.id
+}
+// GetMonitoredByPolicies gets the monitored_by_policies property value. The monitored_by_policies property
+// returns a []string when successful
+func (m *PodResponse) GetMonitoredByPolicies()([]string) {
+    return m.monitored_by_policies
 }
 // GetName gets the name property value. The name property
 // returns a *string when successful
@@ -166,6 +201,11 @@ func (m *PodResponse) GetReady()(*string) {
 func (m *PodResponse) GetRestarts()(*int32) {
     return m.restarts
 }
+// GetStartTime gets the start_time property value. The start_time property
+// returns a *string when successful
+func (m *PodResponse) GetStartTime()(*string) {
+    return m.start_time
+}
 // GetStatus gets the status property value. The status property
 // returns a *string when successful
 func (m *PodResponse) GetStatus()(*string) {
@@ -181,6 +221,12 @@ func (m *PodResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     }
     {
         err := writer.WriteUUIDValue("id", m.GetId())
+        if err != nil {
+            return err
+        }
+    }
+    if m.GetMonitoredByPolicies() != nil {
+        err := writer.WriteCollectionOfStringValues("monitored_by_policies", m.GetMonitoredByPolicies())
         if err != nil {
             return err
         }
@@ -216,6 +262,12 @@ func (m *PodResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     {
+        err := writer.WriteStringValue("start_time", m.GetStartTime())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("status", m.GetStatus())
         if err != nil {
             return err
@@ -241,6 +293,10 @@ func (m *PodResponse) SetAge(value *string)() {
 func (m *PodResponse) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.id = value
 }
+// SetMonitoredByPolicies sets the monitored_by_policies property value. The monitored_by_policies property
+func (m *PodResponse) SetMonitoredByPolicies(value []string)() {
+    m.monitored_by_policies = value
+}
 // SetName sets the name property value. The name property
 func (m *PodResponse) SetName(value *string)() {
     m.name = value
@@ -261,6 +317,10 @@ func (m *PodResponse) SetReady(value *string)() {
 func (m *PodResponse) SetRestarts(value *int32)() {
     m.restarts = value
 }
+// SetStartTime sets the start_time property value. The start_time property
+func (m *PodResponse) SetStartTime(value *string)() {
+    m.start_time = value
+}
 // SetStatus sets the status property value. The status property
 func (m *PodResponse) SetStatus(value *string)() {
     m.status = value
@@ -270,18 +330,22 @@ type PodResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetAge()(*string)
     GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+    GetMonitoredByPolicies()([]string)
     GetName()(*string)
     GetNamespace()(*string)
     GetNode()(*string)
     GetReady()(*string)
     GetRestarts()(*int32)
+    GetStartTime()(*string)
     GetStatus()(*string)
     SetAge(value *string)()
     SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
+    SetMonitoredByPolicies(value []string)()
     SetName(value *string)()
     SetNamespace(value *string)()
     SetNode(value *string)()
     SetReady(value *string)()
     SetRestarts(value *int32)()
+    SetStartTime(value *string)()
     SetStatus(value *string)()
 }

@@ -6,6 +6,7 @@ package v2
 import (
     "context"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+    i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
     i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
 )
 
@@ -13,17 +14,23 @@ import (
 type PodsRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+// PodsRequestBuilderGetQueryParameters will not return pods with status 'deleted', and only from clusters with status 'active' andpods belonging to nodes whose last_sync is within the last 5 minutes.
+type PodsRequestBuilderGetQueryParameters struct {
+    Id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID `uriparametername:"id"`
+}
 // PodsRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type PodsRequestBuilderGetRequestConfiguration struct {
     // Request headers
     Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
     // Request options
     Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+    // Request query parameters
+    QueryParameters *PodsRequestBuilderGetQueryParameters
 }
 // NewPodsRequestBuilderInternal instantiates a new PodsRequestBuilder and sets the default values.
 func NewPodsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PodsRequestBuilder) {
     m := &PodsRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v2/pods", pathParameters),
+        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v2/pods{?id*}", pathParameters),
     }
     return m
 }
@@ -33,7 +40,12 @@ func NewPodsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1
     urlParams["request-raw-url"] = rawUrl
     return NewPodsRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get use query params to filter pods
+// Count the count property
+// returns a *PodsCountRequestBuilder when successful
+func (m *PodsRequestBuilder) Count()(*PodsCountRequestBuilder) {
+    return NewPodsCountRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Get will not return pods with status 'deleted', and only from clusters with status 'active' andpods belonging to nodes whose last_sync is within the last 5 minutes.
 // returns a []PodResponseable when successful
 // returns a HttpError error when the service returns a 500 status code
 func (m *PodsRequestBuilder) Get(ctx context.Context, requestConfiguration *PodsRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PodResponseable, error) {
@@ -56,11 +68,34 @@ func (m *PodsRequestBuilder) Get(ctx context.Context, requestConfiguration *Pods
     }
     return val, nil
 }
-// ToGetRequestInformation use query params to filter pods
+// Namespace the namespace property
+// returns a *PodsNamespaceRequestBuilder when successful
+func (m *PodsRequestBuilder) Namespace()(*PodsNamespaceRequestBuilder) {
+    return NewPodsNamespaceRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Namespaces the namespaces property
+// returns a *PodsNamespacesRequestBuilder when successful
+func (m *PodsRequestBuilder) Namespaces()(*PodsNamespacesRequestBuilder) {
+    return NewPodsNamespacesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Paginated the paginated property
+// returns a *PodsPaginatedRequestBuilder when successful
+func (m *PodsRequestBuilder) Paginated()(*PodsPaginatedRequestBuilder) {
+    return NewPodsPaginatedRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Statuses the statuses property
+// returns a *PodsStatusesRequestBuilder when successful
+func (m *PodsRequestBuilder) Statuses()(*PodsStatusesRequestBuilder) {
+    return NewPodsStatusesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// ToGetRequestInformation will not return pods with status 'deleted', and only from clusters with status 'active' andpods belonging to nodes whose last_sync is within the last 5 minutes.
 // returns a *RequestInformation when successful
 func (m *PodsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *PodsRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
     if requestConfiguration != nil {
+        if requestConfiguration.QueryParameters != nil {
+            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+        }
         requestInfo.Headers.AddAll(requestConfiguration.Headers)
         requestInfo.AddRequestOptions(requestConfiguration.Options)
     }

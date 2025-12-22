@@ -28,10 +28,14 @@ type Action struct {
     node_name *string
     // The platform property
     platform *string
+    // The reason property
+    reason *string
     // The status property
     status *string
     // The total_duration property
-    total_duration *string
+    total_duration *int64
+    // The total_io property
+    total_io *int64
     // The type property
     typeEscaped *string
 }
@@ -161,6 +165,16 @@ func (m *Action) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689638
         }
         return nil
     }
+    res["reason"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetReason(val)
+        }
+        return nil
+    }
     res["status"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -172,12 +186,22 @@ func (m *Action) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689638
         return nil
     }
     res["total_duration"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
+        val, err := n.GetInt64Value()
         if err != nil {
             return err
         }
         if val != nil {
             m.SetTotalDuration(val)
+        }
+        return nil
+    }
+    res["total_io"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTotalIo(val)
         }
         return nil
     }
@@ -208,15 +232,25 @@ func (m *Action) GetNodeName()(*string) {
 func (m *Action) GetPlatform()(*string) {
     return m.platform
 }
+// GetReason gets the reason property value. The reason property
+// returns a *string when successful
+func (m *Action) GetReason()(*string) {
+    return m.reason
+}
 // GetStatus gets the status property value. The status property
 // returns a *string when successful
 func (m *Action) GetStatus()(*string) {
     return m.status
 }
 // GetTotalDuration gets the total_duration property value. The total_duration property
-// returns a *string when successful
-func (m *Action) GetTotalDuration()(*string) {
+// returns a *int64 when successful
+func (m *Action) GetTotalDuration()(*int64) {
     return m.total_duration
+}
+// GetTotalIo gets the total_io property value. The total_io property
+// returns a *int64 when successful
+func (m *Action) GetTotalIo()(*int64) {
+    return m.total_io
 }
 // GetTypeEscaped gets the type property value. The type property
 // returns a *string when successful
@@ -274,13 +308,25 @@ func (m *Action) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c
         }
     }
     {
+        err := writer.WriteStringValue("reason", m.GetReason())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("status", m.GetStatus())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteStringValue("total_duration", m.GetTotalDuration())
+        err := writer.WriteInt64Value("total_duration", m.GetTotalDuration())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteInt64Value("total_io", m.GetTotalIo())
         if err != nil {
             return err
         }
@@ -335,13 +381,21 @@ func (m *Action) SetNodeName(value *string)() {
 func (m *Action) SetPlatform(value *string)() {
     m.platform = value
 }
+// SetReason sets the reason property value. The reason property
+func (m *Action) SetReason(value *string)() {
+    m.reason = value
+}
 // SetStatus sets the status property value. The status property
 func (m *Action) SetStatus(value *string)() {
     m.status = value
 }
 // SetTotalDuration sets the total_duration property value. The total_duration property
-func (m *Action) SetTotalDuration(value *string)() {
+func (m *Action) SetTotalDuration(value *int64)() {
     m.total_duration = value
+}
+// SetTotalIo sets the total_io property value. The total_io property
+func (m *Action) SetTotalIo(value *int64)() {
+    m.total_io = value
 }
 // SetTypeEscaped sets the type property value. The type property
 func (m *Action) SetTypeEscaped(value *string)() {
@@ -358,8 +412,10 @@ type Actionable interface {
     GetGpu()(*string)
     GetNodeName()(*string)
     GetPlatform()(*string)
+    GetReason()(*string)
     GetStatus()(*string)
-    GetTotalDuration()(*string)
+    GetTotalDuration()(*int64)
+    GetTotalIo()(*int64)
     GetTypeEscaped()(*string)
     SetActionId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetActionTimestamp(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
@@ -369,7 +425,9 @@ type Actionable interface {
     SetGpu(value *string)()
     SetNodeName(value *string)()
     SetPlatform(value *string)()
+    SetReason(value *string)()
     SetStatus(value *string)()
-    SetTotalDuration(value *string)()
+    SetTotalDuration(value *int64)()
+    SetTotalIo(value *int64)()
     SetTypeEscaped(value *string)()
 }

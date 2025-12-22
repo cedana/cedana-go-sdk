@@ -11,12 +11,16 @@ import (
 type Node struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // The cluster_name property
+    cluster_name *string
     // The compute_type property
     compute_type *string
     // The id property
     id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The instance_type property
     instance_type *string
+    // The metadata property
+    metadata i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
     // The name property
     name *string
     // The region property
@@ -41,6 +45,11 @@ func CreateNodeFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487ee
 func (m *Node) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
+// GetClusterName gets the cluster_name property value. The cluster_name property
+// returns a *string when successful
+func (m *Node) GetClusterName()(*string) {
+    return m.cluster_name
+}
 // GetComputeType gets the compute_type property value. The compute_type property
 // returns a *string when successful
 func (m *Node) GetComputeType()(*string) {
@@ -50,6 +59,16 @@ func (m *Node) GetComputeType()(*string) {
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *Node) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["cluster_name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetClusterName(val)
+        }
+        return nil
+    }
     res["compute_type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -77,6 +96,16 @@ func (m *Node) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
         }
         if val != nil {
             m.SetInstanceType(val)
+        }
+        return nil
+    }
+    res["metadata"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMetadata(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
         }
         return nil
     }
@@ -122,6 +151,11 @@ func (m *Node) GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc
 func (m *Node) GetInstanceType()(*string) {
     return m.instance_type
 }
+// GetMetadata gets the metadata property value. The metadata property
+// returns a UntypedNodeable when successful
+func (m *Node) GetMetadata()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
+    return m.metadata
+}
 // GetName gets the name property value. The name property
 // returns a *string when successful
 func (m *Node) GetName()(*string) {
@@ -140,6 +174,12 @@ func (m *Node) GetStatus()(*string) {
 // Serialize serializes information the current object
 func (m *Node) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
+        err := writer.WriteStringValue("cluster_name", m.GetClusterName())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("compute_type", m.GetComputeType())
         if err != nil {
             return err
@@ -153,6 +193,12 @@ func (m *Node) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
     }
     {
         err := writer.WriteStringValue("instance_type", m.GetInstanceType())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteObjectValue("metadata", m.GetMetadata())
         if err != nil {
             return err
         }
@@ -187,6 +233,10 @@ func (m *Node) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
 func (m *Node) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
+// SetClusterName sets the cluster_name property value. The cluster_name property
+func (m *Node) SetClusterName(value *string)() {
+    m.cluster_name = value
+}
 // SetComputeType sets the compute_type property value. The compute_type property
 func (m *Node) SetComputeType(value *string)() {
     m.compute_type = value
@@ -198,6 +248,10 @@ func (m *Node) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e55599
 // SetInstanceType sets the instance_type property value. The instance_type property
 func (m *Node) SetInstanceType(value *string)() {
     m.instance_type = value
+}
+// SetMetadata sets the metadata property value. The metadata property
+func (m *Node) SetMetadata(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
+    m.metadata = value
 }
 // SetName sets the name property value. The name property
 func (m *Node) SetName(value *string)() {
@@ -214,15 +268,19 @@ func (m *Node) SetStatus(value *string)() {
 type Nodeable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetClusterName()(*string)
     GetComputeType()(*string)
     GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetInstanceType()(*string)
+    GetMetadata()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
     GetName()(*string)
     GetRegion()(*string)
     GetStatus()(*string)
+    SetClusterName(value *string)()
     SetComputeType(value *string)()
     SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetInstanceType(value *string)()
+    SetMetadata(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
     SetName(value *string)()
     SetRegion(value *string)()
     SetStatus(value *string)()
