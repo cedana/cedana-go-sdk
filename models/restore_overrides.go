@@ -12,6 +12,8 @@ type RestoreOverrides struct {
     additionalData map[string]any
     // The criu_opts property
     criu_opts *string
+    // The pod_name property
+    pod_name *string
 }
 // NewRestoreOverrides instantiates a new RestoreOverrides and sets the default values.
 func NewRestoreOverrides()(*RestoreOverrides) {
@@ -49,12 +51,33 @@ func (m *RestoreOverrides) GetFieldDeserializers()(map[string]func(i878a80d2330e
         }
         return nil
     }
+    res["pod_name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPodName(val)
+        }
+        return nil
+    }
     return res
+}
+// GetPodName gets the pod_name property value. The pod_name property
+// returns a *string when successful
+func (m *RestoreOverrides) GetPodName()(*string) {
+    return m.pod_name
 }
 // Serialize serializes information the current object
 func (m *RestoreOverrides) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
         err := writer.WriteStringValue("criu_opts", m.GetCriuOpts())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("pod_name", m.GetPodName())
         if err != nil {
             return err
         }
@@ -75,9 +98,15 @@ func (m *RestoreOverrides) SetAdditionalData(value map[string]any)() {
 func (m *RestoreOverrides) SetCriuOpts(value *string)() {
     m.criu_opts = value
 }
+// SetPodName sets the pod_name property value. The pod_name property
+func (m *RestoreOverrides) SetPodName(value *string)() {
+    m.pod_name = value
+}
 type RestoreOverridesable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetCriuOpts()(*string)
+    GetPodName()(*string)
     SetCriuOpts(value *string)()
+    SetPodName(value *string)()
 }

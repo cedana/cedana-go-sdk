@@ -6,7 +6,7 @@
     "license": {
       "name": ""
     },
-    "version": "2.0.17"
+    "version": "0.0.0-dev"
   },
   "paths": {
     "/v2/actions": {
@@ -3611,12 +3611,6 @@
               "null"
             ]
           },
-          "gpu_freeze_type": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
           "streams": {
             "type": "integer",
             "format": "int32"
@@ -5009,6 +5003,12 @@
         "type": "object",
         "properties": {
           "criu_opts": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "pod_name": {
             "type": [
               "string",
               "null"

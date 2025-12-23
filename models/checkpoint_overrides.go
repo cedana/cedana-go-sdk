@@ -18,8 +18,6 @@ type CheckpointOverrides struct {
     criu_opts *string
     // The directory property
     directory *string
-    // The gpu_freeze_type property
-    gpu_freeze_type *string
     // The streams property
     streams *int32
 }
@@ -104,16 +102,6 @@ func (m *CheckpointOverrides) GetFieldDeserializers()(map[string]func(i878a80d23
         }
         return nil
     }
-    res["gpu_freeze_type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetGpuFreezeType(val)
-        }
-        return nil
-    }
     res["streams"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetInt32Value()
         if err != nil {
@@ -125,11 +113,6 @@ func (m *CheckpointOverrides) GetFieldDeserializers()(map[string]func(i878a80d23
         return nil
     }
     return res
-}
-// GetGpuFreezeType gets the gpu_freeze_type property value. The gpu_freeze_type property
-// returns a *string when successful
-func (m *CheckpointOverrides) GetGpuFreezeType()(*string) {
-    return m.gpu_freeze_type
 }
 // GetStreams gets the streams property value. The streams property
 // returns a *int32 when successful
@@ -158,12 +141,6 @@ func (m *CheckpointOverrides) Serialize(writer i878a80d2330e89d26896388a3f487eef
     }
     {
         err := writer.WriteStringValue("directory", m.GetDirectory())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("gpu_freeze_type", m.GetGpuFreezeType())
         if err != nil {
             return err
         }
@@ -202,10 +179,6 @@ func (m *CheckpointOverrides) SetCriuOpts(value *string)() {
 func (m *CheckpointOverrides) SetDirectory(value *string)() {
     m.directory = value
 }
-// SetGpuFreezeType sets the gpu_freeze_type property value. The gpu_freeze_type property
-func (m *CheckpointOverrides) SetGpuFreezeType(value *string)() {
-    m.gpu_freeze_type = value
-}
 // SetStreams sets the streams property value. The streams property
 func (m *CheckpointOverrides) SetStreams(value *int32)() {
     m.streams = value
@@ -217,12 +190,10 @@ type CheckpointOverridesable interface {
     GetCompression()(*string)
     GetCriuOpts()(*string)
     GetDirectory()(*string)
-    GetGpuFreezeType()(*string)
     GetStreams()(*int32)
     SetAsynchronous(value *bool)()
     SetCompression(value *string)()
     SetCriuOpts(value *string)()
     SetDirectory(value *string)()
-    SetGpuFreezeType(value *string)()
     SetStreams(value *int32)()
 }
