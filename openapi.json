@@ -6,7 +6,7 @@
     "license": {
       "name": ""
     },
-    "version": "2.0.1.7"
+    "version": "2.0.17"
   },
   "paths": {
     "/v2/actions": {
@@ -67,7 +67,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -124,7 +124,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -181,7 +181,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -229,7 +229,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -296,7 +296,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -353,7 +353,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -417,7 +417,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       },
@@ -453,7 +453,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -511,7 +511,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -570,7 +570,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -638,7 +638,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -678,7 +678,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       },
@@ -734,7 +734,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -770,7 +770,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -837,7 +837,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -940,7 +940,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -996,7 +996,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -1072,7 +1072,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -1126,7 +1126,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -1173,7 +1173,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       },
@@ -1218,7 +1218,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -1306,7 +1306,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -1438,7 +1438,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -1495,7 +1495,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -1534,7 +1534,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -1570,7 +1570,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -1606,7 +1606,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -1724,7 +1724,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -1760,7 +1760,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -1824,7 +1824,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -1863,7 +1863,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -1902,7 +1902,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -1938,7 +1938,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -1974,7 +1974,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -2013,7 +2013,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -2061,7 +2061,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -2100,7 +2100,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -2136,7 +2136,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -2190,7 +2190,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -2226,7 +2226,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -2280,7 +2280,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -2316,7 +2316,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -2352,7 +2352,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -2482,7 +2482,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -2518,7 +2518,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -2574,7 +2574,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -2630,7 +2630,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -2679,7 +2679,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -2735,7 +2735,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -2805,7 +2805,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -2862,7 +2862,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -2919,7 +2919,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -2959,7 +2959,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -3021,7 +3021,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -3061,7 +3061,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -3123,7 +3123,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -3163,7 +3163,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -3225,7 +3225,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -3292,7 +3292,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -3349,7 +3349,7 @@
         },
         "security": [
           {
-            "api_key": []
+            "Auth Token": []
           }
         ]
       }
@@ -5418,7 +5418,7 @@
       }
     },
     "securitySchemes": {
-      "api_key": {
+      "Auth Token": {
         "type": "http",
         "scheme": "bearer"
       }
