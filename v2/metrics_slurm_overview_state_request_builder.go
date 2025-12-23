@@ -33,18 +33,14 @@ func NewMetricsSlurmOverviewStateRequestBuilder(rawUrl string, requestAdapter i2
     urlParams["request-raw-url"] = rawUrl
     return NewMetricsSlurmOverviewStateRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get get SLURM state breakdown
+// Get get state breakdown (Slurm)
 // returns a SlurmStateBreakdownable when successful
-// returns a HttpError error when the service returns a 500 status code
 func (m *MetricsSlurmOverviewStateRequestBuilder) Get(ctx context.Context, requestConfiguration *MetricsSlurmOverviewStateRequestBuilderGetRequestConfiguration)(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.SlurmStateBreakdownable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateSlurmStateBreakdownFromDiscriminatorValue, errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateSlurmStateBreakdownFromDiscriminatorValue, nil)
     if err != nil {
         return nil, err
     }
@@ -53,7 +49,7 @@ func (m *MetricsSlurmOverviewStateRequestBuilder) Get(ctx context.Context, reque
     }
     return res.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.SlurmStateBreakdownable), nil
 }
-// ToGetRequestInformation get SLURM state breakdown
+// ToGetRequestInformation get state breakdown (Slurm)
 // returns a *RequestInformation when successful
 func (m *MetricsSlurmOverviewStateRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *MetricsSlurmOverviewStateRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

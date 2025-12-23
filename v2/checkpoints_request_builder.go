@@ -6,7 +6,6 @@ package v2
 import (
     "context"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
     i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
 )
 
@@ -14,9 +13,10 @@ import (
 type CheckpointsRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
-// CheckpointsRequestBuilderGetQueryParameters use query params to filter checkpoints
+// CheckpointsRequestBuilderGetQueryParameters use query params to filter checkpoints. Supports filtering by `ids` (comma-separated UUIDs for single or multiple checkpoints)
 type CheckpointsRequestBuilderGetQueryParameters struct {
-    Ids []i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID `uriparametername:"ids"`
+    // Comma-separated list of checkpoint UUIDs to filter by
+    Ids *string `uriparametername:"ids"`
 }
 // CheckpointsRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type CheckpointsRequestBuilderGetRequestConfiguration struct {
@@ -52,18 +52,14 @@ func NewCheckpointsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee26
 func (m *CheckpointsRequestBuilder) Deprecate()(*CheckpointsDeprecateRequestBuilder) {
     return NewCheckpointsDeprecateRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
-// Get use query params to filter checkpoints
+// Get use query params to filter checkpoints. Supports filtering by `ids` (comma-separated UUIDs for single or multiple checkpoints)
 // returns a []Checkpointable when successful
-// returns a HttpError error when the service returns a 500 status code
 func (m *CheckpointsRequestBuilder) Get(ctx context.Context, requestConfiguration *CheckpointsRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.Checkpointable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateCheckpointFromDiscriminatorValue, errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateCheckpointFromDiscriminatorValue, nil)
     if err != nil {
         return nil, err
     }
@@ -82,18 +78,12 @@ func (m *CheckpointsRequestBuilder) Info()(*CheckpointsInfoRequestBuilder) {
 }
 // Post builds a new checkpoint without the metadata and information about the checkpoint with status initializing
 // returns a *string when successful
-// returns a HttpError error when the service returns a 404 status code
-// returns a HttpError error when the service returns a 500 status code
 func (m *CheckpointsRequestBuilder) Post(ctx context.Context, requestConfiguration *CheckpointsRequestBuilderPostRequestConfiguration)(*string, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "404": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", nil)
     if err != nil {
         return nil, err
     }
@@ -102,7 +92,7 @@ func (m *CheckpointsRequestBuilder) Post(ctx context.Context, requestConfigurati
     }
     return res.(*string), nil
 }
-// ToGetRequestInformation use query params to filter checkpoints
+// ToGetRequestInformation use query params to filter checkpoints. Supports filtering by `ids` (comma-separated UUIDs for single or multiple checkpoints)
 // returns a *RequestInformation when successful
 func (m *CheckpointsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *CheckpointsRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

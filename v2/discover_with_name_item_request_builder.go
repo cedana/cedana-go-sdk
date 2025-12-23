@@ -6,7 +6,6 @@ package v2
 import (
     "context"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
 )
 
 // DiscoverWithNameItemRequestBuilder builds and executes requests for operations under \v2\discover\{name}
@@ -35,16 +34,12 @@ func NewDiscoverWithNameItemRequestBuilder(rawUrl string, requestAdapter i2ae418
 }
 // Get service discovery
 // returns a *string when successful
-// returns a HttpError error when the service returns a 500 status code
 func (m *DiscoverWithNameItemRequestBuilder) Get(ctx context.Context, requestConfiguration *DiscoverWithNameItemRequestBuilderGetRequestConfiguration)(*string, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", nil)
     if err != nil {
         return nil, err
     }

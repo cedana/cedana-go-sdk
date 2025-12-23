@@ -13,7 +13,7 @@ import (
 type JobsPaginatedRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
-// JobsPaginatedRequestBuilderGetQueryParameters list jobs with pagination
+// JobsPaginatedRequestBuilderGetQueryParameters list jobs (paginated)
 type JobsPaginatedRequestBuilderGetQueryParameters struct {
     Ascending *bool `uriparametername:"ascending"`
     // job name to query against (uses postgres ILIKE pattern search)
@@ -46,18 +46,14 @@ func NewJobsPaginatedRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee
     urlParams["request-raw-url"] = rawUrl
     return NewJobsPaginatedRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get list jobs with pagination
+// Get list jobs (paginated)
 // returns a PaginatedJobResponseable when successful
-// returns a HttpError error when the service returns a 500 status code
 func (m *JobsPaginatedRequestBuilder) Get(ctx context.Context, requestConfiguration *JobsPaginatedRequestBuilderGetRequestConfiguration)(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PaginatedJobResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreatePaginatedJobResponseFromDiscriminatorValue, errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreatePaginatedJobResponseFromDiscriminatorValue, nil)
     if err != nil {
         return nil, err
     }
@@ -66,7 +62,7 @@ func (m *JobsPaginatedRequestBuilder) Get(ctx context.Context, requestConfigurat
     }
     return res.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PaginatedJobResponseable), nil
 }
-// ToGetRequestInformation list jobs with pagination
+// ToGetRequestInformation list jobs (paginated)
 // returns a *RequestInformation when successful
 func (m *JobsPaginatedRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *JobsPaginatedRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

@@ -13,7 +13,7 @@ import (
 type LogsK8RequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
-// LogsK8RequestBuilderGetQueryParameters get k8 logs
+// LogsK8RequestBuilderGetQueryParameters get logs (K8s)
 type LogsK8RequestBuilderGetQueryParameters struct {
     Limit *int64 `uriparametername:"limit"`
     Pod *string `uriparametername:"pod"`
@@ -40,18 +40,14 @@ func NewLogsK8RequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371c
     urlParams["request-raw-url"] = rawUrl
     return NewLogsK8RequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get get k8 logs
+// Get get logs (K8s)
 // returns a []PodLogListable when successful
-// returns a HttpError error when the service returns a 500 status code
 func (m *LogsK8RequestBuilder) Get(ctx context.Context, requestConfiguration *LogsK8RequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PodLogListable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreatePodLogListFromDiscriminatorValue, errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreatePodLogListFromDiscriminatorValue, nil)
     if err != nil {
         return nil, err
     }
@@ -63,7 +59,7 @@ func (m *LogsK8RequestBuilder) Get(ctx context.Context, requestConfiguration *Lo
     }
     return val, nil
 }
-// ToGetRequestInformation get k8 logs
+// ToGetRequestInformation get logs (K8s)
 // returns a *RequestInformation when successful
 func (m *LogsK8RequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *LogsK8RequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

@@ -14,6 +14,7 @@ import (
 type PodsPaginatedRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+// PodsPaginatedRequestBuilderGetQueryParameters list pods (paginated)
 type PodsPaginatedRequestBuilderGetQueryParameters struct {
     Ascending *bool `uriparametername:"ascending"`
     Id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID `uriparametername:"id"`
@@ -47,17 +48,14 @@ func NewPodsPaginatedRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee
     urlParams["request-raw-url"] = rawUrl
     return NewPodsPaginatedRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Get list pods (paginated)
 // returns a PaginatedPodResponseable when successful
-// returns a HttpError error when the service returns a 500 status code
 func (m *PodsPaginatedRequestBuilder) Get(ctx context.Context, requestConfiguration *PodsPaginatedRequestBuilderGetRequestConfiguration)(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PaginatedPodResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreatePaginatedPodResponseFromDiscriminatorValue, errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreatePaginatedPodResponseFromDiscriminatorValue, nil)
     if err != nil {
         return nil, err
     }
@@ -66,6 +64,7 @@ func (m *PodsPaginatedRequestBuilder) Get(ctx context.Context, requestConfigurat
     }
     return res.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PaginatedPodResponseable), nil
 }
+// ToGetRequestInformation list pods (paginated)
 // returns a *RequestInformation when successful
 func (m *PodsPaginatedRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *PodsPaginatedRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

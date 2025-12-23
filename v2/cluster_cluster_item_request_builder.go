@@ -6,7 +6,6 @@ package v2
 import (
     "context"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
 )
 
 // ClusterClusterItemRequestBuilder builds and executes requests for operations under \v2\cluster\{id}
@@ -33,29 +32,23 @@ func NewClusterClusterItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f
     urlParams["request-raw-url"] = rawUrl
     return NewClusterClusterItemRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Delete this endpoint deletes a cluster and its dependent entities(pods and relation records) from the database.The operation is executed inside a single database transaction and performsthe following steps in order:1. Deletes all `pods` associated with the cluster via `pod_relations`.2. Deletes all `pod_relations` entries for the cluster.3. Deletes all `node_relations` entries for the cluster.4. Deletes the `cluster_relations` entry for the cluster.5. Deletes the `clusters` record itself.If any step fails, the transaction is rolled back and no partial deletionoccurs.
-// returns a []byte when successful
-// returns a HttpError error when the service returns a 400 status code
-// returns a HttpError error when the service returns a 500 status code
-func (m *ClusterClusterItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *ClusterClusterItemRequestBuilderDeleteRequestConfiguration)([]byte, error) {
+// Delete this endpoint deletes a cluster and all its dependent entities in a single transactionwhich is rolled back if any part of the deletion fails
+// returns a *string when successful
+func (m *ClusterClusterItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *ClusterClusterItemRequestBuilderDeleteRequestConfiguration)(*string, error) {
     requestInfo, err := m.ToDeleteRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "400": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", nil)
     if err != nil {
         return nil, err
     }
     if res == nil {
         return nil, nil
     }
-    return res.([]byte), nil
+    return res.(*string), nil
 }
-// ToDeleteRequestInformation this endpoint deletes a cluster and its dependent entities(pods and relation records) from the database.The operation is executed inside a single database transaction and performsthe following steps in order:1. Deletes all `pods` associated with the cluster via `pod_relations`.2. Deletes all `pod_relations` entries for the cluster.3. Deletes all `node_relations` entries for the cluster.4. Deletes the `cluster_relations` entry for the cluster.5. Deletes the `clusters` record itself.If any step fails, the transaction is rolled back and no partial deletionoccurs.
+// ToDeleteRequestInformation this endpoint deletes a cluster and all its dependent entities in a single transactionwhich is rolled back if any part of the deletion fails
 // returns a *RequestInformation when successful
 func (m *ClusterClusterItemRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *ClusterClusterItemRequestBuilderDeleteRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DELETE, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
@@ -63,7 +56,7 @@ func (m *ClusterClusterItemRequestBuilder) ToDeleteRequestInformation(ctx contex
         requestInfo.Headers.AddAll(requestConfiguration.Headers)
         requestInfo.AddRequestOptions(requestConfiguration.Options)
     }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
+    requestInfo.Headers.TryAdd("Accept", "text/plain;q=0.9")
     return requestInfo, nil
 }
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.

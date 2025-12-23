@@ -13,6 +13,7 @@ import (
 type SlurmNodes_paginatedRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+// SlurmNodes_paginatedRequestBuilderGetQueryParameters use query params to filter nodes
 type SlurmNodes_paginatedRequestBuilderGetQueryParameters struct {
     // Maximum number of records to return (default: 50, max: 100)
     Limit *int32 `uriparametername:"limit"`
@@ -41,17 +42,14 @@ func NewSlurmNodes_paginatedRequestBuilder(rawUrl string, requestAdapter i2ae418
     urlParams["request-raw-url"] = rawUrl
     return NewSlurmNodes_paginatedRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Get use query params to filter nodes
 // returns a []SlurmNodeable when successful
-// returns a HttpError error when the service returns a 500 status code
 func (m *SlurmNodes_paginatedRequestBuilder) Get(ctx context.Context, requestConfiguration *SlurmNodes_paginatedRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.SlurmNodeable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateSlurmNodeFromDiscriminatorValue, errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateSlurmNodeFromDiscriminatorValue, nil)
     if err != nil {
         return nil, err
     }
@@ -63,6 +61,7 @@ func (m *SlurmNodes_paginatedRequestBuilder) Get(ctx context.Context, requestCon
     }
     return val, nil
 }
+// ToGetRequestInformation use query params to filter nodes
 // returns a *RequestInformation when successful
 func (m *SlurmNodes_paginatedRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *SlurmNodes_paginatedRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

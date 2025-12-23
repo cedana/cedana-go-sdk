@@ -33,20 +33,14 @@ func NewCheckpointsInfoInfoItemRequestBuilder(rawUrl string, requestAdapter i2ae
     urlParams["request-raw-url"] = rawUrl
     return NewCheckpointsInfoInfoItemRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Put add information about the checkpointed pod and runtime
+// Put add information about the checkpoint
 // returns a *string when successful
-// returns a HttpError error when the service returns a 404 status code
-// returns a HttpError error when the service returns a 500 status code
 func (m *CheckpointsInfoInfoItemRequestBuilder) Put(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CheckpointInfoable, requestConfiguration *CheckpointsInfoInfoItemRequestBuilderPutRequestConfiguration)(*string, error) {
     requestInfo, err := m.ToPutRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "404": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", nil)
     if err != nil {
         return nil, err
     }
@@ -55,7 +49,7 @@ func (m *CheckpointsInfoInfoItemRequestBuilder) Put(ctx context.Context, body i4
     }
     return res.(*string), nil
 }
-// ToPutRequestInformation add information about the checkpointed pod and runtime
+// ToPutRequestInformation add information about the checkpoint
 // returns a *RequestInformation when successful
 func (m *CheckpointsInfoInfoItemRequestBuilder) ToPutRequestInformation(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CheckpointInfoable, requestConfiguration *CheckpointsInfoInfoItemRequestBuilderPutRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.PUT, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

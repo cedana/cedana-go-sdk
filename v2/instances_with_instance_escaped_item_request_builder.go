@@ -6,7 +6,6 @@ package v2
 import (
     "context"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
 )
 
 // InstancesWithInstance_ItemRequestBuilder builds and executes requests for operations under \v2\instances\{instance_id}
@@ -33,32 +32,28 @@ func NewInstancesWithInstance_ItemRequestBuilder(rawUrl string, requestAdapter i
     urlParams["request-raw-url"] = rawUrl
     return NewInstancesWithInstance_ItemRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Delete delete an instance
-// returns a []byte when successful
-// returns a HttpError error when the service returns a 500 status code
-func (m *InstancesWithInstance_ItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *InstancesWithInstance_ItemRequestBuilderDeleteRequestConfiguration)([]byte, error) {
+// Delete delete instance
+// returns a *string when successful
+func (m *InstancesWithInstance_ItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *InstancesWithInstance_ItemRequestBuilderDeleteRequestConfiguration)(*string, error) {
     requestInfo, err := m.ToDeleteRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", nil)
     if err != nil {
         return nil, err
     }
     if res == nil {
         return nil, nil
     }
-    return res.([]byte), nil
+    return res.(*string), nil
 }
 // Status the status property
 // returns a *InstancesItemStatusRequestBuilder when successful
 func (m *InstancesWithInstance_ItemRequestBuilder) Status()(*InstancesItemStatusRequestBuilder) {
     return NewInstancesItemStatusRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
-// ToDeleteRequestInformation delete an instance
+// ToDeleteRequestInformation delete instance
 // returns a *RequestInformation when successful
 func (m *InstancesWithInstance_ItemRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *InstancesWithInstance_ItemRequestBuilderDeleteRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DELETE, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
@@ -66,7 +61,7 @@ func (m *InstancesWithInstance_ItemRequestBuilder) ToDeleteRequestInformation(ct
         requestInfo.Headers.AddAll(requestConfiguration.Headers)
         requestInfo.AddRequestOptions(requestConfiguration.Options)
     }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
+    requestInfo.Headers.TryAdd("Accept", "text/plain;q=0.9")
     return requestInfo, nil
 }
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.

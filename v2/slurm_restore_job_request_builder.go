@@ -33,22 +33,14 @@ func NewSlurmRestoreJobRequestBuilder(rawUrl string, requestAdapter i2ae4187f7da
     urlParams["request-raw-url"] = rawUrl
     return NewSlurmRestoreJobRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Post restore pod
+// Post restore job
 // returns a *string when successful
-// returns a HttpError error when the service returns a 400 status code
-// returns a HttpError error when the service returns a 404 status code
-// returns a HttpError error when the service returns a 500 status code
 func (m *SlurmRestoreJobRequestBuilder) Post(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.RestoreSlurmJobable, requestConfiguration *SlurmRestoreJobRequestBuilderPostRequestConfiguration)(*string, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "400": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-        "404": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", nil)
     if err != nil {
         return nil, err
     }
@@ -57,7 +49,7 @@ func (m *SlurmRestoreJobRequestBuilder) Post(ctx context.Context, body i4db02de4
     }
     return res.(*string), nil
 }
-// ToPostRequestInformation restore pod
+// ToPostRequestInformation restore job
 // returns a *RequestInformation when successful
 func (m *SlurmRestoreJobRequestBuilder) ToPostRequestInformation(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.RestoreSlurmJobable, requestConfiguration *SlurmRestoreJobRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

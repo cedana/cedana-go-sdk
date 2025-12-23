@@ -33,27 +33,26 @@ func NewMetricsK8RequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee2633
     urlParams["request-raw-url"] = rawUrl
     return NewMetricsK8RequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get get k8 metrics
-// returns a *string when successful
-// returns a HttpError error when the service returns a 500 status code
-func (m *MetricsK8RequestBuilder) Get(ctx context.Context, requestConfiguration *MetricsK8RequestBuilderGetRequestConfiguration)(*string, error) {
+// Get get metrics (K8s)
+// returns a []NodeResourceMetricListable when successful
+func (m *MetricsK8RequestBuilder) Get(ctx context.Context, requestConfiguration *MetricsK8RequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.NodeResourceMetricListable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateNodeResourceMetricListFromDiscriminatorValue, nil)
     if err != nil {
         return nil, err
     }
-    if res == nil {
-        return nil, nil
+    val := make([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.NodeResourceMetricListable, len(res))
+    for i, v := range res {
+        if v != nil {
+            val[i] = v.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.NodeResourceMetricListable)
+        }
     }
-    return res.(*string), nil
+    return val, nil
 }
-// ToGetRequestInformation get k8 metrics
+// ToGetRequestInformation get metrics (K8s)
 // returns a *RequestInformation when successful
 func (m *MetricsK8RequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *MetricsK8RequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
@@ -61,7 +60,7 @@ func (m *MetricsK8RequestBuilder) ToGetRequestInformation(ctx context.Context, r
         requestInfo.Headers.AddAll(requestConfiguration.Headers)
         requestInfo.AddRequestOptions(requestConfiguration.Options)
     }
-    requestInfo.Headers.TryAdd("Accept", "text/plain;q=0.9")
+    requestInfo.Headers.TryAdd("Accept", "application/json")
     return requestInfo, nil
 }
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.

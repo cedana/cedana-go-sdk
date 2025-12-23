@@ -25,8 +25,6 @@ type PolicyRequest struct {
     resource_ids []i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The resource_name property
     resource_name *string
-    // The runc_root property
-    runc_root *string
 }
 // PolicyRequest_PolicyRequest_policy_type composed type wrapper for classes PolicyRequest_policy_typeMember1able, PolicyType
 type PolicyRequest_PolicyRequest_policy_type struct {
@@ -316,16 +314,6 @@ func (m *PolicyRequest) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         }
         return nil
     }
-    res["runc_root"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRuncRoot(val)
-        }
-        return nil
-    }
     return res
 }
 // GetHeartbeatTime gets the heartbeat_time property value. The heartbeat_time property
@@ -357,11 +345,6 @@ func (m *PolicyRequest) GetResourceIds()([]i561e97a8befe7661a44c8f54600992b4207a
 // returns a *string when successful
 func (m *PolicyRequest) GetResourceName()(*string) {
     return m.resource_name
-}
-// GetRuncRoot gets the runc_root property value. The runc_root property
-// returns a *string when successful
-func (m *PolicyRequest) GetRuncRoot()(*string) {
-    return m.runc_root
 }
 // Serialize serializes information the current object
 func (m *PolicyRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -408,12 +391,6 @@ func (m *PolicyRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
         }
     }
     {
-        err := writer.WriteStringValue("runc_root", m.GetRuncRoot())
-        if err != nil {
-            return err
-        }
-    }
-    {
         err := writer.WriteAdditionalData(m.GetAdditionalData())
         if err != nil {
             return err
@@ -453,10 +430,6 @@ func (m *PolicyRequest) SetResourceIds(value []i561e97a8befe7661a44c8f54600992b4
 func (m *PolicyRequest) SetResourceName(value *string)() {
     m.resource_name = value
 }
-// SetRuncRoot sets the runc_root property value. The runc_root property
-func (m *PolicyRequest) SetRuncRoot(value *string)() {
-    m.runc_root = value
-}
 type PolicyRequestable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
@@ -467,7 +440,6 @@ type PolicyRequestable interface {
     GetResource()(PolicyRequest_PolicyRequest_resourceable)
     GetResourceIds()([]i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetResourceName()(*string)
-    GetRuncRoot()(*string)
     SetClusterId(value *string)()
     SetHeartbeatTime(value *int64)()
     SetId(value *string)()
@@ -475,5 +447,4 @@ type PolicyRequestable interface {
     SetResource(value PolicyRequest_PolicyRequest_resourceable)()
     SetResourceIds(value []i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetResourceName(value *string)()
-    SetRuncRoot(value *string)()
 }

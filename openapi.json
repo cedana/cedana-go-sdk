@@ -1,12 +1,12 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "cedana-propagator",
+    "title": "Cedana API",
     "description": "",
     "license": {
       "name": ""
     },
-    "version": "0.5.0"
+    "version": "2.0.1.7"
   },
   "paths": {
     "/v2/actions": {
@@ -47,9 +47,9 @@
           "400": {
             "description": "Failed list",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -57,9 +57,9 @@
           "500": {
             "description": "Failed to connect/fetch from jobs table from database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -91,7 +91,7 @@
         ],
         "responses": {
           "200": {
-            "description": "The action_id of the given pod_id has been fetched Successfully",
+            "description": "The action_id of the given pod_id has been fetched successfully",
             "content": {
               "text/plain": {
                 "schema": {
@@ -104,9 +104,9 @@
           "404": {
             "description": "Failed to get action_id for the given pod_id",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -114,9 +114,9 @@
           "500": {
             "description": "Failed to connect/fetch from pods_to_actions table from database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -161,9 +161,9 @@
           "404": {
             "description": "Failed to get action_id within the db",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -171,9 +171,9 @@
           "500": {
             "description": "Failed to connect/fetch from pods_to_actions table from database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -191,7 +191,7 @@
         "tags": [
           "Actions"
         ],
-        "summary": "Get path of the latest checkpoint",
+        "summary": "Get path of latest checkpoint",
         "description": "Returns the path of the latest successful checkpoint for a given checkpoint name",
         "operationId": "get_latest_checkpoint_for_container_in_action",
         "responses": {
@@ -209,9 +209,9 @@
           "400": {
             "description": "Failed to get action for request",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -219,9 +219,9 @@
           "500": {
             "description": "Failed to connect/fetch from jobs table from database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -253,32 +253,42 @@
         },
         "responses": {
           "200": {
-            "description": "Returns the id for the task",
+            "description": "Returns the ID for the task",
             "content": {
               "text/plain": {
                 "schema": {
                   "type": "string"
                 },
-                "example": "<uuid-v4-here>"
+                "example": "550e8400-e29b-41d4-a716-446655440000"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
               }
             }
           },
           "404": {
             "description": "Failed to find checkpointable resource",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
           },
           "500": {
-            "description": "Failed to connect/fetch from jobs table from database",
+            "description": "Failed to create checkpoint or connect to eventstream",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -296,8 +306,8 @@
         "tags": [
           "Actions"
         ],
-        "summary": "Get status of a checkpoint action",
-        "description": "Returns the current status of a checkpoint for an action ID",
+        "summary": "Get status of checkpoint action",
+        "description": "Returns the current status of a checkpoint action",
         "operationId": "get_checkpoint_status",
         "parameters": [
           {
@@ -323,9 +333,9 @@
           "404": {
             "description": "Action ID not found",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -333,9 +343,9 @@
           "500": {
             "description": "Failed to retrieve status from database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -354,19 +364,19 @@
           "Checkpoints"
         ],
         "summary": "List checkpoints",
-        "description": "Use query params to filter checkpoints",
+        "description": "Use query params to filter checkpoints. Supports filtering by `ids` (comma-separated UUIDs for single or multiple checkpoints)",
         "operationId": "list",
         "parameters": [
           {
             "name": "ids",
             "in": "query",
+            "description": "Comma-separated list of checkpoint UUIDs to filter by",
             "required": false,
             "schema": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "format": "uuid"
-              }
+              "type": [
+                "string",
+                "null"
+              ]
             }
           }
         ],
@@ -384,12 +394,22 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid query parameters",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
           "500": {
             "description": "Failed to connect/fetch from database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -410,32 +430,22 @@
         "operationId": "add",
         "responses": {
           "200": {
-            "description": "Returns the checkpoint id for the new checkpoint",
+            "description": "Returns the checkpoint ID for the new checkpoint",
             "content": {
               "text/plain": {
                 "schema": {
                   "type": "string"
                 },
-                "example": "<uuid-v4-here>"
-              }
-            }
-          },
-          "404": {
-            "description": "Failed create checkpoint",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
+                "example": "550e8400-e29b-41d4-a716-446655440000"
               }
             }
           },
           "500": {
-            "description": "Failed to connect/fetch from jobs table from database",
+            "description": "Failed to create checkpoint in database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -474,15 +484,29 @@
                 "schema": {
                   "type": "string"
                 },
-                "example": "<uuid-for-checkpoint>"
+                "example": "550e8400-e29b-41d4-a716-446655440000"
               }
             }
           },
-          "404": {
-            "description": "Failed to find checkpoint from id"
+          "400": {
+            "description": "Invalid UUID provided",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Failed to connect/execute request against db"
+            "description": "Failed to execute request against database",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -498,7 +522,7 @@
           "Checkpoints"
         ],
         "summary": "Put checkpoint info",
-        "description": "Add information about the checkpointed pod and runtime",
+        "description": "Add information about the checkpoint",
         "operationId": "update_info",
         "parameters": [
           {
@@ -523,32 +547,22 @@
         },
         "responses": {
           "200": {
-            "description": "Successfully deprecated checkpoint and returns id",
+            "description": "Successfully updated checkpoint info and returns ID",
             "content": {
               "text/plain": {
                 "schema": {
                   "type": "string"
                 },
-                "example": "<uuid-for-checkpoint>"
-              }
-            }
-          },
-          "404": {
-            "description": "Failed to find checkpoint from id",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
+                "example": "550e8400-e29b-41d4-a716-446655440000"
               }
             }
           },
           "500": {
-            "description": "Failed to connect/execute request against db",
+            "description": "Failed to execute request against database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -597,26 +611,26 @@
                 "schema": {
                   "type": "string"
                 },
-                "example": "<uuid-v4-here>"
+                "example": "550e8400-e29b-41d4-a716-446655440000"
               }
             }
           },
-          "404": {
-            "description": "Failed mark checkpoint",
+          "400": {
+            "description": "Invalid request parameters",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
           },
           "500": {
-            "description": "Failed to connect/fetch from jobs table from database",
+            "description": "Failed to update checkpoint in database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -635,7 +649,7 @@
           "Clusters"
         ],
         "summary": "List clusters",
-        "description": "Returns all clusters associated with the authenticated user's organization.",
+        "description": "Returns all clusters associated with the authenticated user's organization",
         "operationId": "list",
         "responses": {
           "200": {
@@ -651,22 +665,12 @@
               }
             }
           },
-          "400": {
-            "description": "Bad request or missing organization ID",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
           "500": {
             "description": "Failed to fetch clusters from database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -683,7 +687,7 @@
           "Clusters"
         ],
         "summary": "Create cluster",
-        "description": "Creates or updates info regarding a Kubernetes cluster.\nIf a cluster with the given name already exists for the organization, it will be updated.",
+        "description": "Creates or updates info regarding a Kubernetes cluster",
         "operationId": "create",
         "requestBody": {
           "content": {
@@ -703,26 +707,26 @@
                 "schema": {
                   "type": "string"
                 },
-                "example": "<uuid-v4-here>"
+                "example": "550e8400-e29b-41d4-a716-446655440000"
               }
             }
           },
           "400": {
             "description": "Bad request or missing cluster name",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
           },
           "500": {
-            "description": "Failed to connect/fetch from database",
+            "description": "Failed to create cluster in database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -740,7 +744,7 @@
         "tags": [
           "Resources"
         ],
-        "summary": "Get total count of clusters",
+        "summary": "Get clusters total count",
         "operationId": "clusters_count",
         "responses": {
           "200": {
@@ -753,22 +757,12 @@
               }
             }
           },
-          "400": {
-            "description": "Invalid table name",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
           "500": {
             "description": "Database error",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -787,6 +781,7 @@
           "Clusters"
         ],
         "summary": "Sync cluster",
+        "description": "Syncs cluster resources such as pods, jobs, and nodes",
         "operationId": "sync",
         "requestBody": {
           "content": {
@@ -812,19 +807,29 @@
           "400": {
             "description": "Bad request",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cluster or node not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
                 }
               }
             }
           },
           "500": {
-            "description": "Failed to connect to db",
+            "description": "Failed to sync resource to database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -842,8 +847,8 @@
         "tags": [
           "Clusters"
         ],
-        "summary": "Create workload on cluster",
-        "description": "Takes a cluster name and workload specification, then creates a Kubernetes job\non the specified cluster by publishing a workload creation event to the message queue.",
+        "summary": "Create workload",
+        "description": "Takes a cluster name and workload specification, then creates a Kubernetes job\non the specified cluster",
         "operationId": "create_workload",
         "requestBody": {
           "content": {
@@ -895,7 +900,7 @@
           "Clusters"
         ],
         "summary": "Delete cluster",
-        "description": "This endpoint deletes a cluster and its dependent entities\n(pods and relation records) from the database.\n\nThe operation is executed inside a single database transaction and performs\nthe following steps in order:\n\n1. Deletes all `pods` associated with the cluster via `pod_relations`.\n2. Deletes all `pod_relations` entries for the cluster.\n3. Deletes all `node_relations` entries for the cluster.\n4. Deletes the `cluster_relations` entry for the cluster.\n5. Deletes the `clusters` record itself.\n\nIf any step fails, the transaction is rolled back and no partial deletion\noccurs.",
+        "description": "This endpoint deletes a cluster and all its dependent entities in a single transaction\nwhich is rolled back if any part of the deletion fails",
         "operationId": "delete",
         "parameters": [
           {
@@ -912,22 +917,22 @@
           "200": {
             "description": "Delete the given cluster, and return Status OK"
           },
-          "400": {
-            "description": "Bad request or missing organization ID",
+          "404": {
+            "description": "Cluster not found",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
           },
           "500": {
-            "description": "Failed to fetch clusters from database",
+            "description": "Failed to delete cluster from database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -968,12 +973,22 @@
               }
             }
           },
-          "500": {
-            "description": "Failed to connect/fetch from database",
+          "404": {
+            "description": "Service not found",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to fetch service configuration",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
                 }
               }
             }
@@ -991,7 +1006,7 @@
         "tags": [
           "Events"
         ],
-        "summary": "List events with optional filtering",
+        "summary": "List events",
         "description": "Returns events within the specified time window, optionally filtered by operation or resource type.\nThe metadata field contains structured information about the event that can be used for filtering and display.",
         "operationId": "list_events",
         "parameters": [
@@ -1047,9 +1062,9 @@
           "500": {
             "description": "Failed to fetch events from database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -1092,17 +1107,18 @@
                 },
                 "example": [
                   "file1.txt",
-                  "file2.txt"
+                  "file2.txt",
+                  "subdir/"
                 ]
               }
             }
           },
           "500": {
-            "description": "Failed to fulfill request",
+            "description": "Failed to list directory contents",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -1140,16 +1156,16 @@
                 "schema": {
                   "type": "string"
                 },
-                "example": "<presigned-bucket-url-for-downloading-file>"
+                "example": "https://storage.googleapis.com/bucket/file.tar.gz?signature=..."
               }
             }
           },
           "500": {
-            "description": "Failed to fulfill request",
+            "description": "Failed to generate download URL",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -1185,16 +1201,16 @@
                 "schema": {
                   "type": "string"
                 },
-                "example": "<presigned-bucket-url-for-uploading-file>"
+                "example": "https://storage.googleapis.com/bucket/file.tar.gz?signature=..."
               }
             }
           },
           "500": {
-            "description": "Failed to fulfill request",
+            "description": "Failed to generate upload URL",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -1231,9 +1247,9 @@
           "500": {
             "description": "Internal server error",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -1244,7 +1260,7 @@
         "tags": [
           "Cloud Bursting"
         ],
-        "summary": "Create a new instance",
+        "summary": "Create instance",
         "operationId": "create_instance",
         "requestBody": {
           "content": {
@@ -1270,9 +1286,9 @@
           "400": {
             "description": "Invalid request",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -1280,9 +1296,9 @@
           "500": {
             "description": "Internal server error",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -1300,7 +1316,7 @@
         "tags": [
           "Cloud Bursting"
         ],
-        "summary": "Get cloud bursting configuration status",
+        "summary": "Get configuration status",
         "operationId": "get_bursting_status",
         "responses": {
           "200": {
@@ -1370,9 +1386,9 @@
           "500": {
             "description": "Internal server error",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -1385,7 +1401,7 @@
         "tags": [
           "Cloud Bursting"
         ],
-        "summary": "Delete an instance",
+        "summary": "Delete instance",
         "operationId": "delete_instance",
         "parameters": [
           {
@@ -1400,14 +1416,21 @@
         ],
         "responses": {
           "200": {
-            "description": "Instance deleted successfully"
+            "description": "Instance deleted successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
           },
           "500": {
             "description": "Failed to delete instance",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -1452,9 +1475,9 @@
           "404": {
             "description": "Instance not found",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -1462,9 +1485,9 @@
           "500": {
             "description": "Failed to get status",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -1499,11 +1522,11 @@
             }
           },
           "500": {
-            "description": "Failed to connect/fetch from database",
+            "description": "Failed to fetch from database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -1521,7 +1544,7 @@
         "tags": [
           "Resources"
         ],
-        "summary": "Get total count of jobs",
+        "summary": "Get jobs total count",
         "operationId": "jobs_count",
         "responses": {
           "200": {
@@ -1534,22 +1557,12 @@
               }
             }
           },
-          "400": {
-            "description": "Invalid table name",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
           "500": {
             "description": "Database error",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -1567,7 +1580,7 @@
         "tags": [
           "Resources"
         ],
-        "summary": "Get available job namespaces",
+        "summary": "Get job namespaces",
         "operationId": "job_namespaces",
         "responses": {
           "200": {
@@ -1583,9 +1596,9 @@
           "500": {
             "description": "Database error",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -1603,7 +1616,7 @@
         "tags": [
           "Resources"
         ],
-        "summary": "List jobs with pagination",
+        "summary": "List jobs (paginated)",
         "operationId": "job_list_paginated",
         "parameters": [
           {
@@ -1699,11 +1712,11 @@
             }
           },
           "500": {
-            "description": "Failed to connect/fetch from database",
+            "description": "Failed to fetch from database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -1721,7 +1734,7 @@
         "tags": [
           "Resources"
         ],
-        "summary": "Get available job statuses",
+        "summary": "Get job statuses",
         "operationId": "job_statuses",
         "responses": {
           "200": {
@@ -1737,9 +1750,9 @@
           "500": {
             "description": "Database error",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -1757,7 +1770,7 @@
         "tags": [
           "Logs"
         ],
-        "summary": "Get k8 logs",
+        "summary": "Get logs (K8s)",
         "operationId": "get_k8_logs",
         "parameters": [
           {
@@ -1801,9 +1814,9 @@
           "500": {
             "description": "Failed to connect/fetch from logs table from database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -1821,26 +1834,28 @@
         "tags": [
           "Metrics"
         ],
-        "summary": "Get k8 metrics",
+        "summary": "Get metrics (K8s)",
         "operationId": "get_k8_metrics",
         "responses": {
           "200": {
             "description": "Returns k8 metrics from duckdb",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
-                },
-                "example": "<uuid-v4-here>"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NodeResourceMetricList"
+                  }
+                }
               }
             }
           },
           "500": {
             "description": "Failed to connect/fetch from metrics table from database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -1858,7 +1873,7 @@
         "tags": [
           "Metrics"
         ],
-        "summary": "Get SLURM metrics",
+        "summary": "Get metrics (Slurm)",
         "operationId": "get_slurm_metrics",
         "responses": {
           "200": {
@@ -1877,9 +1892,9 @@
           "500": {
             "description": "Failed to connect/fetch from SLURM metrics table in database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -1897,7 +1912,7 @@
         "tags": [
           "Metrics"
         ],
-        "summary": "Get SLURM cluster overview",
+        "summary": "Get cluster overview (Slurm)",
         "operationId": "get_slurm_cluster_overview",
         "responses": {
           "200": {
@@ -1913,9 +1928,9 @@
           "500": {
             "description": "Failed to fetch SLURM cluster overview",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -1933,7 +1948,7 @@
         "tags": [
           "Metrics"
         ],
-        "summary": "Get SLURM state breakdown",
+        "summary": "Get state breakdown (Slurm)",
         "operationId": "get_slurm_state_breakdown",
         "responses": {
           "200": {
@@ -1949,9 +1964,9 @@
           "500": {
             "description": "Failed to fetch SLURM state breakdown",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -1969,7 +1984,7 @@
         "tags": [
           "Metrics"
         ],
-        "summary": "Get partition statistics",
+        "summary": "Get partition statistics (Slurm)",
         "operationId": "get_partition_stats",
         "responses": {
           "200": {
@@ -1988,9 +2003,9 @@
           "500": {
             "description": "Failed to fetch partition statistics",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -2008,7 +2023,8 @@
         "tags": [
           "Metrics"
         ],
-        "summary": "Get partition time series (last 10 data points)",
+        "summary": "Get partition time series (Slurm)",
+        "description": "Returns CPU load and free memory time series for the specified partition over the last 10 data\npoints",
         "operationId": "get_partition_timeseries",
         "parameters": [
           {
@@ -2035,9 +2051,9 @@
           "500": {
             "description": "Failed to fetch partition time series",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -2055,7 +2071,7 @@
         "tags": [
           "Metrics"
         ],
-        "summary": "Get CPU load time series",
+        "summary": "Get CPU load time series (Slurm)",
         "operationId": "get_cpu_load_timeseries",
         "responses": {
           "200": {
@@ -2074,9 +2090,9 @@
           "500": {
             "description": "Failed to fetch CPU load time series",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -2094,7 +2110,7 @@
         "tags": [
           "Metrics"
         ],
-        "summary": "Get memory time series",
+        "summary": "Get memory time series (Slurm)",
         "operationId": "get_memory_timeseries",
         "responses": {
           "200": {
@@ -2110,9 +2126,9 @@
           "500": {
             "description": "Failed to fetch memory time series",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -2155,18 +2171,18 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Node"
+                    "$ref": "#/components/schemas/NodeResponse"
                   }
                 }
               }
             }
           },
           "500": {
-            "description": "Failed to connect/fetch from database",
+            "description": "Failed to fetch from database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -2184,7 +2200,7 @@
         "tags": [
           "Resources"
         ],
-        "summary": "Get total count of nodes",
+        "summary": "Get nodes total count",
         "operationId": "nodes_count",
         "responses": {
           "200": {
@@ -2197,22 +2213,12 @@
               }
             }
           },
-          "400": {
-            "description": "Invalid table name",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
           "500": {
             "description": "Database error",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -2262,11 +2268,11 @@
             }
           },
           "500": {
-            "description": "Failed to connect/fetch from database",
+            "description": "Failed to fetch from database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -2297,72 +2303,12 @@
               }
             }
           },
-          "400": {
-            "description": "Invalid table name",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
           "500": {
             "description": "Database error",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/v2/pods/namespace/{namespace}": {
-      "get": {
-        "tags": [
-          "Resources"
-        ],
-        "summary": "Get all pods in a specific namespace",
-        "operationId": "pods_by_namespace",
-        "parameters": [
-          {
-            "name": "namespace",
-            "in": "path",
-            "description": "Namespace name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Returns pods in the specified namespace",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PodResponse"
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Failed to connect/fetch from database",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -2380,6 +2326,7 @@
         "tags": [
           "Resources"
         ],
+        "summary": "List pod namespaces",
         "operationId": "pod_namespaces",
         "responses": {
           "200": {
@@ -2393,11 +2340,11 @@
             }
           },
           "500": {
-            "description": "Failed to connect/fetch from database",
+            "description": "Failed to fetch from database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -2415,6 +2362,7 @@
         "tags": [
           "Resources"
         ],
+        "summary": "List pods (paginated)",
         "operationId": "pod_list_paginated",
         "parameters": [
           {
@@ -2522,11 +2470,11 @@
             }
           },
           "500": {
-            "description": "Failed to connect/fetch from database",
+            "description": "Failed to fetch from database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -2544,6 +2492,7 @@
         "tags": [
           "Resources"
         ],
+        "summary": "List pod statuses",
         "operationId": "pod_statuses",
         "responses": {
           "200": {
@@ -2557,11 +2506,11 @@
             }
           },
           "500": {
-            "description": "Failed to connect/fetch from database",
+            "description": "Failed to fetch from database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -2603,10 +2552,24 @@
             }
           },
           "400": {
-            "description": "Invalid request body"
+            "description": "Invalid request body",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Failed to create policy in policy table"
+            "description": "Failed to create policy in policy table",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -2635,13 +2598,34 @@
         },
         "responses": {
           "200": {
-            "description": "Policy deleted successfully"
+            "description": "Policy deleted successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
           },
           "400": {
-            "description": "Invalid request body"
+            "description": "Invalid request body",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Failed to delete policy from policy table"
+            "description": "Failed to delete policy from policy table",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -2660,13 +2644,37 @@
         "operationId": "policy_list",
         "responses": {
           "200": {
-            "description": "Policies retrieved successfully"
+            "description": "Policies retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PolicyResponse"
+                  }
+                }
+              }
+            }
           },
           "400": {
-            "description": "Invalid request body"
+            "description": "Invalid request body",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Failed to retriev policies from policy table"
+            "description": "Failed to retriev policies from policy table",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -2705,10 +2713,24 @@
             }
           },
           "400": {
-            "description": "Invalid request body"
+            "description": "Invalid request body",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Failed to update policy from policy table"
+            "description": "Failed to update policy from policy table",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -2751,17 +2773,31 @@
             }
           },
           "400": {
-            "description": "Invalid policy_id format"
+            "description": "Invalid policy_id format",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
           },
           "404": {
-            "description": "Policy not found"
+            "description": "Policy not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
           },
           "500": {
             "description": "Failed to connect/fetch from database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -2793,42 +2829,32 @@
         },
         "responses": {
           "200": {
-            "description": "Returns the checkpoint id for the new checkpoint",
+            "description": "Returns the checkpoint ID for the new checkpoint",
             "content": {
               "text/plain": {
                 "schema": {
                   "type": "string"
                 },
-                "example": "<uuid-v4-here>"
+                "example": "550e8400-e29b-41d4-a716-446655440000"
               }
             }
           },
           "400": {
-            "description": "Failed create checkpoint",
+            "description": "Invalid action_id or request parameters",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Failed create restore",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
           },
           "500": {
-            "description": "Failed to connect/fetch from jobs table from database",
+            "description": "Failed to create restore or connect to eventstream",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -2846,6 +2872,7 @@
         "tags": [
           "Actions (Slurm)"
         ],
+        "summary": "Checkpoint job",
         "operationId": "checkpoint_slurm_job",
         "requestBody": {
           "content": {
@@ -2872,9 +2899,9 @@
           "404": {
             "description": "Failed to find checkpointable resource",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -2882,9 +2909,9 @@
           "500": {
             "description": "Failed to connect/fetch from jobs table from database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -2902,6 +2929,7 @@
         "tags": [
           "Clusters (Slurm)"
         ],
+        "summary": "List clusters",
         "description": "Use query params to filter clusters",
         "operationId": "list",
         "responses": {
@@ -2921,9 +2949,9 @@
           "500": {
             "description": "Failed to connect/fetch from database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -2941,6 +2969,8 @@
         "tags": [
           "Clusters (Slurm)"
         ],
+        "summary": "List clusters (paginated)",
+        "description": "Use query params to filter clusters",
         "operationId": "list_paginated",
         "parameters": [
           {
@@ -2981,9 +3011,9 @@
           "500": {
             "description": "Failed to connect/fetch from database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -3001,7 +3031,8 @@
         "tags": [
           "Jobs (Slurm)"
         ],
-        "description": "Use query params to filter checkpoints",
+        "summary": "List jobs",
+        "description": "Use query params to filter jobs",
         "operationId": "list",
         "responses": {
           "200": {
@@ -3020,9 +3051,9 @@
           "500": {
             "description": "Failed to connect/fetch from database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -3040,6 +3071,8 @@
         "tags": [
           "Jobs (Slurm)"
         ],
+        "summary": "List jobs (paginated)",
+        "description": "Use query params to filter jobs",
         "operationId": "list_paginated",
         "parameters": [
           {
@@ -3080,9 +3113,9 @@
           "500": {
             "description": "Failed to connect/fetch from database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -3100,6 +3133,7 @@
         "tags": [
           "Nodes (Slurm)"
         ],
+        "summary": "List nodes",
         "description": "Use query params to filter nodes",
         "operationId": "list",
         "responses": {
@@ -3119,9 +3153,9 @@
           "500": {
             "description": "Failed to connect/fetch from database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -3139,6 +3173,8 @@
         "tags": [
           "Nodes (Slurm)"
         ],
+        "summary": "List nodes (paginated)",
+        "description": "Use query params to filter nodes",
         "operationId": "list_paginated",
         "parameters": [
           {
@@ -3179,9 +3215,9 @@
           "500": {
             "description": "Failed to connect/fetch from database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -3199,7 +3235,7 @@
         "tags": [
           "Actions (Slurm)"
         ],
-        "summary": "Restore pod",
+        "summary": "Restore job",
         "operationId": "restore_slurm_job",
         "requestBody": {
           "content": {
@@ -3226,9 +3262,9 @@
           "400": {
             "description": "Failed create checkpoint",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -3236,9 +3272,9 @@
           "404": {
             "description": "Failed create restore",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -3246,9 +3282,9 @@
           "500": {
             "description": "Failed to connect/fetch from jobs table from database",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
@@ -3271,7 +3307,7 @@
         "operationId": "get",
         "responses": {
           "200": {
-            "description": "Returns your `user-id` (a uuid)",
+            "description": "Returns UUID",
             "content": {
               "text/plain": {
                 "schema": {
@@ -3281,21 +3317,31 @@
             }
           },
           "401": {
-            "description": "Invalid Key/Token",
+            "description": "Invalid API key",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
                 }
               }
             }
           },
           "404": {
-            "description": "User not attached to valid api key",
+            "description": "User not found",
             "content": {
-              "application/json": {
+              "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/HttpError"
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
                 }
               }
             }
@@ -3626,12 +3672,6 @@
           },
           "reason": {
             "$ref": "#/components/schemas/CheckpointReason"
-          },
-          "runc_root": {
-            "type": [
-              "string",
-              "null"
-            ]
           }
         }
       },
@@ -4025,22 +4065,6 @@
           "timestamp": {
             "type": "integer",
             "minimum": 0
-          }
-        }
-      },
-      "HttpError": {
-        "type": "object",
-        "required": [
-          "message",
-          "cedana_error_code"
-        ],
-        "properties": {
-          "cedana_error_code": {
-            "type": "integer",
-            "minimum": 0
-          },
-          "message": {
-            "type": "string"
           }
         }
       },
@@ -4454,15 +4478,78 @@
       },
       "Node": {
         "type": "object",
+        "title": "Node",
+        "description": "Entire json for the Kubernetes Node"
+      },
+      "NodeMetricItem": {
+        "type": "object",
+        "required": [
+          "metric_name",
+          "collector",
+          "value",
+          "timestamp"
+        ],
+        "properties": {
+          "collector": {
+            "type": "string"
+          },
+          "cpu_core": {
+            "type": "string"
+          },
+          "cpu_mode": {
+            "type": "string"
+          },
+          "filesystem": {
+            "type": "string"
+          },
+          "metric_name": {
+            "type": "string"
+          },
+          "mountpoint": {
+            "type": "string"
+          },
+          "resource": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "timestamp": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "NodeResourceMetricList": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NodeMetricItem"
+            }
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "NodeResponse": {
+        "type": "object",
         "required": [
           "id",
           "name",
           "status",
+          "cluster_name",
           "compute_type",
           "instance_type",
-          "region",
-          "metadata",
-          "cluster_name"
+          "region"
         ],
         "properties": {
           "cluster_name": {
@@ -4478,7 +4565,6 @@
           "instance_type": {
             "type": "string"
           },
-          "metadata": {},
           "name": {
             "type": "string"
           },
@@ -4824,12 +4910,6 @@
           },
           "resource_name": {
             "type": "string"
-          },
-          "runc_root": {
-            "type": [
-              "string",
-              "null"
-            ]
           }
         }
       },
@@ -4839,6 +4919,53 @@
           "pods",
           "namespace"
         ]
+      },
+      "PolicyResponse": {
+        "type": "object",
+        "required": [
+          "id",
+          "status",
+          "policy_type",
+          "input",
+          "resource",
+          "resource_list",
+          "pod_count"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "input": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "pod_count": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "policy_type": {
+            "type": "string"
+          },
+          "resource": {
+            "type": "string"
+          },
+          "resource_list": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          }
+        }
       },
       "PolicyType": {
         "type": "string",
@@ -5300,35 +5427,67 @@
   "tags": [
     {
       "name": "User",
-      "description": "Cedana Propagator API to get user information"
+      "description": "Cedana API to get user information"
     },
     {
       "name": "Service",
-      "description": "Cedana Propagator API for service discovery"
+      "description": "Cedana API for service discovery"
     },
     {
       "name": "Checkpoints",
-      "description": "Cedana Propagator API for managing checkpoints"
+      "description": "Cedana API for checkpoints"
+    },
+    {
+      "name": "Actions",
+      "description": "Cedana API for actions"
     },
     {
       "name": "Files",
-      "description": "Cedana Propagator API for managing files"
+      "description": "Cedana API for files"
     },
     {
       "name": "Resources",
-      "description": "Cedana Propagator API for managing resources"
+      "description": "Cedana API for resources"
     },
     {
       "name": "Clusters",
-      "description": "Cedana Propagator API for clusters"
+      "description": "Cedana API for clusters"
+    },
+    {
+      "name": "Policy",
+      "description": "Cedana API for policies"
     },
     {
       "name": "Cloud Bursting",
-      "description": "Cedana Propagator API for cloud bursting"
+      "description": "Cedana API for cloud bursting"
+    },
+    {
+      "name": "Jobs (Slurm)",
+      "description": "Cedana API for jobs (Slurm)"
+    },
+    {
+      "name": "Nodes (Slurm)",
+      "description": "Cedana API for nodes (Slurm)"
+    },
+    {
+      "name": "Actions (Slurm)",
+      "description": "Cedana API for actions (Slurm)"
+    },
+    {
+      "name": "Clusters (Slurm)",
+      "description": "Cedana API for clusters (Slurm)"
     },
     {
       "name": "Events",
-      "description": "Cedana Propagator API for duckdb events"
+      "description": "Cedana API for events"
+    },
+    {
+      "name": "Metrics",
+      "description": "Cedana API for metrics"
+    },
+    {
+      "name": "Logs",
+      "description": "Cedana API for logs"
     }
   ]
 }

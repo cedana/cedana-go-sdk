@@ -33,7 +33,7 @@ func NewInstancesBurstingStatusRequestBuilder(rawUrl string, requestAdapter i2ae
     urlParams["request-raw-url"] = rawUrl
     return NewInstancesBurstingStatusRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get get cloud bursting configuration status
+// Get get configuration status
 // returns a BurstingStatusable when successful
 func (m *InstancesBurstingStatusRequestBuilder) Get(ctx context.Context, requestConfiguration *InstancesBurstingStatusRequestBuilderGetRequestConfiguration)(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.BurstingStatusable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
@@ -49,7 +49,7 @@ func (m *InstancesBurstingStatusRequestBuilder) Get(ctx context.Context, request
     }
     return res.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.BurstingStatusable), nil
 }
-// ToGetRequestInformation get cloud bursting configuration status
+// ToGetRequestInformation get configuration status
 // returns a *RequestInformation when successful
 func (m *InstancesBurstingStatusRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *InstancesBurstingStatusRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

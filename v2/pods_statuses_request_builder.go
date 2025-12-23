@@ -33,17 +33,14 @@ func NewPodsStatusesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee2
     urlParams["request-raw-url"] = rawUrl
     return NewPodsStatusesRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Get list pod statuses
 // returns a StatusesResponseable when successful
-// returns a HttpError error when the service returns a 500 status code
 func (m *PodsStatusesRequestBuilder) Get(ctx context.Context, requestConfiguration *PodsStatusesRequestBuilderGetRequestConfiguration)(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.StatusesResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateStatusesResponseFromDiscriminatorValue, errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateStatusesResponseFromDiscriminatorValue, nil)
     if err != nil {
         return nil, err
     }
@@ -52,6 +49,7 @@ func (m *PodsStatusesRequestBuilder) Get(ctx context.Context, requestConfigurati
     }
     return res.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.StatusesResponseable), nil
 }
+// ToGetRequestInformation list pod statuses
 // returns a *RequestInformation when successful
 func (m *PodsStatusesRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *PodsStatusesRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

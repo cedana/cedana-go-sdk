@@ -33,20 +33,14 @@ func NewClusterSyncRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee26
     urlParams["request-raw-url"] = rawUrl
     return NewClusterSyncRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Post sync cluster
+// Post syncs cluster resources such as pods, jobs, and nodes
 // returns a *string when successful
-// returns a HttpError error when the service returns a 400 status code
-// returns a HttpError error when the service returns a 500 status code
 func (m *ClusterSyncRequestBuilder) Post(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.ClusterSyncRequestable, requestConfiguration *ClusterSyncRequestBuilderPostRequestConfiguration)(*string, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "400": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", nil)
     if err != nil {
         return nil, err
     }
@@ -55,7 +49,7 @@ func (m *ClusterSyncRequestBuilder) Post(ctx context.Context, body i4db02de4fa95
     }
     return res.(*string), nil
 }
-// ToPostRequestInformation sync cluster
+// ToPostRequestInformation syncs cluster resources such as pods, jobs, and nodes
 // returns a *RequestInformation when successful
 func (m *ClusterSyncRequestBuilder) ToPostRequestInformation(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.ClusterSyncRequestable, requestConfiguration *ClusterSyncRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

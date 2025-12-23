@@ -33,20 +33,14 @@ func NewCheckpointStatusWithAction_ItemRequestBuilder(rawUrl string, requestAdap
     urlParams["request-raw-url"] = rawUrl
     return NewCheckpointStatusWithAction_ItemRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get returns the current status of a checkpoint for an action ID
+// Get returns the current status of a checkpoint action
 // returns a StatusResponseable when successful
-// returns a HttpError error when the service returns a 404 status code
-// returns a HttpError error when the service returns a 500 status code
 func (m *CheckpointStatusWithAction_ItemRequestBuilder) Get(ctx context.Context, requestConfiguration *CheckpointStatusWithAction_ItemRequestBuilderGetRequestConfiguration)(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.StatusResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "404": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateStatusResponseFromDiscriminatorValue, errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateStatusResponseFromDiscriminatorValue, nil)
     if err != nil {
         return nil, err
     }
@@ -55,7 +49,7 @@ func (m *CheckpointStatusWithAction_ItemRequestBuilder) Get(ctx context.Context,
     }
     return res.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.StatusResponseable), nil
 }
-// ToGetRequestInformation returns the current status of a checkpoint for an action ID
+// ToGetRequestInformation returns the current status of a checkpoint action
 // returns a *RequestInformation when successful
 func (m *CheckpointStatusWithAction_ItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *CheckpointStatusWithAction_ItemRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

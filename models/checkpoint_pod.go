@@ -26,8 +26,6 @@ type CheckpointPod struct {
     pod_name *string
     // The reason property
     reason *CheckpointReason
-    // The runc_root property
-    runc_root *string
 }
 // CheckpointPod_CheckpointPod_overrides composed type wrapper for classes CheckpointOverridesable, CheckpointPod_overridesMember1able
 type CheckpointPod_CheckpointPod_overrides struct {
@@ -228,16 +226,6 @@ func (m *CheckpointPod) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         }
         return nil
     }
-    res["runc_root"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRuncRoot(val)
-        }
-        return nil
-    }
     return res
 }
 // GetKind gets the kind property value. The kind property
@@ -269,11 +257,6 @@ func (m *CheckpointPod) GetPodName()(*string) {
 // returns a *CheckpointReason when successful
 func (m *CheckpointPod) GetReason()(*CheckpointReason) {
     return m.reason
-}
-// GetRuncRoot gets the runc_root property value. The runc_root property
-// returns a *string when successful
-func (m *CheckpointPod) GetRuncRoot()(*string) {
-    return m.runc_root
 }
 // Serialize serializes information the current object
 func (m *CheckpointPod) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -322,12 +305,6 @@ func (m *CheckpointPod) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
         }
     }
     {
-        err := writer.WriteStringValue("runc_root", m.GetRuncRoot())
-        if err != nil {
-            return err
-        }
-    }
-    {
         err := writer.WriteAdditionalData(m.GetAdditionalData())
         if err != nil {
             return err
@@ -371,10 +348,6 @@ func (m *CheckpointPod) SetPodName(value *string)() {
 func (m *CheckpointPod) SetReason(value *CheckpointReason)() {
     m.reason = value
 }
-// SetRuncRoot sets the runc_root property value. The runc_root property
-func (m *CheckpointPod) SetRuncRoot(value *string)() {
-    m.runc_root = value
-}
 type CheckpointPodable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
@@ -386,7 +359,6 @@ type CheckpointPodable interface {
     GetPodId()(*string)
     GetPodName()(*string)
     GetReason()(*CheckpointReason)
-    GetRuncRoot()(*string)
     SetActionId(value *string)()
     SetClusterId(value *string)()
     SetKind(value *CheckpointKind)()
@@ -395,5 +367,4 @@ type CheckpointPodable interface {
     SetPodId(value *string)()
     SetPodName(value *string)()
     SetReason(value *CheckpointReason)()
-    SetRuncRoot(value *string)()
 }

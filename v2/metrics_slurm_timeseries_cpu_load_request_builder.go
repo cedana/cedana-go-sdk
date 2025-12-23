@@ -33,18 +33,14 @@ func NewMetricsSlurmTimeseriesCpuLoadRequestBuilder(rawUrl string, requestAdapte
     urlParams["request-raw-url"] = rawUrl
     return NewMetricsSlurmTimeseriesCpuLoadRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get get CPU load time series
+// Get get CPU load time series (Slurm)
 // returns a []TimeSeriesDataPointable when successful
-// returns a HttpError error when the service returns a 500 status code
 func (m *MetricsSlurmTimeseriesCpuLoadRequestBuilder) Get(ctx context.Context, requestConfiguration *MetricsSlurmTimeseriesCpuLoadRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.TimeSeriesDataPointable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateTimeSeriesDataPointFromDiscriminatorValue, errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateTimeSeriesDataPointFromDiscriminatorValue, nil)
     if err != nil {
         return nil, err
     }
@@ -56,7 +52,7 @@ func (m *MetricsSlurmTimeseriesCpuLoadRequestBuilder) Get(ctx context.Context, r
     }
     return val, nil
 }
-// ToGetRequestInformation get CPU load time series
+// ToGetRequestInformation get CPU load time series (Slurm)
 // returns a *RequestInformation when successful
 func (m *MetricsSlurmTimeseriesCpuLoadRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *MetricsSlurmTimeseriesCpuLoadRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

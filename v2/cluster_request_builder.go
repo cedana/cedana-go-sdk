@@ -69,20 +69,14 @@ func NewClusterRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371
 func (m *ClusterRequestBuilder) Count()(*ClusterCountRequestBuilder) {
     return NewClusterCountRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
-// Get returns all clusters associated with the authenticated user's organization.
+// Get returns all clusters associated with the authenticated user's organization
 // returns a []Clusterable when successful
-// returns a HttpError error when the service returns a 400 status code
-// returns a HttpError error when the service returns a 500 status code
 func (m *ClusterRequestBuilder) Get(ctx context.Context, requestConfiguration *ClusterRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.Clusterable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "400": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateClusterFromDiscriminatorValue, errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateClusterFromDiscriminatorValue, nil)
     if err != nil {
         return nil, err
     }
@@ -94,20 +88,14 @@ func (m *ClusterRequestBuilder) Get(ctx context.Context, requestConfiguration *C
     }
     return val, nil
 }
-// Post creates or updates info regarding a Kubernetes cluster.If a cluster with the given name already exists for the organization, it will be updated.
+// Post creates or updates info regarding a Kubernetes cluster
 // returns a *string when successful
-// returns a HttpError error when the service returns a 400 status code
-// returns a HttpError error when the service returns a 500 status code
 func (m *ClusterRequestBuilder) Post(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateClusterRequestable, requestConfiguration *ClusterRequestBuilderPostRequestConfiguration)(*string, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "400": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", nil)
     if err != nil {
         return nil, err
     }
@@ -121,7 +109,7 @@ func (m *ClusterRequestBuilder) Post(ctx context.Context, body i4db02de4fa95db61
 func (m *ClusterRequestBuilder) Sync()(*ClusterSyncRequestBuilder) {
     return NewClusterSyncRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
-// ToGetRequestInformation returns all clusters associated with the authenticated user's organization.
+// ToGetRequestInformation returns all clusters associated with the authenticated user's organization
 // returns a *RequestInformation when successful
 func (m *ClusterRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *ClusterRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
@@ -132,7 +120,7 @@ func (m *ClusterRequestBuilder) ToGetRequestInformation(ctx context.Context, req
     requestInfo.Headers.TryAdd("Accept", "application/json")
     return requestInfo, nil
 }
-// ToPostRequestInformation creates or updates info regarding a Kubernetes cluster.If a cluster with the given name already exists for the organization, it will be updated.
+// ToPostRequestInformation creates or updates info regarding a Kubernetes cluster
 // returns a *RequestInformation when successful
 func (m *ClusterRequestBuilder) ToPostRequestInformation(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateClusterRequestable, requestConfiguration *ClusterRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

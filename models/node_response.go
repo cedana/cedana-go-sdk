@@ -8,7 +8,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-type Node struct {
+type NodeResponse struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
     // The cluster_name property
@@ -19,8 +19,6 @@ type Node struct {
     id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The instance_type property
     instance_type *string
-    // The metadata property
-    metadata i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
     // The name property
     name *string
     // The region property
@@ -28,36 +26,36 @@ type Node struct {
     // The status property
     status *string
 }
-// NewNode instantiates a new Node and sets the default values.
-func NewNode()(*Node) {
-    m := &Node{
+// NewNodeResponse instantiates a new NodeResponse and sets the default values.
+func NewNodeResponse()(*NodeResponse) {
+    m := &NodeResponse{
     }
     m.SetAdditionalData(make(map[string]any))
     return m
 }
-// CreateNodeFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
+// CreateNodeResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateNodeFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewNode(), nil
+func CreateNodeResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+    return NewNodeResponse(), nil
 }
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *Node) GetAdditionalData()(map[string]any) {
+func (m *NodeResponse) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetClusterName gets the cluster_name property value. The cluster_name property
 // returns a *string when successful
-func (m *Node) GetClusterName()(*string) {
+func (m *NodeResponse) GetClusterName()(*string) {
     return m.cluster_name
 }
 // GetComputeType gets the compute_type property value. The compute_type property
 // returns a *string when successful
-func (m *Node) GetComputeType()(*string) {
+func (m *NodeResponse) GetComputeType()(*string) {
     return m.compute_type
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *Node) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
+func (m *NodeResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["cluster_name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
@@ -99,16 +97,6 @@ func (m *Node) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
         }
         return nil
     }
-    res["metadata"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMetadata(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
-        }
-        return nil
-    }
     res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -143,36 +131,31 @@ func (m *Node) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
 }
 // GetId gets the id property value. The id property
 // returns a *UUID when successful
-func (m *Node) GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
+func (m *NodeResponse) GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
     return m.id
 }
 // GetInstanceType gets the instance_type property value. The instance_type property
 // returns a *string when successful
-func (m *Node) GetInstanceType()(*string) {
+func (m *NodeResponse) GetInstanceType()(*string) {
     return m.instance_type
-}
-// GetMetadata gets the metadata property value. The metadata property
-// returns a UntypedNodeable when successful
-func (m *Node) GetMetadata()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
-    return m.metadata
 }
 // GetName gets the name property value. The name property
 // returns a *string when successful
-func (m *Node) GetName()(*string) {
+func (m *NodeResponse) GetName()(*string) {
     return m.name
 }
 // GetRegion gets the region property value. The region property
 // returns a *string when successful
-func (m *Node) GetRegion()(*string) {
+func (m *NodeResponse) GetRegion()(*string) {
     return m.region
 }
 // GetStatus gets the status property value. The status property
 // returns a *string when successful
-func (m *Node) GetStatus()(*string) {
+func (m *NodeResponse) GetStatus()(*string) {
     return m.status
 }
 // Serialize serializes information the current object
-func (m *Node) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+func (m *NodeResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
         err := writer.WriteStringValue("cluster_name", m.GetClusterName())
         if err != nil {
@@ -193,12 +176,6 @@ func (m *Node) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
     }
     {
         err := writer.WriteStringValue("instance_type", m.GetInstanceType())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("metadata", m.GetMetadata())
         if err != nil {
             return err
         }
@@ -230,49 +207,44 @@ func (m *Node) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
     return nil
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Node) SetAdditionalData(value map[string]any)() {
+func (m *NodeResponse) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetClusterName sets the cluster_name property value. The cluster_name property
-func (m *Node) SetClusterName(value *string)() {
+func (m *NodeResponse) SetClusterName(value *string)() {
     m.cluster_name = value
 }
 // SetComputeType sets the compute_type property value. The compute_type property
-func (m *Node) SetComputeType(value *string)() {
+func (m *NodeResponse) SetComputeType(value *string)() {
     m.compute_type = value
 }
 // SetId sets the id property value. The id property
-func (m *Node) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
+func (m *NodeResponse) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.id = value
 }
 // SetInstanceType sets the instance_type property value. The instance_type property
-func (m *Node) SetInstanceType(value *string)() {
+func (m *NodeResponse) SetInstanceType(value *string)() {
     m.instance_type = value
 }
-// SetMetadata sets the metadata property value. The metadata property
-func (m *Node) SetMetadata(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
-    m.metadata = value
-}
 // SetName sets the name property value. The name property
-func (m *Node) SetName(value *string)() {
+func (m *NodeResponse) SetName(value *string)() {
     m.name = value
 }
 // SetRegion sets the region property value. The region property
-func (m *Node) SetRegion(value *string)() {
+func (m *NodeResponse) SetRegion(value *string)() {
     m.region = value
 }
 // SetStatus sets the status property value. The status property
-func (m *Node) SetStatus(value *string)() {
+func (m *NodeResponse) SetStatus(value *string)() {
     m.status = value
 }
-type Nodeable interface {
+type NodeResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetClusterName()(*string)
     GetComputeType()(*string)
     GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetInstanceType()(*string)
-    GetMetadata()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
     GetName()(*string)
     GetRegion()(*string)
     GetStatus()(*string)
@@ -280,7 +252,6 @@ type Nodeable interface {
     SetComputeType(value *string)()
     SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetInstanceType(value *string)()
-    SetMetadata(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
     SetName(value *string)()
     SetRegion(value *string)()
     SetStatus(value *string)()

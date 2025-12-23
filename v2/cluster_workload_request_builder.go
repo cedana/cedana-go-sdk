@@ -33,7 +33,7 @@ func NewClusterWorkloadRequestBuilder(rawUrl string, requestAdapter i2ae4187f7da
     urlParams["request-raw-url"] = rawUrl
     return NewClusterWorkloadRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Post takes a cluster name and workload specification, then creates a Kubernetes jobon the specified cluster by publishing a workload creation event to the message queue.
+// Post takes a cluster name and workload specification, then creates a Kubernetes jobon the specified cluster
 // returns a *string when successful
 func (m *ClusterWorkloadRequestBuilder) Post(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.WorkloadReqable, requestConfiguration *ClusterWorkloadRequestBuilderPostRequestConfiguration)(*string, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
@@ -49,7 +49,7 @@ func (m *ClusterWorkloadRequestBuilder) Post(ctx context.Context, body i4db02de4
     }
     return res.(*string), nil
 }
-// ToPostRequestInformation takes a cluster name and workload specification, then creates a Kubernetes jobon the specified cluster by publishing a workload creation event to the message queue.
+// ToPostRequestInformation takes a cluster name and workload specification, then creates a Kubernetes jobon the specified cluster
 // returns a *RequestInformation when successful
 func (m *ClusterWorkloadRequestBuilder) ToPostRequestInformation(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.WorkloadReqable, requestConfiguration *ClusterWorkloadRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
