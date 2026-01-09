@@ -17,6 +17,8 @@ type PolicyRequest struct {
     heartbeat_time *int64
     // The id property
     id *string
+    // The job_filter property
+    job_filter PolicyRequest_PolicyRequest_job_filterable
     // The policy_type property
     policy_type PolicyRequest_PolicyRequest_policy_typeable
     // The resource property
@@ -25,6 +27,89 @@ type PolicyRequest struct {
     resource_ids []i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The resource_name property
     resource_name *string
+    // The runc_root property
+    runc_root *string
+}
+// PolicyRequest_PolicyRequest_job_filter composed type wrapper for classes JobFilterable, PolicyRequest_job_filterMember1able
+type PolicyRequest_PolicyRequest_job_filter struct {
+    // Composed type representation for type JobFilterable
+    jobFilter JobFilterable
+    // Composed type representation for type PolicyRequest_job_filterMember1able
+    policyRequest_job_filterMember1 PolicyRequest_job_filterMember1able
+}
+// NewPolicyRequest_PolicyRequest_job_filter instantiates a new PolicyRequest_PolicyRequest_job_filter and sets the default values.
+func NewPolicyRequest_PolicyRequest_job_filter()(*PolicyRequest_PolicyRequest_job_filter) {
+    m := &PolicyRequest_PolicyRequest_job_filter{
+    }
+    return m
+}
+// CreatePolicyRequest_PolicyRequest_job_filterFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
+// returns a Parsable when successful
+func CreatePolicyRequest_PolicyRequest_job_filterFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+    result := NewPolicyRequest_PolicyRequest_job_filter()
+    if parseNode != nil {
+        mappingValueNode, err := parseNode.GetChildNode("")
+        if err != nil {
+            return nil, err
+        }
+        if mappingValueNode != nil {
+            mappingValue, err := mappingValueNode.GetStringValue()
+            if err != nil {
+                return nil, err
+            }
+            if mappingValue != nil {
+            }
+        }
+    }
+    return result, nil
+}
+// GetFieldDeserializers the deserialization information for the current model
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
+func (m *PolicyRequest_PolicyRequest_job_filter) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
+    if m.GetJobFilter() != nil {
+        return m.GetJobFilter().GetFieldDeserializers()
+    } else if m.GetPolicyRequestJobFilterMember1() != nil {
+        return m.GetPolicyRequestJobFilterMember1().GetFieldDeserializers()
+    }
+    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+}
+// GetIsComposedType determines if the current object is a wrapper around a composed type
+// returns a bool when successful
+func (m *PolicyRequest_PolicyRequest_job_filter) GetIsComposedType()(bool) {
+    return true
+}
+// GetJobFilter gets the JobFilter property value. Composed type representation for type JobFilterable
+// returns a JobFilterable when successful
+func (m *PolicyRequest_PolicyRequest_job_filter) GetJobFilter()(JobFilterable) {
+    return m.jobFilter
+}
+// GetPolicyRequestJobFilterMember1 gets the PolicyRequest_job_filterMember1 property value. Composed type representation for type PolicyRequest_job_filterMember1able
+// returns a PolicyRequest_job_filterMember1able when successful
+func (m *PolicyRequest_PolicyRequest_job_filter) GetPolicyRequestJobFilterMember1()(PolicyRequest_job_filterMember1able) {
+    return m.policyRequest_job_filterMember1
+}
+// Serialize serializes information the current object
+func (m *PolicyRequest_PolicyRequest_job_filter) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    if m.GetJobFilter() != nil {
+        err := writer.WriteObjectValue("", m.GetJobFilter())
+        if err != nil {
+            return err
+        }
+    } else if m.GetPolicyRequestJobFilterMember1() != nil {
+        err := writer.WriteObjectValue("", m.GetPolicyRequestJobFilterMember1())
+        if err != nil {
+            return err
+        }
+    }
+    return nil
+}
+// SetJobFilter sets the JobFilter property value. Composed type representation for type JobFilterable
+func (m *PolicyRequest_PolicyRequest_job_filter) SetJobFilter(value JobFilterable)() {
+    m.jobFilter = value
+}
+// SetPolicyRequestJobFilterMember1 sets the PolicyRequest_job_filterMember1 property value. Composed type representation for type PolicyRequest_job_filterMember1able
+func (m *PolicyRequest_PolicyRequest_job_filter) SetPolicyRequestJobFilterMember1(value PolicyRequest_job_filterMember1able)() {
+    m.policyRequest_job_filterMember1 = value
 }
 // PolicyRequest_PolicyRequest_policy_type composed type wrapper for classes PolicyRequest_policy_typeMember1able, PolicyType
 type PolicyRequest_PolicyRequest_policy_type struct {
@@ -198,6 +283,13 @@ func (m *PolicyRequest_PolicyRequest_resource) SetPolicyRequestResourceMember1(v
 func (m *PolicyRequest_PolicyRequest_resource) SetPolicyResource(value *PolicyResource)() {
     m.policyResource = value
 }
+type PolicyRequest_PolicyRequest_job_filterable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetJobFilter()(JobFilterable)
+    GetPolicyRequestJobFilterMember1()(PolicyRequest_job_filterMember1able)
+    SetJobFilter(value JobFilterable)()
+    SetPolicyRequestJobFilterMember1(value PolicyRequest_job_filterMember1able)()
+}
 type PolicyRequest_PolicyRequest_policy_typeable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetPolicyRequestPolicyTypeMember1()(PolicyRequest_policy_typeMember1able)
@@ -268,6 +360,16 @@ func (m *PolicyRequest) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         }
         return nil
     }
+    res["job_filter"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreatePolicyRequest_PolicyRequest_job_filterFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetJob_filter(val.(PolicyRequest_PolicyRequest_job_filterable))
+        }
+        return nil
+    }
     res["policy_type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetObjectValue(CreatePolicyRequest_PolicyRequest_policy_typeFromDiscriminatorValue)
         if err != nil {
@@ -314,6 +416,16 @@ func (m *PolicyRequest) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         }
         return nil
     }
+    res["runc_root"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRuncRoot(val)
+        }
+        return nil
+    }
     return res
 }
 // GetHeartbeatTime gets the heartbeat_time property value. The heartbeat_time property
@@ -325,6 +437,11 @@ func (m *PolicyRequest) GetHeartbeatTime()(*int64) {
 // returns a *string when successful
 func (m *PolicyRequest) GetId()(*string) {
     return m.id
+}
+// GetJob_filter gets the job_filter property value. The job_filter property
+// returns a PolicyRequest_PolicyRequest_job_filterable when successful
+func (m *PolicyRequest) GetJob_filter()(PolicyRequest_PolicyRequest_job_filterable) {
+    return m.job_filter
 }
 // GetPolicy_type gets the policy_type property value. The policy_type property
 // returns a PolicyRequest_PolicyRequest_policy_typeable when successful
@@ -346,6 +463,11 @@ func (m *PolicyRequest) GetResourceIds()([]i561e97a8befe7661a44c8f54600992b4207a
 func (m *PolicyRequest) GetResourceName()(*string) {
     return m.resource_name
 }
+// GetRuncRoot gets the runc_root property value. The runc_root property
+// returns a *string when successful
+func (m *PolicyRequest) GetRuncRoot()(*string) {
+    return m.runc_root
+}
 // Serialize serializes information the current object
 func (m *PolicyRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
@@ -362,6 +484,12 @@ func (m *PolicyRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
     }
     {
         err := writer.WriteStringValue("id", m.GetId())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteObjectValue("job_filter", m.GetJob_filter())
         if err != nil {
             return err
         }
@@ -391,6 +519,12 @@ func (m *PolicyRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
         }
     }
     {
+        err := writer.WriteStringValue("runc_root", m.GetRuncRoot())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteAdditionalData(m.GetAdditionalData())
         if err != nil {
             return err
@@ -414,6 +548,10 @@ func (m *PolicyRequest) SetHeartbeatTime(value *int64)() {
 func (m *PolicyRequest) SetId(value *string)() {
     m.id = value
 }
+// SetJob_filter sets the job_filter property value. The job_filter property
+func (m *PolicyRequest) SetJob_filter(value PolicyRequest_PolicyRequest_job_filterable)() {
+    m.job_filter = value
+}
 // SetPolicy_type sets the policy_type property value. The policy_type property
 func (m *PolicyRequest) SetPolicy_type(value PolicyRequest_PolicyRequest_policy_typeable)() {
     m.policy_type = value
@@ -430,21 +568,29 @@ func (m *PolicyRequest) SetResourceIds(value []i561e97a8befe7661a44c8f54600992b4
 func (m *PolicyRequest) SetResourceName(value *string)() {
     m.resource_name = value
 }
+// SetRuncRoot sets the runc_root property value. The runc_root property
+func (m *PolicyRequest) SetRuncRoot(value *string)() {
+    m.runc_root = value
+}
 type PolicyRequestable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetClusterId()(*string)
     GetHeartbeatTime()(*int64)
     GetId()(*string)
+    GetJob_filter()(PolicyRequest_PolicyRequest_job_filterable)
     GetPolicy_type()(PolicyRequest_PolicyRequest_policy_typeable)
     GetResource()(PolicyRequest_PolicyRequest_resourceable)
     GetResourceIds()([]i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetResourceName()(*string)
+    GetRuncRoot()(*string)
     SetClusterId(value *string)()
     SetHeartbeatTime(value *int64)()
     SetId(value *string)()
+    SetJob_filter(value PolicyRequest_PolicyRequest_job_filterable)()
     SetPolicy_type(value PolicyRequest_PolicyRequest_policy_typeable)()
     SetResource(value PolicyRequest_PolicyRequest_resourceable)()
     SetResourceIds(value []i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetResourceName(value *string)()
+    SetRuncRoot(value *string)()
 }

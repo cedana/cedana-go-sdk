@@ -24,6 +24,16 @@ func NewPolicyWithPolicy_ItemRequestBuilder(rawUrl string, requestAdapter i2ae41
     urlParams["request-raw-url"] = rawUrl
     return NewPolicyWithPolicy_ItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Jobs the jobs property
+// returns a *PolicyItemJobsRequestBuilder when successful
+func (m *PolicyWithPolicy_ItemRequestBuilder) Jobs()(*PolicyItemJobsRequestBuilder) {
+    return NewPolicyItemJobsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// JobStatus the jobStatus property
+// returns a *PolicyItemJobStatusRequestBuilder when successful
+func (m *PolicyWithPolicy_ItemRequestBuilder) JobStatus()(*PolicyItemJobStatusRequestBuilder) {
+    return NewPolicyItemJobStatusRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Pods the pods property
 // returns a *PolicyItemPodsRequestBuilder when successful
 func (m *PolicyWithPolicy_ItemRequestBuilder) Pods()(*PolicyItemPodsRequestBuilder) {

@@ -5,6 +5,7 @@ package v2
 
 import (
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+    i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
 )
 
 // PolicyRequestBuilder builds and executes requests for operations under \v2\policy
@@ -12,6 +13,7 @@ type PolicyRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
 // ByPolicy_id gets an item from the github.com/cedana/cedana-go-sdk.v2.policy.item collection
+// Deprecated: This indexer is deprecated and will be removed in the next major version. Use the one with the typed parameter instead.
 // returns a *PolicyWithPolicy_ItemRequestBuilder when successful
 func (m *PolicyRequestBuilder) ByPolicy_id(policy_id string)(*PolicyWithPolicy_ItemRequestBuilder) {
     urlTplParams := make(map[string]string)
@@ -21,6 +23,16 @@ func (m *PolicyRequestBuilder) ByPolicy_id(policy_id string)(*PolicyWithPolicy_I
     if policy_id != "" {
         urlTplParams["policy_id"] = policy_id
     }
+    return NewPolicyWithPolicy_ItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+}
+// ByPolicy_idGuid gets an item from the github.com/cedana/cedana-go-sdk.v2.policy.item collection
+// returns a *PolicyWithPolicy_ItemRequestBuilder when successful
+func (m *PolicyRequestBuilder) ByPolicy_idGuid(policy_id i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)(*PolicyWithPolicy_ItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.BaseRequestBuilder.PathParameters {
+        urlTplParams[idx] = item
+    }
+    urlTplParams["policy_id"] = policy_id.String()
     return NewPolicyWithPolicy_ItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
 // NewPolicyRequestBuilderInternal instantiates a new PolicyRequestBuilder and sets the default values.
@@ -50,6 +62,11 @@ func (m *PolicyRequestBuilder) DeletePath()(*PolicyDeleteRequestBuilder) {
 // returns a *PolicyListRequestBuilder when successful
 func (m *PolicyRequestBuilder) List()(*PolicyListRequestBuilder) {
     return NewPolicyListRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// SyncJobs the syncJobs property
+// returns a *PolicySyncJobsRequestBuilder when successful
+func (m *PolicyRequestBuilder) SyncJobs()(*PolicySyncJobsRequestBuilder) {
+    return NewPolicySyncJobsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Update the update property
 // returns a *PolicyUpdateRequestBuilder when successful

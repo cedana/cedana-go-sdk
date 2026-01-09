@@ -15,6 +15,8 @@ type PolicyResponse struct {
     id *string
     // The input property
     input *int64
+    // The job_count property
+    job_count *int64
     // The pod_count property
     pod_count *int64
     // The policy_type property
@@ -66,6 +68,16 @@ func (m *PolicyResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         }
         if val != nil {
             m.SetInput(val)
+        }
+        return nil
+    }
+    res["job_count"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetJobCount(val)
         }
         return nil
     }
@@ -147,6 +159,11 @@ func (m *PolicyResponse) GetId()(*string) {
 func (m *PolicyResponse) GetInput()(*int64) {
     return m.input
 }
+// GetJobCount gets the job_count property value. The job_count property
+// returns a *int64 when successful
+func (m *PolicyResponse) GetJobCount()(*int64) {
+    return m.job_count
+}
 // GetPodCount gets the pod_count property value. The pod_count property
 // returns a *int64 when successful
 func (m *PolicyResponse) GetPodCount()(*int64) {
@@ -187,6 +204,12 @@ func (m *PolicyResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     }
     {
         err := writer.WriteInt64Value("input", m.GetInput())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteInt64Value("job_count", m.GetJobCount())
         if err != nil {
             return err
         }
@@ -247,6 +270,10 @@ func (m *PolicyResponse) SetId(value *string)() {
 func (m *PolicyResponse) SetInput(value *int64)() {
     m.input = value
 }
+// SetJobCount sets the job_count property value. The job_count property
+func (m *PolicyResponse) SetJobCount(value *int64)() {
+    m.job_count = value
+}
 // SetPodCount sets the pod_count property value. The pod_count property
 func (m *PolicyResponse) SetPodCount(value *int64)() {
     m.pod_count = value
@@ -276,6 +303,7 @@ type PolicyResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetId()(*string)
     GetInput()(*int64)
+    GetJobCount()(*int64)
     GetPodCount()(*int64)
     GetPolicyType()(*string)
     GetResource()(*string)
@@ -284,6 +312,7 @@ type PolicyResponseable interface {
     GetTimestamp()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     SetId(value *string)()
     SetInput(value *int64)()
+    SetJobCount(value *int64)()
     SetPodCount(value *int64)()
     SetPolicyType(value *string)()
     SetResource(value *string)()

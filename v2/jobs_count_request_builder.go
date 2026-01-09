@@ -33,7 +33,7 @@ func NewJobsCountRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee2633
     urlParams["request-raw-url"] = rawUrl
     return NewJobsCountRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get get jobs total count
+// Get get total count of jobs
 // returns a TotalCountResponseable when successful
 func (m *JobsCountRequestBuilder) Get(ctx context.Context, requestConfiguration *JobsCountRequestBuilderGetRequestConfiguration)(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.TotalCountResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
@@ -49,7 +49,7 @@ func (m *JobsCountRequestBuilder) Get(ctx context.Context, requestConfiguration 
     }
     return res.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.TotalCountResponseable), nil
 }
-// ToGetRequestInformation get jobs total count
+// ToGetRequestInformation get total count of jobs
 // returns a *RequestInformation when successful
 func (m *JobsCountRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *JobsCountRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

@@ -7,10 +7,11 @@ type PolicyResource int
 const (
     PODS_POLICYRESOURCE PolicyResource = iota
     NAMESPACE_POLICYRESOURCE
+    JOBS_POLICYRESOURCE
 )
 
 func (i PolicyResource) String() string {
-    return []string{"pods", "namespace"}[i]
+    return []string{"pods", "namespace", "jobs"}[i]
 }
 func ParsePolicyResource(v string) (any, error) {
     result := PODS_POLICYRESOURCE
@@ -19,6 +20,8 @@ func ParsePolicyResource(v string) (any, error) {
             result = PODS_POLICYRESOURCE
         case "namespace":
             result = NAMESPACE_POLICYRESOURCE
+        case "jobs":
+            result = JOBS_POLICYRESOURCE
         default:
             return nil, nil
     }

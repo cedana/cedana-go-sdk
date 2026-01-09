@@ -6,7 +6,7 @@
     "license": {
       "name": ""
     },
-    "version": "0.0.0-dev"
+    "version": "2.0.1.8"
   },
   "paths": {
     "/v2/actions": {
@@ -67,7 +67,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -124,7 +124,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -181,7 +181,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -229,7 +229,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -296,7 +296,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -353,7 +353,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -417,7 +417,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       },
@@ -453,7 +453,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -511,7 +511,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -570,7 +570,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -638,7 +638,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -678,7 +678,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       },
@@ -734,7 +734,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -770,7 +770,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -837,7 +837,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -940,7 +940,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -996,7 +996,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -1072,7 +1072,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -1126,7 +1126,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -1173,7 +1173,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       },
@@ -1218,7 +1218,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -1306,7 +1306,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -1438,7 +1438,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -1495,7 +1495,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -1534,7 +1534,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -1544,7 +1544,7 @@
         "tags": [
           "Resources"
         ],
-        "summary": "Get jobs total count",
+        "summary": "Get total count of jobs",
         "operationId": "jobs_count",
         "responses": {
           "200": {
@@ -1570,9 +1570,75 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
+      }
+    },
+    "/v2/jobs/filter": {
+      "get": {
+        "tags": [
+          "Resources"
+        ],
+        "operationId": "jobs_filter",
+        "parameters": [
+          {
+            "name": "priority",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "format": "int32"
+            }
+          },
+          {
+            "name": "namespace",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of jobs with applied filters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FilteredJobResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/v2/jobs/namespaces": {
@@ -1606,7 +1672,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -1724,9 +1790,87 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
+      }
+    },
+    "/v2/jobs/priorities": {
+      "get": {
+        "tags": [
+          "Resources"
+        ],
+        "summary": "Get available job priorities with counts",
+        "operationId": "job_priorities",
+        "responses": {
+          "200": {
+            "description": "Job priorities retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobPrioritiesResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Database error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/v2/jobs/priority/{priority}": {
+      "get": {
+        "tags": [
+          "Resources"
+        ],
+        "operationId": "jobs_by_priority",
+        "parameters": [
+          {
+            "name": "priority",
+            "in": "path",
+            "description": "Priority value to filter jobs by",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of jobs filtered by priority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedJobResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/v2/jobs/statuses": {
@@ -1760,9 +1904,61 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
+      }
+    },
+    "/v2/jobs/{job_id}/pods": {
+      "get": {
+        "tags": [
+          "Resources"
+        ],
+        "operationId": "job_pods",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "description": "Job ID to get pods for",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of pods managed by the job",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobPodsResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Job not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/v2/logs/k8": {
@@ -1824,7 +2020,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -1863,7 +2059,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -1902,7 +2098,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -1938,7 +2134,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -1974,7 +2170,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -2013,7 +2209,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -2061,7 +2257,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -2100,7 +2296,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -2136,7 +2332,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -2190,7 +2386,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -2226,7 +2422,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -2280,7 +2476,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -2316,7 +2512,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -2352,7 +2548,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -2482,7 +2678,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -2518,7 +2714,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -2574,7 +2770,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -2630,7 +2826,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -2679,7 +2875,36 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
+          }
+        ]
+      }
+    },
+    "/v2/policy/sync-jobs": {
+      "post": {
+        "tags": [
+          "Policy"
+        ],
+        "summary": "Sync job policies manually",
+        "operationId": "sync_job_policies",
+        "responses": {
+          "200": {
+            "description": "Job policies synced successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to sync job policies"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
           }
         ]
       }
@@ -2735,7 +2960,95 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
+          }
+        ]
+      }
+    },
+    "/v2/policy/{policy_id}/job-status": {
+      "get": {
+        "tags": [
+          "Policy"
+        ],
+        "summary": "Get job policy tracking status",
+        "operationId": "get_job_policy_status",
+        "parameters": [
+          {
+            "name": "policy_id",
+            "in": "path",
+            "description": "Policy ID to get status for",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Job policy status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobPolicyStatus"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Policy not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/v2/policy/{policy_id}/jobs": {
+      "get": {
+        "tags": [
+          "Policy"
+        ],
+        "summary": "Get jobs affected by a policy",
+        "operationId": "policy_jobs",
+        "parameters": [
+          {
+            "name": "policy_id",
+            "in": "path",
+            "description": "Policy ID to get affected jobs for",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Jobs affected by the policy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyJobsResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Policy not found or not a job policy"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
           }
         ]
       }
@@ -2805,7 +3118,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -2829,7 +3142,7 @@
         },
         "responses": {
           "200": {
-            "description": "Returns the checkpoint ID for the new checkpoint",
+            "description": "Returns the action ID for the new restore",
             "content": {
               "text/plain": {
                 "schema": {
@@ -2862,7 +3175,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -2919,7 +3232,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -2959,7 +3272,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -3021,7 +3334,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -3061,7 +3374,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -3123,7 +3436,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -3163,7 +3476,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -3225,7 +3538,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -3292,7 +3605,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -3349,7 +3662,7 @@
         },
         "security": [
           {
-            "Auth Token": []
+            "Token": []
           }
         ]
       }
@@ -4062,6 +4375,33 @@
           }
         }
       },
+      "FilteredJobResponse": {
+        "type": "object",
+        "required": [
+          "jobs",
+          "total_count",
+          "available_priorities"
+        ],
+        "properties": {
+          "available_priorities": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "jobs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobFilterResponse"
+            }
+          },
+          "total_count": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
       "InstanceInfo": {
         "type": "object",
         "required": [
@@ -4276,6 +4616,192 @@
         "title": "Job",
         "description": "Entire json for the Kubernetes Job"
       },
+      "JobFilter": {
+        "type": "object",
+        "properties": {
+          "namespace": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "priority": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32"
+          }
+        }
+      },
+      "JobFilterResponse": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "namespace",
+          "status",
+          "pod_count"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "namespace": {
+            "type": "string"
+          },
+          "pod_count": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "priority": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32"
+          },
+          "start_time": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "JobPodResponse": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "namespace",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "namespace": {
+            "type": "string"
+          },
+          "owner_reference": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "JobPodsResponse": {
+        "type": "object",
+        "required": [
+          "job_id",
+          "job_name",
+          "pods",
+          "total_count"
+        ],
+        "properties": {
+          "job_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "job_name": {
+            "type": "string"
+          },
+          "pods": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobPodResponse"
+            }
+          },
+          "total_count": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "JobPolicyStatus": {
+        "type": "object",
+        "required": [
+          "policy_id",
+          "job_ids",
+          "tracked_pods",
+          "pod_count"
+        ],
+        "properties": {
+          "job_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "job_status": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "last_updated": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "pod_count": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "policy_id": {
+            "type": "string"
+          },
+          "tracked_pods": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "JobPrioritiesResponse": {
+        "type": "object",
+        "required": [
+          "priorities",
+          "priority_counts"
+        ],
+        "properties": {
+          "priorities": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "priority_counts": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "propertyNames": {
+              "type": "string"
+            }
+          }
+        }
+      },
       "JobResponse": {
         "type": "object",
         "required": [
@@ -4283,7 +4809,10 @@
           "name",
           "namespace",
           "status",
-          "age"
+          "age",
+          "monitored_by_policies",
+          "policy_count",
+          "pod_ids"
         ],
         "properties": {
           "age": {
@@ -4306,11 +4835,34 @@
             "type": "string",
             "format": "uuid"
           },
+          "monitored_by_policies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "name": {
             "type": "string"
           },
           "namespace": {
             "type": "string"
+          },
+          "pod_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "policy_count": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "priority": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32"
           },
           "start_time": {
             "type": [
@@ -4829,6 +5381,64 @@
           }
         }
       },
+      "PolicyJobInfo": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "namespace",
+          "status",
+          "pod_count"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "namespace": {
+            "type": "string"
+          },
+          "pod_count": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "priority": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "PolicyJobsResponse": {
+        "type": "object",
+        "required": [
+          "policy_id",
+          "affected_jobs",
+          "count"
+        ],
+        "properties": {
+          "affected_jobs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PolicyJobInfo"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "policy_id": {
+            "type": "string"
+          }
+        }
+      },
       "PolicyPodResponse": {
         "type": "object",
         "required": [
@@ -4875,6 +5485,16 @@
               "null"
             ]
           },
+          "job_filter": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/JobFilter"
+              }
+            ]
+          },
           "policy_type": {
             "oneOf": [
               {
@@ -4904,6 +5524,12 @@
           },
           "resource_name": {
             "type": "string"
+          },
+          "runc_root": {
+            "type": [
+              "string",
+              "null"
+            ]
           }
         }
       },
@@ -4911,7 +5537,8 @@
         "type": "string",
         "enum": [
           "pods",
-          "namespace"
+          "namespace",
+          "jobs"
         ]
       },
       "PolicyResponse": {
@@ -4931,6 +5558,13 @@
           },
           "input": {
             "type": "integer",
+            "format": "int64"
+          },
+          "job_count": {
+            "type": [
+              "integer",
+              "null"
+            ],
             "format": "int64"
           },
           "pod_count": {
@@ -5418,7 +6052,7 @@
       }
     },
     "securitySchemes": {
-      "Auth Token": {
+      "Token": {
         "type": "http",
         "scheme": "bearer"
       }
