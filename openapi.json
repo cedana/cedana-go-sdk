@@ -6,7 +6,7 @@
     "license": {
       "name": ""
     },
-    "version": "2.0.1.8"
+    "version": "0.0.0-staging"
   },
   "paths": {
     "/v2/actions": {
@@ -3180,6 +3180,63 @@
         ]
       }
     },
+    "/v2/restores/info/{id}": {
+      "put": {
+        "tags": [
+          "Restores"
+        ],
+        "summary": "Put restore info",
+        "description": "Add information about a restore",
+        "operationId": "update_info",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated restore info and returns ID",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "550e8400-e29b-41d4-a716-446655440000"
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to execute request against database",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Token": []
+          }
+        ]
+      }
+    },
     "/v2/slurm/checkpoint/job": {
       "post": {
         "tags": [
@@ -3437,6 +3494,311 @@
         "security": [
           {
             "Token": []
+          }
+        ]
+      }
+    },
+    "/v2/slurm/maintenance_window": {
+      "get": {
+        "tags": [
+          "Policy (Slurm)"
+        ],
+        "summary": "List maintenance windows",
+        "description": "Returns all maintenance windows",
+        "operationId": "list_maintenance_windows",
+        "responses": {
+          "200": {
+            "description": "Returns all SLURM maintenance windows",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SlurmMaintenanceWindow"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect/fetch from database",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Auth Token": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Policy (Slurm)"
+        ],
+        "summary": "Create maintenance window",
+        "description": "Creates a new maintenance window for SLURM clusters",
+        "operationId": "create_maintenance_window",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateMaintenanceWindow"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Returns the maintenance window id for the new maintenance window",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "<uuid-v4-here>"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect/execute request against database",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Auth Token": []
+          }
+        ]
+      }
+    },
+    "/v2/slurm/maintenance_window/{id}": {
+      "get": {
+        "tags": [
+          "Policy (Slurm)"
+        ],
+        "summary": "Get maintenance window",
+        "description": "Returns a specific maintenance window by ID",
+        "operationId": "get_maintenance_window",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the maintenance window",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SlurmMaintenanceWindow"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid UUID provided",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Maintenance window not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect/fetch from database",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Auth Token": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Policy (Slurm)"
+        ],
+        "summary": "Update maintenance window",
+        "description": "Updates an existing maintenance window",
+        "operationId": "update_maintenance_window",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateMaintenanceWindow"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated maintenance window and returns id",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "<uuid-for-maintenance-window>"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid UUID provided",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Maintenance window not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect/execute request against database",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Auth Token": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Policy (Slurm)"
+        ],
+        "summary": "Delete maintenance window",
+        "description": "Deletes a maintenance window by ID",
+        "operationId": "delete_maintenance_window",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deleted maintenance window and returns id",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "<uuid-for-maintenance-window>"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid UUID provided",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Maintenance window not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect/execute request against database",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Auth Token": []
           }
         ]
       }
@@ -4256,6 +4618,51 @@
           },
           "status": {
             "type": "string"
+          }
+        }
+      },
+      "CreateMaintenanceWindow": {
+        "type": "object",
+        "required": [
+          "start_time",
+          "end_time",
+          "reason"
+        ],
+        "properties": {
+          "end_time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "nodes": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "partitions": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "reason": {
+            "type": "string"
+          },
+          "start_time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "type": [
+              "string",
+              "null"
+            ]
           }
         }
       },
@@ -5821,6 +6228,68 @@
           }
         }
       },
+      "SlurmMaintenanceWindow": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "end_time": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "nodes": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "partitions": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "start_time": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "status": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
       "SlurmMetric": {
         "type": "object",
         "required": [
@@ -6003,6 +6472,55 @@
           }
         }
       },
+      "UpdateMaintenanceWindow": {
+        "type": "object",
+        "properties": {
+          "end_time": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "nodes": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "partitions": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "start_time": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "status": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
       "VolumeMapping": {
         "type": "object",
         "required": [
@@ -6070,6 +6588,10 @@
     {
       "name": "Checkpoints",
       "description": "Cedana API for checkpoints"
+    },
+    {
+      "name": "Restores",
+      "description": "Cedana API for restores"
     },
     {
       "name": "Actions",

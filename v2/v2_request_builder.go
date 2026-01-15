@@ -99,6 +99,11 @@ func (m *V2RequestBuilder) Policy()(*PolicyRequestBuilder) {
 func (m *V2RequestBuilder) Restore()(*RestoreRequestBuilder) {
     return NewRestoreRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Restores the restores property
+// returns a *RestoresRequestBuilder when successful
+func (m *V2RequestBuilder) Restores()(*RestoresRequestBuilder) {
+    return NewRestoresRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Slurm the slurm property
 // returns a *SlurmRequestBuilder when successful
 func (m *V2RequestBuilder) Slurm()(*SlurmRequestBuilder) {

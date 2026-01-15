@@ -49,6 +49,11 @@ func (m *SlurmRequestBuilder) Jobs()(*SlurmJobsRequestBuilder) {
 func (m *SlurmRequestBuilder) Jobs_paginated()(*SlurmJobs_paginatedRequestBuilder) {
     return NewSlurmJobs_paginatedRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Maintenance_window the maintenance_window property
+// returns a *SlurmMaintenance_windowRequestBuilder when successful
+func (m *SlurmRequestBuilder) Maintenance_window()(*SlurmMaintenance_windowRequestBuilder) {
+    return NewSlurmMaintenance_windowRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Nodes the nodes property
 // returns a *SlurmNodesRequestBuilder when successful
 func (m *SlurmRequestBuilder) Nodes()(*SlurmNodesRequestBuilder) {
