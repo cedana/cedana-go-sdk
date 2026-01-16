@@ -3202,7 +3202,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/RestoreInfo"
+              }
             }
           },
           "required": true
@@ -6060,6 +6062,32 @@
           },
           "username": {
             "type": "string"
+          }
+        }
+      },
+      "RestoreInfo": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "profiling": {},
+          "total_duration": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          },
+          "total_io": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
           }
         }
       },

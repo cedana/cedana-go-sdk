@@ -7,7 +7,6 @@ import (
     "context"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // RestoresInfoInfoItemRequestBuilder builds and executes requests for operations under \v2\restores\info\{id}
@@ -37,7 +36,7 @@ func NewRestoresInfoInfoItemRequestBuilder(rawUrl string, requestAdapter i2ae418
 // Put add information about a restore
 // returns a *string when successful
 // returns a ApiError error when the service returns a 500 status code
-func (m *RestoresInfoInfoItemRequestBuilder) Put(ctx context.Context, body i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable, requestConfiguration *RestoresInfoInfoItemRequestBuilderPutRequestConfiguration)(*string, error) {
+func (m *RestoresInfoInfoItemRequestBuilder) Put(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.RestoreInfoable, requestConfiguration *RestoresInfoInfoItemRequestBuilderPutRequestConfiguration)(*string, error) {
     requestInfo, err := m.ToPutRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
         return nil, err
@@ -56,14 +55,17 @@ func (m *RestoresInfoInfoItemRequestBuilder) Put(ctx context.Context, body i878a
 }
 // ToPutRequestInformation add information about a restore
 // returns a *RequestInformation when successful
-func (m *RestoresInfoInfoItemRequestBuilder) ToPutRequestInformation(ctx context.Context, body i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable, requestConfiguration *RestoresInfoInfoItemRequestBuilderPutRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+func (m *RestoresInfoInfoItemRequestBuilder) ToPutRequestInformation(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.RestoreInfoable, requestConfiguration *RestoresInfoInfoItemRequestBuilderPutRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.PUT, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
     if requestConfiguration != nil {
         requestInfo.Headers.AddAll(requestConfiguration.Headers)
         requestInfo.AddRequestOptions(requestConfiguration.Options)
     }
     requestInfo.Headers.TryAdd("Accept", "text/plain;q=0.9")
-    requestInfo.SetContentFromScalar(ctx, m.BaseRequestBuilder.RequestAdapter, "application/json", body)
+    err := requestInfo.SetContentFromParsable(ctx, m.BaseRequestBuilder.RequestAdapter, "application/json", body)
+    if err != nil {
+        return nil, err
+    }
     return requestInfo, nil
 }
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
