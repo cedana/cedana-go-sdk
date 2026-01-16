@@ -146,7 +146,7 @@ func CreatePolicyRequest_PolicyRequest_policy_typeFromDiscriminatorValue(parseNo
         if err != nil {
             return nil, err
         }
-        result.SetPolicyType(val)
+        result.SetPolicyType(val.(*PolicyType))
     }
     return result, nil
 }
@@ -232,7 +232,7 @@ func CreatePolicyRequest_PolicyRequest_resourceFromDiscriminatorValue(parseNode 
         if err != nil {
             return nil, err
         }
-        result.SetPolicyResource(val)
+        result.SetPolicyResource(val.(*PolicyResource))
     }
     return result, nil
 }

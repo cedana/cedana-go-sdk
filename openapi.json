@@ -6634,6 +6634,10 @@
       "description": "Cedana API for clusters (Slurm)"
     },
     {
+      "name": "Policy (Slurm)",
+      "description": "Cedana API for policies (Slurm)"
+    },
+    {
       "name": "Events",
       "description": "Cedana API for events"
     },
