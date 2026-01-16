@@ -47,9 +47,9 @@
           "400": {
             "description": "Failed list",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -57,9 +57,9 @@
           "500": {
             "description": "Failed to connect/fetch from jobs table from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -104,9 +104,9 @@
           "404": {
             "description": "Failed to get action_id for the given pod_id",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -114,9 +114,9 @@
           "500": {
             "description": "Failed to connect/fetch from pods_to_actions table from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -161,9 +161,9 @@
           "404": {
             "description": "Failed to get action_id within the db",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -171,9 +171,9 @@
           "500": {
             "description": "Failed to connect/fetch from pods_to_actions table from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -209,9 +209,9 @@
           "400": {
             "description": "Failed to get action for request",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -219,9 +219,9 @@
           "500": {
             "description": "Failed to connect/fetch from jobs table from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -266,9 +266,9 @@
           "400": {
             "description": "Invalid request parameters",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -276,9 +276,9 @@
           "404": {
             "description": "Failed to find checkpointable resource",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -286,9 +286,9 @@
           "500": {
             "description": "Failed to create checkpoint or connect to eventstream",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -333,9 +333,9 @@
           "404": {
             "description": "Action ID not found",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -343,9 +343,9 @@
           "500": {
             "description": "Failed to retrieve status from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -397,9 +397,9 @@
           "400": {
             "description": "Invalid query parameters",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -407,9 +407,9 @@
           "500": {
             "description": "Failed to connect/fetch from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -443,9 +443,9 @@
           "500": {
             "description": "Failed to create checkpoint in database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -491,9 +491,9 @@
           "400": {
             "description": "Invalid UUID provided",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -501,9 +501,9 @@
           "500": {
             "description": "Failed to execute request against database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -560,9 +560,9 @@
           "500": {
             "description": "Failed to execute request against database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -618,9 +618,9 @@
           "400": {
             "description": "Invalid request parameters",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -628,9 +628,9 @@
           "500": {
             "description": "Failed to update checkpoint in database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -668,9 +668,9 @@
           "500": {
             "description": "Failed to fetch clusters from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -714,9 +714,9 @@
           "400": {
             "description": "Bad request or missing cluster name",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -724,9 +724,9 @@
           "500": {
             "description": "Failed to create cluster in database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -760,9 +760,9 @@
           "500": {
             "description": "Database error",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -797,9 +797,9 @@
           "200": {
             "description": "Resource id registered internally",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -807,9 +807,9 @@
           "400": {
             "description": "Bad request",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -817,9 +817,9 @@
           "404": {
             "description": "Cluster or node not found",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -827,9 +827,9 @@
           "500": {
             "description": "Failed to sync resource to database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -864,9 +864,9 @@
           "200": {
             "description": "Added workload to queue",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -874,9 +874,9 @@
           "400": {
             "description": "Error parsing body",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -884,9 +884,9 @@
           "500": {
             "description": "Server error",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -920,9 +920,9 @@
           "404": {
             "description": "Cluster not found",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -930,9 +930,9 @@
           "500": {
             "description": "Failed to delete cluster from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -976,9 +976,9 @@
           "404": {
             "description": "Service not found",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -986,9 +986,9 @@
           "500": {
             "description": "Failed to fetch service configuration",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -1062,9 +1062,9 @@
           "500": {
             "description": "Failed to fetch events from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -1116,9 +1116,9 @@
           "500": {
             "description": "Failed to list directory contents",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -1163,9 +1163,9 @@
           "500": {
             "description": "Failed to generate download URL",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -1208,9 +1208,9 @@
           "500": {
             "description": "Failed to generate upload URL",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -1247,9 +1247,9 @@
           "500": {
             "description": "Internal server error",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -1286,9 +1286,9 @@
           "400": {
             "description": "Invalid request",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -1296,9 +1296,9 @@
           "500": {
             "description": "Internal server error",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -1386,9 +1386,9 @@
           "500": {
             "description": "Internal server error",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -1418,9 +1418,9 @@
           "200": {
             "description": "Instance deleted successfully",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -1428,9 +1428,9 @@
           "500": {
             "description": "Failed to delete instance",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -1475,9 +1475,9 @@
           "404": {
             "description": "Instance not found",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -1485,9 +1485,9 @@
           "500": {
             "description": "Failed to get status",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -1524,9 +1524,9 @@
           "500": {
             "description": "Failed to fetch from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -1560,9 +1560,9 @@
           "500": {
             "description": "Database error",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -1631,9 +1631,9 @@
           "500": {
             "description": "Internal server error",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -1662,9 +1662,9 @@
           "500": {
             "description": "Database error",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -1780,9 +1780,9 @@
           "500": {
             "description": "Failed to fetch from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -1816,9 +1816,9 @@
           "500": {
             "description": "Database error",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -1863,9 +1863,9 @@
           "500": {
             "description": "Internal server error",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -1894,9 +1894,9 @@
           "500": {
             "description": "Database error",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -1941,9 +1941,9 @@
           "404": {
             "description": "Job not found",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -1951,9 +1951,9 @@
           "500": {
             "description": "Internal server error",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -2010,9 +2010,9 @@
           "500": {
             "description": "Failed to connect/fetch from logs table from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -2049,9 +2049,9 @@
           "500": {
             "description": "Failed to connect/fetch from metrics table from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -2088,9 +2088,9 @@
           "500": {
             "description": "Failed to connect/fetch from SLURM metrics table in database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -2124,9 +2124,9 @@
           "500": {
             "description": "Failed to fetch SLURM cluster overview",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -2160,9 +2160,9 @@
           "500": {
             "description": "Failed to fetch SLURM state breakdown",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -2199,9 +2199,9 @@
           "500": {
             "description": "Failed to fetch partition statistics",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -2247,9 +2247,9 @@
           "500": {
             "description": "Failed to fetch partition time series",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -2286,9 +2286,9 @@
           "500": {
             "description": "Failed to fetch CPU load time series",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -2322,9 +2322,9 @@
           "500": {
             "description": "Failed to fetch memory time series",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -2376,9 +2376,9 @@
           "500": {
             "description": "Failed to fetch from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -2412,9 +2412,9 @@
           "500": {
             "description": "Database error",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -2466,9 +2466,9 @@
           "500": {
             "description": "Failed to fetch from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -2502,9 +2502,9 @@
           "500": {
             "description": "Database error",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -2538,9 +2538,9 @@
           "500": {
             "description": "Failed to fetch from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -2668,9 +2668,9 @@
           "500": {
             "description": "Failed to fetch from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -2704,9 +2704,9 @@
           "500": {
             "description": "Failed to fetch from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -2750,9 +2750,9 @@
           "400": {
             "description": "Invalid request body",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -2760,9 +2760,9 @@
           "500": {
             "description": "Failed to create policy in policy table",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -2796,9 +2796,9 @@
           "200": {
             "description": "Policy deleted successfully",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -2806,9 +2806,9 @@
           "400": {
             "description": "Invalid request body",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -2816,9 +2816,9 @@
           "500": {
             "description": "Failed to delete policy from policy table",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -2855,9 +2855,9 @@
           "400": {
             "description": "Invalid request body",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -2865,9 +2865,9 @@
           "500": {
             "description": "Failed to retriev policies from policy table",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -2891,9 +2891,9 @@
           "200": {
             "description": "Job policies synced successfully",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -2940,9 +2940,9 @@
           "400": {
             "description": "Invalid request body",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -2950,9 +2950,9 @@
           "500": {
             "description": "Failed to update policy from policy table",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3088,9 +3088,9 @@
           "400": {
             "description": "Invalid policy_id format",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3098,9 +3098,9 @@
           "404": {
             "description": "Policy not found",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3108,9 +3108,9 @@
           "500": {
             "description": "Failed to connect/fetch from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3155,9 +3155,9 @@
           "400": {
             "description": "Invalid action_id or request parameters",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3165,9 +3165,9 @@
           "500": {
             "description": "Failed to create restore or connect to eventstream",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3222,9 +3222,9 @@
           "500": {
             "description": "Failed to execute request against database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3269,9 +3269,9 @@
           "404": {
             "description": "Failed to find checkpointable resource",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3279,9 +3279,9 @@
           "500": {
             "description": "Failed to connect/fetch from jobs table from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3319,9 +3319,9 @@
           "500": {
             "description": "Failed to connect/fetch from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3381,9 +3381,9 @@
           "500": {
             "description": "Failed to connect/fetch from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3421,9 +3421,9 @@
           "500": {
             "description": "Failed to connect/fetch from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3483,9 +3483,9 @@
           "500": {
             "description": "Failed to connect/fetch from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3523,9 +3523,9 @@
           "500": {
             "description": "Failed to connect/fetch from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3569,9 +3569,9 @@
           "400": {
             "description": "Invalid request parameters",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3579,9 +3579,9 @@
           "500": {
             "description": "Failed to connect/execute request against database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3626,9 +3626,9 @@
           "400": {
             "description": "Invalid UUID provided",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3636,9 +3636,9 @@
           "404": {
             "description": "Maintenance window not found",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3646,9 +3646,9 @@
           "500": {
             "description": "Failed to connect/fetch from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3702,9 +3702,9 @@
           "400": {
             "description": "Invalid UUID provided",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3712,9 +3712,9 @@
           "404": {
             "description": "Maintenance window not found",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3722,9 +3722,9 @@
           "500": {
             "description": "Failed to connect/execute request against database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3768,9 +3768,9 @@
           "400": {
             "description": "Invalid UUID provided",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3778,9 +3778,9 @@
           "404": {
             "description": "Maintenance window not found",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3788,9 +3788,9 @@
           "500": {
             "description": "Failed to connect/execute request against database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3828,9 +3828,9 @@
           "500": {
             "description": "Failed to connect/fetch from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3890,9 +3890,9 @@
           "500": {
             "description": "Failed to connect/fetch from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3937,9 +3937,9 @@
           "400": {
             "description": "Failed create checkpoint",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3947,9 +3947,9 @@
           "404": {
             "description": "Failed create restore",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3957,9 +3957,9 @@
           "500": {
             "description": "Failed to connect/fetch from jobs table from database",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -3994,9 +3994,9 @@
           "401": {
             "description": "Invalid API key",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -4004,9 +4004,9 @@
           "404": {
             "description": "User not found",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -4014,9 +4014,9 @@
           "500": {
             "description": "Internal server error",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -4121,6 +4121,29 @@
               "string",
               "null"
             ]
+          }
+        }
+      },
+      "ApiError": {
+        "type": "object",
+        "description": "Standard error response for API endpoints",
+        "required": [
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "HTTP status code"
+          },
+          "details": {
+            "description": "Optional additional error details"
+          },
+          "message": {
+            "type": "string",
+            "description": "Error message describing what went wrong"
           }
         }
       },

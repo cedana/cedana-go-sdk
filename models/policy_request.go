@@ -4,593 +4,645 @@
 package models
 
 import (
-    i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type PolicyRequest struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The cluster_id property
-    cluster_id *string
-    // The heartbeat_time property
-    heartbeat_time *int64
-    // The id property
-    id *string
-    // The job_filter property
-    job_filter PolicyRequest_PolicyRequest_job_filterable
-    // The policy_type property
-    policy_type PolicyRequest_PolicyRequest_policy_typeable
-    // The resource property
-    resource PolicyRequest_PolicyRequest_resourceable
-    // The resource_ids property
-    resource_ids []i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
-    // The resource_name property
-    resource_name *string
-    // The runc_root property
-    runc_root *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The cluster_id property
+	cluster_id *string
+	// The heartbeat_time property
+	heartbeat_time *int64
+	// The id property
+	id *string
+	// The job_filter property
+	job_filter PolicyRequest_PolicyRequest_job_filterable
+	// The policy_type property
+	policy_type PolicyRequest_PolicyRequest_policy_typeable
+	// The resource property
+	resource PolicyRequest_PolicyRequest_resourceable
+	// The resource_ids property
+	resource_ids []i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+	// The resource_name property
+	resource_name *string
+	// The runc_root property
+	runc_root *string
 }
+
 // PolicyRequest_PolicyRequest_job_filter composed type wrapper for classes JobFilterable, PolicyRequest_job_filterMember1able
 type PolicyRequest_PolicyRequest_job_filter struct {
-    // Composed type representation for type JobFilterable
-    jobFilter JobFilterable
-    // Composed type representation for type PolicyRequest_job_filterMember1able
-    policyRequest_job_filterMember1 PolicyRequest_job_filterMember1able
+	// Composed type representation for type JobFilterable
+	jobFilter JobFilterable
+	// Composed type representation for type PolicyRequest_job_filterMember1able
+	policyRequest_job_filterMember1 PolicyRequest_job_filterMember1able
 }
+
 // NewPolicyRequest_PolicyRequest_job_filter instantiates a new PolicyRequest_PolicyRequest_job_filter and sets the default values.
-func NewPolicyRequest_PolicyRequest_job_filter()(*PolicyRequest_PolicyRequest_job_filter) {
-    m := &PolicyRequest_PolicyRequest_job_filter{
-    }
-    return m
+func NewPolicyRequest_PolicyRequest_job_filter() *PolicyRequest_PolicyRequest_job_filter {
+	m := &PolicyRequest_PolicyRequest_job_filter{}
+	return m
 }
+
 // CreatePolicyRequest_PolicyRequest_job_filterFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePolicyRequest_PolicyRequest_job_filterFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewPolicyRequest_PolicyRequest_job_filter()
-    if parseNode != nil {
-        mappingValueNode, err := parseNode.GetChildNode("")
-        if err != nil {
-            return nil, err
-        }
-        if mappingValueNode != nil {
-            mappingValue, err := mappingValueNode.GetStringValue()
-            if err != nil {
-                return nil, err
-            }
-            if mappingValue != nil {
-            }
-        }
-    }
-    return result, nil
+func CreatePolicyRequest_PolicyRequest_job_filterFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	result := NewPolicyRequest_PolicyRequest_job_filter()
+	if parseNode != nil {
+		mappingValueNode, err := parseNode.GetChildNode("")
+		if err != nil {
+			return nil, err
+		}
+		if mappingValueNode != nil {
+			mappingValue, err := mappingValueNode.GetStringValue()
+			if err != nil {
+				return nil, err
+			}
+			if mappingValue != nil {
+			}
+		}
+	}
+	return result, nil
 }
+
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PolicyRequest_PolicyRequest_job_filter) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    if m.GetJobFilter() != nil {
-        return m.GetJobFilter().GetFieldDeserializers()
-    } else if m.GetPolicyRequestJobFilterMember1() != nil {
-        return m.GetPolicyRequestJobFilterMember1().GetFieldDeserializers()
-    }
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+func (m *PolicyRequest_PolicyRequest_job_filter) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	if m.GetJobFilter() != nil {
+		return m.GetJobFilter().GetFieldDeserializers()
+	} else if m.GetPolicyRequestJobFilterMember1() != nil {
+		return m.GetPolicyRequestJobFilterMember1().GetFieldDeserializers()
+	}
+	return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
 }
+
 // GetIsComposedType determines if the current object is a wrapper around a composed type
 // returns a bool when successful
-func (m *PolicyRequest_PolicyRequest_job_filter) GetIsComposedType()(bool) {
-    return true
+func (m *PolicyRequest_PolicyRequest_job_filter) GetIsComposedType() bool {
+	return true
 }
+
 // GetJobFilter gets the JobFilter property value. Composed type representation for type JobFilterable
 // returns a JobFilterable when successful
-func (m *PolicyRequest_PolicyRequest_job_filter) GetJobFilter()(JobFilterable) {
-    return m.jobFilter
+func (m *PolicyRequest_PolicyRequest_job_filter) GetJobFilter() JobFilterable {
+	return m.jobFilter
 }
+
 // GetPolicyRequestJobFilterMember1 gets the PolicyRequest_job_filterMember1 property value. Composed type representation for type PolicyRequest_job_filterMember1able
 // returns a PolicyRequest_job_filterMember1able when successful
-func (m *PolicyRequest_PolicyRequest_job_filter) GetPolicyRequestJobFilterMember1()(PolicyRequest_job_filterMember1able) {
-    return m.policyRequest_job_filterMember1
+func (m *PolicyRequest_PolicyRequest_job_filter) GetPolicyRequestJobFilterMember1() PolicyRequest_job_filterMember1able {
+	return m.policyRequest_job_filterMember1
 }
+
 // Serialize serializes information the current object
-func (m *PolicyRequest_PolicyRequest_job_filter) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetJobFilter() != nil {
-        err := writer.WriteObjectValue("", m.GetJobFilter())
-        if err != nil {
-            return err
-        }
-    } else if m.GetPolicyRequestJobFilterMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetPolicyRequestJobFilterMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PolicyRequest_PolicyRequest_job_filter) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetJobFilter() != nil {
+		err := writer.WriteObjectValue("", m.GetJobFilter())
+		if err != nil {
+			return err
+		}
+	} else if m.GetPolicyRequestJobFilterMember1() != nil {
+		err := writer.WriteObjectValue("", m.GetPolicyRequestJobFilterMember1())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetJobFilter sets the JobFilter property value. Composed type representation for type JobFilterable
-func (m *PolicyRequest_PolicyRequest_job_filter) SetJobFilter(value JobFilterable)() {
-    m.jobFilter = value
+func (m *PolicyRequest_PolicyRequest_job_filter) SetJobFilter(value JobFilterable) {
+	m.jobFilter = value
 }
+
 // SetPolicyRequestJobFilterMember1 sets the PolicyRequest_job_filterMember1 property value. Composed type representation for type PolicyRequest_job_filterMember1able
-func (m *PolicyRequest_PolicyRequest_job_filter) SetPolicyRequestJobFilterMember1(value PolicyRequest_job_filterMember1able)() {
-    m.policyRequest_job_filterMember1 = value
+func (m *PolicyRequest_PolicyRequest_job_filter) SetPolicyRequestJobFilterMember1(value PolicyRequest_job_filterMember1able) {
+	m.policyRequest_job_filterMember1 = value
 }
+
 // PolicyRequest_PolicyRequest_policy_type composed type wrapper for classes PolicyRequest_policy_typeMember1able, PolicyType
 type PolicyRequest_PolicyRequest_policy_type struct {
-    // Composed type representation for type PolicyRequest_policy_typeMember1able
-    policyRequest_policy_typeMember1 PolicyRequest_policy_typeMember1able
-    // Composed type representation for type PolicyType
-    policyType *PolicyType
+	// Composed type representation for type PolicyRequest_policy_typeMember1able
+	policyRequest_policy_typeMember1 PolicyRequest_policy_typeMember1able
+	// Composed type representation for type PolicyType
+	policyType *PolicyType
 }
+
 // NewPolicyRequest_PolicyRequest_policy_type instantiates a new PolicyRequest_PolicyRequest_policy_type and sets the default values.
-func NewPolicyRequest_PolicyRequest_policy_type()(*PolicyRequest_PolicyRequest_policy_type) {
-    m := &PolicyRequest_PolicyRequest_policy_type{
-    }
-    return m
+func NewPolicyRequest_PolicyRequest_policy_type() *PolicyRequest_PolicyRequest_policy_type {
+	m := &PolicyRequest_PolicyRequest_policy_type{}
+	return m
 }
+
 // CreatePolicyRequest_PolicyRequest_policy_typeFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePolicyRequest_PolicyRequest_policy_typeFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewPolicyRequest_PolicyRequest_policy_type()
-    if parseNode != nil {
-        mappingValueNode, err := parseNode.GetChildNode("")
-        if err != nil {
-            return nil, err
-        }
-        if mappingValueNode != nil {
-            mappingValue, err := mappingValueNode.GetStringValue()
-            if err != nil {
-                return nil, err
-            }
-            if mappingValue != nil {
-            }
-        }
-    }
-    if val, err := parseNode.GetEnumValue(ParsePolicyType); val != nil {
-        if err != nil {
-            return nil, err
-        }
-        result.SetPolicyType(val.(*PolicyType))
-    }
-    return result, nil
+func CreatePolicyRequest_PolicyRequest_policy_typeFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	result := NewPolicyRequest_PolicyRequest_policy_type()
+	if parseNode != nil {
+		mappingValueNode, err := parseNode.GetChildNode("")
+		if err != nil {
+			return nil, err
+		}
+		if mappingValueNode != nil {
+			mappingValue, err := mappingValueNode.GetStringValue()
+			if err != nil {
+				return nil, err
+			}
+			if mappingValue != nil {
+			}
+		}
+	}
+	if val, err := parseNode.GetEnumValue(ParsePolicyType); val != nil {
+		if err != nil {
+			return nil, err
+		}
+		result.SetPolicyType(val.(*PolicyType))
+	}
+	return result, nil
 }
+
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PolicyRequest_PolicyRequest_policy_type) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    if m.GetPolicyRequestPolicyTypeMember1() != nil {
-        return m.GetPolicyRequestPolicyTypeMember1().GetFieldDeserializers()
-    }
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+func (m *PolicyRequest_PolicyRequest_policy_type) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	if m.GetPolicyRequestPolicyTypeMember1() != nil {
+		return m.GetPolicyRequestPolicyTypeMember1().GetFieldDeserializers()
+	}
+	return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
 }
+
 // GetIsComposedType determines if the current object is a wrapper around a composed type
 // returns a bool when successful
-func (m *PolicyRequest_PolicyRequest_policy_type) GetIsComposedType()(bool) {
-    return true
+func (m *PolicyRequest_PolicyRequest_policy_type) GetIsComposedType() bool {
+	return true
 }
+
 // GetPolicyRequestPolicyTypeMember1 gets the PolicyRequest_policy_typeMember1 property value. Composed type representation for type PolicyRequest_policy_typeMember1able
 // returns a PolicyRequest_policy_typeMember1able when successful
-func (m *PolicyRequest_PolicyRequest_policy_type) GetPolicyRequestPolicyTypeMember1()(PolicyRequest_policy_typeMember1able) {
-    return m.policyRequest_policy_typeMember1
+func (m *PolicyRequest_PolicyRequest_policy_type) GetPolicyRequestPolicyTypeMember1() PolicyRequest_policy_typeMember1able {
+	return m.policyRequest_policy_typeMember1
 }
+
 // GetPolicyType gets the PolicyType property value. Composed type representation for type PolicyType
 // returns a *PolicyType when successful
-func (m *PolicyRequest_PolicyRequest_policy_type) GetPolicyType()(*PolicyType) {
-    return m.policyType
+func (m *PolicyRequest_PolicyRequest_policy_type) GetPolicyType() *PolicyType {
+	return m.policyType
 }
+
 // Serialize serializes information the current object
-func (m *PolicyRequest_PolicyRequest_policy_type) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetPolicyRequestPolicyTypeMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetPolicyRequestPolicyTypeMember1())
-        if err != nil {
-            return err
-        }
-    } else if m.GetPolicyType() != nil {
-        cast := (*m.GetPolicyType()).String()
-        err := writer.WriteStringValue("", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PolicyRequest_PolicyRequest_policy_type) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetPolicyRequestPolicyTypeMember1() != nil {
+		err := writer.WriteObjectValue("", m.GetPolicyRequestPolicyTypeMember1())
+		if err != nil {
+			return err
+		}
+	} else if m.GetPolicyType() != nil {
+		cast := (*m.GetPolicyType()).String()
+		err := writer.WriteStringValue("", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetPolicyRequestPolicyTypeMember1 sets the PolicyRequest_policy_typeMember1 property value. Composed type representation for type PolicyRequest_policy_typeMember1able
-func (m *PolicyRequest_PolicyRequest_policy_type) SetPolicyRequestPolicyTypeMember1(value PolicyRequest_policy_typeMember1able)() {
-    m.policyRequest_policy_typeMember1 = value
+func (m *PolicyRequest_PolicyRequest_policy_type) SetPolicyRequestPolicyTypeMember1(value PolicyRequest_policy_typeMember1able) {
+	m.policyRequest_policy_typeMember1 = value
 }
+
 // SetPolicyType sets the PolicyType property value. Composed type representation for type PolicyType
-func (m *PolicyRequest_PolicyRequest_policy_type) SetPolicyType(value *PolicyType)() {
-    m.policyType = value
+func (m *PolicyRequest_PolicyRequest_policy_type) SetPolicyType(value *PolicyType) {
+	m.policyType = value
 }
+
 // PolicyRequest_PolicyRequest_resource composed type wrapper for classes PolicyRequest_resourceMember1able, PolicyResource
 type PolicyRequest_PolicyRequest_resource struct {
-    // Composed type representation for type PolicyRequest_resourceMember1able
-    policyRequest_resourceMember1 PolicyRequest_resourceMember1able
-    // Composed type representation for type PolicyResource
-    policyResource *PolicyResource
+	// Composed type representation for type PolicyRequest_resourceMember1able
+	policyRequest_resourceMember1 PolicyRequest_resourceMember1able
+	// Composed type representation for type PolicyResource
+	policyResource *PolicyResource
 }
+
 // NewPolicyRequest_PolicyRequest_resource instantiates a new PolicyRequest_PolicyRequest_resource and sets the default values.
-func NewPolicyRequest_PolicyRequest_resource()(*PolicyRequest_PolicyRequest_resource) {
-    m := &PolicyRequest_PolicyRequest_resource{
-    }
-    return m
+func NewPolicyRequest_PolicyRequest_resource() *PolicyRequest_PolicyRequest_resource {
+	m := &PolicyRequest_PolicyRequest_resource{}
+	return m
 }
+
 // CreatePolicyRequest_PolicyRequest_resourceFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePolicyRequest_PolicyRequest_resourceFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewPolicyRequest_PolicyRequest_resource()
-    if parseNode != nil {
-        mappingValueNode, err := parseNode.GetChildNode("")
-        if err != nil {
-            return nil, err
-        }
-        if mappingValueNode != nil {
-            mappingValue, err := mappingValueNode.GetStringValue()
-            if err != nil {
-                return nil, err
-            }
-            if mappingValue != nil {
-            }
-        }
-    }
-    if val, err := parseNode.GetEnumValue(ParsePolicyResource); val != nil {
-        if err != nil {
-            return nil, err
-        }
-        result.SetPolicyResource(val.(*PolicyResource))
-    }
-    return result, nil
+func CreatePolicyRequest_PolicyRequest_resourceFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	result := NewPolicyRequest_PolicyRequest_resource()
+	if parseNode != nil {
+		mappingValueNode, err := parseNode.GetChildNode("")
+		if err != nil {
+			return nil, err
+		}
+		if mappingValueNode != nil {
+			mappingValue, err := mappingValueNode.GetStringValue()
+			if err != nil {
+				return nil, err
+			}
+			if mappingValue != nil {
+			}
+		}
+	}
+	if val, err := parseNode.GetEnumValue(ParsePolicyResource); val != nil {
+		if err != nil {
+			return nil, err
+		}
+		result.SetPolicyResource(val.(*PolicyResource))
+	}
+	return result, nil
 }
+
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PolicyRequest_PolicyRequest_resource) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    if m.GetPolicyRequestResourceMember1() != nil {
-        return m.GetPolicyRequestResourceMember1().GetFieldDeserializers()
-    }
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+func (m *PolicyRequest_PolicyRequest_resource) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	if m.GetPolicyRequestResourceMember1() != nil {
+		return m.GetPolicyRequestResourceMember1().GetFieldDeserializers()
+	}
+	return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
 }
+
 // GetIsComposedType determines if the current object is a wrapper around a composed type
 // returns a bool when successful
-func (m *PolicyRequest_PolicyRequest_resource) GetIsComposedType()(bool) {
-    return true
+func (m *PolicyRequest_PolicyRequest_resource) GetIsComposedType() bool {
+	return true
 }
+
 // GetPolicyRequestResourceMember1 gets the PolicyRequest_resourceMember1 property value. Composed type representation for type PolicyRequest_resourceMember1able
 // returns a PolicyRequest_resourceMember1able when successful
-func (m *PolicyRequest_PolicyRequest_resource) GetPolicyRequestResourceMember1()(PolicyRequest_resourceMember1able) {
-    return m.policyRequest_resourceMember1
+func (m *PolicyRequest_PolicyRequest_resource) GetPolicyRequestResourceMember1() PolicyRequest_resourceMember1able {
+	return m.policyRequest_resourceMember1
 }
+
 // GetPolicyResource gets the PolicyResource property value. Composed type representation for type PolicyResource
 // returns a *PolicyResource when successful
-func (m *PolicyRequest_PolicyRequest_resource) GetPolicyResource()(*PolicyResource) {
-    return m.policyResource
+func (m *PolicyRequest_PolicyRequest_resource) GetPolicyResource() *PolicyResource {
+	return m.policyResource
 }
+
 // Serialize serializes information the current object
-func (m *PolicyRequest_PolicyRequest_resource) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetPolicyRequestResourceMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetPolicyRequestResourceMember1())
-        if err != nil {
-            return err
-        }
-    } else if m.GetPolicyResource() != nil {
-        cast := (*m.GetPolicyResource()).String()
-        err := writer.WriteStringValue("", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PolicyRequest_PolicyRequest_resource) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetPolicyRequestResourceMember1() != nil {
+		err := writer.WriteObjectValue("", m.GetPolicyRequestResourceMember1())
+		if err != nil {
+			return err
+		}
+	} else if m.GetPolicyResource() != nil {
+		cast := (*m.GetPolicyResource()).String()
+		err := writer.WriteStringValue("", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetPolicyRequestResourceMember1 sets the PolicyRequest_resourceMember1 property value. Composed type representation for type PolicyRequest_resourceMember1able
-func (m *PolicyRequest_PolicyRequest_resource) SetPolicyRequestResourceMember1(value PolicyRequest_resourceMember1able)() {
-    m.policyRequest_resourceMember1 = value
+func (m *PolicyRequest_PolicyRequest_resource) SetPolicyRequestResourceMember1(value PolicyRequest_resourceMember1able) {
+	m.policyRequest_resourceMember1 = value
 }
+
 // SetPolicyResource sets the PolicyResource property value. Composed type representation for type PolicyResource
-func (m *PolicyRequest_PolicyRequest_resource) SetPolicyResource(value *PolicyResource)() {
-    m.policyResource = value
+func (m *PolicyRequest_PolicyRequest_resource) SetPolicyResource(value *PolicyResource) {
+	m.policyResource = value
 }
+
 type PolicyRequest_PolicyRequest_job_filterable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetJobFilter()(JobFilterable)
-    GetPolicyRequestJobFilterMember1()(PolicyRequest_job_filterMember1able)
-    SetJobFilter(value JobFilterable)()
-    SetPolicyRequestJobFilterMember1(value PolicyRequest_job_filterMember1able)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetJobFilter() JobFilterable
+	GetPolicyRequestJobFilterMember1() PolicyRequest_job_filterMember1able
+	SetJobFilter(value JobFilterable)
+	SetPolicyRequestJobFilterMember1(value PolicyRequest_job_filterMember1able)
 }
 type PolicyRequest_PolicyRequest_policy_typeable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetPolicyRequestPolicyTypeMember1()(PolicyRequest_policy_typeMember1able)
-    GetPolicyType()(*PolicyType)
-    SetPolicyRequestPolicyTypeMember1(value PolicyRequest_policy_typeMember1able)()
-    SetPolicyType(value *PolicyType)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetPolicyRequestPolicyTypeMember1() PolicyRequest_policy_typeMember1able
+	GetPolicyType() *PolicyType
+	SetPolicyRequestPolicyTypeMember1(value PolicyRequest_policy_typeMember1able)
+	SetPolicyType(value *PolicyType)
 }
 type PolicyRequest_PolicyRequest_resourceable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetPolicyRequestResourceMember1()(PolicyRequest_resourceMember1able)
-    GetPolicyResource()(*PolicyResource)
-    SetPolicyRequestResourceMember1(value PolicyRequest_resourceMember1able)()
-    SetPolicyResource(value *PolicyResource)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetPolicyRequestResourceMember1() PolicyRequest_resourceMember1able
+	GetPolicyResource() *PolicyResource
+	SetPolicyRequestResourceMember1(value PolicyRequest_resourceMember1able)
+	SetPolicyResource(value *PolicyResource)
 }
+
 // NewPolicyRequest instantiates a new PolicyRequest and sets the default values.
-func NewPolicyRequest()(*PolicyRequest) {
-    m := &PolicyRequest{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewPolicyRequest() *PolicyRequest {
+	m := &PolicyRequest{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreatePolicyRequestFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePolicyRequestFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPolicyRequest(), nil
+func CreatePolicyRequestFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPolicyRequest(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *PolicyRequest) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *PolicyRequest) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetClusterId gets the cluster_id property value. The cluster_id property
 // returns a *string when successful
-func (m *PolicyRequest) GetClusterId()(*string) {
-    return m.cluster_id
+func (m *PolicyRequest) GetClusterId() *string {
+	return m.cluster_id
 }
+
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PolicyRequest) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["cluster_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetClusterId(val)
-        }
-        return nil
-    }
-    res["heartbeat_time"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetHeartbeatTime(val)
-        }
-        return nil
-    }
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
-        }
-        return nil
-    }
-    res["job_filter"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePolicyRequest_PolicyRequest_job_filterFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetJob_filter(val.(PolicyRequest_PolicyRequest_job_filterable))
-        }
-        return nil
-    }
-    res["policy_type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePolicyRequest_PolicyRequest_policy_typeFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPolicy_type(val.(PolicyRequest_PolicyRequest_policy_typeable))
-        }
-        return nil
-    }
-    res["resource"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePolicyRequest_PolicyRequest_resourceFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetResource(val.(PolicyRequest_PolicyRequest_resourceable))
-        }
-        return nil
-    }
-    res["resource_ids"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfPrimitiveValues("uuid")
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = *(v.(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID))
-                }
-            }
-            m.SetResourceIds(res)
-        }
-        return nil
-    }
-    res["resource_name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetResourceName(val)
-        }
-        return nil
-    }
-    res["runc_root"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRuncRoot(val)
-        }
-        return nil
-    }
-    return res
+func (m *PolicyRequest) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["cluster_id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetClusterId(val)
+		}
+		return nil
+	}
+	res["heartbeat_time"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetHeartbeatTime(val)
+		}
+		return nil
+	}
+	res["id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetId(val)
+		}
+		return nil
+	}
+	res["job_filter"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreatePolicyRequest_PolicyRequest_job_filterFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetJob_filter(val.(PolicyRequest_PolicyRequest_job_filterable))
+		}
+		return nil
+	}
+	res["policy_type"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreatePolicyRequest_PolicyRequest_policy_typeFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPolicy_type(val.(PolicyRequest_PolicyRequest_policy_typeable))
+		}
+		return nil
+	}
+	res["resource"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreatePolicyRequest_PolicyRequest_resourceFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetResource(val.(PolicyRequest_PolicyRequest_resourceable))
+		}
+		return nil
+	}
+	res["resource_ids"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfPrimitiveValues("uuid")
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = *(v.(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID))
+				}
+			}
+			m.SetResourceIds(res)
+		}
+		return nil
+	}
+	res["resource_name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetResourceName(val)
+		}
+		return nil
+	}
+	res["runc_root"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRuncRoot(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetHeartbeatTime gets the heartbeat_time property value. The heartbeat_time property
 // returns a *int64 when successful
-func (m *PolicyRequest) GetHeartbeatTime()(*int64) {
-    return m.heartbeat_time
+func (m *PolicyRequest) GetHeartbeatTime() *int64 {
+	return m.heartbeat_time
 }
+
 // GetId gets the id property value. The id property
 // returns a *string when successful
-func (m *PolicyRequest) GetId()(*string) {
-    return m.id
+func (m *PolicyRequest) GetId() *string {
+	return m.id
 }
+
 // GetJob_filter gets the job_filter property value. The job_filter property
 // returns a PolicyRequest_PolicyRequest_job_filterable when successful
-func (m *PolicyRequest) GetJob_filter()(PolicyRequest_PolicyRequest_job_filterable) {
-    return m.job_filter
+func (m *PolicyRequest) GetJob_filter() PolicyRequest_PolicyRequest_job_filterable {
+	return m.job_filter
 }
+
 // GetPolicy_type gets the policy_type property value. The policy_type property
 // returns a PolicyRequest_PolicyRequest_policy_typeable when successful
-func (m *PolicyRequest) GetPolicy_type()(PolicyRequest_PolicyRequest_policy_typeable) {
-    return m.policy_type
+func (m *PolicyRequest) GetPolicy_type() PolicyRequest_PolicyRequest_policy_typeable {
+	return m.policy_type
 }
+
 // GetResource gets the resource property value. The resource property
 // returns a PolicyRequest_PolicyRequest_resourceable when successful
-func (m *PolicyRequest) GetResource()(PolicyRequest_PolicyRequest_resourceable) {
-    return m.resource
+func (m *PolicyRequest) GetResource() PolicyRequest_PolicyRequest_resourceable {
+	return m.resource
 }
+
 // GetResourceIds gets the resource_ids property value. The resource_ids property
 // returns a []UUID when successful
-func (m *PolicyRequest) GetResourceIds()([]i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
-    return m.resource_ids
+func (m *PolicyRequest) GetResourceIds() []i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID {
+	return m.resource_ids
 }
+
 // GetResourceName gets the resource_name property value. The resource_name property
 // returns a *string when successful
-func (m *PolicyRequest) GetResourceName()(*string) {
-    return m.resource_name
+func (m *PolicyRequest) GetResourceName() *string {
+	return m.resource_name
 }
+
 // GetRuncRoot gets the runc_root property value. The runc_root property
 // returns a *string when successful
-func (m *PolicyRequest) GetRuncRoot()(*string) {
-    return m.runc_root
+func (m *PolicyRequest) GetRuncRoot() *string {
+	return m.runc_root
 }
+
 // Serialize serializes information the current object
-func (m *PolicyRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("cluster_id", m.GetClusterId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("heartbeat_time", m.GetHeartbeatTime())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("id", m.GetId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("job_filter", m.GetJob_filter())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("policy_type", m.GetPolicy_type())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("resource", m.GetResource())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetResourceIds() != nil {
-        err := writer.WriteCollectionOfUUIDValues("resource_ids", m.GetResourceIds())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("resource_name", m.GetResourceName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("runc_root", m.GetRuncRoot())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PolicyRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("cluster_id", m.GetClusterId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("heartbeat_time", m.GetHeartbeatTime())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("id", m.GetId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("job_filter", m.GetJob_filter())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("policy_type", m.GetPolicy_type())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("resource", m.GetResource())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetResourceIds() != nil {
+		err := writer.WriteCollectionOfUUIDValues("resource_ids", m.GetResourceIds())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("resource_name", m.GetResourceName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("runc_root", m.GetRuncRoot())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PolicyRequest) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *PolicyRequest) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetClusterId sets the cluster_id property value. The cluster_id property
-func (m *PolicyRequest) SetClusterId(value *string)() {
-    m.cluster_id = value
+func (m *PolicyRequest) SetClusterId(value *string) {
+	m.cluster_id = value
 }
+
 // SetHeartbeatTime sets the heartbeat_time property value. The heartbeat_time property
-func (m *PolicyRequest) SetHeartbeatTime(value *int64)() {
-    m.heartbeat_time = value
+func (m *PolicyRequest) SetHeartbeatTime(value *int64) {
+	m.heartbeat_time = value
 }
+
 // SetId sets the id property value. The id property
-func (m *PolicyRequest) SetId(value *string)() {
-    m.id = value
+func (m *PolicyRequest) SetId(value *string) {
+	m.id = value
 }
+
 // SetJob_filter sets the job_filter property value. The job_filter property
-func (m *PolicyRequest) SetJob_filter(value PolicyRequest_PolicyRequest_job_filterable)() {
-    m.job_filter = value
+func (m *PolicyRequest) SetJob_filter(value PolicyRequest_PolicyRequest_job_filterable) {
+	m.job_filter = value
 }
+
 // SetPolicy_type sets the policy_type property value. The policy_type property
-func (m *PolicyRequest) SetPolicy_type(value PolicyRequest_PolicyRequest_policy_typeable)() {
-    m.policy_type = value
+func (m *PolicyRequest) SetPolicy_type(value PolicyRequest_PolicyRequest_policy_typeable) {
+	m.policy_type = value
 }
+
 // SetResource sets the resource property value. The resource property
-func (m *PolicyRequest) SetResource(value PolicyRequest_PolicyRequest_resourceable)() {
-    m.resource = value
+func (m *PolicyRequest) SetResource(value PolicyRequest_PolicyRequest_resourceable) {
+	m.resource = value
 }
+
 // SetResourceIds sets the resource_ids property value. The resource_ids property
-func (m *PolicyRequest) SetResourceIds(value []i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
-    m.resource_ids = value
+func (m *PolicyRequest) SetResourceIds(value []i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
+	m.resource_ids = value
 }
+
 // SetResourceName sets the resource_name property value. The resource_name property
-func (m *PolicyRequest) SetResourceName(value *string)() {
-    m.resource_name = value
+func (m *PolicyRequest) SetResourceName(value *string) {
+	m.resource_name = value
 }
+
 // SetRuncRoot sets the runc_root property value. The runc_root property
-func (m *PolicyRequest) SetRuncRoot(value *string)() {
-    m.runc_root = value
+func (m *PolicyRequest) SetRuncRoot(value *string) {
+	m.runc_root = value
 }
+
 type PolicyRequestable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetClusterId()(*string)
-    GetHeartbeatTime()(*int64)
-    GetId()(*string)
-    GetJob_filter()(PolicyRequest_PolicyRequest_job_filterable)
-    GetPolicy_type()(PolicyRequest_PolicyRequest_policy_typeable)
-    GetResource()(PolicyRequest_PolicyRequest_resourceable)
-    GetResourceIds()([]i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
-    GetResourceName()(*string)
-    GetRuncRoot()(*string)
-    SetClusterId(value *string)()
-    SetHeartbeatTime(value *int64)()
-    SetId(value *string)()
-    SetJob_filter(value PolicyRequest_PolicyRequest_job_filterable)()
-    SetPolicy_type(value PolicyRequest_PolicyRequest_policy_typeable)()
-    SetResource(value PolicyRequest_PolicyRequest_resourceable)()
-    SetResourceIds(value []i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
-    SetResourceName(value *string)()
-    SetRuncRoot(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetClusterId() *string
+	GetHeartbeatTime() *int64
+	GetId() *string
+	GetJob_filter() PolicyRequest_PolicyRequest_job_filterable
+	GetPolicy_type() PolicyRequest_PolicyRequest_policy_typeable
+	GetResource() PolicyRequest_PolicyRequest_resourceable
+	GetResourceIds() []i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+	GetResourceName() *string
+	GetRuncRoot() *string
+	SetClusterId(value *string)
+	SetHeartbeatTime(value *int64)
+	SetId(value *string)
+	SetJob_filter(value PolicyRequest_PolicyRequest_job_filterable)
+	SetPolicy_type(value PolicyRequest_PolicyRequest_policy_typeable)
+	SetResource(value PolicyRequest_PolicyRequest_resourceable)
+	SetResourceIds(value []i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+	SetResourceName(value *string)
+	SetRuncRoot(value *string)
 }

@@ -47,12 +47,16 @@ func (m *NodesRequestBuilder) Count()(*NodesCountRequestBuilder) {
 }
 // Get will only return nodes from clusters with status 'active' if no params are provided. Also, nodeswith last_sync older than 5 minutes are not returned.
 // returns a []NodeResponseable when successful
+// returns a ApiError error when the service returns a 500 status code
 func (m *NodesRequestBuilder) Get(ctx context.Context, requestConfiguration *NodesRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.NodeResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateNodeResponseFromDiscriminatorValue, nil)
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateNodeResponseFromDiscriminatorValue, errorMapping)
     if err != nil {
         return nil, err
     }

@@ -6,6 +6,7 @@ package v2
 import (
     "context"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+    i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
 )
 
 // UserRequestBuilder builds and executes requests for operations under \v2\user
@@ -34,12 +35,20 @@ func NewUserRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1
 }
 // Get used to validate authentication token
 // returns a *string when successful
+// returns a ApiError error when the service returns a 401 status code
+// returns a ApiError error when the service returns a 404 status code
+// returns a ApiError error when the service returns a 500 status code
 func (m *UserRequestBuilder) Get(ctx context.Context, requestConfiguration *UserRequestBuilderGetRequestConfiguration)(*string, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", nil)
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "401": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
+        "404": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
+        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", errorMapping)
     if err != nil {
         return nil, err
     }

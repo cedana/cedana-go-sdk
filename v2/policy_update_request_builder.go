@@ -35,12 +35,18 @@ func NewPolicyUpdateRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee2
 }
 // Post update policy
 // returns a *string when successful
+// returns a ApiError error when the service returns a 400 status code
+// returns a ApiError error when the service returns a 500 status code
 func (m *PolicyUpdateRequestBuilder) Post(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PolicyRequestable, requestConfiguration *PolicyUpdateRequestBuilderPostRequestConfiguration)(*string, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", nil)
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "400": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
+        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", errorMapping)
     if err != nil {
         return nil, err
     }

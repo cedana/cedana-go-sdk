@@ -44,12 +44,16 @@ func NewSlurmClusters_paginatedRequestBuilder(rawUrl string, requestAdapter i2ae
 }
 // Get use query params to filter clusters
 // returns a []SlurmClusterable when successful
+// returns a ApiError error when the service returns a 500 status code
 func (m *SlurmClusters_paginatedRequestBuilder) Get(ctx context.Context, requestConfiguration *SlurmClusters_paginatedRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.SlurmClusterable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateSlurmClusterFromDiscriminatorValue, nil)
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateSlurmClusterFromDiscriminatorValue, errorMapping)
     if err != nil {
         return nil, err
     }

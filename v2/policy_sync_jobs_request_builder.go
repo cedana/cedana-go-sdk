@@ -6,6 +6,7 @@ package v2
 import (
     "context"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+    i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
 )
 
 // PolicySyncJobsRequestBuilder builds and executes requests for operations under \v2\policy\sync-jobs
@@ -33,20 +34,20 @@ func NewPolicySyncJobsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7dae
     return NewPolicySyncJobsRequestBuilderInternal(urlParams, requestAdapter)
 }
 // Post sync job policies manually
-// returns a *string when successful
-func (m *PolicySyncJobsRequestBuilder) Post(ctx context.Context, requestConfiguration *PolicySyncJobsRequestBuilderPostRequestConfiguration)(*string, error) {
+// returns a ApiErrorable when successful
+func (m *PolicySyncJobsRequestBuilder) Post(ctx context.Context, requestConfiguration *PolicySyncJobsRequestBuilderPostRequestConfiguration)(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.ApiErrorable, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", nil)
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue, nil)
     if err != nil {
         return nil, err
     }
     if res == nil {
         return nil, nil
     }
-    return res.(*string), nil
+    return res.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.ApiErrorable), nil
 }
 // ToPostRequestInformation sync job policies manually
 // returns a *RequestInformation when successful
@@ -56,7 +57,7 @@ func (m *PolicySyncJobsRequestBuilder) ToPostRequestInformation(ctx context.Cont
         requestInfo.Headers.AddAll(requestConfiguration.Headers)
         requestInfo.AddRequestOptions(requestConfiguration.Options)
     }
-    requestInfo.Headers.TryAdd("Accept", "text/plain;q=0.9")
+    requestInfo.Headers.TryAdd("Accept", "application/json")
     return requestInfo, nil
 }
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.

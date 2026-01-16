@@ -35,12 +35,20 @@ func NewPolicyItemPodsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7dae
 }
 // Get get pods monitored by a specific policy
 // returns a []PolicyPodResponseable when successful
+// returns a ApiError error when the service returns a 400 status code
+// returns a ApiError error when the service returns a 404 status code
+// returns a ApiError error when the service returns a 500 status code
 func (m *PolicyItemPodsRequestBuilder) Get(ctx context.Context, requestConfiguration *PolicyItemPodsRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PolicyPodResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreatePolicyPodResponseFromDiscriminatorValue, nil)
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "400": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
+        "404": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
+        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreatePolicyPodResponseFromDiscriminatorValue, errorMapping)
     if err != nil {
         return nil, err
     }

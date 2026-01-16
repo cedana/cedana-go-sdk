@@ -54,12 +54,16 @@ func NewSlurmMaintenance_windowRequestBuilder(rawUrl string, requestAdapter i2ae
 }
 // Get returns all maintenance windows
 // returns a []SlurmMaintenanceWindowable when successful
+// returns a ApiError error when the service returns a 500 status code
 func (m *SlurmMaintenance_windowRequestBuilder) Get(ctx context.Context, requestConfiguration *SlurmMaintenance_windowRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.SlurmMaintenanceWindowable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateSlurmMaintenanceWindowFromDiscriminatorValue, nil)
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateSlurmMaintenanceWindowFromDiscriminatorValue, errorMapping)
     if err != nil {
         return nil, err
     }
@@ -73,12 +77,18 @@ func (m *SlurmMaintenance_windowRequestBuilder) Get(ctx context.Context, request
 }
 // Post creates a new maintenance window for SLURM clusters
 // returns a *string when successful
+// returns a ApiError error when the service returns a 400 status code
+// returns a ApiError error when the service returns a 500 status code
 func (m *SlurmMaintenance_windowRequestBuilder) Post(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateMaintenanceWindowable, requestConfiguration *SlurmMaintenance_windowRequestBuilderPostRequestConfiguration)(*string, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", nil)
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "400": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
+        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", errorMapping)
     if err != nil {
         return nil, err
     }

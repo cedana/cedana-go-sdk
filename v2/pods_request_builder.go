@@ -47,12 +47,16 @@ func (m *PodsRequestBuilder) Count()(*PodsCountRequestBuilder) {
 }
 // Get will not return pods with status 'deleted', and only from clusters with status 'active' andpods belonging to nodes whose last_sync is within the last 5 minutes.
 // returns a []PodResponseable when successful
+// returns a ApiError error when the service returns a 500 status code
 func (m *PodsRequestBuilder) Get(ctx context.Context, requestConfiguration *PodsRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PodResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreatePodResponseFromDiscriminatorValue, nil)
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreatePodResponseFromDiscriminatorValue, errorMapping)
     if err != nil {
         return nil, err
     }

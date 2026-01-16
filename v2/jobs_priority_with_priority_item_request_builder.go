@@ -34,12 +34,16 @@ func NewJobsPriorityWithPriorityItemRequestBuilder(rawUrl string, requestAdapter
     return NewJobsPriorityWithPriorityItemRequestBuilderInternal(urlParams, requestAdapter)
 }
 // returns a PaginatedJobResponseable when successful
+// returns a ApiError error when the service returns a 500 status code
 func (m *JobsPriorityWithPriorityItemRequestBuilder) Get(ctx context.Context, requestConfiguration *JobsPriorityWithPriorityItemRequestBuilderGetRequestConfiguration)(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PaginatedJobResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreatePaginatedJobResponseFromDiscriminatorValue, nil)
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreatePaginatedJobResponseFromDiscriminatorValue, errorMapping)
     if err != nil {
         return nil, err
     }
