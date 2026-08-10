@@ -11,6 +11,11 @@ import (
 type PolicyWithPolicy_ItemRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+// Activity the activity property
+// returns a *PolicyItemActivityRequestBuilder when successful
+func (m *PolicyWithPolicy_ItemRequestBuilder) Activity()(*PolicyItemActivityRequestBuilder) {
+    return NewPolicyItemActivityRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // NewPolicyWithPolicy_ItemRequestBuilderInternal instantiates a new PolicyWithPolicy_ItemRequestBuilder and sets the default values.
 func NewPolicyWithPolicy_ItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PolicyWithPolicy_ItemRequestBuilder) {
     m := &PolicyWithPolicy_ItemRequestBuilder{

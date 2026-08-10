@@ -11,7 +11,7 @@ type TimeSeriesDataPoint struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
     // The timestamp property
-    timestamp *int32
+    timestamp *int64
     // The value property
     value *float64
 }
@@ -37,7 +37,7 @@ func (m *TimeSeriesDataPoint) GetAdditionalData()(map[string]any) {
 func (m *TimeSeriesDataPoint) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["timestamp"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
+        val, err := n.GetInt64Value()
         if err != nil {
             return err
         }
@@ -59,8 +59,8 @@ func (m *TimeSeriesDataPoint) GetFieldDeserializers()(map[string]func(i878a80d23
     return res
 }
 // GetTimestamp gets the timestamp property value. The timestamp property
-// returns a *int32 when successful
-func (m *TimeSeriesDataPoint) GetTimestamp()(*int32) {
+// returns a *int64 when successful
+func (m *TimeSeriesDataPoint) GetTimestamp()(*int64) {
     return m.timestamp
 }
 // GetValue gets the value property value. The value property
@@ -71,7 +71,7 @@ func (m *TimeSeriesDataPoint) GetValue()(*float64) {
 // Serialize serializes information the current object
 func (m *TimeSeriesDataPoint) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteInt32Value("timestamp", m.GetTimestamp())
+        err := writer.WriteInt64Value("timestamp", m.GetTimestamp())
         if err != nil {
             return err
         }
@@ -95,7 +95,7 @@ func (m *TimeSeriesDataPoint) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetTimestamp sets the timestamp property value. The timestamp property
-func (m *TimeSeriesDataPoint) SetTimestamp(value *int32)() {
+func (m *TimeSeriesDataPoint) SetTimestamp(value *int64)() {
     m.timestamp = value
 }
 // SetValue sets the value property value. The value property
@@ -105,8 +105,8 @@ func (m *TimeSeriesDataPoint) SetValue(value *float64)() {
 type TimeSeriesDataPointable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetTimestamp()(*int32)
+    GetTimestamp()(*int64)
     GetValue()(*float64)
-    SetTimestamp(value *int32)()
+    SetTimestamp(value *int64)()
     SetValue(value *float64)()
 }

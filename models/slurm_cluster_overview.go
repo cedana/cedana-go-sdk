@@ -23,7 +23,7 @@ type SlurmClusterOverview struct {
     // The mem_real property
     mem_real *float64
     // The timestamp property
-    timestamp *int32
+    timestamp *int64
 }
 // NewSlurmClusterOverview instantiates a new SlurmClusterOverview and sets the default values.
 func NewSlurmClusterOverview()(*SlurmClusterOverview) {
@@ -122,7 +122,7 @@ func (m *SlurmClusterOverview) GetFieldDeserializers()(map[string]func(i878a80d2
         return nil
     }
     res["timestamp"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
+        val, err := n.GetInt64Value()
         if err != nil {
             return err
         }
@@ -149,8 +149,8 @@ func (m *SlurmClusterOverview) GetMemReal()(*float64) {
     return m.mem_real
 }
 // GetTimestamp gets the timestamp property value. The timestamp property
-// returns a *int32 when successful
-func (m *SlurmClusterOverview) GetTimestamp()(*int32) {
+// returns a *int64 when successful
+func (m *SlurmClusterOverview) GetTimestamp()(*int64) {
     return m.timestamp
 }
 // Serialize serializes information the current object
@@ -192,7 +192,7 @@ func (m *SlurmClusterOverview) Serialize(writer i878a80d2330e89d26896388a3f487ee
         }
     }
     {
-        err := writer.WriteInt32Value("timestamp", m.GetTimestamp())
+        err := writer.WriteInt64Value("timestamp", m.GetTimestamp())
         if err != nil {
             return err
         }
@@ -234,7 +234,7 @@ func (m *SlurmClusterOverview) SetMemReal(value *float64)() {
     m.mem_real = value
 }
 // SetTimestamp sets the timestamp property value. The timestamp property
-func (m *SlurmClusterOverview) SetTimestamp(value *int32)() {
+func (m *SlurmClusterOverview) SetTimestamp(value *int64)() {
     m.timestamp = value
 }
 type SlurmClusterOverviewable interface {
@@ -246,12 +246,12 @@ type SlurmClusterOverviewable interface {
     GetMemAlloc()(*float64)
     GetMemFree()(*float64)
     GetMemReal()(*float64)
-    GetTimestamp()(*int32)
+    GetTimestamp()(*int64)
     SetCpuLoad(value *float64)()
     SetCpusIdle(value *float64)()
     SetCpusTotal(value *float64)()
     SetMemAlloc(value *float64)()
     SetMemFree(value *float64)()
     SetMemReal(value *float64)()
-    SetTimestamp(value *int32)()
+    SetTimestamp(value *int64)()
 }

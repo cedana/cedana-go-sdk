@@ -22,8 +22,6 @@ type Checkpoint struct {
     info i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
     // The name property
     name *string
-    // The platform property
-    platform *string
     // The status property
     status *CheckpointStatus
 }
@@ -103,16 +101,6 @@ func (m *Checkpoint) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         }
         return nil
     }
-    res["platform"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPlatform(val)
-        }
-        return nil
-    }
     res["status"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetEnumValue(ParseCheckpointStatus)
         if err != nil {
@@ -144,11 +132,6 @@ func (m *Checkpoint) GetInfo()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493
 // returns a *string when successful
 func (m *Checkpoint) GetName()(*string) {
     return m.name
-}
-// GetPlatform gets the platform property value. The platform property
-// returns a *string when successful
-func (m *Checkpoint) GetPlatform()(*string) {
-    return m.platform
 }
 // GetStatus gets the status property value. The status property
 // returns a *CheckpointStatus when successful
@@ -183,12 +166,6 @@ func (m *Checkpoint) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     }
     {
         err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("platform", m.GetPlatform())
         if err != nil {
             return err
         }
@@ -232,10 +209,6 @@ func (m *Checkpoint) SetInfo(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010
 func (m *Checkpoint) SetName(value *string)() {
     m.name = value
 }
-// SetPlatform sets the platform property value. The platform property
-func (m *Checkpoint) SetPlatform(value *string)() {
-    m.platform = value
-}
 // SetStatus sets the status property value. The status property
 func (m *Checkpoint) SetStatus(value *CheckpointStatus)() {
     m.status = value
@@ -248,13 +221,11 @@ type Checkpointable interface {
     GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetInfo()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
     GetName()(*string)
-    GetPlatform()(*string)
     GetStatus()(*CheckpointStatus)
     SetChecksum(value *string)()
     SetGpu(value *string)()
     SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetInfo(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
     SetName(value *string)()
-    SetPlatform(value *string)()
     SetStatus(value *CheckpointStatus)()
 }

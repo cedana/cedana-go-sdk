@@ -7,17 +7,52 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
+// SlurmJob slurmJob represents a SLURM job stored in the database
 type SlurmJob struct {
+    // The account property
+    account *string
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // Numeric derived exit code (slurmdbd derived_ec — uint32, widened to i64)
+    derived_ec *int64
+    // Human-readable exit reason (e.g. "Preempted by higher-priority job")
+    derived_es *string
+    // Unix epoch seconds; 0 means not yet ended
+    end_time *int64
+    // The exit_code property
+    exit_code *int64
+    // Node that triggered job failure, if any
+    failed_node *string
+    // The id property
+    id *int64
     // The job_id property
-    job_id *string
-    // The job_name property
-    job_name *string
+    job_id *int64
+    // UID that issued the kill/preempt signal (uid_t / uint32, widened to i64)
+    kill_requid *int64
+    // The name property
+    name *string
+    // The nodes property
+    nodes *string
+    // The num_cpus property
+    num_cpus *int64
+    // The num_nodes property
+    num_nodes *int64
+    // The partition property
+    partition *string
     // The priority property
-    priority *int32
-    // The state property
-    state *string
+    priority *int64
+    // Unix epoch seconds; 0 means not set
+    start_time *int64
+    // Reason code for prior state transition
+    state_reason_prev *int64
+    // The status property
+    status *string
+    // Unix epoch seconds; 0 means not set
+    submit_time *int64
+    // Seconds the job spent suspended
+    time_suspended *int64
+    // The work_dir property
+    work_dir *string
 }
 // NewSlurmJob instantiates a new SlurmJob and sets the default values.
 func NewSlurmJob()(*SlurmJob) {
@@ -31,17 +66,117 @@ func NewSlurmJob()(*SlurmJob) {
 func CreateSlurmJobFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewSlurmJob(), nil
 }
+// GetAccount gets the account property value. The account property
+// returns a *string when successful
+func (m *SlurmJob) GetAccount()(*string) {
+    return m.account
+}
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
 func (m *SlurmJob) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
+// GetDerivedEc gets the derived_ec property value. Numeric derived exit code (slurmdbd derived_ec — uint32, widened to i64)
+// returns a *int64 when successful
+func (m *SlurmJob) GetDerivedEc()(*int64) {
+    return m.derived_ec
+}
+// GetDerivedEs gets the derived_es property value. Human-readable exit reason (e.g. "Preempted by higher-priority job")
+// returns a *string when successful
+func (m *SlurmJob) GetDerivedEs()(*string) {
+    return m.derived_es
+}
+// GetEndTime gets the end_time property value. Unix epoch seconds; 0 means not yet ended
+// returns a *int64 when successful
+func (m *SlurmJob) GetEndTime()(*int64) {
+    return m.end_time
+}
+// GetExitCode gets the exit_code property value. The exit_code property
+// returns a *int64 when successful
+func (m *SlurmJob) GetExitCode()(*int64) {
+    return m.exit_code
+}
+// GetFailedNode gets the failed_node property value. Node that triggered job failure, if any
+// returns a *string when successful
+func (m *SlurmJob) GetFailedNode()(*string) {
+    return m.failed_node
+}
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *SlurmJob) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["job_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+    res["account"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAccount(val)
+        }
+        return nil
+    }
+    res["derived_ec"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDerivedEc(val)
+        }
+        return nil
+    }
+    res["derived_es"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDerivedEs(val)
+        }
+        return nil
+    }
+    res["end_time"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetEndTime(val)
+        }
+        return nil
+    }
+    res["exit_code"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetExitCode(val)
+        }
+        return nil
+    }
+    res["failed_node"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetFailedNode(val)
+        }
+        return nil
+    }
+    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetId(val)
+        }
+        return nil
+    }
+    res["job_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
         if err != nil {
             return err
         }
@@ -50,18 +185,68 @@ func (m *SlurmJob) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896
         }
         return nil
     }
-    res["job_name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+    res["kill_requid"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetKillRequid(val)
+        }
+        return nil
+    }
+    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetJobName(val)
+            m.SetName(val)
+        }
+        return nil
+    }
+    res["nodes"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetNodes(val)
+        }
+        return nil
+    }
+    res["num_cpus"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetNumCpus(val)
+        }
+        return nil
+    }
+    res["num_nodes"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetNumNodes(val)
+        }
+        return nil
+    }
+    res["partition"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPartition(val)
         }
         return nil
     }
     res["priority"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
+        val, err := n.GetInt64Value()
         if err != nil {
             return err
         }
@@ -70,60 +255,267 @@ func (m *SlurmJob) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896
         }
         return nil
     }
-    res["state"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+    res["start_time"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetStartTime(val)
+        }
+        return nil
+    }
+    res["state_reason_prev"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetStateReasonPrev(val)
+        }
+        return nil
+    }
+    res["status"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetState(val)
+            m.SetStatus(val)
+        }
+        return nil
+    }
+    res["submit_time"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSubmitTime(val)
+        }
+        return nil
+    }
+    res["time_suspended"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTimeSuspended(val)
+        }
+        return nil
+    }
+    res["work_dir"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetWorkDir(val)
         }
         return nil
     }
     return res
 }
+// GetId gets the id property value. The id property
+// returns a *int64 when successful
+func (m *SlurmJob) GetId()(*int64) {
+    return m.id
+}
 // GetJobId gets the job_id property value. The job_id property
-// returns a *string when successful
-func (m *SlurmJob) GetJobId()(*string) {
+// returns a *int64 when successful
+func (m *SlurmJob) GetJobId()(*int64) {
     return m.job_id
 }
-// GetJobName gets the job_name property value. The job_name property
+// GetKillRequid gets the kill_requid property value. UID that issued the kill/preempt signal (uid_t / uint32, widened to i64)
+// returns a *int64 when successful
+func (m *SlurmJob) GetKillRequid()(*int64) {
+    return m.kill_requid
+}
+// GetName gets the name property value. The name property
 // returns a *string when successful
-func (m *SlurmJob) GetJobName()(*string) {
-    return m.job_name
+func (m *SlurmJob) GetName()(*string) {
+    return m.name
+}
+// GetNodes gets the nodes property value. The nodes property
+// returns a *string when successful
+func (m *SlurmJob) GetNodes()(*string) {
+    return m.nodes
+}
+// GetNumCpus gets the num_cpus property value. The num_cpus property
+// returns a *int64 when successful
+func (m *SlurmJob) GetNumCpus()(*int64) {
+    return m.num_cpus
+}
+// GetNumNodes gets the num_nodes property value. The num_nodes property
+// returns a *int64 when successful
+func (m *SlurmJob) GetNumNodes()(*int64) {
+    return m.num_nodes
+}
+// GetPartition gets the partition property value. The partition property
+// returns a *string when successful
+func (m *SlurmJob) GetPartition()(*string) {
+    return m.partition
 }
 // GetPriority gets the priority property value. The priority property
-// returns a *int32 when successful
-func (m *SlurmJob) GetPriority()(*int32) {
+// returns a *int64 when successful
+func (m *SlurmJob) GetPriority()(*int64) {
     return m.priority
 }
-// GetState gets the state property value. The state property
+// GetStartTime gets the start_time property value. Unix epoch seconds; 0 means not set
+// returns a *int64 when successful
+func (m *SlurmJob) GetStartTime()(*int64) {
+    return m.start_time
+}
+// GetStateReasonPrev gets the state_reason_prev property value. Reason code for prior state transition
+// returns a *int64 when successful
+func (m *SlurmJob) GetStateReasonPrev()(*int64) {
+    return m.state_reason_prev
+}
+// GetStatus gets the status property value. The status property
 // returns a *string when successful
-func (m *SlurmJob) GetState()(*string) {
-    return m.state
+func (m *SlurmJob) GetStatus()(*string) {
+    return m.status
+}
+// GetSubmitTime gets the submit_time property value. Unix epoch seconds; 0 means not set
+// returns a *int64 when successful
+func (m *SlurmJob) GetSubmitTime()(*int64) {
+    return m.submit_time
+}
+// GetTimeSuspended gets the time_suspended property value. Seconds the job spent suspended
+// returns a *int64 when successful
+func (m *SlurmJob) GetTimeSuspended()(*int64) {
+    return m.time_suspended
+}
+// GetWorkDir gets the work_dir property value. The work_dir property
+// returns a *string when successful
+func (m *SlurmJob) GetWorkDir()(*string) {
+    return m.work_dir
 }
 // Serialize serializes information the current object
 func (m *SlurmJob) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteStringValue("job_id", m.GetJobId())
+        err := writer.WriteStringValue("account", m.GetAccount())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteStringValue("job_name", m.GetJobName())
+        err := writer.WriteInt64Value("derived_ec", m.GetDerivedEc())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteInt32Value("priority", m.GetPriority())
+        err := writer.WriteStringValue("derived_es", m.GetDerivedEs())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteStringValue("state", m.GetState())
+        err := writer.WriteInt64Value("end_time", m.GetEndTime())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteInt64Value("exit_code", m.GetExitCode())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("failed_node", m.GetFailedNode())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteInt64Value("id", m.GetId())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteInt64Value("job_id", m.GetJobId())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteInt64Value("kill_requid", m.GetKillRequid())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("name", m.GetName())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("nodes", m.GetNodes())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteInt64Value("num_cpus", m.GetNumCpus())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteInt64Value("num_nodes", m.GetNumNodes())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("partition", m.GetPartition())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteInt64Value("priority", m.GetPriority())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteInt64Value("start_time", m.GetStartTime())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteInt64Value("state_reason_prev", m.GetStateReasonPrev())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("status", m.GetStatus())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteInt64Value("submit_time", m.GetSubmitTime())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteInt64Value("time_suspended", m.GetTimeSuspended())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("work_dir", m.GetWorkDir())
         if err != nil {
             return err
         }
@@ -136,35 +528,137 @@ func (m *SlurmJob) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c01
     }
     return nil
 }
+// SetAccount sets the account property value. The account property
+func (m *SlurmJob) SetAccount(value *string)() {
+    m.account = value
+}
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *SlurmJob) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
+// SetDerivedEc sets the derived_ec property value. Numeric derived exit code (slurmdbd derived_ec — uint32, widened to i64)
+func (m *SlurmJob) SetDerivedEc(value *int64)() {
+    m.derived_ec = value
+}
+// SetDerivedEs sets the derived_es property value. Human-readable exit reason (e.g. "Preempted by higher-priority job")
+func (m *SlurmJob) SetDerivedEs(value *string)() {
+    m.derived_es = value
+}
+// SetEndTime sets the end_time property value. Unix epoch seconds; 0 means not yet ended
+func (m *SlurmJob) SetEndTime(value *int64)() {
+    m.end_time = value
+}
+// SetExitCode sets the exit_code property value. The exit_code property
+func (m *SlurmJob) SetExitCode(value *int64)() {
+    m.exit_code = value
+}
+// SetFailedNode sets the failed_node property value. Node that triggered job failure, if any
+func (m *SlurmJob) SetFailedNode(value *string)() {
+    m.failed_node = value
+}
+// SetId sets the id property value. The id property
+func (m *SlurmJob) SetId(value *int64)() {
+    m.id = value
+}
 // SetJobId sets the job_id property value. The job_id property
-func (m *SlurmJob) SetJobId(value *string)() {
+func (m *SlurmJob) SetJobId(value *int64)() {
     m.job_id = value
 }
-// SetJobName sets the job_name property value. The job_name property
-func (m *SlurmJob) SetJobName(value *string)() {
-    m.job_name = value
+// SetKillRequid sets the kill_requid property value. UID that issued the kill/preempt signal (uid_t / uint32, widened to i64)
+func (m *SlurmJob) SetKillRequid(value *int64)() {
+    m.kill_requid = value
+}
+// SetName sets the name property value. The name property
+func (m *SlurmJob) SetName(value *string)() {
+    m.name = value
+}
+// SetNodes sets the nodes property value. The nodes property
+func (m *SlurmJob) SetNodes(value *string)() {
+    m.nodes = value
+}
+// SetNumCpus sets the num_cpus property value. The num_cpus property
+func (m *SlurmJob) SetNumCpus(value *int64)() {
+    m.num_cpus = value
+}
+// SetNumNodes sets the num_nodes property value. The num_nodes property
+func (m *SlurmJob) SetNumNodes(value *int64)() {
+    m.num_nodes = value
+}
+// SetPartition sets the partition property value. The partition property
+func (m *SlurmJob) SetPartition(value *string)() {
+    m.partition = value
 }
 // SetPriority sets the priority property value. The priority property
-func (m *SlurmJob) SetPriority(value *int32)() {
+func (m *SlurmJob) SetPriority(value *int64)() {
     m.priority = value
 }
-// SetState sets the state property value. The state property
-func (m *SlurmJob) SetState(value *string)() {
-    m.state = value
+// SetStartTime sets the start_time property value. Unix epoch seconds; 0 means not set
+func (m *SlurmJob) SetStartTime(value *int64)() {
+    m.start_time = value
+}
+// SetStateReasonPrev sets the state_reason_prev property value. Reason code for prior state transition
+func (m *SlurmJob) SetStateReasonPrev(value *int64)() {
+    m.state_reason_prev = value
+}
+// SetStatus sets the status property value. The status property
+func (m *SlurmJob) SetStatus(value *string)() {
+    m.status = value
+}
+// SetSubmitTime sets the submit_time property value. Unix epoch seconds; 0 means not set
+func (m *SlurmJob) SetSubmitTime(value *int64)() {
+    m.submit_time = value
+}
+// SetTimeSuspended sets the time_suspended property value. Seconds the job spent suspended
+func (m *SlurmJob) SetTimeSuspended(value *int64)() {
+    m.time_suspended = value
+}
+// SetWorkDir sets the work_dir property value. The work_dir property
+func (m *SlurmJob) SetWorkDir(value *string)() {
+    m.work_dir = value
 }
 type SlurmJobable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetJobId()(*string)
-    GetJobName()(*string)
-    GetPriority()(*int32)
-    GetState()(*string)
-    SetJobId(value *string)()
-    SetJobName(value *string)()
-    SetPriority(value *int32)()
-    SetState(value *string)()
+    GetAccount()(*string)
+    GetDerivedEc()(*int64)
+    GetDerivedEs()(*string)
+    GetEndTime()(*int64)
+    GetExitCode()(*int64)
+    GetFailedNode()(*string)
+    GetId()(*int64)
+    GetJobId()(*int64)
+    GetKillRequid()(*int64)
+    GetName()(*string)
+    GetNodes()(*string)
+    GetNumCpus()(*int64)
+    GetNumNodes()(*int64)
+    GetPartition()(*string)
+    GetPriority()(*int64)
+    GetStartTime()(*int64)
+    GetStateReasonPrev()(*int64)
+    GetStatus()(*string)
+    GetSubmitTime()(*int64)
+    GetTimeSuspended()(*int64)
+    GetWorkDir()(*string)
+    SetAccount(value *string)()
+    SetDerivedEc(value *int64)()
+    SetDerivedEs(value *string)()
+    SetEndTime(value *int64)()
+    SetExitCode(value *int64)()
+    SetFailedNode(value *string)()
+    SetId(value *int64)()
+    SetJobId(value *int64)()
+    SetKillRequid(value *int64)()
+    SetName(value *string)()
+    SetNodes(value *string)()
+    SetNumCpus(value *int64)()
+    SetNumNodes(value *int64)()
+    SetPartition(value *string)()
+    SetPriority(value *int64)()
+    SetStartTime(value *int64)()
+    SetStateReasonPrev(value *int64)()
+    SetStatus(value *string)()
+    SetSubmitTime(value *int64)()
+    SetTimeSuspended(value *int64)()
+    SetWorkDir(value *string)()
 }

@@ -33,18 +33,14 @@ func NewSlurmNodesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263
     urlParams["request-raw-url"] = rawUrl
     return NewSlurmNodesRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get use query params to filter nodes
+// Get list nodes
 // returns a []SlurmNodeable when successful
-// returns a ApiError error when the service returns a 500 status code
 func (m *SlurmNodesRequestBuilder) Get(ctx context.Context, requestConfiguration *SlurmNodesRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.SlurmNodeable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateSlurmNodeFromDiscriminatorValue, errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateSlurmNodeFromDiscriminatorValue, nil)
     if err != nil {
         return nil, err
     }
@@ -56,7 +52,12 @@ func (m *SlurmNodesRequestBuilder) Get(ctx context.Context, requestConfiguration
     }
     return val, nil
 }
-// ToGetRequestInformation use query params to filter nodes
+// Sync the sync property
+// returns a *SlurmNodesSyncRequestBuilder when successful
+func (m *SlurmNodesRequestBuilder) Sync()(*SlurmNodesSyncRequestBuilder) {
+    return NewSlurmNodesSyncRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// ToGetRequestInformation list nodes
 // returns a *RequestInformation when successful
 func (m *SlurmNodesRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *SlurmNodesRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

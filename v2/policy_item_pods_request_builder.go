@@ -33,22 +33,14 @@ func NewPolicyItemPodsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7dae
     urlParams["request-raw-url"] = rawUrl
     return NewPolicyItemPodsRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get get pods monitored by a specific policy
+// Get for namespace/pods policies, returns pods directly tracked by the policy.For job policies, returns pods belonging to the jobs tracked by the policy.
 // returns a []PolicyPodResponseable when successful
-// returns a ApiError error when the service returns a 400 status code
-// returns a ApiError error when the service returns a 404 status code
-// returns a ApiError error when the service returns a 500 status code
 func (m *PolicyItemPodsRequestBuilder) Get(ctx context.Context, requestConfiguration *PolicyItemPodsRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PolicyPodResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "400": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
-        "404": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreatePolicyPodResponseFromDiscriminatorValue, errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreatePolicyPodResponseFromDiscriminatorValue, nil)
     if err != nil {
         return nil, err
     }
@@ -60,7 +52,7 @@ func (m *PolicyItemPodsRequestBuilder) Get(ctx context.Context, requestConfigura
     }
     return val, nil
 }
-// ToGetRequestInformation get pods monitored by a specific policy
+// ToGetRequestInformation for namespace/pods policies, returns pods directly tracked by the policy.For job policies, returns pods belonging to the jobs tracked by the policy.
 // returns a *RequestInformation when successful
 func (m *PolicyItemPodsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *PolicyItemPodsRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

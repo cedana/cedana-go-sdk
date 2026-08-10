@@ -20,6 +20,8 @@ type Action struct {
     checkpoint_completed_timestamp *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The checkpoint_id property
     checkpoint_id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+    // The checkpoint's CEDANA_CHECKPOINT name (the env value it restores from),used to group automatic/named checkpoints. Null for unnamed checkpoints.
+    checkpoint_name *string
     // The details property
     details i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
     // The gpu property
@@ -38,6 +40,8 @@ type Action struct {
     total_io *int64
     // The type property
     typeEscaped *string
+    // Owning workload kind of the checkpointed pod: "DynamoGraphDeployment" whenthe pod belongs to a Dynamo deployment, else the pod's immediateownerReferences kind (ReplicaSet/Job/StatefulSet…). Null if unknown.
+    workload_kind *string
 }
 // NewAction instantiates a new Action and sets the default values.
 func NewAction()(*Action) {
@@ -75,6 +79,11 @@ func (m *Action) GetCheckpointCompletedTimestamp()(*i336074805fc853987abe6f7fe3a
 // returns a *UUID when successful
 func (m *Action) GetCheckpointId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
     return m.checkpoint_id
+}
+// GetCheckpointName gets the checkpoint_name property value. The checkpoint's CEDANA_CHECKPOINT name (the env value it restores from),used to group automatic/named checkpoints. Null for unnamed checkpoints.
+// returns a *string when successful
+func (m *Action) GetCheckpointName()(*string) {
+    return m.checkpoint_name
 }
 // GetDetails gets the details property value. The details property
 // returns a UntypedNodeable when successful
@@ -122,6 +131,16 @@ func (m *Action) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689638
         }
         if val != nil {
             m.SetCheckpointId(val)
+        }
+        return nil
+    }
+    res["checkpoint_name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCheckpointName(val)
         }
         return nil
     }
@@ -215,6 +234,16 @@ func (m *Action) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689638
         }
         return nil
     }
+    res["workload_kind"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetWorkloadKind(val)
+        }
+        return nil
+    }
     return res
 }
 // GetGpu gets the gpu property value. The gpu property
@@ -257,6 +286,11 @@ func (m *Action) GetTotalIo()(*int64) {
 func (m *Action) GetTypeEscaped()(*string) {
     return m.typeEscaped
 }
+// GetWorkloadKind gets the workload_kind property value. Owning workload kind of the checkpointed pod: "DynamoGraphDeployment" whenthe pod belongs to a Dynamo deployment, else the pod's immediateownerReferences kind (ReplicaSet/Job/StatefulSet…). Null if unknown.
+// returns a *string when successful
+func (m *Action) GetWorkloadKind()(*string) {
+    return m.workload_kind
+}
 // Serialize serializes information the current object
 func (m *Action) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
@@ -279,6 +313,12 @@ func (m *Action) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c
     }
     {
         err := writer.WriteUUIDValue("checkpoint_id", m.GetCheckpointId())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("checkpoint_name", m.GetCheckpointName())
         if err != nil {
             return err
         }
@@ -338,6 +378,12 @@ func (m *Action) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c
         }
     }
     {
+        err := writer.WriteStringValue("workload_kind", m.GetWorkloadKind())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteAdditionalData(m.GetAdditionalData())
         if err != nil {
             return err
@@ -364,6 +410,10 @@ func (m *Action) SetCheckpointCompletedTimestamp(value *i336074805fc853987abe6f7
 // SetCheckpointId sets the checkpoint_id property value. The checkpoint_id property
 func (m *Action) SetCheckpointId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.checkpoint_id = value
+}
+// SetCheckpointName sets the checkpoint_name property value. The checkpoint's CEDANA_CHECKPOINT name (the env value it restores from),used to group automatic/named checkpoints. Null for unnamed checkpoints.
+func (m *Action) SetCheckpointName(value *string)() {
+    m.checkpoint_name = value
 }
 // SetDetails sets the details property value. The details property
 func (m *Action) SetDetails(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
@@ -401,6 +451,10 @@ func (m *Action) SetTotalIo(value *int64)() {
 func (m *Action) SetTypeEscaped(value *string)() {
     m.typeEscaped = value
 }
+// SetWorkloadKind sets the workload_kind property value. Owning workload kind of the checkpointed pod: "DynamoGraphDeployment" whenthe pod belongs to a Dynamo deployment, else the pod's immediateownerReferences kind (ReplicaSet/Job/StatefulSet…). Null if unknown.
+func (m *Action) SetWorkloadKind(value *string)() {
+    m.workload_kind = value
+}
 type Actionable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
@@ -408,6 +462,7 @@ type Actionable interface {
     GetActionTimestamp()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetCheckpointCompletedTimestamp()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetCheckpointId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+    GetCheckpointName()(*string)
     GetDetails()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
     GetGpu()(*string)
     GetNodeName()(*string)
@@ -417,10 +472,12 @@ type Actionable interface {
     GetTotalDuration()(*int64)
     GetTotalIo()(*int64)
     GetTypeEscaped()(*string)
+    GetWorkloadKind()(*string)
     SetActionId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetActionTimestamp(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetCheckpointCompletedTimestamp(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetCheckpointId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
+    SetCheckpointName(value *string)()
     SetDetails(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
     SetGpu(value *string)()
     SetNodeName(value *string)()
@@ -430,4 +487,5 @@ type Actionable interface {
     SetTotalDuration(value *int64)()
     SetTotalIo(value *int64)()
     SetTypeEscaped(value *string)()
+    SetWorkloadKind(value *string)()
 }

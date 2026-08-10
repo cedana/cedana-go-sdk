@@ -48,11 +48,6 @@ func NewPolicyRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371c
     urlParams["request-raw-url"] = rawUrl
     return NewPolicyRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Create the create property
-// returns a *PolicyCreateRequestBuilder when successful
-func (m *PolicyRequestBuilder) Create()(*PolicyCreateRequestBuilder) {
-    return NewPolicyCreateRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
-}
 // DeletePath the deletePath property
 // returns a *PolicyDeleteRequestBuilder when successful
 func (m *PolicyRequestBuilder) DeletePath()(*PolicyDeleteRequestBuilder) {
@@ -63,13 +58,13 @@ func (m *PolicyRequestBuilder) DeletePath()(*PolicyDeleteRequestBuilder) {
 func (m *PolicyRequestBuilder) List()(*PolicyListRequestBuilder) {
     return NewPolicyListRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Pipeline the pipeline property
+// returns a *PolicyPipelineRequestBuilder when successful
+func (m *PolicyRequestBuilder) Pipeline()(*PolicyPipelineRequestBuilder) {
+    return NewPolicyPipelineRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // SyncJobs the syncJobs property
 // returns a *PolicySyncJobsRequestBuilder when successful
 func (m *PolicyRequestBuilder) SyncJobs()(*PolicySyncJobsRequestBuilder) {
     return NewPolicySyncJobsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
-}
-// Update the update property
-// returns a *PolicyUpdateRequestBuilder when successful
-func (m *PolicyRequestBuilder) Update()(*PolicyUpdateRequestBuilder) {
-    return NewPolicyUpdateRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

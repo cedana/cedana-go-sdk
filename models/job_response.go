@@ -14,7 +14,7 @@ type JobResponse struct {
     // The age property
     age *string
     // The completions property
-    completions *int32
+    completions *string
     // The duration property
     duration *string
     // The id property
@@ -25,14 +25,16 @@ type JobResponse struct {
     name *string
     // The namespace property
     namespace *string
+    // The pod_count property
+    pod_count *int32
     // The pod_ids property
     pod_ids []string
     // The policy_count property
-    policy_count *int64
+    policy_count *int32
     // The priority property
     priority *int32
-    // The start_time property
-    start_time *string
+    // The startTime property
+    startTime *string
     // The status property
     status *string
 }
@@ -59,8 +61,8 @@ func (m *JobResponse) GetAge()(*string) {
     return m.age
 }
 // GetCompletions gets the completions property value. The completions property
-// returns a *int32 when successful
-func (m *JobResponse) GetCompletions()(*int32) {
+// returns a *string when successful
+func (m *JobResponse) GetCompletions()(*string) {
     return m.completions
 }
 // GetDuration gets the duration property value. The duration property
@@ -83,7 +85,7 @@ func (m *JobResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         return nil
     }
     res["completions"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
@@ -148,6 +150,16 @@ func (m *JobResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         }
         return nil
     }
+    res["pod_count"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPodCount(val)
+        }
+        return nil
+    }
     res["pod_ids"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetCollectionOfPrimitiveValues("string")
         if err != nil {
@@ -165,7 +177,7 @@ func (m *JobResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         return nil
     }
     res["policy_count"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
+        val, err := n.GetInt32Value()
         if err != nil {
             return err
         }
@@ -184,7 +196,7 @@ func (m *JobResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         }
         return nil
     }
-    res["start_time"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+    res["startTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
             return err
@@ -226,14 +238,19 @@ func (m *JobResponse) GetName()(*string) {
 func (m *JobResponse) GetNamespace()(*string) {
     return m.namespace
 }
+// GetPodCount gets the pod_count property value. The pod_count property
+// returns a *int32 when successful
+func (m *JobResponse) GetPodCount()(*int32) {
+    return m.pod_count
+}
 // GetPodIds gets the pod_ids property value. The pod_ids property
 // returns a []string when successful
 func (m *JobResponse) GetPodIds()([]string) {
     return m.pod_ids
 }
 // GetPolicyCount gets the policy_count property value. The policy_count property
-// returns a *int64 when successful
-func (m *JobResponse) GetPolicyCount()(*int64) {
+// returns a *int32 when successful
+func (m *JobResponse) GetPolicyCount()(*int32) {
     return m.policy_count
 }
 // GetPriority gets the priority property value. The priority property
@@ -241,10 +258,10 @@ func (m *JobResponse) GetPolicyCount()(*int64) {
 func (m *JobResponse) GetPriority()(*int32) {
     return m.priority
 }
-// GetStartTime gets the start_time property value. The start_time property
+// GetStartTime gets the startTime property value. The startTime property
 // returns a *string when successful
 func (m *JobResponse) GetStartTime()(*string) {
-    return m.start_time
+    return m.startTime
 }
 // GetStatus gets the status property value. The status property
 // returns a *string when successful
@@ -260,7 +277,7 @@ func (m *JobResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     {
-        err := writer.WriteInt32Value("completions", m.GetCompletions())
+        err := writer.WriteStringValue("completions", m.GetCompletions())
         if err != nil {
             return err
         }
@@ -295,6 +312,12 @@ func (m *JobResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
             return err
         }
     }
+    {
+        err := writer.WriteInt32Value("pod_count", m.GetPodCount())
+        if err != nil {
+            return err
+        }
+    }
     if m.GetPodIds() != nil {
         err := writer.WriteCollectionOfStringValues("pod_ids", m.GetPodIds())
         if err != nil {
@@ -302,7 +325,7 @@ func (m *JobResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     {
-        err := writer.WriteInt64Value("policy_count", m.GetPolicyCount())
+        err := writer.WriteInt32Value("policy_count", m.GetPolicyCount())
         if err != nil {
             return err
         }
@@ -314,7 +337,7 @@ func (m *JobResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     {
-        err := writer.WriteStringValue("start_time", m.GetStartTime())
+        err := writer.WriteStringValue("startTime", m.GetStartTime())
         if err != nil {
             return err
         }
@@ -342,7 +365,7 @@ func (m *JobResponse) SetAge(value *string)() {
     m.age = value
 }
 // SetCompletions sets the completions property value. The completions property
-func (m *JobResponse) SetCompletions(value *int32)() {
+func (m *JobResponse) SetCompletions(value *string)() {
     m.completions = value
 }
 // SetDuration sets the duration property value. The duration property
@@ -365,21 +388,25 @@ func (m *JobResponse) SetName(value *string)() {
 func (m *JobResponse) SetNamespace(value *string)() {
     m.namespace = value
 }
+// SetPodCount sets the pod_count property value. The pod_count property
+func (m *JobResponse) SetPodCount(value *int32)() {
+    m.pod_count = value
+}
 // SetPodIds sets the pod_ids property value. The pod_ids property
 func (m *JobResponse) SetPodIds(value []string)() {
     m.pod_ids = value
 }
 // SetPolicyCount sets the policy_count property value. The policy_count property
-func (m *JobResponse) SetPolicyCount(value *int64)() {
+func (m *JobResponse) SetPolicyCount(value *int32)() {
     m.policy_count = value
 }
 // SetPriority sets the priority property value. The priority property
 func (m *JobResponse) SetPriority(value *int32)() {
     m.priority = value
 }
-// SetStartTime sets the start_time property value. The start_time property
+// SetStartTime sets the startTime property value. The startTime property
 func (m *JobResponse) SetStartTime(value *string)() {
-    m.start_time = value
+    m.startTime = value
 }
 // SetStatus sets the status property value. The status property
 func (m *JobResponse) SetStatus(value *string)() {
@@ -389,26 +416,28 @@ type JobResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetAge()(*string)
-    GetCompletions()(*int32)
+    GetCompletions()(*string)
     GetDuration()(*string)
     GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetMonitoredByPolicies()([]string)
     GetName()(*string)
     GetNamespace()(*string)
+    GetPodCount()(*int32)
     GetPodIds()([]string)
-    GetPolicyCount()(*int64)
+    GetPolicyCount()(*int32)
     GetPriority()(*int32)
     GetStartTime()(*string)
     GetStatus()(*string)
     SetAge(value *string)()
-    SetCompletions(value *int32)()
+    SetCompletions(value *string)()
     SetDuration(value *string)()
     SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetMonitoredByPolicies(value []string)()
     SetName(value *string)()
     SetNamespace(value *string)()
+    SetPodCount(value *int32)()
     SetPodIds(value []string)()
-    SetPolicyCount(value *int64)()
+    SetPolicyCount(value *int32)()
     SetPriority(value *int32)()
     SetStartTime(value *string)()
     SetStatus(value *string)()

@@ -16,6 +16,11 @@ type SlurmRequestBuilder struct {
 func (m *SlurmRequestBuilder) Checkpoint()(*SlurmCheckpointRequestBuilder) {
     return NewSlurmCheckpointRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Checkpoints the checkpoints property
+// returns a *SlurmCheckpointsRequestBuilder when successful
+func (m *SlurmRequestBuilder) Checkpoints()(*SlurmCheckpointsRequestBuilder) {
+    return NewSlurmCheckpointsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Clusters the clusters property
 // returns a *SlurmClustersRequestBuilder when successful
 func (m *SlurmRequestBuilder) Clusters()(*SlurmClustersRequestBuilder) {
@@ -38,6 +43,11 @@ func NewSlurmRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb
     urlParams := make(map[string]string)
     urlParams["request-raw-url"] = rawUrl
     return NewSlurmRequestBuilderInternal(urlParams, requestAdapter)
+}
+// Events the events property
+// returns a *SlurmEventsRequestBuilder when successful
+func (m *SlurmRequestBuilder) Events()(*SlurmEventsRequestBuilder) {
+    return NewSlurmEventsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Jobs the jobs property
 // returns a *SlurmJobsRequestBuilder when successful
@@ -63,6 +73,16 @@ func (m *SlurmRequestBuilder) Nodes()(*SlurmNodesRequestBuilder) {
 // returns a *SlurmNodes_paginatedRequestBuilder when successful
 func (m *SlurmRequestBuilder) Nodes_paginated()(*SlurmNodes_paginatedRequestBuilder) {
     return NewSlurmNodes_paginatedRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Partitions the partitions property
+// returns a *SlurmPartitionsRequestBuilder when successful
+func (m *SlurmRequestBuilder) Partitions()(*SlurmPartitionsRequestBuilder) {
+    return NewSlurmPartitionsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Partitions_paginated the partitions_paginated property
+// returns a *SlurmPartitions_paginatedRequestBuilder when successful
+func (m *SlurmRequestBuilder) Partitions_paginated()(*SlurmPartitions_paginatedRequestBuilder) {
+    return NewSlurmPartitions_paginatedRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Restore the restore property
 // returns a *SlurmRestoreRequestBuilder when successful

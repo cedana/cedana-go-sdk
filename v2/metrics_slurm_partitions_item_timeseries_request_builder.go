@@ -33,18 +33,14 @@ func NewMetricsSlurmPartitionsItemTimeseriesRequestBuilder(rawUrl string, reques
     urlParams["request-raw-url"] = rawUrl
     return NewMetricsSlurmPartitionsItemTimeseriesRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get returns CPU load and free memory time series for the specified partition over the last 10 datapoints
+// Get get partition time series (Slurm)
 // returns a PartitionTimeSeriesable when successful
-// returns a ApiError error when the service returns a 500 status code
 func (m *MetricsSlurmPartitionsItemTimeseriesRequestBuilder) Get(ctx context.Context, requestConfiguration *MetricsSlurmPartitionsItemTimeseriesRequestBuilderGetRequestConfiguration)(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PartitionTimeSeriesable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreatePartitionTimeSeriesFromDiscriminatorValue, errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreatePartitionTimeSeriesFromDiscriminatorValue, nil)
     if err != nil {
         return nil, err
     }
@@ -53,7 +49,7 @@ func (m *MetricsSlurmPartitionsItemTimeseriesRequestBuilder) Get(ctx context.Con
     }
     return res.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PartitionTimeSeriesable), nil
 }
-// ToGetRequestInformation returns CPU load and free memory time series for the specified partition over the last 10 datapoints
+// ToGetRequestInformation get partition time series (Slurm)
 // returns a *RequestInformation when successful
 func (m *MetricsSlurmPartitionsItemTimeseriesRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *MetricsSlurmPartitionsItemTimeseriesRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

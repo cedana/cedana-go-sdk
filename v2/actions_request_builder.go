@@ -26,6 +26,18 @@ type ActionsRequestBuilderGetRequestConfiguration struct {
     // Request query parameters
     QueryParameters *ActionsRequestBuilderGetQueryParameters
 }
+// ById gets an item from the github.com/cedana/cedana-go-sdk.v2.actions.item collection
+// returns a *ActionsActionsItemRequestBuilder when successful
+func (m *ActionsRequestBuilder) ById(id string)(*ActionsActionsItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.BaseRequestBuilder.PathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["id"] = id
+    }
+    return NewActionsActionsItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+}
 // NewActionsRequestBuilderInternal instantiates a new ActionsRequestBuilder and sets the default values.
 func NewActionsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*ActionsRequestBuilder) {
     m := &ActionsRequestBuilder{
@@ -46,18 +58,12 @@ func (m *ActionsRequestBuilder) From_pod()(*ActionsFrom_podRequestBuilder) {
 }
 // Get list actions
 // returns a []Actionable when successful
-// returns a ApiError error when the service returns a 400 status code
-// returns a ApiError error when the service returns a 500 status code
 func (m *ActionsRequestBuilder) Get(ctx context.Context, requestConfiguration *ActionsRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.Actionable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "400": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateActionFromDiscriminatorValue, errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateActionFromDiscriminatorValue, nil)
     if err != nil {
         return nil, err
     }

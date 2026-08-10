@@ -26,7 +26,7 @@ type Event struct {
     // The status property
     status *string
     // The timestamp property
-    timestamp *int32
+    timestamp *int64
 }
 // NewEvent instantiates a new Event and sets the default values.
 func NewEvent()(*Event) {
@@ -120,7 +120,7 @@ func (m *Event) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         return nil
     }
     res["timestamp"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
+        val, err := n.GetInt64Value()
         if err != nil {
             return err
         }
@@ -167,8 +167,8 @@ func (m *Event) GetStatus()(*string) {
     return m.status
 }
 // GetTimestamp gets the timestamp property value. The timestamp property
-// returns a *int32 when successful
-func (m *Event) GetTimestamp()(*int32) {
+// returns a *int64 when successful
+func (m *Event) GetTimestamp()(*int64) {
     return m.timestamp
 }
 // Serialize serializes information the current object
@@ -216,7 +216,7 @@ func (m *Event) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
         }
     }
     {
-        err := writer.WriteInt32Value("timestamp", m.GetTimestamp())
+        err := writer.WriteInt64Value("timestamp", m.GetTimestamp())
         if err != nil {
             return err
         }
@@ -262,7 +262,7 @@ func (m *Event) SetStatus(value *string)() {
     m.status = value
 }
 // SetTimestamp sets the timestamp property value. The timestamp property
-func (m *Event) SetTimestamp(value *int32)() {
+func (m *Event) SetTimestamp(value *int64)() {
     m.timestamp = value
 }
 type Eventable interface {
@@ -275,7 +275,7 @@ type Eventable interface {
     GetResourceType()(*string)
     GetSource()(*string)
     GetStatus()(*string)
-    GetTimestamp()(*int32)
+    GetTimestamp()(*int64)
     SetId(value *int64)()
     SetMessage(value *string)()
     SetMetadata(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
@@ -283,5 +283,5 @@ type Eventable interface {
     SetResourceType(value *string)()
     SetSource(value *string)()
     SetStatus(value *string)()
-    SetTimestamp(value *int32)()
+    SetTimestamp(value *int64)()
 }

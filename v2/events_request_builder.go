@@ -13,7 +13,7 @@ import (
 type EventsRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
-// EventsRequestBuilderGetQueryParameters returns events within the specified time window, optionally filtered by operation or resource type.The metadata field contains structured information about the event that can be used for filtering and display.
+// EventsRequestBuilderGetQueryParameters list events
 type EventsRequestBuilderGetQueryParameters struct {
     // Filter by operation (e.g., "checkpoint", "restore")
     Operation *string `uriparametername:"operation"`
@@ -44,18 +44,14 @@ func NewEventsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371c
     urlParams["request-raw-url"] = rawUrl
     return NewEventsRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get returns events within the specified time window, optionally filtered by operation or resource type.The metadata field contains structured information about the event that can be used for filtering and display.
+// Get list events
 // returns a []Eventable when successful
-// returns a ApiError error when the service returns a 500 status code
 func (m *EventsRequestBuilder) Get(ctx context.Context, requestConfiguration *EventsRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.Eventable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateEventFromDiscriminatorValue, errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateEventFromDiscriminatorValue, nil)
     if err != nil {
         return nil, err
     }
@@ -67,7 +63,7 @@ func (m *EventsRequestBuilder) Get(ctx context.Context, requestConfiguration *Ev
     }
     return val, nil
 }
-// ToGetRequestInformation returns events within the specified time window, optionally filtered by operation or resource type.The metadata field contains structured information about the event that can be used for filtering and display.
+// ToGetRequestInformation list events
 // returns a *RequestInformation when successful
 func (m *EventsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *EventsRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

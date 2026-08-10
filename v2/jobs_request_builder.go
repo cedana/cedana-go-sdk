@@ -44,6 +44,11 @@ func (m *JobsRequestBuilder) ByJob_idGuid(job_id i561e97a8befe7661a44c8f54600992
     urlTplParams["job_id"] = job_id.String()
     return NewJobsWithJob_ItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+// ByPriority the byPriority property
+// returns a *JobsByPriorityRequestBuilder when successful
+func (m *JobsRequestBuilder) ByPriority()(*JobsByPriorityRequestBuilder) {
+    return NewJobsByPriorityRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // NewJobsRequestBuilderInternal instantiates a new JobsRequestBuilder and sets the default values.
 func NewJobsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*JobsRequestBuilder) {
     m := &JobsRequestBuilder{
@@ -69,16 +74,12 @@ func (m *JobsRequestBuilder) Filter()(*JobsFilterRequestBuilder) {
 }
 // Get list jobs
 // returns a []JobResponseable when successful
-// returns a ApiError error when the service returns a 500 status code
 func (m *JobsRequestBuilder) Get(ctx context.Context, requestConfiguration *JobsRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.JobResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateJobResponseFromDiscriminatorValue, errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateJobResponseFromDiscriminatorValue, nil)
     if err != nil {
         return nil, err
     }
@@ -104,11 +105,6 @@ func (m *JobsRequestBuilder) Paginated()(*JobsPaginatedRequestBuilder) {
 // returns a *JobsPrioritiesRequestBuilder when successful
 func (m *JobsRequestBuilder) Priorities()(*JobsPrioritiesRequestBuilder) {
     return NewJobsPrioritiesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
-}
-// Priority the priority property
-// returns a *JobsPriorityRequestBuilder when successful
-func (m *JobsRequestBuilder) Priority()(*JobsPriorityRequestBuilder) {
-    return NewJobsPriorityRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Statuses the statuses property
 // returns a *JobsStatusesRequestBuilder when successful

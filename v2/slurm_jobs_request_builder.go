@@ -33,18 +33,14 @@ func NewSlurmJobsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee2633
     urlParams["request-raw-url"] = rawUrl
     return NewSlurmJobsRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get use query params to filter jobs
+// Get returns SLURM jobs from the database
 // returns a []SlurmJobable when successful
-// returns a ApiError error when the service returns a 500 status code
 func (m *SlurmJobsRequestBuilder) Get(ctx context.Context, requestConfiguration *SlurmJobsRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.SlurmJobable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateSlurmJobFromDiscriminatorValue, errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateSlurmJobFromDiscriminatorValue, nil)
     if err != nil {
         return nil, err
     }
@@ -56,7 +52,12 @@ func (m *SlurmJobsRequestBuilder) Get(ctx context.Context, requestConfiguration 
     }
     return val, nil
 }
-// ToGetRequestInformation use query params to filter jobs
+// Sync the sync property
+// returns a *SlurmJobsSyncRequestBuilder when successful
+func (m *SlurmJobsRequestBuilder) Sync()(*SlurmJobsSyncRequestBuilder) {
+    return NewSlurmJobsSyncRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// ToGetRequestInformation returns SLURM jobs from the database
 // returns a *RequestInformation when successful
 func (m *SlurmJobsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *SlurmJobsRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

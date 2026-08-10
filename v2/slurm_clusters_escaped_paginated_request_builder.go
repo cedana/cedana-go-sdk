@@ -13,12 +13,12 @@ import (
 type SlurmClusters_paginatedRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
-// SlurmClusters_paginatedRequestBuilderGetQueryParameters use query params to filter clusters
+// SlurmClusters_paginatedRequestBuilderGetQueryParameters list clusters (paginated)
 type SlurmClusters_paginatedRequestBuilderGetQueryParameters struct {
     // Maximum number of records to return (default: 50, max: 100)
-    Limit *int32 `uriparametername:"limit"`
+    Limit *int64 `uriparametername:"limit"`
     // Number of records to skip (default: 0)
-    Offset *int32 `uriparametername:"offset"`
+    Offset *int64 `uriparametername:"offset"`
 }
 // SlurmClusters_paginatedRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type SlurmClusters_paginatedRequestBuilderGetRequestConfiguration struct {
@@ -42,18 +42,14 @@ func NewSlurmClusters_paginatedRequestBuilder(rawUrl string, requestAdapter i2ae
     urlParams["request-raw-url"] = rawUrl
     return NewSlurmClusters_paginatedRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get use query params to filter clusters
+// Get list clusters (paginated)
 // returns a []SlurmClusterable when successful
-// returns a ApiError error when the service returns a 500 status code
 func (m *SlurmClusters_paginatedRequestBuilder) Get(ctx context.Context, requestConfiguration *SlurmClusters_paginatedRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.SlurmClusterable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateSlurmClusterFromDiscriminatorValue, errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateSlurmClusterFromDiscriminatorValue, nil)
     if err != nil {
         return nil, err
     }
@@ -65,7 +61,7 @@ func (m *SlurmClusters_paginatedRequestBuilder) Get(ctx context.Context, request
     }
     return val, nil
 }
-// ToGetRequestInformation use query params to filter clusters
+// ToGetRequestInformation list clusters (paginated)
 // returns a *RequestInformation when successful
 func (m *SlurmClusters_paginatedRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *SlurmClusters_paginatedRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

@@ -13,17 +13,32 @@ import (
 type PolicyListRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+// PolicyListRequestBuilderGetQueryParameters list policies with pagination
+type PolicyListRequestBuilderGetQueryParameters struct {
+    // Include automatic restore policies (jobs/pods with CEDANA_CHECKPOINT env var)
+    Include_automatic *bool `uriparametername:"include_automatic"`
+    // Number of results per page (default 50, max 100)
+    Limit *int64 `uriparametername:"limit"`
+    // Offset for pagination (default 0)
+    Offset *int64 `uriparametername:"offset"`
+    // Filter by resource type (e.g., "namespace", "pods", "jobs")
+    Resource *string `uriparametername:"resource"`
+    // Filter to show only policies with this status (e.g., "active", "creating", "disabled").If not provided, defaults to excluding "disabled" policies.
+    Status *string `uriparametername:"status"`
+}
 // PolicyListRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type PolicyListRequestBuilderGetRequestConfiguration struct {
     // Request headers
     Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
     // Request options
     Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+    // Request query parameters
+    QueryParameters *PolicyListRequestBuilderGetQueryParameters
 }
 // NewPolicyListRequestBuilderInternal instantiates a new PolicyListRequestBuilder and sets the default values.
 func NewPolicyListRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PolicyListRequestBuilder) {
     m := &PolicyListRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v2/policy/list", pathParameters),
+        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v2/policy/list{?include_automatic*,limit*,offset*,resource*,status*}", pathParameters),
     }
     return m
 }
@@ -33,36 +48,30 @@ func NewPolicyListRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263
     urlParams["request-raw-url"] = rawUrl
     return NewPolicyListRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get list policies
-// returns a []PolicyResponseable when successful
-// returns a ApiError error when the service returns a 400 status code
-// returns a ApiError error when the service returns a 500 status code
-func (m *PolicyListRequestBuilder) Get(ctx context.Context, requestConfiguration *PolicyListRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PolicyResponseable, error) {
+// Get list policies with pagination
+// returns a PaginatedPolicyResponseable when successful
+func (m *PolicyListRequestBuilder) Get(ctx context.Context, requestConfiguration *PolicyListRequestBuilderGetRequestConfiguration)(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PaginatedPolicyResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "400": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
-        "500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateApiErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreatePolicyResponseFromDiscriminatorValue, errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreatePaginatedPolicyResponseFromDiscriminatorValue, nil)
     if err != nil {
         return nil, err
     }
-    val := make([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PolicyResponseable, len(res))
-    for i, v := range res {
-        if v != nil {
-            val[i] = v.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PolicyResponseable)
-        }
+    if res == nil {
+        return nil, nil
     }
-    return val, nil
+    return res.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PaginatedPolicyResponseable), nil
 }
-// ToGetRequestInformation list policies
+// ToGetRequestInformation list policies with pagination
 // returns a *RequestInformation when successful
 func (m *PolicyListRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *PolicyListRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
     if requestConfiguration != nil {
+        if requestConfiguration.QueryParameters != nil {
+            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+        }
         requestInfo.Headers.AddAll(requestConfiguration.Headers)
         requestInfo.AddRequestOptions(requestConfiguration.Options)
     }
