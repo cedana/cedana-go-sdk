@@ -17,9 +17,9 @@ type CheckpointSlurmJob struct {
     // The job_name property
     job_name *string
     // The kind property
-    kind *CheckpointKind
+    kind *SlurmCheckpointKind
     // The reason property
-    reason *CheckpointReason
+    reason *SlurmCheckpointReason
 }
 // NewCheckpointSlurmJob instantiates a new CheckpointSlurmJob and sets the default values.
 func NewCheckpointSlurmJob()(*CheckpointSlurmJob) {
@@ -78,22 +78,22 @@ func (m *CheckpointSlurmJob) GetFieldDeserializers()(map[string]func(i878a80d233
         return nil
     }
     res["kind"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseCheckpointKind)
+        val, err := n.GetEnumValue(ParseSlurmCheckpointKind)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetKind(val.(*CheckpointKind))
+            m.SetKind(val.(*SlurmCheckpointKind))
         }
         return nil
     }
     res["reason"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseCheckpointReason)
+        val, err := n.GetEnumValue(ParseSlurmCheckpointReason)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetReason(val.(*CheckpointReason))
+            m.SetReason(val.(*SlurmCheckpointReason))
         }
         return nil
     }
@@ -110,13 +110,13 @@ func (m *CheckpointSlurmJob) GetJobName()(*string) {
     return m.job_name
 }
 // GetKind gets the kind property value. The kind property
-// returns a *CheckpointKind when successful
-func (m *CheckpointSlurmJob) GetKind()(*CheckpointKind) {
+// returns a *SlurmCheckpointKind when successful
+func (m *CheckpointSlurmJob) GetKind()(*SlurmCheckpointKind) {
     return m.kind
 }
 // GetReason gets the reason property value. The reason property
-// returns a *CheckpointReason when successful
-func (m *CheckpointSlurmJob) GetReason()(*CheckpointReason) {
+// returns a *SlurmCheckpointReason when successful
+func (m *CheckpointSlurmJob) GetReason()(*SlurmCheckpointReason) {
     return m.reason
 }
 // Serialize serializes information the current object
@@ -172,11 +172,11 @@ func (m *CheckpointSlurmJob) SetJobName(value *string)() {
     m.job_name = value
 }
 // SetKind sets the kind property value. The kind property
-func (m *CheckpointSlurmJob) SetKind(value *CheckpointKind)() {
+func (m *CheckpointSlurmJob) SetKind(value *SlurmCheckpointKind)() {
     m.kind = value
 }
 // SetReason sets the reason property value. The reason property
-func (m *CheckpointSlurmJob) SetReason(value *CheckpointReason)() {
+func (m *CheckpointSlurmJob) SetReason(value *SlurmCheckpointReason)() {
     m.reason = value
 }
 type CheckpointSlurmJobable interface {
@@ -185,11 +185,11 @@ type CheckpointSlurmJobable interface {
     GetActionId()(*string)
     GetJobId()(*string)
     GetJobName()(*string)
-    GetKind()(*CheckpointKind)
-    GetReason()(*CheckpointReason)
+    GetKind()(*SlurmCheckpointKind)
+    GetReason()(*SlurmCheckpointReason)
     SetActionId(value *string)()
     SetJobId(value *string)()
     SetJobName(value *string)()
-    SetKind(value *CheckpointKind)()
-    SetReason(value *CheckpointReason)()
+    SetKind(value *SlurmCheckpointKind)()
+    SetReason(value *SlurmCheckpointReason)()
 }

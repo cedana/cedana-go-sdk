@@ -53,20 +53,20 @@ func (m *SlurmCheckpointsRequestBuilder) Deprecate()(*SlurmCheckpointsDeprecateR
     return NewSlurmCheckpointsDeprecateRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Get use query params to filter checkpoints
-// returns a []Checkpointable when successful
-func (m *SlurmCheckpointsRequestBuilder) Get(ctx context.Context, requestConfiguration *SlurmCheckpointsRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.Checkpointable, error) {
+// returns a []SlurmCheckpointable when successful
+func (m *SlurmCheckpointsRequestBuilder) Get(ctx context.Context, requestConfiguration *SlurmCheckpointsRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.SlurmCheckpointable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateCheckpointFromDiscriminatorValue, nil)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateSlurmCheckpointFromDiscriminatorValue, nil)
     if err != nil {
         return nil, err
     }
-    val := make([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.Checkpointable, len(res))
+    val := make([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.SlurmCheckpointable, len(res))
     for i, v := range res {
         if v != nil {
-            val[i] = v.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.Checkpointable)
+            val[i] = v.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.SlurmCheckpointable)
         }
     }
     return val, nil

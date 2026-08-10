@@ -35,7 +35,7 @@ func NewSlurmCheckpointsInfoInfoItemRequestBuilder(rawUrl string, requestAdapter
 }
 // Put add information about the checkpoint
 // returns a *string when successful
-func (m *SlurmCheckpointsInfoInfoItemRequestBuilder) Put(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CheckpointInfoable, requestConfiguration *SlurmCheckpointsInfoInfoItemRequestBuilderPutRequestConfiguration)(*string, error) {
+func (m *SlurmCheckpointsInfoInfoItemRequestBuilder) Put(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.SlurmCheckpointInfoable, requestConfiguration *SlurmCheckpointsInfoInfoItemRequestBuilderPutRequestConfiguration)(*string, error) {
     requestInfo, err := m.ToPutRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
         return nil, err
@@ -51,7 +51,7 @@ func (m *SlurmCheckpointsInfoInfoItemRequestBuilder) Put(ctx context.Context, bo
 }
 // ToPutRequestInformation add information about the checkpoint
 // returns a *RequestInformation when successful
-func (m *SlurmCheckpointsInfoInfoItemRequestBuilder) ToPutRequestInformation(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CheckpointInfoable, requestConfiguration *SlurmCheckpointsInfoInfoItemRequestBuilderPutRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+func (m *SlurmCheckpointsInfoInfoItemRequestBuilder) ToPutRequestInformation(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.SlurmCheckpointInfoable, requestConfiguration *SlurmCheckpointsInfoInfoItemRequestBuilderPutRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.PUT, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
     if requestConfiguration != nil {
         requestInfo.Headers.AddAll(requestConfiguration.Headers)

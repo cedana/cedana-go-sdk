@@ -406,6 +406,9 @@
               "null"
             ]
           },
+          "platform": {
+            "type": "string"
+          },
           "status": {
             "$ref": "#/components/schemas/CheckpointStatus"
           }
@@ -413,7 +416,8 @@
         "required": [
           "id",
           "status",
-          "gpu"
+          "gpu",
+          "platform"
         ],
         "type": "object"
       },
@@ -580,10 +584,10 @@
             ]
           },
           "kind": {
-            "$ref": "#/components/schemas/CheckpointKind"
+            "$ref": "#/components/schemas/SlurmCheckpointKind"
           },
           "reason": {
-            "$ref": "#/components/schemas/CheckpointReason"
+            "$ref": "#/components/schemas/SlurmCheckpointReason"
           }
         },
         "type": "object"
@@ -2235,6 +2239,16 @@
         ],
         "type": "object"
       },
+      "K8sJob": {
+        "description": "Entire json for the Kubernetes Job",
+        "title": "K8sJob",
+        "type": "object"
+      },
+      "K8sNode": {
+        "description": "Entire json for the Kubernetes Node",
+        "title": "K8sNode",
+        "type": "object"
+      },
       "K8sResource": {
         "oneOf": [
           {
@@ -2275,7 +2289,7 @@
           {
             "allOf": [
               {
-                "$ref": "#/components/schemas/Node"
+                "$ref": "#/components/schemas/K8sNode"
               },
               {
                 "properties": {
@@ -2296,7 +2310,7 @@
           {
             "allOf": [
               {
-                "$ref": "#/components/schemas/Job"
+                "$ref": "#/components/schemas/K8sJob"
               },
               {
                 "properties": {
@@ -2441,11 +2455,6 @@
         "required": [
           "namespaces"
         ],
-        "type": "object"
-      },
-      "Node": {
-        "description": "Entire json for the Kubernetes Node",
-        "title": "Node",
         "type": "object"
       },
       "NodeGpuMetrics": {
@@ -4181,7 +4190,7 @@
             ]
           },
           "reason": {
-            "$ref": "#/components/schemas/RestoreReason"
+            "$ref": "#/components/schemas/SlurmRestoreReason"
           }
         },
         "required": [
@@ -4198,6 +4207,92 @@
         "required": [
           "base64_script"
         ],
+        "type": "object"
+      },
+      "SlurmCheckpoint": {
+        "description": "Checkpoint is basic unit for cedana service operation\nit stores all the information regarding the snapshot we can use to save and then restore state",
+        "properties": {
+          "checksum": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "gpu": {
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "info": {},
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "$ref": "#/components/schemas/SlurmCheckpointStatus"
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "gpu"
+        ],
+        "type": "object"
+      },
+      "SlurmCheckpointInfo": {
+        "properties": {
+          "gpu": {
+            "type": "string"
+          },
+          "info": {},
+          "platform": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "gpu",
+          "platform"
+        ],
+        "type": "object"
+      },
+      "SlurmCheckpointKind": {
+        "enum": [
+          "simple",
+          "rootfs",
+          "rootfsonly"
+        ],
+        "type": "string"
+      },
+      "SlurmCheckpointReason": {
+        "enum": [
+          "heartbeat",
+          "manual"
+        ],
+        "type": "string"
+      },
+      "SlurmCheckpointStatus": {
+        "enum": [
+          "initializing",
+          "updated_info",
+          "possibly_uploaded",
+          "ready",
+          "deprecated"
+        ],
+        "type": "string"
+      },
+      "SlurmCheckpointSuccessInfo": {
+        "properties": {
+          "restore_path": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
         "type": "object"
       },
       "SlurmCluster": {
@@ -4847,6 +4942,14 @@
           "partitions"
         ],
         "type": "object"
+      },
+      "SlurmRestoreReason": {
+        "enum": [
+          "nodeTermination",
+          "nodeUnschedulable",
+          "manual"
+        ],
+        "type": "string"
       },
       "SlurmStateBreakdown": {
         "properties": {
@@ -11651,7 +11754,7 @@
               "application/json": {
                 "schema": {
                   "items": {
-                    "$ref": "#/components/schemas/Checkpoint"
+                    "$ref": "#/components/schemas/SlurmCheckpoint"
                   },
                   "type": "array"
                 }
@@ -11790,7 +11893,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CheckpointInfo"
+                "$ref": "#/components/schemas/SlurmCheckpointInfo"
               }
             }
           },
@@ -11857,7 +11960,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CheckpointSuccessInfo"
+                "$ref": "#/components/schemas/SlurmCheckpointSuccessInfo"
               }
             }
           },

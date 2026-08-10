@@ -8,8 +8,8 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// Checkpoint checkpoint is basic unit for cedana service operationit stores all the information regarding the snapshot we can use to save and then restore state
-type Checkpoint struct {
+// SlurmCheckpoint checkpoint is basic unit for cedana service operationit stores all the information regarding the snapshot we can use to save and then restore state
+type SlurmCheckpoint struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
     // The checksum property
@@ -22,36 +22,34 @@ type Checkpoint struct {
     info i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
     // The name property
     name *string
-    // The platform property
-    platform *string
     // The status property
-    status *CheckpointStatus
+    status *SlurmCheckpointStatus
 }
-// NewCheckpoint instantiates a new Checkpoint and sets the default values.
-func NewCheckpoint()(*Checkpoint) {
-    m := &Checkpoint{
+// NewSlurmCheckpoint instantiates a new SlurmCheckpoint and sets the default values.
+func NewSlurmCheckpoint()(*SlurmCheckpoint) {
+    m := &SlurmCheckpoint{
     }
     m.SetAdditionalData(make(map[string]any))
     return m
 }
-// CreateCheckpointFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
+// CreateSlurmCheckpointFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateCheckpointFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewCheckpoint(), nil
+func CreateSlurmCheckpointFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+    return NewSlurmCheckpoint(), nil
 }
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *Checkpoint) GetAdditionalData()(map[string]any) {
+func (m *SlurmCheckpoint) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetChecksum gets the checksum property value. The checksum property
 // returns a *string when successful
-func (m *Checkpoint) GetChecksum()(*string) {
+func (m *SlurmCheckpoint) GetChecksum()(*string) {
     return m.checksum
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *Checkpoint) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
+func (m *SlurmCheckpoint) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["checksum"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
@@ -103,23 +101,13 @@ func (m *Checkpoint) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         }
         return nil
     }
-    res["platform"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPlatform(val)
-        }
-        return nil
-    }
     res["status"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseCheckpointStatus)
+        val, err := n.GetEnumValue(ParseSlurmCheckpointStatus)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetStatus(val.(*CheckpointStatus))
+            m.SetStatus(val.(*SlurmCheckpointStatus))
         }
         return nil
     }
@@ -127,36 +115,31 @@ func (m *Checkpoint) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
 }
 // GetGpu gets the gpu property value. The gpu property
 // returns a *string when successful
-func (m *Checkpoint) GetGpu()(*string) {
+func (m *SlurmCheckpoint) GetGpu()(*string) {
     return m.gpu
 }
 // GetId gets the id property value. The id property
 // returns a *UUID when successful
-func (m *Checkpoint) GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
+func (m *SlurmCheckpoint) GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
     return m.id
 }
 // GetInfo gets the info property value. The info property
 // returns a UntypedNodeable when successful
-func (m *Checkpoint) GetInfo()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
+func (m *SlurmCheckpoint) GetInfo()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
     return m.info
 }
 // GetName gets the name property value. The name property
 // returns a *string when successful
-func (m *Checkpoint) GetName()(*string) {
+func (m *SlurmCheckpoint) GetName()(*string) {
     return m.name
 }
-// GetPlatform gets the platform property value. The platform property
-// returns a *string when successful
-func (m *Checkpoint) GetPlatform()(*string) {
-    return m.platform
-}
 // GetStatus gets the status property value. The status property
-// returns a *CheckpointStatus when successful
-func (m *Checkpoint) GetStatus()(*CheckpointStatus) {
+// returns a *SlurmCheckpointStatus when successful
+func (m *SlurmCheckpoint) GetStatus()(*SlurmCheckpointStatus) {
     return m.status
 }
 // Serialize serializes information the current object
-func (m *Checkpoint) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+func (m *SlurmCheckpoint) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
         err := writer.WriteStringValue("checksum", m.GetChecksum())
         if err != nil {
@@ -187,12 +170,6 @@ func (m *Checkpoint) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
             return err
         }
     }
-    {
-        err := writer.WriteStringValue("platform", m.GetPlatform())
-        if err != nil {
-            return err
-        }
-    }
     if m.GetStatus() != nil {
         cast := (*m.GetStatus()).String()
         err := writer.WriteStringValue("status", &cast)
@@ -209,38 +186,34 @@ func (m *Checkpoint) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     return nil
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Checkpoint) SetAdditionalData(value map[string]any)() {
+func (m *SlurmCheckpoint) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetChecksum sets the checksum property value. The checksum property
-func (m *Checkpoint) SetChecksum(value *string)() {
+func (m *SlurmCheckpoint) SetChecksum(value *string)() {
     m.checksum = value
 }
 // SetGpu sets the gpu property value. The gpu property
-func (m *Checkpoint) SetGpu(value *string)() {
+func (m *SlurmCheckpoint) SetGpu(value *string)() {
     m.gpu = value
 }
 // SetId sets the id property value. The id property
-func (m *Checkpoint) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
+func (m *SlurmCheckpoint) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.id = value
 }
 // SetInfo sets the info property value. The info property
-func (m *Checkpoint) SetInfo(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
+func (m *SlurmCheckpoint) SetInfo(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
     m.info = value
 }
 // SetName sets the name property value. The name property
-func (m *Checkpoint) SetName(value *string)() {
+func (m *SlurmCheckpoint) SetName(value *string)() {
     m.name = value
 }
-// SetPlatform sets the platform property value. The platform property
-func (m *Checkpoint) SetPlatform(value *string)() {
-    m.platform = value
-}
 // SetStatus sets the status property value. The status property
-func (m *Checkpoint) SetStatus(value *CheckpointStatus)() {
+func (m *SlurmCheckpoint) SetStatus(value *SlurmCheckpointStatus)() {
     m.status = value
 }
-type Checkpointable interface {
+type SlurmCheckpointable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetChecksum()(*string)
@@ -248,13 +221,11 @@ type Checkpointable interface {
     GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetInfo()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
     GetName()(*string)
-    GetPlatform()(*string)
-    GetStatus()(*CheckpointStatus)
+    GetStatus()(*SlurmCheckpointStatus)
     SetChecksum(value *string)()
     SetGpu(value *string)()
     SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetInfo(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
     SetName(value *string)()
-    SetPlatform(value *string)()
-    SetStatus(value *CheckpointStatus)()
+    SetStatus(value *SlurmCheckpointStatus)()
 }
