@@ -16,11 +16,6 @@ type V2RequestBuilder struct {
 func (m *V2RequestBuilder) Actions()(*ActionsRequestBuilder) {
     return NewActionsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
-// Cedana the cedana property
-// returns a *CedanaRequestBuilder when successful
-func (m *V2RequestBuilder) Cedana()(*CedanaRequestBuilder) {
-    return NewCedanaRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
-}
 // Checkpoint the checkpoint property
 // returns a *CheckpointRequestBuilder when successful
 func (m *V2RequestBuilder) Checkpoint()(*CheckpointRequestBuilder) {
@@ -54,11 +49,6 @@ func NewV2RequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c9
 func (m *V2RequestBuilder) Discover()(*DiscoverRequestBuilder) {
     return NewDiscoverRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
-// Download the download property
-// returns a *DownloadRequestBuilder when successful
-func (m *V2RequestBuilder) Download()(*DownloadRequestBuilder) {
-    return NewDownloadRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
-}
 // Dynamo the dynamo property
 // returns a *DynamoRequestBuilder when successful
 func (m *V2RequestBuilder) Dynamo()(*DynamoRequestBuilder) {
@@ -73,16 +63,6 @@ func (m *V2RequestBuilder) Events()(*EventsRequestBuilder) {
 // returns a *FilesRequestBuilder when successful
 func (m *V2RequestBuilder) Files()(*FilesRequestBuilder) {
     return NewFilesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
-}
-// Hosts the hosts property
-// returns a *HostsRequestBuilder when successful
-func (m *V2RequestBuilder) Hosts()(*HostsRequestBuilder) {
-    return NewHostsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
-}
-// Install the install property
-// returns a *InstallRequestBuilder when successful
-func (m *V2RequestBuilder) Install()(*InstallRequestBuilder) {
-    return NewInstallRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Instances the instances property
 // returns a *InstancesRequestBuilder when successful
@@ -103,11 +83,6 @@ func (m *V2RequestBuilder) Metrics()(*MetricsRequestBuilder) {
 // returns a *NodesRequestBuilder when successful
 func (m *V2RequestBuilder) Nodes()(*NodesRequestBuilder) {
     return NewNodesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
-}
-// Otel the otel property
-// returns a *OtelRequestBuilder when successful
-func (m *V2RequestBuilder) Otel()(*OtelRequestBuilder) {
-    return NewOtelRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Plugins the plugins property
 // returns a *PluginsRequestBuilder when successful
