@@ -23,7 +23,7 @@ type SlurmMetric struct {
     // The tags property
     tags i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
     // The timestamp property
-    timestamp *int32
+    timestamp *int64
 }
 // NewSlurmMetric instantiates a new SlurmMetric and sets the default values.
 func NewSlurmMetric()(*SlurmMetric) {
@@ -112,7 +112,7 @@ func (m *SlurmMetric) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         return nil
     }
     res["timestamp"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
+        val, err := n.GetInt64Value()
         if err != nil {
             return err
         }
@@ -149,8 +149,8 @@ func (m *SlurmMetric) GetTags()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
     return m.tags
 }
 // GetTimestamp gets the timestamp property value. The timestamp property
-// returns a *int32 when successful
-func (m *SlurmMetric) GetTimestamp()(*int32) {
+// returns a *int64 when successful
+func (m *SlurmMetric) GetTimestamp()(*int64) {
     return m.timestamp
 }
 // Serialize serializes information the current object
@@ -192,7 +192,7 @@ func (m *SlurmMetric) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     {
-        err := writer.WriteInt32Value("timestamp", m.GetTimestamp())
+        err := writer.WriteInt64Value("timestamp", m.GetTimestamp())
         if err != nil {
             return err
         }
@@ -234,7 +234,7 @@ func (m *SlurmMetric) SetTags(value i878a80d2330e89d26896388a3f487eef27b0a0e6c01
     m.tags = value
 }
 // SetTimestamp sets the timestamp property value. The timestamp property
-func (m *SlurmMetric) SetTimestamp(value *int32)() {
+func (m *SlurmMetric) SetTimestamp(value *int64)() {
     m.timestamp = value
 }
 type SlurmMetricable interface {
@@ -246,12 +246,12 @@ type SlurmMetricable interface {
     GetKind()(*string)
     GetName()(*string)
     GetTags()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
-    GetTimestamp()(*int32)
+    GetTimestamp()(*int64)
     SetCounterValue(value *float64)()
     SetGaugeValue(value *float64)()
     SetId(value *int64)()
     SetKind(value *string)()
     SetName(value *string)()
     SetTags(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
-    SetTimestamp(value *int32)()
+    SetTimestamp(value *int64)()
 }

@@ -13,6 +13,8 @@ type CreateClusterRequest struct {
     additionalData map[string]any
     // The cluster_name property
     cluster_name *string
+    // Cluster kind: "kubernetes" (default) or "slurm"
+    kind *string
 }
 // NewCreateClusterRequest instantiates a new CreateClusterRequest and sets the default values.
 func NewCreateClusterRequest()(*CreateClusterRequest) {
@@ -50,12 +52,33 @@ func (m *CreateClusterRequest) GetFieldDeserializers()(map[string]func(i878a80d2
         }
         return nil
     }
+    res["kind"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetKind(val)
+        }
+        return nil
+    }
     return res
+}
+// GetKind gets the kind property value. Cluster kind: "kubernetes" (default) or "slurm"
+// returns a *string when successful
+func (m *CreateClusterRequest) GetKind()(*string) {
+    return m.kind
 }
 // Serialize serializes information the current object
 func (m *CreateClusterRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
         err := writer.WriteStringValue("cluster_name", m.GetClusterName())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("kind", m.GetKind())
         if err != nil {
             return err
         }
@@ -76,9 +99,15 @@ func (m *CreateClusterRequest) SetAdditionalData(value map[string]any)() {
 func (m *CreateClusterRequest) SetClusterName(value *string)() {
     m.cluster_name = value
 }
+// SetKind sets the kind property value. Cluster kind: "kubernetes" (default) or "slurm"
+func (m *CreateClusterRequest) SetKind(value *string)() {
+    m.kind = value
+}
 type CreateClusterRequestable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetClusterName()(*string)
+    GetKind()(*string)
     SetClusterName(value *string)()
+    SetKind(value *string)()
 }

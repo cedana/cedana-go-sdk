@@ -23,7 +23,7 @@ type PartitionStats struct {
     // The real_memory property
     real_memory *float64
     // The timestamp property
-    timestamp *int32
+    timestamp *int64
     // The total_cpus property
     total_cpus *float64
 }
@@ -114,7 +114,7 @@ func (m *PartitionStats) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         return nil
     }
     res["timestamp"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
+        val, err := n.GetInt64Value()
         if err != nil {
             return err
         }
@@ -161,8 +161,8 @@ func (m *PartitionStats) GetRealMemory()(*float64) {
     return m.real_memory
 }
 // GetTimestamp gets the timestamp property value. The timestamp property
-// returns a *int32 when successful
-func (m *PartitionStats) GetTimestamp()(*int32) {
+// returns a *int64 when successful
+func (m *PartitionStats) GetTimestamp()(*int64) {
     return m.timestamp
 }
 // GetTotalCpus gets the total_cpus property value. The total_cpus property
@@ -209,7 +209,7 @@ func (m *PartitionStats) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
         }
     }
     {
-        err := writer.WriteInt32Value("timestamp", m.GetTimestamp())
+        err := writer.WriteInt64Value("timestamp", m.GetTimestamp())
         if err != nil {
             return err
         }
@@ -257,7 +257,7 @@ func (m *PartitionStats) SetRealMemory(value *float64)() {
     m.real_memory = value
 }
 // SetTimestamp sets the timestamp property value. The timestamp property
-func (m *PartitionStats) SetTimestamp(value *int32)() {
+func (m *PartitionStats) SetTimestamp(value *int64)() {
     m.timestamp = value
 }
 // SetTotalCpus sets the total_cpus property value. The total_cpus property
@@ -273,7 +273,7 @@ type PartitionStatsable interface {
     GetIdleNodes()(*float64)
     GetPartitionName()(*string)
     GetRealMemory()(*float64)
-    GetTimestamp()(*int32)
+    GetTimestamp()(*int64)
     GetTotalCpus()(*float64)
     SetCpuLoad(value *float64)()
     SetFreeMemory(value *float64)()
@@ -281,6 +281,6 @@ type PartitionStatsable interface {
     SetIdleNodes(value *float64)()
     SetPartitionName(value *string)()
     SetRealMemory(value *float64)()
-    SetTimestamp(value *int32)()
+    SetTimestamp(value *int64)()
     SetTotalCpus(value *float64)()
 }

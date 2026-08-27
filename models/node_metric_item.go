@@ -25,7 +25,7 @@ type NodeMetricItem struct {
     // The resource property
     resource *string
     // The timestamp property
-    timestamp *int32
+    timestamp *string
     // The value property
     value *string
 }
@@ -136,7 +136,7 @@ func (m *NodeMetricItem) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         return nil
     }
     res["timestamp"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
@@ -178,8 +178,8 @@ func (m *NodeMetricItem) GetResource()(*string) {
     return m.resource
 }
 // GetTimestamp gets the timestamp property value. The timestamp property
-// returns a *int32 when successful
-func (m *NodeMetricItem) GetTimestamp()(*int32) {
+// returns a *string when successful
+func (m *NodeMetricItem) GetTimestamp()(*string) {
     return m.timestamp
 }
 // GetValue gets the value property value. The value property
@@ -232,7 +232,7 @@ func (m *NodeMetricItem) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
         }
     }
     {
-        err := writer.WriteInt32Value("timestamp", m.GetTimestamp())
+        err := writer.WriteStringValue("timestamp", m.GetTimestamp())
         if err != nil {
             return err
         }
@@ -284,7 +284,7 @@ func (m *NodeMetricItem) SetResource(value *string)() {
     m.resource = value
 }
 // SetTimestamp sets the timestamp property value. The timestamp property
-func (m *NodeMetricItem) SetTimestamp(value *int32)() {
+func (m *NodeMetricItem) SetTimestamp(value *string)() {
     m.timestamp = value
 }
 // SetValue sets the value property value. The value property
@@ -301,7 +301,7 @@ type NodeMetricItemable interface {
     GetMetricName()(*string)
     GetMountpoint()(*string)
     GetResource()(*string)
-    GetTimestamp()(*int32)
+    GetTimestamp()(*string)
     GetValue()(*string)
     SetCollector(value *string)()
     SetCpuCore(value *string)()
@@ -310,6 +310,6 @@ type NodeMetricItemable interface {
     SetMetricName(value *string)()
     SetMountpoint(value *string)()
     SetResource(value *string)()
-    SetTimestamp(value *int32)()
+    SetTimestamp(value *string)()
     SetValue(value *string)()
 }

@@ -23,8 +23,8 @@ var (
 
 func TestUser(t *testing.T) {
 	client := sdk.NewCedanaClient(cedanaUrl, apiKey)
-	fmt.Println("url: ", client.V2().User().RequestAdapter.GetBaseUrl())
-	user, err := client.V2().User().Get(context.Background(), nil)
+	fmt.Println("url: ", client.V1().User().RequestAdapter.GetBaseUrl())
+	user, err := client.V1().User().Get(context.Background(), nil)
 	if err != nil {
 		t.Errorf("failed to get user: %v", err)
 	} else {
@@ -35,7 +35,7 @@ func TestUser(t *testing.T) {
 func TestCheckpointsList(t *testing.T) {
 	client := sdk.NewCedanaClient(cedanaUrl, apiKey)
 	// testCheckpointsDownload(t)
-	checkpoints, err := client.V2().Checkpoints().Get(context.Background(), nil)
+	checkpoints, err := client.V1().Checkpoints().Get(context.Background(), nil)
 	if err != nil {
 		t.Errorf("failed to get checkpoints: %v", err)
 	} else {
@@ -47,7 +47,7 @@ func TestCheckpointsList(t *testing.T) {
 
 func TestCheckpointsAdd(t *testing.T) {
 	client := sdk.NewCedanaClient(cedanaUrl, apiKey)
-	uuid, err := client.V2().Checkpoints().Post(context.Background(), nil)
+	uuid, err := client.V1().Checkpoints().Post(context.Background(), nil)
 	if err != nil {
 		t.Errorf("failed to add checkpoint: %v", err)
 	} else {

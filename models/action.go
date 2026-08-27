@@ -20,12 +20,18 @@ type Action struct {
     checkpoint_completed_timestamp *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The checkpoint_id property
     checkpoint_id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+    // The checkpoint's CEDANA_CHECKPOINT name (the env value it restores from),used to group automatic/named checkpoints. Null for unnamed checkpoints.
+    checkpoint_name *string
+    // Whether the checkpoint is a (GPU delta) increment. Authoritative evenwhen parent_checkpoint_id is null (malformed id at ingest, parent deleted)
+    delta *bool
     // The details property
     details i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
     // The gpu property
     gpu *string
     // The node_name property
     node_name *string
+    // Checkpoint this one is an increment of; null for full checkpoints andfor deltas whose parent is unknown or deleted
+    parent_checkpoint_id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The platform property
     platform *string
     // The reason property
@@ -38,6 +44,8 @@ type Action struct {
     total_io *int64
     // The type property
     typeEscaped *string
+    // Owning workload kind of the checkpointed pod: "DynamoGraphDeployment" whenthe pod belongs to a Dynamo deployment, else the pod's immediateownerReferences kind (ReplicaSet/Job/StatefulSet…). Null if unknown.
+    workload_kind *string
 }
 // NewAction instantiates a new Action and sets the default values.
 func NewAction()(*Action) {
@@ -75,6 +83,16 @@ func (m *Action) GetCheckpointCompletedTimestamp()(*i336074805fc853987abe6f7fe3a
 // returns a *UUID when successful
 func (m *Action) GetCheckpointId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
     return m.checkpoint_id
+}
+// GetCheckpointName gets the checkpoint_name property value. The checkpoint's CEDANA_CHECKPOINT name (the env value it restores from),used to group automatic/named checkpoints. Null for unnamed checkpoints.
+// returns a *string when successful
+func (m *Action) GetCheckpointName()(*string) {
+    return m.checkpoint_name
+}
+// GetDelta gets the delta property value. Whether the checkpoint is a (GPU delta) increment. Authoritative evenwhen parent_checkpoint_id is null (malformed id at ingest, parent deleted)
+// returns a *bool when successful
+func (m *Action) GetDelta()(*bool) {
+    return m.delta
 }
 // GetDetails gets the details property value. The details property
 // returns a UntypedNodeable when successful
@@ -125,6 +143,26 @@ func (m *Action) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689638
         }
         return nil
     }
+    res["checkpoint_name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCheckpointName(val)
+        }
+        return nil
+    }
+    res["delta"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDelta(val)
+        }
+        return nil
+    }
     res["details"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
         if err != nil {
@@ -152,6 +190,16 @@ func (m *Action) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689638
         }
         if val != nil {
             m.SetNodeName(val)
+        }
+        return nil
+    }
+    res["parent_checkpoint_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetUUIDValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetParentCheckpointId(val)
         }
         return nil
     }
@@ -215,6 +263,16 @@ func (m *Action) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689638
         }
         return nil
     }
+    res["workload_kind"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetWorkloadKind(val)
+        }
+        return nil
+    }
     return res
 }
 // GetGpu gets the gpu property value. The gpu property
@@ -226,6 +284,11 @@ func (m *Action) GetGpu()(*string) {
 // returns a *string when successful
 func (m *Action) GetNodeName()(*string) {
     return m.node_name
+}
+// GetParentCheckpointId gets the parent_checkpoint_id property value. Checkpoint this one is an increment of; null for full checkpoints andfor deltas whose parent is unknown or deleted
+// returns a *UUID when successful
+func (m *Action) GetParentCheckpointId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
+    return m.parent_checkpoint_id
 }
 // GetPlatform gets the platform property value. The platform property
 // returns a *string when successful
@@ -257,6 +320,11 @@ func (m *Action) GetTotalIo()(*int64) {
 func (m *Action) GetTypeEscaped()(*string) {
     return m.typeEscaped
 }
+// GetWorkloadKind gets the workload_kind property value. Owning workload kind of the checkpointed pod: "DynamoGraphDeployment" whenthe pod belongs to a Dynamo deployment, else the pod's immediateownerReferences kind (ReplicaSet/Job/StatefulSet…). Null if unknown.
+// returns a *string when successful
+func (m *Action) GetWorkloadKind()(*string) {
+    return m.workload_kind
+}
 // Serialize serializes information the current object
 func (m *Action) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
@@ -284,6 +352,18 @@ func (m *Action) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c
         }
     }
     {
+        err := writer.WriteStringValue("checkpoint_name", m.GetCheckpointName())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteBoolValue("delta", m.GetDelta())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteObjectValue("details", m.GetDetails())
         if err != nil {
             return err
@@ -297,6 +377,12 @@ func (m *Action) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c
     }
     {
         err := writer.WriteStringValue("node_name", m.GetNodeName())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteUUIDValue("parent_checkpoint_id", m.GetParentCheckpointId())
         if err != nil {
             return err
         }
@@ -338,6 +424,12 @@ func (m *Action) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c
         }
     }
     {
+        err := writer.WriteStringValue("workload_kind", m.GetWorkloadKind())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteAdditionalData(m.GetAdditionalData())
         if err != nil {
             return err
@@ -365,6 +457,14 @@ func (m *Action) SetCheckpointCompletedTimestamp(value *i336074805fc853987abe6f7
 func (m *Action) SetCheckpointId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.checkpoint_id = value
 }
+// SetCheckpointName sets the checkpoint_name property value. The checkpoint's CEDANA_CHECKPOINT name (the env value it restores from),used to group automatic/named checkpoints. Null for unnamed checkpoints.
+func (m *Action) SetCheckpointName(value *string)() {
+    m.checkpoint_name = value
+}
+// SetDelta sets the delta property value. Whether the checkpoint is a (GPU delta) increment. Authoritative evenwhen parent_checkpoint_id is null (malformed id at ingest, parent deleted)
+func (m *Action) SetDelta(value *bool)() {
+    m.delta = value
+}
 // SetDetails sets the details property value. The details property
 func (m *Action) SetDetails(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
     m.details = value
@@ -376,6 +476,10 @@ func (m *Action) SetGpu(value *string)() {
 // SetNodeName sets the node_name property value. The node_name property
 func (m *Action) SetNodeName(value *string)() {
     m.node_name = value
+}
+// SetParentCheckpointId sets the parent_checkpoint_id property value. Checkpoint this one is an increment of; null for full checkpoints andfor deltas whose parent is unknown or deleted
+func (m *Action) SetParentCheckpointId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
+    m.parent_checkpoint_id = value
 }
 // SetPlatform sets the platform property value. The platform property
 func (m *Action) SetPlatform(value *string)() {
@@ -401,6 +505,10 @@ func (m *Action) SetTotalIo(value *int64)() {
 func (m *Action) SetTypeEscaped(value *string)() {
     m.typeEscaped = value
 }
+// SetWorkloadKind sets the workload_kind property value. Owning workload kind of the checkpointed pod: "DynamoGraphDeployment" whenthe pod belongs to a Dynamo deployment, else the pod's immediateownerReferences kind (ReplicaSet/Job/StatefulSet…). Null if unknown.
+func (m *Action) SetWorkloadKind(value *string)() {
+    m.workload_kind = value
+}
 type Actionable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
@@ -408,26 +516,34 @@ type Actionable interface {
     GetActionTimestamp()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetCheckpointCompletedTimestamp()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetCheckpointId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+    GetCheckpointName()(*string)
+    GetDelta()(*bool)
     GetDetails()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
     GetGpu()(*string)
     GetNodeName()(*string)
+    GetParentCheckpointId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetPlatform()(*string)
     GetReason()(*string)
     GetStatus()(*string)
     GetTotalDuration()(*int64)
     GetTotalIo()(*int64)
     GetTypeEscaped()(*string)
+    GetWorkloadKind()(*string)
     SetActionId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetActionTimestamp(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetCheckpointCompletedTimestamp(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetCheckpointId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
+    SetCheckpointName(value *string)()
+    SetDelta(value *bool)()
     SetDetails(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
     SetGpu(value *string)()
     SetNodeName(value *string)()
+    SetParentCheckpointId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetPlatform(value *string)()
     SetReason(value *string)()
     SetStatus(value *string)()
     SetTotalDuration(value *int64)()
     SetTotalIo(value *int64)()
     SetTypeEscaped(value *string)()
+    SetWorkloadKind(value *string)()
 }

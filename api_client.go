@@ -9,8 +9,8 @@ import (
     i4bcdc892e61ac17e2afc10b5e2b536b29f4fd6c1ad30f4a5a68df47495db3347 "github.com/microsoft/kiota-serialization-form-go"
     i56887720f41ac882814261620b1c8459c4a992a0207af547c4453dd39fabc426 "github.com/microsoft/kiota-serialization-multipart-go"
     i7294a22093d408fdca300f11b81a887d89c47b764af06c8b803e2323973fdb83 "github.com/microsoft/kiota-serialization-text-go"
+    i804061674cbb0c4b96ca93916787b69aafabf43990e41f57994179c415aecb7b "github.com/cedana/cedana-go-sdk/v1"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
-    i8e122767d19c4853f87713080087e40c426ed53276da272d4cd3848259dd768f "github.com/cedana/cedana-go-sdk/v2"
 )
 
 // ApiClient the main entry point of the SDK, exposes the configuration and the fluent API.
@@ -31,8 +31,8 @@ func NewApiClient(requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa52901
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RegisterDefaultDeserializer(func() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNodeFactory { return i4bcdc892e61ac17e2afc10b5e2b536b29f4fd6c1ad30f4a5a68df47495db3347.NewFormParseNodeFactory() })
     return m
 }
-// V2 the v2 property
-// returns a *V2RequestBuilder when successful
-func (m *ApiClient) V2()(*i8e122767d19c4853f87713080087e40c426ed53276da272d4cd3848259dd768f.V2RequestBuilder) {
-    return i8e122767d19c4853f87713080087e40c426ed53276da272d4cd3848259dd768f.NewV2RequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+// V1 the v1 property
+// returns a *V1RequestBuilder when successful
+func (m *ApiClient) V1()(*i804061674cbb0c4b96ca93916787b69aafabf43990e41f57994179c415aecb7b.V1RequestBuilder) {
+    return i804061674cbb0c4b96ca93916787b69aafabf43990e41f57994179c415aecb7b.NewV1RequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

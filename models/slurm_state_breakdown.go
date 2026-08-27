@@ -15,7 +15,7 @@ type SlurmStateBreakdown struct {
     // The nodes_by_state property
     nodes_by_state []StateItemable
     // The timestamp property
-    timestamp *int32
+    timestamp *int64
 }
 // NewSlurmStateBreakdown instantiates a new SlurmStateBreakdown and sets the default values.
 func NewSlurmStateBreakdown()(*SlurmStateBreakdown) {
@@ -76,7 +76,7 @@ func (m *SlurmStateBreakdown) GetFieldDeserializers()(map[string]func(i878a80d23
         return nil
     }
     res["timestamp"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
+        val, err := n.GetInt64Value()
         if err != nil {
             return err
         }
@@ -93,8 +93,8 @@ func (m *SlurmStateBreakdown) GetNodesByState()([]StateItemable) {
     return m.nodes_by_state
 }
 // GetTimestamp gets the timestamp property value. The timestamp property
-// returns a *int32 when successful
-func (m *SlurmStateBreakdown) GetTimestamp()(*int32) {
+// returns a *int64 when successful
+func (m *SlurmStateBreakdown) GetTimestamp()(*int64) {
     return m.timestamp
 }
 // Serialize serializes information the current object
@@ -124,7 +124,7 @@ func (m *SlurmStateBreakdown) Serialize(writer i878a80d2330e89d26896388a3f487eef
         }
     }
     {
-        err := writer.WriteInt32Value("timestamp", m.GetTimestamp())
+        err := writer.WriteInt64Value("timestamp", m.GetTimestamp())
         if err != nil {
             return err
         }
@@ -150,7 +150,7 @@ func (m *SlurmStateBreakdown) SetNodesByState(value []StateItemable)() {
     m.nodes_by_state = value
 }
 // SetTimestamp sets the timestamp property value. The timestamp property
-func (m *SlurmStateBreakdown) SetTimestamp(value *int32)() {
+func (m *SlurmStateBreakdown) SetTimestamp(value *int64)() {
     m.timestamp = value
 }
 type SlurmStateBreakdownable interface {
@@ -158,8 +158,8 @@ type SlurmStateBreakdownable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetCpusByState()([]StateItemable)
     GetNodesByState()([]StateItemable)
-    GetTimestamp()(*int32)
+    GetTimestamp()(*int64)
     SetCpusByState(value []StateItemable)()
     SetNodesByState(value []StateItemable)()
-    SetTimestamp(value *int32)()
+    SetTimestamp(value *int64)()
 }

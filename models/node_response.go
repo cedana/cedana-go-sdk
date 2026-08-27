@@ -11,6 +11,8 @@ import (
 type NodeResponse struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // "spot" or "on-demand" - detected from node labels
+    capacity_type *string
     // The cluster_name property
     cluster_name *string
     // The compute_type property
@@ -43,6 +45,11 @@ func CreateNodeResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388
 func (m *NodeResponse) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
+// GetCapacityType gets the capacity_type property value. "spot" or "on-demand" - detected from node labels
+// returns a *string when successful
+func (m *NodeResponse) GetCapacityType()(*string) {
+    return m.capacity_type
+}
 // GetClusterName gets the cluster_name property value. The cluster_name property
 // returns a *string when successful
 func (m *NodeResponse) GetClusterName()(*string) {
@@ -57,6 +64,16 @@ func (m *NodeResponse) GetComputeType()(*string) {
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *NodeResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["capacity_type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCapacityType(val)
+        }
+        return nil
+    }
     res["cluster_name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -157,6 +174,12 @@ func (m *NodeResponse) GetStatus()(*string) {
 // Serialize serializes information the current object
 func (m *NodeResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
+        err := writer.WriteStringValue("capacity_type", m.GetCapacityType())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("cluster_name", m.GetClusterName())
         if err != nil {
             return err
@@ -210,6 +233,10 @@ func (m *NodeResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
 func (m *NodeResponse) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
+// SetCapacityType sets the capacity_type property value. "spot" or "on-demand" - detected from node labels
+func (m *NodeResponse) SetCapacityType(value *string)() {
+    m.capacity_type = value
+}
 // SetClusterName sets the cluster_name property value. The cluster_name property
 func (m *NodeResponse) SetClusterName(value *string)() {
     m.cluster_name = value
@@ -241,6 +268,7 @@ func (m *NodeResponse) SetStatus(value *string)() {
 type NodeResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCapacityType()(*string)
     GetClusterName()(*string)
     GetComputeType()(*string)
     GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
@@ -248,6 +276,7 @@ type NodeResponseable interface {
     GetName()(*string)
     GetRegion()(*string)
     GetStatus()(*string)
+    SetCapacityType(value *string)()
     SetClusterName(value *string)()
     SetComputeType(value *string)()
     SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()

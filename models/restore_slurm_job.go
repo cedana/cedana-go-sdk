@@ -15,7 +15,7 @@ type RestoreSlurmJob struct {
     // The cluster_id property
     cluster_id *string
     // The reason property
-    reason *RestoreReason
+    reason *SlurmRestoreReason
 }
 // NewRestoreSlurmJob instantiates a new RestoreSlurmJob and sets the default values.
 func NewRestoreSlurmJob()(*RestoreSlurmJob) {
@@ -69,20 +69,20 @@ func (m *RestoreSlurmJob) GetFieldDeserializers()(map[string]func(i878a80d2330e8
         return nil
     }
     res["reason"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseRestoreReason)
+        val, err := n.GetEnumValue(ParseSlurmRestoreReason)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetReason(val.(*RestoreReason))
+            m.SetReason(val.(*SlurmRestoreReason))
         }
         return nil
     }
     return res
 }
 // GetReason gets the reason property value. The reason property
-// returns a *RestoreReason when successful
-func (m *RestoreSlurmJob) GetReason()(*RestoreReason) {
+// returns a *SlurmRestoreReason when successful
+func (m *RestoreSlurmJob) GetReason()(*SlurmRestoreReason) {
     return m.reason
 }
 // Serialize serializes information the current object
@@ -127,7 +127,7 @@ func (m *RestoreSlurmJob) SetClusterId(value *string)() {
     m.cluster_id = value
 }
 // SetReason sets the reason property value. The reason property
-func (m *RestoreSlurmJob) SetReason(value *RestoreReason)() {
+func (m *RestoreSlurmJob) SetReason(value *SlurmRestoreReason)() {
     m.reason = value
 }
 type RestoreSlurmJobable interface {
@@ -135,8 +135,8 @@ type RestoreSlurmJobable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetActionId()(*string)
     GetClusterId()(*string)
-    GetReason()(*RestoreReason)
+    GetReason()(*SlurmRestoreReason)
     SetActionId(value *string)()
     SetClusterId(value *string)()
-    SetReason(value *RestoreReason)()
+    SetReason(value *SlurmRestoreReason)()
 }

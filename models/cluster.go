@@ -14,6 +14,8 @@ type Cluster struct {
     additionalData map[string]any
     // The id property
     id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+    // The kind property
+    kind *string
     // The last_sync property
     last_sync *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The metadata property
@@ -51,6 +53,16 @@ func (m *Cluster) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268963
         }
         if val != nil {
             m.SetId(val)
+        }
+        return nil
+    }
+    res["kind"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetKind(val)
         }
         return nil
     }
@@ -101,6 +113,11 @@ func (m *Cluster) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268963
 func (m *Cluster) GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
     return m.id
 }
+// GetKind gets the kind property value. The kind property
+// returns a *string when successful
+func (m *Cluster) GetKind()(*string) {
+    return m.kind
+}
 // GetLastSync gets the last_sync property value. The last_sync property
 // returns a *Time when successful
 func (m *Cluster) GetLastSync()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
@@ -125,6 +142,12 @@ func (m *Cluster) GetStatus()(*string) {
 func (m *Cluster) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
         err := writer.WriteUUIDValue("id", m.GetId())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("kind", m.GetKind())
         if err != nil {
             return err
         }
@@ -169,6 +192,10 @@ func (m *Cluster) SetAdditionalData(value map[string]any)() {
 func (m *Cluster) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.id = value
 }
+// SetKind sets the kind property value. The kind property
+func (m *Cluster) SetKind(value *string)() {
+    m.kind = value
+}
 // SetLastSync sets the last_sync property value. The last_sync property
 func (m *Cluster) SetLastSync(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.last_sync = value
@@ -189,11 +216,13 @@ type Clusterable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+    GetKind()(*string)
     GetLastSync()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetMetadata()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
     GetName()(*string)
     GetStatus()(*string)
     SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
+    SetKind(value *string)()
     SetLastSync(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetMetadata(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
     SetName(value *string)()
