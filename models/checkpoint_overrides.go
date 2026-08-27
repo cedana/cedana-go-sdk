@@ -18,6 +18,8 @@ type CheckpointOverrides struct {
     criu_opts *string
     // The directory property
     directory *string
+    // GPU delta (incremental) checkpoint; None = cluster default
+    incremental *bool
     // The streams property
     streams *int32
 }
@@ -102,6 +104,16 @@ func (m *CheckpointOverrides) GetFieldDeserializers()(map[string]func(i878a80d23
         }
         return nil
     }
+    res["incremental"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIncremental(val)
+        }
+        return nil
+    }
     res["streams"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetInt32Value()
         if err != nil {
@@ -113,6 +125,11 @@ func (m *CheckpointOverrides) GetFieldDeserializers()(map[string]func(i878a80d23
         return nil
     }
     return res
+}
+// GetIncremental gets the incremental property value. GPU delta (incremental) checkpoint; None = cluster default
+// returns a *bool when successful
+func (m *CheckpointOverrides) GetIncremental()(*bool) {
+    return m.incremental
 }
 // GetStreams gets the streams property value. The streams property
 // returns a *int32 when successful
@@ -141,6 +158,12 @@ func (m *CheckpointOverrides) Serialize(writer i878a80d2330e89d26896388a3f487eef
     }
     {
         err := writer.WriteStringValue("directory", m.GetDirectory())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteBoolValue("incremental", m.GetIncremental())
         if err != nil {
             return err
         }
@@ -179,6 +202,10 @@ func (m *CheckpointOverrides) SetCriuOpts(value *string)() {
 func (m *CheckpointOverrides) SetDirectory(value *string)() {
     m.directory = value
 }
+// SetIncremental sets the incremental property value. GPU delta (incremental) checkpoint; None = cluster default
+func (m *CheckpointOverrides) SetIncremental(value *bool)() {
+    m.incremental = value
+}
 // SetStreams sets the streams property value. The streams property
 func (m *CheckpointOverrides) SetStreams(value *int32)() {
     m.streams = value
@@ -190,10 +217,12 @@ type CheckpointOverridesable interface {
     GetCompression()(*string)
     GetCriuOpts()(*string)
     GetDirectory()(*string)
+    GetIncremental()(*bool)
     GetStreams()(*int32)
     SetAsynchronous(value *bool)()
     SetCompression(value *string)()
     SetCriuOpts(value *string)()
     SetDirectory(value *string)()
+    SetIncremental(value *bool)()
     SetStreams(value *int32)()
 }
