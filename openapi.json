@@ -18597,7 +18597,8 @@
         "type": "string",
         "enum": [
           "heartbeat",
-          "manual"
+          "manual",
+          "preemption"
         ]
       },
       "SlurmCheckpointStatus": {

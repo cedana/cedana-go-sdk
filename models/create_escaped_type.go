@@ -3,28 +3,28 @@
 
 package models
 
-type WithPolicy__type int
+type Create_type int
 
 const (
-	CHECKPOINT_WITHPOLICY__TYPE WithPolicy__type = iota
+	CHECKPOINT_CREATE_TYPE Create_type = iota
 )
 
-func (i WithPolicy__type) String() string {
+func (i Create_type) String() string {
 	return []string{"checkpoint"}[i]
 }
 
-func ParseWithPolicy__type(v string) (any, error) {
-	result := CHECKPOINT_WITHPOLICY__TYPE
+func ParseCreate_type(v string) (any, error) {
+	result := CHECKPOINT_CREATE_TYPE
 	switch v {
 	case "checkpoint":
-		result = CHECKPOINT_WITHPOLICY__TYPE
+		result = CHECKPOINT_CREATE_TYPE
 	default:
 		return nil, nil
 	}
 	return &result, nil
 }
 
-func SerializeWithPolicy__type(values []WithPolicy__type) []string {
+func SerializeCreate_type(values []Create_type) []string {
 	result := make([]string, len(values))
 	for i, v := range values {
 		result[i] = v.String()
@@ -32,6 +32,6 @@ func SerializeWithPolicy__type(values []WithPolicy__type) []string {
 	return result
 }
 
-func (i WithPolicy__type) isMultiValue() bool {
+func (i Create_type) isMultiValue() bool {
 	return false
 }
