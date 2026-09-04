@@ -4,47 +4,51 @@
 package v1
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
+	i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // SlurmCheckpointsInfoRequestBuilder builds and executes requests for operations under \v1\slurm\checkpoints\info
 type SlurmCheckpointsInfoRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // ById gets an item from the github.com/cedana/cedana-go-sdk.v1.slurm.checkpoints.info.item collection
 // Deprecated: This indexer is deprecated and will be removed in the next major version. Use the one with the typed parameter instead.
 // returns a *SlurmCheckpointsInfoInfoItemRequestBuilder when successful
-func (m *SlurmCheckpointsInfoRequestBuilder) ById(id string)(*SlurmCheckpointsInfoInfoItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if id != "" {
-        urlTplParams["id"] = id
-    }
-    return NewSlurmCheckpointsInfoInfoItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *SlurmCheckpointsInfoRequestBuilder) ById(id string) *SlurmCheckpointsInfoInfoItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	if id != "" {
+		urlTplParams["id"] = id
+	}
+	return NewSlurmCheckpointsInfoInfoItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // ByIdGuid gets an item from the github.com/cedana/cedana-go-sdk.v1.slurm.checkpoints.info.item collection
 // returns a *SlurmCheckpointsInfoInfoItemRequestBuilder when successful
-func (m *SlurmCheckpointsInfoRequestBuilder) ByIdGuid(id i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)(*SlurmCheckpointsInfoInfoItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    urlTplParams["id"] = id.String()
-    return NewSlurmCheckpointsInfoInfoItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *SlurmCheckpointsInfoRequestBuilder) ByIdGuid(id i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) *SlurmCheckpointsInfoInfoItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	urlTplParams["id"] = id.String()
+	return NewSlurmCheckpointsInfoInfoItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewSlurmCheckpointsInfoRequestBuilderInternal instantiates a new SlurmCheckpointsInfoRequestBuilder and sets the default values.
-func NewSlurmCheckpointsInfoRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*SlurmCheckpointsInfoRequestBuilder) {
-    m := &SlurmCheckpointsInfoRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/slurm/checkpoints/info", pathParameters),
-    }
-    return m
+func NewSlurmCheckpointsInfoRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *SlurmCheckpointsInfoRequestBuilder {
+	m := &SlurmCheckpointsInfoRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/slurm/checkpoints/info", pathParameters),
+	}
+	return m
 }
+
 // NewSlurmCheckpointsInfoRequestBuilder instantiates a new SlurmCheckpointsInfoRequestBuilder and sets the default values.
-func NewSlurmCheckpointsInfoRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*SlurmCheckpointsInfoRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewSlurmCheckpointsInfoRequestBuilderInternal(urlParams, requestAdapter)
+func NewSlurmCheckpointsInfoRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *SlurmCheckpointsInfoRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewSlurmCheckpointsInfoRequestBuilderInternal(urlParams, requestAdapter)
 }

@@ -4,64 +4,70 @@
 package v1
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
+	"context"
+	i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // CheckpointStatusWithAction_ItemRequestBuilder builds and executes requests for operations under \v1\checkpoint\status\{action_id}
 type CheckpointStatusWithAction_ItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // CheckpointStatusWithAction_ItemRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type CheckpointStatusWithAction_ItemRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+
 // NewCheckpointStatusWithAction_ItemRequestBuilderInternal instantiates a new CheckpointStatusWithAction_ItemRequestBuilder and sets the default values.
-func NewCheckpointStatusWithAction_ItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*CheckpointStatusWithAction_ItemRequestBuilder) {
-    m := &CheckpointStatusWithAction_ItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/checkpoint/status/{action_id}", pathParameters),
-    }
-    return m
+func NewCheckpointStatusWithAction_ItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *CheckpointStatusWithAction_ItemRequestBuilder {
+	m := &CheckpointStatusWithAction_ItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/checkpoint/status/{action_id}", pathParameters),
+	}
+	return m
 }
+
 // NewCheckpointStatusWithAction_ItemRequestBuilder instantiates a new CheckpointStatusWithAction_ItemRequestBuilder and sets the default values.
-func NewCheckpointStatusWithAction_ItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*CheckpointStatusWithAction_ItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewCheckpointStatusWithAction_ItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewCheckpointStatusWithAction_ItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *CheckpointStatusWithAction_ItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewCheckpointStatusWithAction_ItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get returns the current status of a checkpoint action
 // returns a StatusResponseable when successful
-func (m *CheckpointStatusWithAction_ItemRequestBuilder) Get(ctx context.Context, requestConfiguration *CheckpointStatusWithAction_ItemRequestBuilderGetRequestConfiguration)(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.StatusResponseable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateStatusResponseFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.StatusResponseable), nil
+func (m *CheckpointStatusWithAction_ItemRequestBuilder) Get(ctx context.Context, requestConfiguration *CheckpointStatusWithAction_ItemRequestBuilderGetRequestConfiguration) (i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.StatusResponseable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateStatusResponseFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.StatusResponseable), nil
 }
+
 // ToGetRequestInformation returns the current status of a checkpoint action
 // returns a *RequestInformation when successful
-func (m *CheckpointStatusWithAction_ItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *CheckpointStatusWithAction_ItemRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *CheckpointStatusWithAction_ItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *CheckpointStatusWithAction_ItemRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *CheckpointStatusWithAction_ItemRequestBuilder when successful
-func (m *CheckpointStatusWithAction_ItemRequestBuilder) WithUrl(rawUrl string)(*CheckpointStatusWithAction_ItemRequestBuilder) {
-    return NewCheckpointStatusWithAction_ItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *CheckpointStatusWithAction_ItemRequestBuilder) WithUrl(rawUrl string) *CheckpointStatusWithAction_ItemRequestBuilder {
+	return NewCheckpointStatusWithAction_ItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

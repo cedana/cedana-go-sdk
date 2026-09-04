@@ -4,35 +4,38 @@
 package v1
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // DiscoverRequestBuilder builds and executes requests for operations under \v1\discover
 type DiscoverRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // ByName gets an item from the github.com/cedana/cedana-go-sdk.v1.discover.item collection
 // returns a *DiscoverWithNameItemRequestBuilder when successful
-func (m *DiscoverRequestBuilder) ByName(name string)(*DiscoverWithNameItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if name != "" {
-        urlTplParams["name"] = name
-    }
-    return NewDiscoverWithNameItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *DiscoverRequestBuilder) ByName(name string) *DiscoverWithNameItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	if name != "" {
+		urlTplParams["name"] = name
+	}
+	return NewDiscoverWithNameItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewDiscoverRequestBuilderInternal instantiates a new DiscoverRequestBuilder and sets the default values.
-func NewDiscoverRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*DiscoverRequestBuilder) {
-    m := &DiscoverRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/discover", pathParameters),
-    }
-    return m
+func NewDiscoverRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *DiscoverRequestBuilder {
+	m := &DiscoverRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/discover", pathParameters),
+	}
+	return m
 }
+
 // NewDiscoverRequestBuilder instantiates a new DiscoverRequestBuilder and sets the default values.
-func NewDiscoverRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*DiscoverRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewDiscoverRequestBuilderInternal(urlParams, requestAdapter)
+func NewDiscoverRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *DiscoverRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewDiscoverRequestBuilderInternal(urlParams, requestAdapter)
 }

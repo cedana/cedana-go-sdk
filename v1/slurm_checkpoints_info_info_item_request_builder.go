@@ -4,68 +4,74 @@
 package v1
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
+	"context"
+	i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // SlurmCheckpointsInfoInfoItemRequestBuilder builds and executes requests for operations under \v1\slurm\checkpoints\info\{id}
 type SlurmCheckpointsInfoInfoItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // SlurmCheckpointsInfoInfoItemRequestBuilderPutRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type SlurmCheckpointsInfoInfoItemRequestBuilderPutRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+
 // NewSlurmCheckpointsInfoInfoItemRequestBuilderInternal instantiates a new SlurmCheckpointsInfoInfoItemRequestBuilder and sets the default values.
-func NewSlurmCheckpointsInfoInfoItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*SlurmCheckpointsInfoInfoItemRequestBuilder) {
-    m := &SlurmCheckpointsInfoInfoItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/slurm/checkpoints/info/{id}", pathParameters),
-    }
-    return m
+func NewSlurmCheckpointsInfoInfoItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *SlurmCheckpointsInfoInfoItemRequestBuilder {
+	m := &SlurmCheckpointsInfoInfoItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/slurm/checkpoints/info/{id}", pathParameters),
+	}
+	return m
 }
+
 // NewSlurmCheckpointsInfoInfoItemRequestBuilder instantiates a new SlurmCheckpointsInfoInfoItemRequestBuilder and sets the default values.
-func NewSlurmCheckpointsInfoInfoItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*SlurmCheckpointsInfoInfoItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewSlurmCheckpointsInfoInfoItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewSlurmCheckpointsInfoInfoItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *SlurmCheckpointsInfoInfoItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewSlurmCheckpointsInfoInfoItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Put add information about the checkpoint
 // returns a *string when successful
-func (m *SlurmCheckpointsInfoInfoItemRequestBuilder) Put(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.SlurmCheckpointInfoable, requestConfiguration *SlurmCheckpointsInfoInfoItemRequestBuilderPutRequestConfiguration)(*string, error) {
-    requestInfo, err := m.ToPutRequestInformation(ctx, body, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(*string), nil
+func (m *SlurmCheckpointsInfoInfoItemRequestBuilder) Put(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.SlurmCheckpointInfoable, requestConfiguration *SlurmCheckpointsInfoInfoItemRequestBuilderPutRequestConfiguration) (*string, error) {
+	requestInfo, err := m.ToPutRequestInformation(ctx, body, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(*string), nil
 }
+
 // ToPutRequestInformation add information about the checkpoint
 // returns a *RequestInformation when successful
-func (m *SlurmCheckpointsInfoInfoItemRequestBuilder) ToPutRequestInformation(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.SlurmCheckpointInfoable, requestConfiguration *SlurmCheckpointsInfoInfoItemRequestBuilderPutRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.PUT, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "text/plain;q=0.9")
-    err := requestInfo.SetContentFromParsable(ctx, m.BaseRequestBuilder.RequestAdapter, "application/json", body)
-    if err != nil {
-        return nil, err
-    }
-    return requestInfo, nil
+func (m *SlurmCheckpointsInfoInfoItemRequestBuilder) ToPutRequestInformation(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.SlurmCheckpointInfoable, requestConfiguration *SlurmCheckpointsInfoInfoItemRequestBuilderPutRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.PUT, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "text/plain;q=0.9")
+	err := requestInfo.SetContentFromParsable(ctx, m.BaseRequestBuilder.RequestAdapter, "application/json", body)
+	if err != nil {
+		return nil, err
+	}
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *SlurmCheckpointsInfoInfoItemRequestBuilder when successful
-func (m *SlurmCheckpointsInfoInfoItemRequestBuilder) WithUrl(rawUrl string)(*SlurmCheckpointsInfoInfoItemRequestBuilder) {
-    return NewSlurmCheckpointsInfoInfoItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *SlurmCheckpointsInfoInfoItemRequestBuilder) WithUrl(rawUrl string) *SlurmCheckpointsInfoInfoItemRequestBuilder {
+	return NewSlurmCheckpointsInfoInfoItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

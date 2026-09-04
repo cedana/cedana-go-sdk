@@ -4,28 +4,31 @@
 package v1
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // SlurmRestoreRequestBuilder builds and executes requests for operations under \v1\slurm\restore
 type SlurmRestoreRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // NewSlurmRestoreRequestBuilderInternal instantiates a new SlurmRestoreRequestBuilder and sets the default values.
-func NewSlurmRestoreRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*SlurmRestoreRequestBuilder) {
-    m := &SlurmRestoreRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/slurm/restore", pathParameters),
-    }
-    return m
+func NewSlurmRestoreRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *SlurmRestoreRequestBuilder {
+	m := &SlurmRestoreRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/slurm/restore", pathParameters),
+	}
+	return m
 }
+
 // NewSlurmRestoreRequestBuilder instantiates a new SlurmRestoreRequestBuilder and sets the default values.
-func NewSlurmRestoreRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*SlurmRestoreRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewSlurmRestoreRequestBuilderInternal(urlParams, requestAdapter)
+func NewSlurmRestoreRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *SlurmRestoreRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewSlurmRestoreRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Job the job property
 // returns a *SlurmRestoreJobRequestBuilder when successful
-func (m *SlurmRestoreRequestBuilder) Job()(*SlurmRestoreJobRequestBuilder) {
-    return NewSlurmRestoreJobRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *SlurmRestoreRequestBuilder) Job() *SlurmRestoreJobRequestBuilder {
+	return NewSlurmRestoreJobRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

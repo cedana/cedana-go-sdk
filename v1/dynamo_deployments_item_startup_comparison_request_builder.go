@@ -4,77 +4,84 @@
 package v1
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
-    i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
+	"context"
+	i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
+	i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // DynamoDeploymentsItemStartupComparisonRequestBuilder builds and executes requests for operations under \v1\dynamo\deployments\{name}\startup-comparison
 type DynamoDeploymentsItemStartupComparisonRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // DynamoDeploymentsItemStartupComparisonRequestBuilderGetQueryParameters compare recent cold-start and Cedana-restore startup latency.
 type DynamoDeploymentsItemStartupComparisonRequestBuilderGetQueryParameters struct {
-    // UUID of the cluster to filter by
-    Cluster_id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID `uriparametername:"cluster_id"`
-    // Kubernetes namespace
-    Namespace *string `uriparametername:"namespace"`
+	// UUID of the cluster to filter by
+	Cluster_id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID "uriparametername:\"cluster_id\""
+	// Kubernetes namespace
+	Namespace *string "uriparametername:\"namespace\""
 }
+
 // DynamoDeploymentsItemStartupComparisonRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type DynamoDeploymentsItemStartupComparisonRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *DynamoDeploymentsItemStartupComparisonRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *DynamoDeploymentsItemStartupComparisonRequestBuilderGetQueryParameters
 }
+
 // NewDynamoDeploymentsItemStartupComparisonRequestBuilderInternal instantiates a new DynamoDeploymentsItemStartupComparisonRequestBuilder and sets the default values.
-func NewDynamoDeploymentsItemStartupComparisonRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*DynamoDeploymentsItemStartupComparisonRequestBuilder) {
-    m := &DynamoDeploymentsItemStartupComparisonRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/dynamo/deployments/{name}/startup-comparison?cluster_id={cluster_id}{&namespace*}", pathParameters),
-    }
-    return m
+func NewDynamoDeploymentsItemStartupComparisonRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *DynamoDeploymentsItemStartupComparisonRequestBuilder {
+	m := &DynamoDeploymentsItemStartupComparisonRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/dynamo/deployments/{name}/startup-comparison?cluster_id={cluster_id}{&namespace*}", pathParameters),
+	}
+	return m
 }
+
 // NewDynamoDeploymentsItemStartupComparisonRequestBuilder instantiates a new DynamoDeploymentsItemStartupComparisonRequestBuilder and sets the default values.
-func NewDynamoDeploymentsItemStartupComparisonRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*DynamoDeploymentsItemStartupComparisonRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewDynamoDeploymentsItemStartupComparisonRequestBuilderInternal(urlParams, requestAdapter)
+func NewDynamoDeploymentsItemStartupComparisonRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *DynamoDeploymentsItemStartupComparisonRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewDynamoDeploymentsItemStartupComparisonRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get compare recent cold-start and Cedana-restore startup latency.
 // returns a StartupComparisonable when successful
-func (m *DynamoDeploymentsItemStartupComparisonRequestBuilder) Get(ctx context.Context, requestConfiguration *DynamoDeploymentsItemStartupComparisonRequestBuilderGetRequestConfiguration)(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.StartupComparisonable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateStartupComparisonFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.StartupComparisonable), nil
+func (m *DynamoDeploymentsItemStartupComparisonRequestBuilder) Get(ctx context.Context, requestConfiguration *DynamoDeploymentsItemStartupComparisonRequestBuilderGetRequestConfiguration) (i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.StartupComparisonable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateStartupComparisonFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.StartupComparisonable), nil
 }
+
 // ToGetRequestInformation compare recent cold-start and Cedana-restore startup latency.
 // returns a *RequestInformation when successful
-func (m *DynamoDeploymentsItemStartupComparisonRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *DynamoDeploymentsItemStartupComparisonRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *DynamoDeploymentsItemStartupComparisonRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *DynamoDeploymentsItemStartupComparisonRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *DynamoDeploymentsItemStartupComparisonRequestBuilder when successful
-func (m *DynamoDeploymentsItemStartupComparisonRequestBuilder) WithUrl(rawUrl string)(*DynamoDeploymentsItemStartupComparisonRequestBuilder) {
-    return NewDynamoDeploymentsItemStartupComparisonRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *DynamoDeploymentsItemStartupComparisonRequestBuilder) WithUrl(rawUrl string) *DynamoDeploymentsItemStartupComparisonRequestBuilder {
+	return NewDynamoDeploymentsItemStartupComparisonRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

@@ -4,28 +4,31 @@
 package v1
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // JobsWithJob_ItemRequestBuilder builds and executes requests for operations under \v1\jobs\{job_id}
 type JobsWithJob_ItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // NewJobsWithJob_ItemRequestBuilderInternal instantiates a new JobsWithJob_ItemRequestBuilder and sets the default values.
-func NewJobsWithJob_ItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*JobsWithJob_ItemRequestBuilder) {
-    m := &JobsWithJob_ItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/jobs/{job_id}", pathParameters),
-    }
-    return m
+func NewJobsWithJob_ItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *JobsWithJob_ItemRequestBuilder {
+	m := &JobsWithJob_ItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/jobs/{job_id}", pathParameters),
+	}
+	return m
 }
+
 // NewJobsWithJob_ItemRequestBuilder instantiates a new JobsWithJob_ItemRequestBuilder and sets the default values.
-func NewJobsWithJob_ItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*JobsWithJob_ItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewJobsWithJob_ItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewJobsWithJob_ItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *JobsWithJob_ItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewJobsWithJob_ItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Pods the pods property
 // returns a *JobsItemPodsRequestBuilder when successful
-func (m *JobsWithJob_ItemRequestBuilder) Pods()(*JobsItemPodsRequestBuilder) {
-    return NewJobsItemPodsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *JobsWithJob_ItemRequestBuilder) Pods() *JobsItemPodsRequestBuilder {
+	return NewJobsItemPodsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

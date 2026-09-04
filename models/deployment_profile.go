@@ -4,486 +4,522 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type DeploymentProfile struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The backend_url property
-    backend_url *string
-    // The compatibility_key property
-    compatibility_key *string
-    // The dynamo_template property
-    dynamo_template i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
-    // The estimated_cold_start_ms property
-    estimated_cold_start_ms *int64
-    // The exact_model property
-    exact_model *string
-    // The hosting_mode property
-    hosting_mode *string
-    // The logical_model property
-    logical_model *string
-    // The max_queue_depth property
-    max_queue_depth *int32
-    // The max_replicas property
-    max_replicas *int32
-    // The min_replicas property
-    min_replicas *int32
-    // The profile_id property
-    profile_id *string
-    // The profile_revision property
-    profile_revision *string
-    // The scale_down_idle_seconds property
-    scale_down_idle_seconds *int64
-    // The spec property
-    spec i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
-    // The target_concurrency property
-    target_concurrency *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The backend_url property
+	backend_url *string
+	// The compatibility_key property
+	compatibility_key *string
+	// The dynamo_template property
+	dynamo_template i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+	// The estimated_cold_start_ms property
+	estimated_cold_start_ms *int64
+	// The exact_model property
+	exact_model *string
+	// The hosting_mode property
+	hosting_mode *string
+	// The logical_model property
+	logical_model *string
+	// The max_queue_depth property
+	max_queue_depth *int32
+	// The max_replicas property
+	max_replicas *int32
+	// The min_replicas property
+	min_replicas *int32
+	// The profile_id property
+	profile_id *string
+	// The profile_revision property
+	profile_revision *string
+	// The scale_down_idle_seconds property
+	scale_down_idle_seconds *int64
+	// The spec property
+	spec i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+	// The target_concurrency property
+	target_concurrency *int32
 }
+
 // NewDeploymentProfile instantiates a new DeploymentProfile and sets the default values.
-func NewDeploymentProfile()(*DeploymentProfile) {
-    m := &DeploymentProfile{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewDeploymentProfile() *DeploymentProfile {
+	m := &DeploymentProfile{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateDeploymentProfileFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateDeploymentProfileFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewDeploymentProfile(), nil
+func CreateDeploymentProfileFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewDeploymentProfile(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *DeploymentProfile) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *DeploymentProfile) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetBackendUrl gets the backend_url property value. The backend_url property
 // returns a *string when successful
-func (m *DeploymentProfile) GetBackendUrl()(*string) {
-    return m.backend_url
+func (m *DeploymentProfile) GetBackendUrl() *string {
+	return m.backend_url
 }
+
 // GetCompatibilityKey gets the compatibility_key property value. The compatibility_key property
 // returns a *string when successful
-func (m *DeploymentProfile) GetCompatibilityKey()(*string) {
-    return m.compatibility_key
+func (m *DeploymentProfile) GetCompatibilityKey() *string {
+	return m.compatibility_key
 }
+
 // GetDynamoTemplate gets the dynamo_template property value. The dynamo_template property
 // returns a UntypedNodeable when successful
-func (m *DeploymentProfile) GetDynamoTemplate()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
-    return m.dynamo_template
+func (m *DeploymentProfile) GetDynamoTemplate() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable {
+	return m.dynamo_template
 }
+
 // GetEstimatedColdStartMs gets the estimated_cold_start_ms property value. The estimated_cold_start_ms property
 // returns a *int64 when successful
-func (m *DeploymentProfile) GetEstimatedColdStartMs()(*int64) {
-    return m.estimated_cold_start_ms
+func (m *DeploymentProfile) GetEstimatedColdStartMs() *int64 {
+	return m.estimated_cold_start_ms
 }
+
 // GetExactModel gets the exact_model property value. The exact_model property
 // returns a *string when successful
-func (m *DeploymentProfile) GetExactModel()(*string) {
-    return m.exact_model
+func (m *DeploymentProfile) GetExactModel() *string {
+	return m.exact_model
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *DeploymentProfile) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["backend_url"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetBackendUrl(val)
-        }
-        return nil
-    }
-    res["compatibility_key"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCompatibilityKey(val)
-        }
-        return nil
-    }
-    res["dynamo_template"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDynamoTemplate(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
-        }
-        return nil
-    }
-    res["estimated_cold_start_ms"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetEstimatedColdStartMs(val)
-        }
-        return nil
-    }
-    res["exact_model"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetExactModel(val)
-        }
-        return nil
-    }
-    res["hosting_mode"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetHostingMode(val)
-        }
-        return nil
-    }
-    res["logical_model"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetLogicalModel(val)
-        }
-        return nil
-    }
-    res["max_queue_depth"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMaxQueueDepth(val)
-        }
-        return nil
-    }
-    res["max_replicas"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMaxReplicas(val)
-        }
-        return nil
-    }
-    res["min_replicas"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMinReplicas(val)
-        }
-        return nil
-    }
-    res["profile_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetProfileId(val)
-        }
-        return nil
-    }
-    res["profile_revision"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetProfileRevision(val)
-        }
-        return nil
-    }
-    res["scale_down_idle_seconds"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetScaleDownIdleSeconds(val)
-        }
-        return nil
-    }
-    res["spec"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSpec(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
-        }
-        return nil
-    }
-    res["target_concurrency"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTargetConcurrency(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *DeploymentProfile) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["backend_url"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetBackendUrl(val)
+		}
+		return nil
+	}
+	res["compatibility_key"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCompatibilityKey(val)
+		}
+		return nil
+	}
+	res["dynamo_template"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDynamoTemplate(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
+		}
+		return nil
+	}
+	res["estimated_cold_start_ms"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetEstimatedColdStartMs(val)
+		}
+		return nil
+	}
+	res["exact_model"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetExactModel(val)
+		}
+		return nil
+	}
+	res["hosting_mode"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetHostingMode(val)
+		}
+		return nil
+	}
+	res["logical_model"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetLogicalModel(val)
+		}
+		return nil
+	}
+	res["max_queue_depth"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMaxQueueDepth(val)
+		}
+		return nil
+	}
+	res["max_replicas"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMaxReplicas(val)
+		}
+		return nil
+	}
+	res["min_replicas"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMinReplicas(val)
+		}
+		return nil
+	}
+	res["profile_id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetProfileId(val)
+		}
+		return nil
+	}
+	res["profile_revision"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetProfileRevision(val)
+		}
+		return nil
+	}
+	res["scale_down_idle_seconds"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetScaleDownIdleSeconds(val)
+		}
+		return nil
+	}
+	res["spec"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSpec(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
+		}
+		return nil
+	}
+	res["target_concurrency"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTargetConcurrency(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetHostingMode gets the hosting_mode property value. The hosting_mode property
 // returns a *string when successful
-func (m *DeploymentProfile) GetHostingMode()(*string) {
-    return m.hosting_mode
+func (m *DeploymentProfile) GetHostingMode() *string {
+	return m.hosting_mode
 }
+
 // GetLogicalModel gets the logical_model property value. The logical_model property
 // returns a *string when successful
-func (m *DeploymentProfile) GetLogicalModel()(*string) {
-    return m.logical_model
+func (m *DeploymentProfile) GetLogicalModel() *string {
+	return m.logical_model
 }
+
 // GetMaxQueueDepth gets the max_queue_depth property value. The max_queue_depth property
 // returns a *int32 when successful
-func (m *DeploymentProfile) GetMaxQueueDepth()(*int32) {
-    return m.max_queue_depth
+func (m *DeploymentProfile) GetMaxQueueDepth() *int32 {
+	return m.max_queue_depth
 }
+
 // GetMaxReplicas gets the max_replicas property value. The max_replicas property
 // returns a *int32 when successful
-func (m *DeploymentProfile) GetMaxReplicas()(*int32) {
-    return m.max_replicas
+func (m *DeploymentProfile) GetMaxReplicas() *int32 {
+	return m.max_replicas
 }
+
 // GetMinReplicas gets the min_replicas property value. The min_replicas property
 // returns a *int32 when successful
-func (m *DeploymentProfile) GetMinReplicas()(*int32) {
-    return m.min_replicas
+func (m *DeploymentProfile) GetMinReplicas() *int32 {
+	return m.min_replicas
 }
+
 // GetProfileId gets the profile_id property value. The profile_id property
 // returns a *string when successful
-func (m *DeploymentProfile) GetProfileId()(*string) {
-    return m.profile_id
+func (m *DeploymentProfile) GetProfileId() *string {
+	return m.profile_id
 }
+
 // GetProfileRevision gets the profile_revision property value. The profile_revision property
 // returns a *string when successful
-func (m *DeploymentProfile) GetProfileRevision()(*string) {
-    return m.profile_revision
+func (m *DeploymentProfile) GetProfileRevision() *string {
+	return m.profile_revision
 }
+
 // GetScaleDownIdleSeconds gets the scale_down_idle_seconds property value. The scale_down_idle_seconds property
 // returns a *int64 when successful
-func (m *DeploymentProfile) GetScaleDownIdleSeconds()(*int64) {
-    return m.scale_down_idle_seconds
+func (m *DeploymentProfile) GetScaleDownIdleSeconds() *int64 {
+	return m.scale_down_idle_seconds
 }
+
 // GetSpec gets the spec property value. The spec property
 // returns a UntypedNodeable when successful
-func (m *DeploymentProfile) GetSpec()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
-    return m.spec
+func (m *DeploymentProfile) GetSpec() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable {
+	return m.spec
 }
+
 // GetTargetConcurrency gets the target_concurrency property value. The target_concurrency property
 // returns a *int32 when successful
-func (m *DeploymentProfile) GetTargetConcurrency()(*int32) {
-    return m.target_concurrency
+func (m *DeploymentProfile) GetTargetConcurrency() *int32 {
+	return m.target_concurrency
 }
+
 // Serialize serializes information the current object
-func (m *DeploymentProfile) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("backend_url", m.GetBackendUrl())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("compatibility_key", m.GetCompatibilityKey())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("dynamo_template", m.GetDynamoTemplate())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("estimated_cold_start_ms", m.GetEstimatedColdStartMs())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("exact_model", m.GetExactModel())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("hosting_mode", m.GetHostingMode())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("logical_model", m.GetLogicalModel())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("max_queue_depth", m.GetMaxQueueDepth())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("max_replicas", m.GetMaxReplicas())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("min_replicas", m.GetMinReplicas())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("profile_id", m.GetProfileId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("profile_revision", m.GetProfileRevision())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("scale_down_idle_seconds", m.GetScaleDownIdleSeconds())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("spec", m.GetSpec())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("target_concurrency", m.GetTargetConcurrency())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *DeploymentProfile) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("backend_url", m.GetBackendUrl())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("compatibility_key", m.GetCompatibilityKey())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("dynamo_template", m.GetDynamoTemplate())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("estimated_cold_start_ms", m.GetEstimatedColdStartMs())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("exact_model", m.GetExactModel())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("hosting_mode", m.GetHostingMode())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("logical_model", m.GetLogicalModel())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("max_queue_depth", m.GetMaxQueueDepth())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("max_replicas", m.GetMaxReplicas())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("min_replicas", m.GetMinReplicas())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("profile_id", m.GetProfileId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("profile_revision", m.GetProfileRevision())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("scale_down_idle_seconds", m.GetScaleDownIdleSeconds())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("spec", m.GetSpec())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("target_concurrency", m.GetTargetConcurrency())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *DeploymentProfile) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *DeploymentProfile) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetBackendUrl sets the backend_url property value. The backend_url property
-func (m *DeploymentProfile) SetBackendUrl(value *string)() {
-    m.backend_url = value
+func (m *DeploymentProfile) SetBackendUrl(value *string) {
+	m.backend_url = value
 }
+
 // SetCompatibilityKey sets the compatibility_key property value. The compatibility_key property
-func (m *DeploymentProfile) SetCompatibilityKey(value *string)() {
-    m.compatibility_key = value
+func (m *DeploymentProfile) SetCompatibilityKey(value *string) {
+	m.compatibility_key = value
 }
+
 // SetDynamoTemplate sets the dynamo_template property value. The dynamo_template property
-func (m *DeploymentProfile) SetDynamoTemplate(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
-    m.dynamo_template = value
+func (m *DeploymentProfile) SetDynamoTemplate(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
+	m.dynamo_template = value
 }
+
 // SetEstimatedColdStartMs sets the estimated_cold_start_ms property value. The estimated_cold_start_ms property
-func (m *DeploymentProfile) SetEstimatedColdStartMs(value *int64)() {
-    m.estimated_cold_start_ms = value
+func (m *DeploymentProfile) SetEstimatedColdStartMs(value *int64) {
+	m.estimated_cold_start_ms = value
 }
+
 // SetExactModel sets the exact_model property value. The exact_model property
-func (m *DeploymentProfile) SetExactModel(value *string)() {
-    m.exact_model = value
+func (m *DeploymentProfile) SetExactModel(value *string) {
+	m.exact_model = value
 }
+
 // SetHostingMode sets the hosting_mode property value. The hosting_mode property
-func (m *DeploymentProfile) SetHostingMode(value *string)() {
-    m.hosting_mode = value
+func (m *DeploymentProfile) SetHostingMode(value *string) {
+	m.hosting_mode = value
 }
+
 // SetLogicalModel sets the logical_model property value. The logical_model property
-func (m *DeploymentProfile) SetLogicalModel(value *string)() {
-    m.logical_model = value
+func (m *DeploymentProfile) SetLogicalModel(value *string) {
+	m.logical_model = value
 }
+
 // SetMaxQueueDepth sets the max_queue_depth property value. The max_queue_depth property
-func (m *DeploymentProfile) SetMaxQueueDepth(value *int32)() {
-    m.max_queue_depth = value
+func (m *DeploymentProfile) SetMaxQueueDepth(value *int32) {
+	m.max_queue_depth = value
 }
+
 // SetMaxReplicas sets the max_replicas property value. The max_replicas property
-func (m *DeploymentProfile) SetMaxReplicas(value *int32)() {
-    m.max_replicas = value
+func (m *DeploymentProfile) SetMaxReplicas(value *int32) {
+	m.max_replicas = value
 }
+
 // SetMinReplicas sets the min_replicas property value. The min_replicas property
-func (m *DeploymentProfile) SetMinReplicas(value *int32)() {
-    m.min_replicas = value
+func (m *DeploymentProfile) SetMinReplicas(value *int32) {
+	m.min_replicas = value
 }
+
 // SetProfileId sets the profile_id property value. The profile_id property
-func (m *DeploymentProfile) SetProfileId(value *string)() {
-    m.profile_id = value
+func (m *DeploymentProfile) SetProfileId(value *string) {
+	m.profile_id = value
 }
+
 // SetProfileRevision sets the profile_revision property value. The profile_revision property
-func (m *DeploymentProfile) SetProfileRevision(value *string)() {
-    m.profile_revision = value
+func (m *DeploymentProfile) SetProfileRevision(value *string) {
+	m.profile_revision = value
 }
+
 // SetScaleDownIdleSeconds sets the scale_down_idle_seconds property value. The scale_down_idle_seconds property
-func (m *DeploymentProfile) SetScaleDownIdleSeconds(value *int64)() {
-    m.scale_down_idle_seconds = value
+func (m *DeploymentProfile) SetScaleDownIdleSeconds(value *int64) {
+	m.scale_down_idle_seconds = value
 }
+
 // SetSpec sets the spec property value. The spec property
-func (m *DeploymentProfile) SetSpec(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
-    m.spec = value
+func (m *DeploymentProfile) SetSpec(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
+	m.spec = value
 }
+
 // SetTargetConcurrency sets the target_concurrency property value. The target_concurrency property
-func (m *DeploymentProfile) SetTargetConcurrency(value *int32)() {
-    m.target_concurrency = value
+func (m *DeploymentProfile) SetTargetConcurrency(value *int32) {
+	m.target_concurrency = value
 }
+
 type DeploymentProfileable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetBackendUrl()(*string)
-    GetCompatibilityKey()(*string)
-    GetDynamoTemplate()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
-    GetEstimatedColdStartMs()(*int64)
-    GetExactModel()(*string)
-    GetHostingMode()(*string)
-    GetLogicalModel()(*string)
-    GetMaxQueueDepth()(*int32)
-    GetMaxReplicas()(*int32)
-    GetMinReplicas()(*int32)
-    GetProfileId()(*string)
-    GetProfileRevision()(*string)
-    GetScaleDownIdleSeconds()(*int64)
-    GetSpec()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
-    GetTargetConcurrency()(*int32)
-    SetBackendUrl(value *string)()
-    SetCompatibilityKey(value *string)()
-    SetDynamoTemplate(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
-    SetEstimatedColdStartMs(value *int64)()
-    SetExactModel(value *string)()
-    SetHostingMode(value *string)()
-    SetLogicalModel(value *string)()
-    SetMaxQueueDepth(value *int32)()
-    SetMaxReplicas(value *int32)()
-    SetMinReplicas(value *int32)()
-    SetProfileId(value *string)()
-    SetProfileRevision(value *string)()
-    SetScaleDownIdleSeconds(value *int64)()
-    SetSpec(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
-    SetTargetConcurrency(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetBackendUrl() *string
+	GetCompatibilityKey() *string
+	GetDynamoTemplate() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+	GetEstimatedColdStartMs() *int64
+	GetExactModel() *string
+	GetHostingMode() *string
+	GetLogicalModel() *string
+	GetMaxQueueDepth() *int32
+	GetMaxReplicas() *int32
+	GetMinReplicas() *int32
+	GetProfileId() *string
+	GetProfileRevision() *string
+	GetScaleDownIdleSeconds() *int64
+	GetSpec() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+	GetTargetConcurrency() *int32
+	SetBackendUrl(value *string)
+	SetCompatibilityKey(value *string)
+	SetDynamoTemplate(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+	SetEstimatedColdStartMs(value *int64)
+	SetExactModel(value *string)
+	SetHostingMode(value *string)
+	SetLogicalModel(value *string)
+	SetMaxQueueDepth(value *int32)
+	SetMaxReplicas(value *int32)
+	SetMinReplicas(value *int32)
+	SetProfileId(value *string)
+	SetProfileRevision(value *string)
+	SetScaleDownIdleSeconds(value *int64)
+	SetSpec(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+	SetTargetConcurrency(value *int32)
 }

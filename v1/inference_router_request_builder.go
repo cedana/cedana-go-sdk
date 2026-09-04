@@ -4,48 +4,55 @@
 package v1
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // InferenceRouterRequestBuilder builds and executes requests for operations under \v1\inference\router
 type InferenceRouterRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // Authorize the authorize property
 // returns a *InferenceRouterAuthorizeRequestBuilder when successful
-func (m *InferenceRouterRequestBuilder) Authorize()(*InferenceRouterAuthorizeRequestBuilder) {
-    return NewInferenceRouterAuthorizeRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *InferenceRouterRequestBuilder) Authorize() *InferenceRouterAuthorizeRequestBuilder {
+	return NewInferenceRouterAuthorizeRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Config the config property
 // returns a *InferenceRouterConfigRequestBuilder when successful
-func (m *InferenceRouterRequestBuilder) Config()(*InferenceRouterConfigRequestBuilder) {
-    return NewInferenceRouterConfigRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *InferenceRouterRequestBuilder) Config() *InferenceRouterConfigRequestBuilder {
+	return NewInferenceRouterConfigRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewInferenceRouterRequestBuilderInternal instantiates a new InferenceRouterRequestBuilder and sets the default values.
-func NewInferenceRouterRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*InferenceRouterRequestBuilder) {
-    m := &InferenceRouterRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/inference/router", pathParameters),
-    }
-    return m
+func NewInferenceRouterRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *InferenceRouterRequestBuilder {
+	m := &InferenceRouterRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/inference/router", pathParameters),
+	}
+	return m
 }
+
 // NewInferenceRouterRequestBuilder instantiates a new InferenceRouterRequestBuilder and sets the default values.
-func NewInferenceRouterRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*InferenceRouterRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewInferenceRouterRequestBuilderInternal(urlParams, requestAdapter)
+func NewInferenceRouterRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *InferenceRouterRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewInferenceRouterRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Metrics the metrics property
 // returns a *InferenceRouterMetricsRequestBuilder when successful
-func (m *InferenceRouterRequestBuilder) Metrics()(*InferenceRouterMetricsRequestBuilder) {
-    return NewInferenceRouterMetricsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *InferenceRouterRequestBuilder) Metrics() *InferenceRouterMetricsRequestBuilder {
+	return NewInferenceRouterMetricsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Resolve the resolve property
 // returns a *InferenceRouterResolveRequestBuilder when successful
-func (m *InferenceRouterRequestBuilder) Resolve()(*InferenceRouterResolveRequestBuilder) {
-    return NewInferenceRouterResolveRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *InferenceRouterRequestBuilder) Resolve() *InferenceRouterResolveRequestBuilder {
+	return NewInferenceRouterResolveRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Telemetry the telemetry property
 // returns a *InferenceRouterTelemetryRequestBuilder when successful
-func (m *InferenceRouterRequestBuilder) Telemetry()(*InferenceRouterTelemetryRequestBuilder) {
-    return NewInferenceRouterTelemetryRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *InferenceRouterRequestBuilder) Telemetry() *InferenceRouterTelemetryRequestBuilder {
+	return NewInferenceRouterTelemetryRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

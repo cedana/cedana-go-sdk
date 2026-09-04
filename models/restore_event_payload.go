@@ -4,696 +4,746 @@
 package models
 
 import (
-    i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
 )
 
 type RestoreEventPayload struct {
-    // The action_id property
-    action_id *string
-    // The action_ids property
-    action_ids []string
-    // The action_scope property
-    action_scope *string
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The checkpoint_action_id property
-    checkpoint_action_id *string
-    // The checkpoint_id property
-    checkpoint_id *string
-    // The cluster_id property
-    cluster_id *string
-    // The completed_at property
-    completed_at *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The error_message property
-    error_message *string
-    // The kind property
-    kind *string
-    // The metadata property
-    metadata i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
-    // The path_id property
-    path_id *string
-    // The profile_available_on_error property
-    profile_available_on_error *bool
-    // The profile_object_path property
-    profile_object_path *string
-    // The reason property
-    reason *string
-    // The request_metadata property
-    request_metadata i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
-    // The restore_path property
-    restore_path *string
-    // The restore_uuid property
-    restore_uuid *string
-    // The runtime_metadata property
-    runtime_metadata i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
-    // The started_at property
-    started_at *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The status property
-    status *string
-    // The storage_provider property
-    storage_provider *string
-    // The workload_type property
-    workload_type *string
+	// The action_id property
+	action_id *string
+	// The action_ids property
+	action_ids []string
+	// The action_scope property
+	action_scope *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The checkpoint_action_id property
+	checkpoint_action_id *string
+	// The checkpoint_id property
+	checkpoint_id *string
+	// The cluster_id property
+	cluster_id *string
+	// The completed_at property
+	completed_at *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+	// The error_message property
+	error_message *string
+	// The kind property
+	kind *string
+	// The metadata property
+	metadata i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+	// The path_id property
+	path_id *string
+	// The profile_available_on_error property
+	profile_available_on_error *bool
+	// The profile_object_path property
+	profile_object_path *string
+	// The reason property
+	reason *string
+	// The request_metadata property
+	request_metadata i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+	// The restore_path property
+	restore_path *string
+	// The restore_uuid property
+	restore_uuid *string
+	// The runtime_metadata property
+	runtime_metadata i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+	// The started_at property
+	started_at *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+	// The status property
+	status *string
+	// The storage_provider property
+	storage_provider *string
+	// The workload_type property
+	workload_type *string
 }
+
 // NewRestoreEventPayload instantiates a new RestoreEventPayload and sets the default values.
-func NewRestoreEventPayload()(*RestoreEventPayload) {
-    m := &RestoreEventPayload{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewRestoreEventPayload() *RestoreEventPayload {
+	m := &RestoreEventPayload{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateRestoreEventPayloadFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateRestoreEventPayloadFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewRestoreEventPayload(), nil
+func CreateRestoreEventPayloadFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewRestoreEventPayload(), nil
 }
+
 // GetActionId gets the action_id property value. The action_id property
 // returns a *string when successful
-func (m *RestoreEventPayload) GetActionId()(*string) {
-    return m.action_id
+func (m *RestoreEventPayload) GetActionId() *string {
+	return m.action_id
 }
+
 // GetActionIds gets the action_ids property value. The action_ids property
 // returns a []string when successful
-func (m *RestoreEventPayload) GetActionIds()([]string) {
-    return m.action_ids
+func (m *RestoreEventPayload) GetActionIds() []string {
+	return m.action_ids
 }
+
 // GetActionScope gets the action_scope property value. The action_scope property
 // returns a *string when successful
-func (m *RestoreEventPayload) GetActionScope()(*string) {
-    return m.action_scope
+func (m *RestoreEventPayload) GetActionScope() *string {
+	return m.action_scope
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *RestoreEventPayload) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *RestoreEventPayload) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetCheckpointActionId gets the checkpoint_action_id property value. The checkpoint_action_id property
 // returns a *string when successful
-func (m *RestoreEventPayload) GetCheckpointActionId()(*string) {
-    return m.checkpoint_action_id
+func (m *RestoreEventPayload) GetCheckpointActionId() *string {
+	return m.checkpoint_action_id
 }
+
 // GetCheckpointId gets the checkpoint_id property value. The checkpoint_id property
 // returns a *string when successful
-func (m *RestoreEventPayload) GetCheckpointId()(*string) {
-    return m.checkpoint_id
+func (m *RestoreEventPayload) GetCheckpointId() *string {
+	return m.checkpoint_id
 }
+
 // GetClusterId gets the cluster_id property value. The cluster_id property
 // returns a *string when successful
-func (m *RestoreEventPayload) GetClusterId()(*string) {
-    return m.cluster_id
+func (m *RestoreEventPayload) GetClusterId() *string {
+	return m.cluster_id
 }
+
 // GetCompletedAt gets the completed_at property value. The completed_at property
 // returns a *Time when successful
-func (m *RestoreEventPayload) GetCompletedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.completed_at
+func (m *RestoreEventPayload) GetCompletedAt() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time {
+	return m.completed_at
 }
+
 // GetErrorMessage gets the error_message property value. The error_message property
 // returns a *string when successful
-func (m *RestoreEventPayload) GetErrorMessage()(*string) {
-    return m.error_message
+func (m *RestoreEventPayload) GetErrorMessage() *string {
+	return m.error_message
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *RestoreEventPayload) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["action_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetActionId(val)
-        }
-        return nil
-    }
-    res["action_ids"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfPrimitiveValues("string")
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]string, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = *(v.(*string))
-                }
-            }
-            m.SetActionIds(res)
-        }
-        return nil
-    }
-    res["action_scope"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetActionScope(val)
-        }
-        return nil
-    }
-    res["checkpoint_action_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCheckpointActionId(val)
-        }
-        return nil
-    }
-    res["checkpoint_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCheckpointId(val)
-        }
-        return nil
-    }
-    res["cluster_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetClusterId(val)
-        }
-        return nil
-    }
-    res["completed_at"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetTimeValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCompletedAt(val)
-        }
-        return nil
-    }
-    res["error_message"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetErrorMessage(val)
-        }
-        return nil
-    }
-    res["kind"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetKind(val)
-        }
-        return nil
-    }
-    res["metadata"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMetadata(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
-        }
-        return nil
-    }
-    res["path_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPathId(val)
-        }
-        return nil
-    }
-    res["profile_available_on_error"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetProfileAvailableOnError(val)
-        }
-        return nil
-    }
-    res["profile_object_path"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetProfileObjectPath(val)
-        }
-        return nil
-    }
-    res["reason"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetReason(val)
-        }
-        return nil
-    }
-    res["request_metadata"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRequestMetadata(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
-        }
-        return nil
-    }
-    res["restore_path"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRestorePath(val)
-        }
-        return nil
-    }
-    res["restore_uuid"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRestoreUuid(val)
-        }
-        return nil
-    }
-    res["runtime_metadata"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRuntimeMetadata(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
-        }
-        return nil
-    }
-    res["started_at"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetTimeValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStartedAt(val)
-        }
-        return nil
-    }
-    res["status"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStatus(val)
-        }
-        return nil
-    }
-    res["storage_provider"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStorageProvider(val)
-        }
-        return nil
-    }
-    res["workload_type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetWorkloadType(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *RestoreEventPayload) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["action_id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetActionId(val)
+		}
+		return nil
+	}
+	res["action_ids"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfPrimitiveValues("string")
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]string, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = *(v.(*string))
+				}
+			}
+			m.SetActionIds(res)
+		}
+		return nil
+	}
+	res["action_scope"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetActionScope(val)
+		}
+		return nil
+	}
+	res["checkpoint_action_id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCheckpointActionId(val)
+		}
+		return nil
+	}
+	res["checkpoint_id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCheckpointId(val)
+		}
+		return nil
+	}
+	res["cluster_id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetClusterId(val)
+		}
+		return nil
+	}
+	res["completed_at"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetTimeValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCompletedAt(val)
+		}
+		return nil
+	}
+	res["error_message"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetErrorMessage(val)
+		}
+		return nil
+	}
+	res["kind"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetKind(val)
+		}
+		return nil
+	}
+	res["metadata"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMetadata(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
+		}
+		return nil
+	}
+	res["path_id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPathId(val)
+		}
+		return nil
+	}
+	res["profile_available_on_error"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetProfileAvailableOnError(val)
+		}
+		return nil
+	}
+	res["profile_object_path"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetProfileObjectPath(val)
+		}
+		return nil
+	}
+	res["reason"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetReason(val)
+		}
+		return nil
+	}
+	res["request_metadata"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRequestMetadata(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
+		}
+		return nil
+	}
+	res["restore_path"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRestorePath(val)
+		}
+		return nil
+	}
+	res["restore_uuid"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRestoreUuid(val)
+		}
+		return nil
+	}
+	res["runtime_metadata"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRuntimeMetadata(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
+		}
+		return nil
+	}
+	res["started_at"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetTimeValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStartedAt(val)
+		}
+		return nil
+	}
+	res["status"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStatus(val)
+		}
+		return nil
+	}
+	res["storage_provider"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStorageProvider(val)
+		}
+		return nil
+	}
+	res["workload_type"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetWorkloadType(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetKind gets the kind property value. The kind property
 // returns a *string when successful
-func (m *RestoreEventPayload) GetKind()(*string) {
-    return m.kind
+func (m *RestoreEventPayload) GetKind() *string {
+	return m.kind
 }
+
 // GetMetadata gets the metadata property value. The metadata property
 // returns a UntypedNodeable when successful
-func (m *RestoreEventPayload) GetMetadata()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
-    return m.metadata
+func (m *RestoreEventPayload) GetMetadata() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable {
+	return m.metadata
 }
+
 // GetPathId gets the path_id property value. The path_id property
 // returns a *string when successful
-func (m *RestoreEventPayload) GetPathId()(*string) {
-    return m.path_id
+func (m *RestoreEventPayload) GetPathId() *string {
+	return m.path_id
 }
+
 // GetProfileAvailableOnError gets the profile_available_on_error property value. The profile_available_on_error property
 // returns a *bool when successful
-func (m *RestoreEventPayload) GetProfileAvailableOnError()(*bool) {
-    return m.profile_available_on_error
+func (m *RestoreEventPayload) GetProfileAvailableOnError() *bool {
+	return m.profile_available_on_error
 }
+
 // GetProfileObjectPath gets the profile_object_path property value. The profile_object_path property
 // returns a *string when successful
-func (m *RestoreEventPayload) GetProfileObjectPath()(*string) {
-    return m.profile_object_path
+func (m *RestoreEventPayload) GetProfileObjectPath() *string {
+	return m.profile_object_path
 }
+
 // GetReason gets the reason property value. The reason property
 // returns a *string when successful
-func (m *RestoreEventPayload) GetReason()(*string) {
-    return m.reason
+func (m *RestoreEventPayload) GetReason() *string {
+	return m.reason
 }
+
 // GetRequestMetadata gets the request_metadata property value. The request_metadata property
 // returns a UntypedNodeable when successful
-func (m *RestoreEventPayload) GetRequestMetadata()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
-    return m.request_metadata
+func (m *RestoreEventPayload) GetRequestMetadata() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable {
+	return m.request_metadata
 }
+
 // GetRestorePath gets the restore_path property value. The restore_path property
 // returns a *string when successful
-func (m *RestoreEventPayload) GetRestorePath()(*string) {
-    return m.restore_path
+func (m *RestoreEventPayload) GetRestorePath() *string {
+	return m.restore_path
 }
+
 // GetRestoreUuid gets the restore_uuid property value. The restore_uuid property
 // returns a *string when successful
-func (m *RestoreEventPayload) GetRestoreUuid()(*string) {
-    return m.restore_uuid
+func (m *RestoreEventPayload) GetRestoreUuid() *string {
+	return m.restore_uuid
 }
+
 // GetRuntimeMetadata gets the runtime_metadata property value. The runtime_metadata property
 // returns a UntypedNodeable when successful
-func (m *RestoreEventPayload) GetRuntimeMetadata()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
-    return m.runtime_metadata
+func (m *RestoreEventPayload) GetRuntimeMetadata() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable {
+	return m.runtime_metadata
 }
+
 // GetStartedAt gets the started_at property value. The started_at property
 // returns a *Time when successful
-func (m *RestoreEventPayload) GetStartedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.started_at
+func (m *RestoreEventPayload) GetStartedAt() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time {
+	return m.started_at
 }
+
 // GetStatus gets the status property value. The status property
 // returns a *string when successful
-func (m *RestoreEventPayload) GetStatus()(*string) {
-    return m.status
+func (m *RestoreEventPayload) GetStatus() *string {
+	return m.status
 }
+
 // GetStorageProvider gets the storage_provider property value. The storage_provider property
 // returns a *string when successful
-func (m *RestoreEventPayload) GetStorageProvider()(*string) {
-    return m.storage_provider
+func (m *RestoreEventPayload) GetStorageProvider() *string {
+	return m.storage_provider
 }
+
 // GetWorkloadType gets the workload_type property value. The workload_type property
 // returns a *string when successful
-func (m *RestoreEventPayload) GetWorkloadType()(*string) {
-    return m.workload_type
+func (m *RestoreEventPayload) GetWorkloadType() *string {
+	return m.workload_type
 }
+
 // Serialize serializes information the current object
-func (m *RestoreEventPayload) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("action_id", m.GetActionId())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetActionIds() != nil {
-        err := writer.WriteCollectionOfStringValues("action_ids", m.GetActionIds())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("action_scope", m.GetActionScope())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("checkpoint_action_id", m.GetCheckpointActionId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("checkpoint_id", m.GetCheckpointId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("cluster_id", m.GetClusterId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteTimeValue("completed_at", m.GetCompletedAt())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("error_message", m.GetErrorMessage())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("kind", m.GetKind())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("metadata", m.GetMetadata())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("path_id", m.GetPathId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("profile_available_on_error", m.GetProfileAvailableOnError())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("profile_object_path", m.GetProfileObjectPath())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("reason", m.GetReason())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("request_metadata", m.GetRequestMetadata())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("restore_path", m.GetRestorePath())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("restore_uuid", m.GetRestoreUuid())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("runtime_metadata", m.GetRuntimeMetadata())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteTimeValue("started_at", m.GetStartedAt())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("status", m.GetStatus())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("storage_provider", m.GetStorageProvider())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("workload_type", m.GetWorkloadType())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *RestoreEventPayload) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("action_id", m.GetActionId())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetActionIds() != nil {
+		err := writer.WriteCollectionOfStringValues("action_ids", m.GetActionIds())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("action_scope", m.GetActionScope())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("checkpoint_action_id", m.GetCheckpointActionId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("checkpoint_id", m.GetCheckpointId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("cluster_id", m.GetClusterId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteTimeValue("completed_at", m.GetCompletedAt())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("error_message", m.GetErrorMessage())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("kind", m.GetKind())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("metadata", m.GetMetadata())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("path_id", m.GetPathId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("profile_available_on_error", m.GetProfileAvailableOnError())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("profile_object_path", m.GetProfileObjectPath())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("reason", m.GetReason())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("request_metadata", m.GetRequestMetadata())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("restore_path", m.GetRestorePath())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("restore_uuid", m.GetRestoreUuid())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("runtime_metadata", m.GetRuntimeMetadata())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteTimeValue("started_at", m.GetStartedAt())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("status", m.GetStatus())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("storage_provider", m.GetStorageProvider())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("workload_type", m.GetWorkloadType())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetActionId sets the action_id property value. The action_id property
-func (m *RestoreEventPayload) SetActionId(value *string)() {
-    m.action_id = value
+func (m *RestoreEventPayload) SetActionId(value *string) {
+	m.action_id = value
 }
+
 // SetActionIds sets the action_ids property value. The action_ids property
-func (m *RestoreEventPayload) SetActionIds(value []string)() {
-    m.action_ids = value
+func (m *RestoreEventPayload) SetActionIds(value []string) {
+	m.action_ids = value
 }
+
 // SetActionScope sets the action_scope property value. The action_scope property
-func (m *RestoreEventPayload) SetActionScope(value *string)() {
-    m.action_scope = value
+func (m *RestoreEventPayload) SetActionScope(value *string) {
+	m.action_scope = value
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RestoreEventPayload) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *RestoreEventPayload) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetCheckpointActionId sets the checkpoint_action_id property value. The checkpoint_action_id property
-func (m *RestoreEventPayload) SetCheckpointActionId(value *string)() {
-    m.checkpoint_action_id = value
+func (m *RestoreEventPayload) SetCheckpointActionId(value *string) {
+	m.checkpoint_action_id = value
 }
+
 // SetCheckpointId sets the checkpoint_id property value. The checkpoint_id property
-func (m *RestoreEventPayload) SetCheckpointId(value *string)() {
-    m.checkpoint_id = value
+func (m *RestoreEventPayload) SetCheckpointId(value *string) {
+	m.checkpoint_id = value
 }
+
 // SetClusterId sets the cluster_id property value. The cluster_id property
-func (m *RestoreEventPayload) SetClusterId(value *string)() {
-    m.cluster_id = value
+func (m *RestoreEventPayload) SetClusterId(value *string) {
+	m.cluster_id = value
 }
+
 // SetCompletedAt sets the completed_at property value. The completed_at property
-func (m *RestoreEventPayload) SetCompletedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.completed_at = value
+func (m *RestoreEventPayload) SetCompletedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
+	m.completed_at = value
 }
+
 // SetErrorMessage sets the error_message property value. The error_message property
-func (m *RestoreEventPayload) SetErrorMessage(value *string)() {
-    m.error_message = value
+func (m *RestoreEventPayload) SetErrorMessage(value *string) {
+	m.error_message = value
 }
+
 // SetKind sets the kind property value. The kind property
-func (m *RestoreEventPayload) SetKind(value *string)() {
-    m.kind = value
+func (m *RestoreEventPayload) SetKind(value *string) {
+	m.kind = value
 }
+
 // SetMetadata sets the metadata property value. The metadata property
-func (m *RestoreEventPayload) SetMetadata(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
-    m.metadata = value
+func (m *RestoreEventPayload) SetMetadata(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
+	m.metadata = value
 }
+
 // SetPathId sets the path_id property value. The path_id property
-func (m *RestoreEventPayload) SetPathId(value *string)() {
-    m.path_id = value
+func (m *RestoreEventPayload) SetPathId(value *string) {
+	m.path_id = value
 }
+
 // SetProfileAvailableOnError sets the profile_available_on_error property value. The profile_available_on_error property
-func (m *RestoreEventPayload) SetProfileAvailableOnError(value *bool)() {
-    m.profile_available_on_error = value
+func (m *RestoreEventPayload) SetProfileAvailableOnError(value *bool) {
+	m.profile_available_on_error = value
 }
+
 // SetProfileObjectPath sets the profile_object_path property value. The profile_object_path property
-func (m *RestoreEventPayload) SetProfileObjectPath(value *string)() {
-    m.profile_object_path = value
+func (m *RestoreEventPayload) SetProfileObjectPath(value *string) {
+	m.profile_object_path = value
 }
+
 // SetReason sets the reason property value. The reason property
-func (m *RestoreEventPayload) SetReason(value *string)() {
-    m.reason = value
+func (m *RestoreEventPayload) SetReason(value *string) {
+	m.reason = value
 }
+
 // SetRequestMetadata sets the request_metadata property value. The request_metadata property
-func (m *RestoreEventPayload) SetRequestMetadata(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
-    m.request_metadata = value
+func (m *RestoreEventPayload) SetRequestMetadata(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
+	m.request_metadata = value
 }
+
 // SetRestorePath sets the restore_path property value. The restore_path property
-func (m *RestoreEventPayload) SetRestorePath(value *string)() {
-    m.restore_path = value
+func (m *RestoreEventPayload) SetRestorePath(value *string) {
+	m.restore_path = value
 }
+
 // SetRestoreUuid sets the restore_uuid property value. The restore_uuid property
-func (m *RestoreEventPayload) SetRestoreUuid(value *string)() {
-    m.restore_uuid = value
+func (m *RestoreEventPayload) SetRestoreUuid(value *string) {
+	m.restore_uuid = value
 }
+
 // SetRuntimeMetadata sets the runtime_metadata property value. The runtime_metadata property
-func (m *RestoreEventPayload) SetRuntimeMetadata(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
-    m.runtime_metadata = value
+func (m *RestoreEventPayload) SetRuntimeMetadata(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
+	m.runtime_metadata = value
 }
+
 // SetStartedAt sets the started_at property value. The started_at property
-func (m *RestoreEventPayload) SetStartedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.started_at = value
+func (m *RestoreEventPayload) SetStartedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
+	m.started_at = value
 }
+
 // SetStatus sets the status property value. The status property
-func (m *RestoreEventPayload) SetStatus(value *string)() {
-    m.status = value
+func (m *RestoreEventPayload) SetStatus(value *string) {
+	m.status = value
 }
+
 // SetStorageProvider sets the storage_provider property value. The storage_provider property
-func (m *RestoreEventPayload) SetStorageProvider(value *string)() {
-    m.storage_provider = value
+func (m *RestoreEventPayload) SetStorageProvider(value *string) {
+	m.storage_provider = value
 }
+
 // SetWorkloadType sets the workload_type property value. The workload_type property
-func (m *RestoreEventPayload) SetWorkloadType(value *string)() {
-    m.workload_type = value
+func (m *RestoreEventPayload) SetWorkloadType(value *string) {
+	m.workload_type = value
 }
+
 type RestoreEventPayloadable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetActionId()(*string)
-    GetActionIds()([]string)
-    GetActionScope()(*string)
-    GetCheckpointActionId()(*string)
-    GetCheckpointId()(*string)
-    GetClusterId()(*string)
-    GetCompletedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
-    GetErrorMessage()(*string)
-    GetKind()(*string)
-    GetMetadata()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
-    GetPathId()(*string)
-    GetProfileAvailableOnError()(*bool)
-    GetProfileObjectPath()(*string)
-    GetReason()(*string)
-    GetRequestMetadata()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
-    GetRestorePath()(*string)
-    GetRestoreUuid()(*string)
-    GetRuntimeMetadata()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
-    GetStartedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
-    GetStatus()(*string)
-    GetStorageProvider()(*string)
-    GetWorkloadType()(*string)
-    SetActionId(value *string)()
-    SetActionIds(value []string)()
-    SetActionScope(value *string)()
-    SetCheckpointActionId(value *string)()
-    SetCheckpointId(value *string)()
-    SetClusterId(value *string)()
-    SetCompletedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
-    SetErrorMessage(value *string)()
-    SetKind(value *string)()
-    SetMetadata(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
-    SetPathId(value *string)()
-    SetProfileAvailableOnError(value *bool)()
-    SetProfileObjectPath(value *string)()
-    SetReason(value *string)()
-    SetRequestMetadata(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
-    SetRestorePath(value *string)()
-    SetRestoreUuid(value *string)()
-    SetRuntimeMetadata(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
-    SetStartedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
-    SetStatus(value *string)()
-    SetStorageProvider(value *string)()
-    SetWorkloadType(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetActionId() *string
+	GetActionIds() []string
+	GetActionScope() *string
+	GetCheckpointActionId() *string
+	GetCheckpointId() *string
+	GetClusterId() *string
+	GetCompletedAt() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+	GetErrorMessage() *string
+	GetKind() *string
+	GetMetadata() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+	GetPathId() *string
+	GetProfileAvailableOnError() *bool
+	GetProfileObjectPath() *string
+	GetReason() *string
+	GetRequestMetadata() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+	GetRestorePath() *string
+	GetRestoreUuid() *string
+	GetRuntimeMetadata() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+	GetStartedAt() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+	GetStatus() *string
+	GetStorageProvider() *string
+	GetWorkloadType() *string
+	SetActionId(value *string)
+	SetActionIds(value []string)
+	SetActionScope(value *string)
+	SetCheckpointActionId(value *string)
+	SetCheckpointId(value *string)
+	SetClusterId(value *string)
+	SetCompletedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+	SetErrorMessage(value *string)
+	SetKind(value *string)
+	SetMetadata(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+	SetPathId(value *string)
+	SetProfileAvailableOnError(value *bool)
+	SetProfileObjectPath(value *string)
+	SetReason(value *string)
+	SetRequestMetadata(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+	SetRestorePath(value *string)
+	SetRestoreUuid(value *string)
+	SetRuntimeMetadata(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+	SetStartedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+	SetStatus(value *string)
+	SetStorageProvider(value *string)
+	SetWorkloadType(value *string)
 }

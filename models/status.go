@@ -2,41 +2,45 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type Status int
 
 const (
-    UNKNOWN_STATUS Status = iota
-    AVAILABLE_STATUS
-    INSTALLED_STATUS
-    OUTDATED_STATUS
+	UNKNOWN_STATUS Status = iota
+	AVAILABLE_STATUS
+	INSTALLED_STATUS
+	OUTDATED_STATUS
 )
 
 func (i Status) String() string {
-    return []string{"UNKNOWN", "AVAILABLE", "INSTALLED", "OUTDATED"}[i]
+	return []string{"UNKNOWN", "AVAILABLE", "INSTALLED", "OUTDATED"}[i]
 }
+
 func ParseStatus(v string) (any, error) {
-    result := UNKNOWN_STATUS
-    switch v {
-        case "UNKNOWN":
-            result = UNKNOWN_STATUS
-        case "AVAILABLE":
-            result = AVAILABLE_STATUS
-        case "INSTALLED":
-            result = INSTALLED_STATUS
-        case "OUTDATED":
-            result = OUTDATED_STATUS
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := UNKNOWN_STATUS
+	switch v {
+	case "UNKNOWN":
+		result = UNKNOWN_STATUS
+	case "AVAILABLE":
+		result = AVAILABLE_STATUS
+	case "INSTALLED":
+		result = INSTALLED_STATUS
+	case "OUTDATED":
+		result = OUTDATED_STATUS
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeStatus(values []Status) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i Status) isMultiValue() bool {
-    return false
+	return false
 }

@@ -4,429 +4,461 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // GpuMetric gPU metrics for a single GPU
 type GpuMetric struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The gpu_index property
-    gpu_index *string
-    // GPU utilization percentage (0-100)
-    gpu_utilization *float64
-    // The gpu_uuid property
-    gpu_uuid *string
-    // Framebuffer memory free in MiB
-    memory_free_mib *float64
-    // Framebuffer memory used in MiB
-    memory_used_mib *float64
-    // Memory bandwidth utilization percentage (0-100)
-    memory_utilization *float64
-    // GPU model name (e.g., "NVIDIA H100 80GB HBM3")
-    model_name *string
-    // Namespace of the pod (if any)
-    namespace *string
-    // The node_name property
-    node_name *string
-    // Pod currently using this GPU (if any)
-    pod_name *string
-    // Power usage in Watts
-    power_watts *float64
-    // GPU temperature in Celsius
-    temperature_celsius *float64
-    // The timestamp property
-    timestamp *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The gpu_index property
+	gpu_index *string
+	// GPU utilization percentage (0-100)
+	gpu_utilization *float64
+	// The gpu_uuid property
+	gpu_uuid *string
+	// Framebuffer memory free in MiB
+	memory_free_mib *float64
+	// Framebuffer memory used in MiB
+	memory_used_mib *float64
+	// Memory bandwidth utilization percentage (0-100)
+	memory_utilization *float64
+	// GPU model name (e.g., "NVIDIA H100 80GB HBM3")
+	model_name *string
+	// Namespace of the pod (if any)
+	namespace *string
+	// The node_name property
+	node_name *string
+	// Pod currently using this GPU (if any)
+	pod_name *string
+	// Power usage in Watts
+	power_watts *float64
+	// GPU temperature in Celsius
+	temperature_celsius *float64
+	// The timestamp property
+	timestamp *string
 }
+
 // NewGpuMetric instantiates a new GpuMetric and sets the default values.
-func NewGpuMetric()(*GpuMetric) {
-    m := &GpuMetric{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewGpuMetric() *GpuMetric {
+	m := &GpuMetric{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateGpuMetricFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateGpuMetricFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewGpuMetric(), nil
+func CreateGpuMetricFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewGpuMetric(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *GpuMetric) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *GpuMetric) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *GpuMetric) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["gpu_index"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetGpuIndex(val)
-        }
-        return nil
-    }
-    res["gpu_utilization"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetGpuUtilization(val)
-        }
-        return nil
-    }
-    res["gpu_uuid"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetGpuUuid(val)
-        }
-        return nil
-    }
-    res["memory_free_mib"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMemoryFreeMib(val)
-        }
-        return nil
-    }
-    res["memory_used_mib"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMemoryUsedMib(val)
-        }
-        return nil
-    }
-    res["memory_utilization"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMemoryUtilization(val)
-        }
-        return nil
-    }
-    res["model_name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetModelName(val)
-        }
-        return nil
-    }
-    res["namespace"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetNamespace(val)
-        }
-        return nil
-    }
-    res["node_name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetNodeName(val)
-        }
-        return nil
-    }
-    res["pod_name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPodName(val)
-        }
-        return nil
-    }
-    res["power_watts"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPowerWatts(val)
-        }
-        return nil
-    }
-    res["temperature_celsius"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTemperatureCelsius(val)
-        }
-        return nil
-    }
-    res["timestamp"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTimestamp(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *GpuMetric) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["gpu_index"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetGpuIndex(val)
+		}
+		return nil
+	}
+	res["gpu_utilization"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetGpuUtilization(val)
+		}
+		return nil
+	}
+	res["gpu_uuid"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetGpuUuid(val)
+		}
+		return nil
+	}
+	res["memory_free_mib"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMemoryFreeMib(val)
+		}
+		return nil
+	}
+	res["memory_used_mib"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMemoryUsedMib(val)
+		}
+		return nil
+	}
+	res["memory_utilization"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMemoryUtilization(val)
+		}
+		return nil
+	}
+	res["model_name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetModelName(val)
+		}
+		return nil
+	}
+	res["namespace"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNamespace(val)
+		}
+		return nil
+	}
+	res["node_name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNodeName(val)
+		}
+		return nil
+	}
+	res["pod_name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPodName(val)
+		}
+		return nil
+	}
+	res["power_watts"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPowerWatts(val)
+		}
+		return nil
+	}
+	res["temperature_celsius"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTemperatureCelsius(val)
+		}
+		return nil
+	}
+	res["timestamp"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTimestamp(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetGpuIndex gets the gpu_index property value. The gpu_index property
 // returns a *string when successful
-func (m *GpuMetric) GetGpuIndex()(*string) {
-    return m.gpu_index
+func (m *GpuMetric) GetGpuIndex() *string {
+	return m.gpu_index
 }
+
 // GetGpuUtilization gets the gpu_utilization property value. GPU utilization percentage (0-100)
 // returns a *float64 when successful
-func (m *GpuMetric) GetGpuUtilization()(*float64) {
-    return m.gpu_utilization
+func (m *GpuMetric) GetGpuUtilization() *float64 {
+	return m.gpu_utilization
 }
+
 // GetGpuUuid gets the gpu_uuid property value. The gpu_uuid property
 // returns a *string when successful
-func (m *GpuMetric) GetGpuUuid()(*string) {
-    return m.gpu_uuid
+func (m *GpuMetric) GetGpuUuid() *string {
+	return m.gpu_uuid
 }
+
 // GetMemoryFreeMib gets the memory_free_mib property value. Framebuffer memory free in MiB
 // returns a *float64 when successful
-func (m *GpuMetric) GetMemoryFreeMib()(*float64) {
-    return m.memory_free_mib
+func (m *GpuMetric) GetMemoryFreeMib() *float64 {
+	return m.memory_free_mib
 }
+
 // GetMemoryUsedMib gets the memory_used_mib property value. Framebuffer memory used in MiB
 // returns a *float64 when successful
-func (m *GpuMetric) GetMemoryUsedMib()(*float64) {
-    return m.memory_used_mib
+func (m *GpuMetric) GetMemoryUsedMib() *float64 {
+	return m.memory_used_mib
 }
+
 // GetMemoryUtilization gets the memory_utilization property value. Memory bandwidth utilization percentage (0-100)
 // returns a *float64 when successful
-func (m *GpuMetric) GetMemoryUtilization()(*float64) {
-    return m.memory_utilization
+func (m *GpuMetric) GetMemoryUtilization() *float64 {
+	return m.memory_utilization
 }
+
 // GetModelName gets the model_name property value. GPU model name (e.g., "NVIDIA H100 80GB HBM3")
 // returns a *string when successful
-func (m *GpuMetric) GetModelName()(*string) {
-    return m.model_name
+func (m *GpuMetric) GetModelName() *string {
+	return m.model_name
 }
+
 // GetNamespace gets the namespace property value. Namespace of the pod (if any)
 // returns a *string when successful
-func (m *GpuMetric) GetNamespace()(*string) {
-    return m.namespace
+func (m *GpuMetric) GetNamespace() *string {
+	return m.namespace
 }
+
 // GetNodeName gets the node_name property value. The node_name property
 // returns a *string when successful
-func (m *GpuMetric) GetNodeName()(*string) {
-    return m.node_name
+func (m *GpuMetric) GetNodeName() *string {
+	return m.node_name
 }
+
 // GetPodName gets the pod_name property value. Pod currently using this GPU (if any)
 // returns a *string when successful
-func (m *GpuMetric) GetPodName()(*string) {
-    return m.pod_name
+func (m *GpuMetric) GetPodName() *string {
+	return m.pod_name
 }
+
 // GetPowerWatts gets the power_watts property value. Power usage in Watts
 // returns a *float64 when successful
-func (m *GpuMetric) GetPowerWatts()(*float64) {
-    return m.power_watts
+func (m *GpuMetric) GetPowerWatts() *float64 {
+	return m.power_watts
 }
+
 // GetTemperatureCelsius gets the temperature_celsius property value. GPU temperature in Celsius
 // returns a *float64 when successful
-func (m *GpuMetric) GetTemperatureCelsius()(*float64) {
-    return m.temperature_celsius
+func (m *GpuMetric) GetTemperatureCelsius() *float64 {
+	return m.temperature_celsius
 }
+
 // GetTimestamp gets the timestamp property value. The timestamp property
 // returns a *string when successful
-func (m *GpuMetric) GetTimestamp()(*string) {
-    return m.timestamp
+func (m *GpuMetric) GetTimestamp() *string {
+	return m.timestamp
 }
+
 // Serialize serializes information the current object
-func (m *GpuMetric) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("gpu_index", m.GetGpuIndex())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("gpu_utilization", m.GetGpuUtilization())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("gpu_uuid", m.GetGpuUuid())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("memory_free_mib", m.GetMemoryFreeMib())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("memory_used_mib", m.GetMemoryUsedMib())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("memory_utilization", m.GetMemoryUtilization())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("model_name", m.GetModelName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("namespace", m.GetNamespace())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("node_name", m.GetNodeName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("pod_name", m.GetPodName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("power_watts", m.GetPowerWatts())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("temperature_celsius", m.GetTemperatureCelsius())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("timestamp", m.GetTimestamp())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *GpuMetric) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("gpu_index", m.GetGpuIndex())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("gpu_utilization", m.GetGpuUtilization())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("gpu_uuid", m.GetGpuUuid())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("memory_free_mib", m.GetMemoryFreeMib())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("memory_used_mib", m.GetMemoryUsedMib())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("memory_utilization", m.GetMemoryUtilization())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("model_name", m.GetModelName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("namespace", m.GetNamespace())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("node_name", m.GetNodeName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("pod_name", m.GetPodName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("power_watts", m.GetPowerWatts())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("temperature_celsius", m.GetTemperatureCelsius())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("timestamp", m.GetTimestamp())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *GpuMetric) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *GpuMetric) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetGpuIndex sets the gpu_index property value. The gpu_index property
-func (m *GpuMetric) SetGpuIndex(value *string)() {
-    m.gpu_index = value
+func (m *GpuMetric) SetGpuIndex(value *string) {
+	m.gpu_index = value
 }
+
 // SetGpuUtilization sets the gpu_utilization property value. GPU utilization percentage (0-100)
-func (m *GpuMetric) SetGpuUtilization(value *float64)() {
-    m.gpu_utilization = value
+func (m *GpuMetric) SetGpuUtilization(value *float64) {
+	m.gpu_utilization = value
 }
+
 // SetGpuUuid sets the gpu_uuid property value. The gpu_uuid property
-func (m *GpuMetric) SetGpuUuid(value *string)() {
-    m.gpu_uuid = value
+func (m *GpuMetric) SetGpuUuid(value *string) {
+	m.gpu_uuid = value
 }
+
 // SetMemoryFreeMib sets the memory_free_mib property value. Framebuffer memory free in MiB
-func (m *GpuMetric) SetMemoryFreeMib(value *float64)() {
-    m.memory_free_mib = value
+func (m *GpuMetric) SetMemoryFreeMib(value *float64) {
+	m.memory_free_mib = value
 }
+
 // SetMemoryUsedMib sets the memory_used_mib property value. Framebuffer memory used in MiB
-func (m *GpuMetric) SetMemoryUsedMib(value *float64)() {
-    m.memory_used_mib = value
+func (m *GpuMetric) SetMemoryUsedMib(value *float64) {
+	m.memory_used_mib = value
 }
+
 // SetMemoryUtilization sets the memory_utilization property value. Memory bandwidth utilization percentage (0-100)
-func (m *GpuMetric) SetMemoryUtilization(value *float64)() {
-    m.memory_utilization = value
+func (m *GpuMetric) SetMemoryUtilization(value *float64) {
+	m.memory_utilization = value
 }
+
 // SetModelName sets the model_name property value. GPU model name (e.g., "NVIDIA H100 80GB HBM3")
-func (m *GpuMetric) SetModelName(value *string)() {
-    m.model_name = value
+func (m *GpuMetric) SetModelName(value *string) {
+	m.model_name = value
 }
+
 // SetNamespace sets the namespace property value. Namespace of the pod (if any)
-func (m *GpuMetric) SetNamespace(value *string)() {
-    m.namespace = value
+func (m *GpuMetric) SetNamespace(value *string) {
+	m.namespace = value
 }
+
 // SetNodeName sets the node_name property value. The node_name property
-func (m *GpuMetric) SetNodeName(value *string)() {
-    m.node_name = value
+func (m *GpuMetric) SetNodeName(value *string) {
+	m.node_name = value
 }
+
 // SetPodName sets the pod_name property value. Pod currently using this GPU (if any)
-func (m *GpuMetric) SetPodName(value *string)() {
-    m.pod_name = value
+func (m *GpuMetric) SetPodName(value *string) {
+	m.pod_name = value
 }
+
 // SetPowerWatts sets the power_watts property value. Power usage in Watts
-func (m *GpuMetric) SetPowerWatts(value *float64)() {
-    m.power_watts = value
+func (m *GpuMetric) SetPowerWatts(value *float64) {
+	m.power_watts = value
 }
+
 // SetTemperatureCelsius sets the temperature_celsius property value. GPU temperature in Celsius
-func (m *GpuMetric) SetTemperatureCelsius(value *float64)() {
-    m.temperature_celsius = value
+func (m *GpuMetric) SetTemperatureCelsius(value *float64) {
+	m.temperature_celsius = value
 }
+
 // SetTimestamp sets the timestamp property value. The timestamp property
-func (m *GpuMetric) SetTimestamp(value *string)() {
-    m.timestamp = value
+func (m *GpuMetric) SetTimestamp(value *string) {
+	m.timestamp = value
 }
+
 type GpuMetricable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetGpuIndex()(*string)
-    GetGpuUtilization()(*float64)
-    GetGpuUuid()(*string)
-    GetMemoryFreeMib()(*float64)
-    GetMemoryUsedMib()(*float64)
-    GetMemoryUtilization()(*float64)
-    GetModelName()(*string)
-    GetNamespace()(*string)
-    GetNodeName()(*string)
-    GetPodName()(*string)
-    GetPowerWatts()(*float64)
-    GetTemperatureCelsius()(*float64)
-    GetTimestamp()(*string)
-    SetGpuIndex(value *string)()
-    SetGpuUtilization(value *float64)()
-    SetGpuUuid(value *string)()
-    SetMemoryFreeMib(value *float64)()
-    SetMemoryUsedMib(value *float64)()
-    SetMemoryUtilization(value *float64)()
-    SetModelName(value *string)()
-    SetNamespace(value *string)()
-    SetNodeName(value *string)()
-    SetPodName(value *string)()
-    SetPowerWatts(value *float64)()
-    SetTemperatureCelsius(value *float64)()
-    SetTimestamp(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetGpuIndex() *string
+	GetGpuUtilization() *float64
+	GetGpuUuid() *string
+	GetMemoryFreeMib() *float64
+	GetMemoryUsedMib() *float64
+	GetMemoryUtilization() *float64
+	GetModelName() *string
+	GetNamespace() *string
+	GetNodeName() *string
+	GetPodName() *string
+	GetPowerWatts() *float64
+	GetTemperatureCelsius() *float64
+	GetTimestamp() *string
+	SetGpuIndex(value *string)
+	SetGpuUtilization(value *float64)
+	SetGpuUuid(value *string)
+	SetMemoryFreeMib(value *float64)
+	SetMemoryUsedMib(value *float64)
+	SetMemoryUtilization(value *float64)
+	SetModelName(value *string)
+	SetNamespace(value *string)
+	SetNodeName(value *string)
+	SetPodName(value *string)
+	SetPowerWatts(value *float64)
+	SetTemperatureCelsius(value *float64)
+	SetTimestamp(value *string)
 }

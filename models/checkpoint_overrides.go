@@ -4,225 +4,243 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type CheckpointOverrides struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The asynchronous property
-    asynchronous *bool
-    // The compression property
-    compression *string
-    // The criu_opts property
-    criu_opts *string
-    // The directory property
-    directory *string
-    // GPU delta (incremental) checkpoint; None = cluster default
-    incremental *bool
-    // The streams property
-    streams *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The asynchronous property
+	asynchronous *bool
+	// The compression property
+	compression *string
+	// The criu_opts property
+	criu_opts *string
+	// The directory property
+	directory *string
+	// GPU delta (incremental) checkpoint; None = cluster default
+	incremental *bool
+	// The streams property
+	streams *int32
 }
+
 // NewCheckpointOverrides instantiates a new CheckpointOverrides and sets the default values.
-func NewCheckpointOverrides()(*CheckpointOverrides) {
-    m := &CheckpointOverrides{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewCheckpointOverrides() *CheckpointOverrides {
+	m := &CheckpointOverrides{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateCheckpointOverridesFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateCheckpointOverridesFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewCheckpointOverrides(), nil
+func CreateCheckpointOverridesFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewCheckpointOverrides(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *CheckpointOverrides) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *CheckpointOverrides) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetAsynchronous gets the asynchronous property value. The asynchronous property
 // returns a *bool when successful
-func (m *CheckpointOverrides) GetAsynchronous()(*bool) {
-    return m.asynchronous
+func (m *CheckpointOverrides) GetAsynchronous() *bool {
+	return m.asynchronous
 }
+
 // GetCompression gets the compression property value. The compression property
 // returns a *string when successful
-func (m *CheckpointOverrides) GetCompression()(*string) {
-    return m.compression
+func (m *CheckpointOverrides) GetCompression() *string {
+	return m.compression
 }
+
 // GetCriuOpts gets the criu_opts property value. The criu_opts property
 // returns a *string when successful
-func (m *CheckpointOverrides) GetCriuOpts()(*string) {
-    return m.criu_opts
+func (m *CheckpointOverrides) GetCriuOpts() *string {
+	return m.criu_opts
 }
+
 // GetDirectory gets the directory property value. The directory property
 // returns a *string when successful
-func (m *CheckpointOverrides) GetDirectory()(*string) {
-    return m.directory
+func (m *CheckpointOverrides) GetDirectory() *string {
+	return m.directory
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *CheckpointOverrides) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["asynchronous"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetAsynchronous(val)
-        }
-        return nil
-    }
-    res["compression"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCompression(val)
-        }
-        return nil
-    }
-    res["criu_opts"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCriuOpts(val)
-        }
-        return nil
-    }
-    res["directory"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDirectory(val)
-        }
-        return nil
-    }
-    res["incremental"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetIncremental(val)
-        }
-        return nil
-    }
-    res["streams"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStreams(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *CheckpointOverrides) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["asynchronous"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetAsynchronous(val)
+		}
+		return nil
+	}
+	res["compression"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCompression(val)
+		}
+		return nil
+	}
+	res["criu_opts"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCriuOpts(val)
+		}
+		return nil
+	}
+	res["directory"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDirectory(val)
+		}
+		return nil
+	}
+	res["incremental"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetIncremental(val)
+		}
+		return nil
+	}
+	res["streams"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStreams(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetIncremental gets the incremental property value. GPU delta (incremental) checkpoint; None = cluster default
 // returns a *bool when successful
-func (m *CheckpointOverrides) GetIncremental()(*bool) {
-    return m.incremental
+func (m *CheckpointOverrides) GetIncremental() *bool {
+	return m.incremental
 }
+
 // GetStreams gets the streams property value. The streams property
 // returns a *int32 when successful
-func (m *CheckpointOverrides) GetStreams()(*int32) {
-    return m.streams
+func (m *CheckpointOverrides) GetStreams() *int32 {
+	return m.streams
 }
+
 // Serialize serializes information the current object
-func (m *CheckpointOverrides) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteBoolValue("asynchronous", m.GetAsynchronous())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("compression", m.GetCompression())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("criu_opts", m.GetCriuOpts())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("directory", m.GetDirectory())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("incremental", m.GetIncremental())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("streams", m.GetStreams())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *CheckpointOverrides) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteBoolValue("asynchronous", m.GetAsynchronous())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("compression", m.GetCompression())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("criu_opts", m.GetCriuOpts())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("directory", m.GetDirectory())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("incremental", m.GetIncremental())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("streams", m.GetStreams())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *CheckpointOverrides) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *CheckpointOverrides) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetAsynchronous sets the asynchronous property value. The asynchronous property
-func (m *CheckpointOverrides) SetAsynchronous(value *bool)() {
-    m.asynchronous = value
+func (m *CheckpointOverrides) SetAsynchronous(value *bool) {
+	m.asynchronous = value
 }
+
 // SetCompression sets the compression property value. The compression property
-func (m *CheckpointOverrides) SetCompression(value *string)() {
-    m.compression = value
+func (m *CheckpointOverrides) SetCompression(value *string) {
+	m.compression = value
 }
+
 // SetCriuOpts sets the criu_opts property value. The criu_opts property
-func (m *CheckpointOverrides) SetCriuOpts(value *string)() {
-    m.criu_opts = value
+func (m *CheckpointOverrides) SetCriuOpts(value *string) {
+	m.criu_opts = value
 }
+
 // SetDirectory sets the directory property value. The directory property
-func (m *CheckpointOverrides) SetDirectory(value *string)() {
-    m.directory = value
+func (m *CheckpointOverrides) SetDirectory(value *string) {
+	m.directory = value
 }
+
 // SetIncremental sets the incremental property value. GPU delta (incremental) checkpoint; None = cluster default
-func (m *CheckpointOverrides) SetIncremental(value *bool)() {
-    m.incremental = value
+func (m *CheckpointOverrides) SetIncremental(value *bool) {
+	m.incremental = value
 }
+
 // SetStreams sets the streams property value. The streams property
-func (m *CheckpointOverrides) SetStreams(value *int32)() {
-    m.streams = value
+func (m *CheckpointOverrides) SetStreams(value *int32) {
+	m.streams = value
 }
+
 type CheckpointOverridesable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAsynchronous()(*bool)
-    GetCompression()(*string)
-    GetCriuOpts()(*string)
-    GetDirectory()(*string)
-    GetIncremental()(*bool)
-    GetStreams()(*int32)
-    SetAsynchronous(value *bool)()
-    SetCompression(value *string)()
-    SetCriuOpts(value *string)()
-    SetDirectory(value *string)()
-    SetIncremental(value *bool)()
-    SetStreams(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetAsynchronous() *bool
+	GetCompression() *string
+	GetCriuOpts() *string
+	GetDirectory() *string
+	GetIncremental() *bool
+	GetStreams() *int32
+	SetAsynchronous(value *bool)
+	SetCompression(value *string)
+	SetCriuOpts(value *string)
+	SetDirectory(value *string)
+	SetIncremental(value *bool)
+	SetStreams(value *int32)
 }

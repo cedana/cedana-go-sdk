@@ -4,197 +4,213 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // SlurmNodeSync slurmNodeSync is the format sent by cedana-slurm when syncing nodes
 type SlurmNodeSync struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The cpus property
-    cpus *int32
-    // The id property
-    id *string
-    // The memory property
-    memory *int64
-    // The name property
-    name *string
-    // The status property
-    status *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The cpus property
+	cpus *int32
+	// The id property
+	id *string
+	// The memory property
+	memory *int64
+	// The name property
+	name *string
+	// The status property
+	status *string
 }
+
 // NewSlurmNodeSync instantiates a new SlurmNodeSync and sets the default values.
-func NewSlurmNodeSync()(*SlurmNodeSync) {
-    m := &SlurmNodeSync{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewSlurmNodeSync() *SlurmNodeSync {
+	m := &SlurmNodeSync{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateSlurmNodeSyncFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateSlurmNodeSyncFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewSlurmNodeSync(), nil
+func CreateSlurmNodeSyncFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewSlurmNodeSync(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *SlurmNodeSync) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *SlurmNodeSync) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetCpus gets the cpus property value. The cpus property
 // returns a *int32 when successful
-func (m *SlurmNodeSync) GetCpus()(*int32) {
-    return m.cpus
+func (m *SlurmNodeSync) GetCpus() *int32 {
+	return m.cpus
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *SlurmNodeSync) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["cpus"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCpus(val)
-        }
-        return nil
-    }
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
-        }
-        return nil
-    }
-    res["memory"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMemory(val)
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    res["status"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStatus(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *SlurmNodeSync) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["cpus"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCpus(val)
+		}
+		return nil
+	}
+	res["id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetId(val)
+		}
+		return nil
+	}
+	res["memory"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMemory(val)
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	res["status"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStatus(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetId gets the id property value. The id property
 // returns a *string when successful
-func (m *SlurmNodeSync) GetId()(*string) {
-    return m.id
+func (m *SlurmNodeSync) GetId() *string {
+	return m.id
 }
+
 // GetMemory gets the memory property value. The memory property
 // returns a *int64 when successful
-func (m *SlurmNodeSync) GetMemory()(*int64) {
-    return m.memory
+func (m *SlurmNodeSync) GetMemory() *int64 {
+	return m.memory
 }
+
 // GetName gets the name property value. The name property
 // returns a *string when successful
-func (m *SlurmNodeSync) GetName()(*string) {
-    return m.name
+func (m *SlurmNodeSync) GetName() *string {
+	return m.name
 }
+
 // GetStatus gets the status property value. The status property
 // returns a *string when successful
-func (m *SlurmNodeSync) GetStatus()(*string) {
-    return m.status
+func (m *SlurmNodeSync) GetStatus() *string {
+	return m.status
 }
+
 // Serialize serializes information the current object
-func (m *SlurmNodeSync) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt32Value("cpus", m.GetCpus())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("id", m.GetId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("memory", m.GetMemory())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("status", m.GetStatus())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *SlurmNodeSync) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt32Value("cpus", m.GetCpus())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("id", m.GetId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("memory", m.GetMemory())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("status", m.GetStatus())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SlurmNodeSync) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *SlurmNodeSync) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetCpus sets the cpus property value. The cpus property
-func (m *SlurmNodeSync) SetCpus(value *int32)() {
-    m.cpus = value
+func (m *SlurmNodeSync) SetCpus(value *int32) {
+	m.cpus = value
 }
+
 // SetId sets the id property value. The id property
-func (m *SlurmNodeSync) SetId(value *string)() {
-    m.id = value
+func (m *SlurmNodeSync) SetId(value *string) {
+	m.id = value
 }
+
 // SetMemory sets the memory property value. The memory property
-func (m *SlurmNodeSync) SetMemory(value *int64)() {
-    m.memory = value
+func (m *SlurmNodeSync) SetMemory(value *int64) {
+	m.memory = value
 }
+
 // SetName sets the name property value. The name property
-func (m *SlurmNodeSync) SetName(value *string)() {
-    m.name = value
+func (m *SlurmNodeSync) SetName(value *string) {
+	m.name = value
 }
+
 // SetStatus sets the status property value. The status property
-func (m *SlurmNodeSync) SetStatus(value *string)() {
-    m.status = value
+func (m *SlurmNodeSync) SetStatus(value *string) {
+	m.status = value
 }
+
 type SlurmNodeSyncable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetCpus()(*int32)
-    GetId()(*string)
-    GetMemory()(*int64)
-    GetName()(*string)
-    GetStatus()(*string)
-    SetCpus(value *int32)()
-    SetId(value *string)()
-    SetMemory(value *int64)()
-    SetName(value *string)()
-    SetStatus(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetCpus() *int32
+	GetId() *string
+	GetMemory() *int64
+	GetName() *string
+	GetStatus() *string
+	SetCpus(value *int32)
+	SetId(value *string)
+	SetMemory(value *int64)
+	SetName(value *string)
+	SetStatus(value *string)
 }

@@ -4,33 +4,37 @@
 package v1
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // CedanaRequestBuilder builds and executes requests for operations under \v1\cedana
 type CedanaRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // NewCedanaRequestBuilderInternal instantiates a new CedanaRequestBuilder and sets the default values.
-func NewCedanaRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*CedanaRequestBuilder) {
-    m := &CedanaRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/cedana", pathParameters),
-    }
-    return m
+func NewCedanaRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *CedanaRequestBuilder {
+	m := &CedanaRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/cedana", pathParameters),
+	}
+	return m
 }
+
 // NewCedanaRequestBuilder instantiates a new CedanaRequestBuilder and sets the default values.
-func NewCedanaRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*CedanaRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewCedanaRequestBuilderInternal(urlParams, requestAdapter)
+func NewCedanaRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *CedanaRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewCedanaRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Job the job property
 // returns a *CedanaJobRequestBuilder when successful
-func (m *CedanaRequestBuilder) Job()(*CedanaJobRequestBuilder) {
-    return NewCedanaJobRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *CedanaRequestBuilder) Job() *CedanaJobRequestBuilder {
+	return NewCedanaJobRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Jobs the jobs property
 // returns a *CedanaJobsRequestBuilder when successful
-func (m *CedanaRequestBuilder) Jobs()(*CedanaJobsRequestBuilder) {
-    return NewCedanaJobsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *CedanaRequestBuilder) Jobs() *CedanaJobsRequestBuilder {
+	return NewCedanaJobsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

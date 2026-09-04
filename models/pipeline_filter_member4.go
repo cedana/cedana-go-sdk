@@ -4,110 +4,120 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type PipelineFilterMember4 struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // Filter config for targeting explicit SLURM jobs by their numeric `slurm_job_id`(the value the UI's `SlurmJob` exposes). These are resolved to `slurm_jobs.id` UUIDsat policy-creation time and stored in `policy.resource_id`.
-    config SlurmJobsFilterConfigable
-    // The type property
-    typeEscaped *PipelineFilterMember4_type
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// Filter config for targeting explicit SLURM jobs by their numeric `slurm_job_id`(the value the UI's `SlurmJob` exposes). These are resolved to `slurm_jobs.id` UUIDsat policy-creation time and stored in `policy.resource_id`.
+	config SlurmJobsFilterConfigable
+	// The type property
+	typeEscaped *PipelineFilterMember4_type
 }
+
 // NewPipelineFilterMember4 instantiates a new PipelineFilterMember4 and sets the default values.
-func NewPipelineFilterMember4()(*PipelineFilterMember4) {
-    m := &PipelineFilterMember4{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewPipelineFilterMember4() *PipelineFilterMember4 {
+	m := &PipelineFilterMember4{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreatePipelineFilterMember4FromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePipelineFilterMember4FromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPipelineFilterMember4(), nil
+func CreatePipelineFilterMember4FromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPipelineFilterMember4(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *PipelineFilterMember4) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *PipelineFilterMember4) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetConfig gets the config property value. Filter config for targeting explicit SLURM jobs by their numeric `slurm_job_id`(the value the UI's `SlurmJob` exposes). These are resolved to `slurm_jobs.id` UUIDsat policy-creation time and stored in `policy.resource_id`.
 // returns a SlurmJobsFilterConfigable when successful
-func (m *PipelineFilterMember4) GetConfig()(SlurmJobsFilterConfigable) {
-    return m.config
+func (m *PipelineFilterMember4) GetConfig() SlurmJobsFilterConfigable {
+	return m.config
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PipelineFilterMember4) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["config"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateSlurmJobsFilterConfigFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetConfig(val.(SlurmJobsFilterConfigable))
-        }
-        return nil
-    }
-    res["type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParsePipelineFilterMember4_type)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTypeEscaped(val.(*PipelineFilterMember4_type))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *PipelineFilterMember4) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["config"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateSlurmJobsFilterConfigFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetConfig(val.(SlurmJobsFilterConfigable))
+		}
+		return nil
+	}
+	res["type"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParsePipelineFilterMember4_type)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTypeEscaped(val.(*PipelineFilterMember4_type))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetTypeEscaped gets the type property value. The type property
 // returns a *PipelineFilterMember4_type when successful
-func (m *PipelineFilterMember4) GetTypeEscaped()(*PipelineFilterMember4_type) {
-    return m.typeEscaped
+func (m *PipelineFilterMember4) GetTypeEscaped() *PipelineFilterMember4_type {
+	return m.typeEscaped
 }
+
 // Serialize serializes information the current object
-func (m *PipelineFilterMember4) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("config", m.GetConfig())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetTypeEscaped() != nil {
-        cast := (*m.GetTypeEscaped()).String()
-        err := writer.WriteStringValue("type", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PipelineFilterMember4) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteObjectValue("config", m.GetConfig())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetTypeEscaped() != nil {
+		cast := (*m.GetTypeEscaped()).String()
+		err := writer.WriteStringValue("type", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PipelineFilterMember4) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *PipelineFilterMember4) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetConfig sets the config property value. Filter config for targeting explicit SLURM jobs by their numeric `slurm_job_id`(the value the UI's `SlurmJob` exposes). These are resolved to `slurm_jobs.id` UUIDsat policy-creation time and stored in `policy.resource_id`.
-func (m *PipelineFilterMember4) SetConfig(value SlurmJobsFilterConfigable)() {
-    m.config = value
+func (m *PipelineFilterMember4) SetConfig(value SlurmJobsFilterConfigable) {
+	m.config = value
 }
+
 // SetTypeEscaped sets the type property value. The type property
-func (m *PipelineFilterMember4) SetTypeEscaped(value *PipelineFilterMember4_type)() {
-    m.typeEscaped = value
+func (m *PipelineFilterMember4) SetTypeEscaped(value *PipelineFilterMember4_type) {
+	m.typeEscaped = value
 }
+
 type PipelineFilterMember4able interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetConfig()(SlurmJobsFilterConfigable)
-    GetTypeEscaped()(*PipelineFilterMember4_type)
-    SetConfig(value SlurmJobsFilterConfigable)()
-    SetTypeEscaped(value *PipelineFilterMember4_type)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetConfig() SlurmJobsFilterConfigable
+	GetTypeEscaped() *PipelineFilterMember4_type
+	SetConfig(value SlurmJobsFilterConfigable)
+	SetTypeEscaped(value *PipelineFilterMember4_type)
 }

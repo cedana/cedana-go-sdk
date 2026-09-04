@@ -4,255 +4,275 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // GpuTimeSeriesPoint time-series data point for GPU metrics
 type GpuTimeSeriesPoint struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The gpu_utilization property
-    gpu_utilization *float64
-    // The memory_free_mib property
-    memory_free_mib *float64
-    // The memory_used_mib property
-    memory_used_mib *float64
-    // The memory_utilization property
-    memory_utilization *float64
-    // The namespace property
-    namespace *string
-    // The pod_name property
-    pod_name *string
-    // The timestamp property
-    timestamp *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The gpu_utilization property
+	gpu_utilization *float64
+	// The memory_free_mib property
+	memory_free_mib *float64
+	// The memory_used_mib property
+	memory_used_mib *float64
+	// The memory_utilization property
+	memory_utilization *float64
+	// The namespace property
+	namespace *string
+	// The pod_name property
+	pod_name *string
+	// The timestamp property
+	timestamp *string
 }
+
 // NewGpuTimeSeriesPoint instantiates a new GpuTimeSeriesPoint and sets the default values.
-func NewGpuTimeSeriesPoint()(*GpuTimeSeriesPoint) {
-    m := &GpuTimeSeriesPoint{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewGpuTimeSeriesPoint() *GpuTimeSeriesPoint {
+	m := &GpuTimeSeriesPoint{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateGpuTimeSeriesPointFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateGpuTimeSeriesPointFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewGpuTimeSeriesPoint(), nil
+func CreateGpuTimeSeriesPointFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewGpuTimeSeriesPoint(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *GpuTimeSeriesPoint) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *GpuTimeSeriesPoint) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *GpuTimeSeriesPoint) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["gpu_utilization"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetGpuUtilization(val)
-        }
-        return nil
-    }
-    res["memory_free_mib"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMemoryFreeMib(val)
-        }
-        return nil
-    }
-    res["memory_used_mib"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMemoryUsedMib(val)
-        }
-        return nil
-    }
-    res["memory_utilization"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMemoryUtilization(val)
-        }
-        return nil
-    }
-    res["namespace"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetNamespace(val)
-        }
-        return nil
-    }
-    res["pod_name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPodName(val)
-        }
-        return nil
-    }
-    res["timestamp"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTimestamp(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *GpuTimeSeriesPoint) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["gpu_utilization"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetGpuUtilization(val)
+		}
+		return nil
+	}
+	res["memory_free_mib"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMemoryFreeMib(val)
+		}
+		return nil
+	}
+	res["memory_used_mib"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMemoryUsedMib(val)
+		}
+		return nil
+	}
+	res["memory_utilization"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMemoryUtilization(val)
+		}
+		return nil
+	}
+	res["namespace"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNamespace(val)
+		}
+		return nil
+	}
+	res["pod_name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPodName(val)
+		}
+		return nil
+	}
+	res["timestamp"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTimestamp(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetGpuUtilization gets the gpu_utilization property value. The gpu_utilization property
 // returns a *float64 when successful
-func (m *GpuTimeSeriesPoint) GetGpuUtilization()(*float64) {
-    return m.gpu_utilization
+func (m *GpuTimeSeriesPoint) GetGpuUtilization() *float64 {
+	return m.gpu_utilization
 }
+
 // GetMemoryFreeMib gets the memory_free_mib property value. The memory_free_mib property
 // returns a *float64 when successful
-func (m *GpuTimeSeriesPoint) GetMemoryFreeMib()(*float64) {
-    return m.memory_free_mib
+func (m *GpuTimeSeriesPoint) GetMemoryFreeMib() *float64 {
+	return m.memory_free_mib
 }
+
 // GetMemoryUsedMib gets the memory_used_mib property value. The memory_used_mib property
 // returns a *float64 when successful
-func (m *GpuTimeSeriesPoint) GetMemoryUsedMib()(*float64) {
-    return m.memory_used_mib
+func (m *GpuTimeSeriesPoint) GetMemoryUsedMib() *float64 {
+	return m.memory_used_mib
 }
+
 // GetMemoryUtilization gets the memory_utilization property value. The memory_utilization property
 // returns a *float64 when successful
-func (m *GpuTimeSeriesPoint) GetMemoryUtilization()(*float64) {
-    return m.memory_utilization
+func (m *GpuTimeSeriesPoint) GetMemoryUtilization() *float64 {
+	return m.memory_utilization
 }
+
 // GetNamespace gets the namespace property value. The namespace property
 // returns a *string when successful
-func (m *GpuTimeSeriesPoint) GetNamespace()(*string) {
-    return m.namespace
+func (m *GpuTimeSeriesPoint) GetNamespace() *string {
+	return m.namespace
 }
+
 // GetPodName gets the pod_name property value. The pod_name property
 // returns a *string when successful
-func (m *GpuTimeSeriesPoint) GetPodName()(*string) {
-    return m.pod_name
+func (m *GpuTimeSeriesPoint) GetPodName() *string {
+	return m.pod_name
 }
+
 // GetTimestamp gets the timestamp property value. The timestamp property
 // returns a *string when successful
-func (m *GpuTimeSeriesPoint) GetTimestamp()(*string) {
-    return m.timestamp
+func (m *GpuTimeSeriesPoint) GetTimestamp() *string {
+	return m.timestamp
 }
+
 // Serialize serializes information the current object
-func (m *GpuTimeSeriesPoint) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteFloat64Value("gpu_utilization", m.GetGpuUtilization())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("memory_free_mib", m.GetMemoryFreeMib())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("memory_used_mib", m.GetMemoryUsedMib())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("memory_utilization", m.GetMemoryUtilization())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("namespace", m.GetNamespace())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("pod_name", m.GetPodName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("timestamp", m.GetTimestamp())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *GpuTimeSeriesPoint) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteFloat64Value("gpu_utilization", m.GetGpuUtilization())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("memory_free_mib", m.GetMemoryFreeMib())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("memory_used_mib", m.GetMemoryUsedMib())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("memory_utilization", m.GetMemoryUtilization())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("namespace", m.GetNamespace())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("pod_name", m.GetPodName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("timestamp", m.GetTimestamp())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *GpuTimeSeriesPoint) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *GpuTimeSeriesPoint) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetGpuUtilization sets the gpu_utilization property value. The gpu_utilization property
-func (m *GpuTimeSeriesPoint) SetGpuUtilization(value *float64)() {
-    m.gpu_utilization = value
+func (m *GpuTimeSeriesPoint) SetGpuUtilization(value *float64) {
+	m.gpu_utilization = value
 }
+
 // SetMemoryFreeMib sets the memory_free_mib property value. The memory_free_mib property
-func (m *GpuTimeSeriesPoint) SetMemoryFreeMib(value *float64)() {
-    m.memory_free_mib = value
+func (m *GpuTimeSeriesPoint) SetMemoryFreeMib(value *float64) {
+	m.memory_free_mib = value
 }
+
 // SetMemoryUsedMib sets the memory_used_mib property value. The memory_used_mib property
-func (m *GpuTimeSeriesPoint) SetMemoryUsedMib(value *float64)() {
-    m.memory_used_mib = value
+func (m *GpuTimeSeriesPoint) SetMemoryUsedMib(value *float64) {
+	m.memory_used_mib = value
 }
+
 // SetMemoryUtilization sets the memory_utilization property value. The memory_utilization property
-func (m *GpuTimeSeriesPoint) SetMemoryUtilization(value *float64)() {
-    m.memory_utilization = value
+func (m *GpuTimeSeriesPoint) SetMemoryUtilization(value *float64) {
+	m.memory_utilization = value
 }
+
 // SetNamespace sets the namespace property value. The namespace property
-func (m *GpuTimeSeriesPoint) SetNamespace(value *string)() {
-    m.namespace = value
+func (m *GpuTimeSeriesPoint) SetNamespace(value *string) {
+	m.namespace = value
 }
+
 // SetPodName sets the pod_name property value. The pod_name property
-func (m *GpuTimeSeriesPoint) SetPodName(value *string)() {
-    m.pod_name = value
+func (m *GpuTimeSeriesPoint) SetPodName(value *string) {
+	m.pod_name = value
 }
+
 // SetTimestamp sets the timestamp property value. The timestamp property
-func (m *GpuTimeSeriesPoint) SetTimestamp(value *string)() {
-    m.timestamp = value
+func (m *GpuTimeSeriesPoint) SetTimestamp(value *string) {
+	m.timestamp = value
 }
+
 type GpuTimeSeriesPointable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetGpuUtilization()(*float64)
-    GetMemoryFreeMib()(*float64)
-    GetMemoryUsedMib()(*float64)
-    GetMemoryUtilization()(*float64)
-    GetNamespace()(*string)
-    GetPodName()(*string)
-    GetTimestamp()(*string)
-    SetGpuUtilization(value *float64)()
-    SetMemoryFreeMib(value *float64)()
-    SetMemoryUsedMib(value *float64)()
-    SetMemoryUtilization(value *float64)()
-    SetNamespace(value *string)()
-    SetPodName(value *string)()
-    SetTimestamp(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetGpuUtilization() *float64
+	GetMemoryFreeMib() *float64
+	GetMemoryUsedMib() *float64
+	GetMemoryUtilization() *float64
+	GetNamespace() *string
+	GetPodName() *string
+	GetTimestamp() *string
+	SetGpuUtilization(value *float64)
+	SetMemoryFreeMib(value *float64)
+	SetMemoryUsedMib(value *float64)
+	SetMemoryUtilization(value *float64)
+	SetNamespace(value *string)
+	SetPodName(value *string)
+	SetTimestamp(value *string)
 }

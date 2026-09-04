@@ -4,110 +4,120 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // CreateClusterRequest createClusterRequest is the request body for creating a cluster
 type CreateClusterRequest struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The cluster_name property
-    cluster_name *string
-    // Cluster kind: "kubernetes" (default) or "slurm"
-    kind *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The cluster_name property
+	cluster_name *string
+	// Cluster kind: "kubernetes" (default) or "slurm"
+	kind *string
 }
+
 // NewCreateClusterRequest instantiates a new CreateClusterRequest and sets the default values.
-func NewCreateClusterRequest()(*CreateClusterRequest) {
-    m := &CreateClusterRequest{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewCreateClusterRequest() *CreateClusterRequest {
+	m := &CreateClusterRequest{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateCreateClusterRequestFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateCreateClusterRequestFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewCreateClusterRequest(), nil
+func CreateCreateClusterRequestFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewCreateClusterRequest(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *CreateClusterRequest) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *CreateClusterRequest) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetClusterName gets the cluster_name property value. The cluster_name property
 // returns a *string when successful
-func (m *CreateClusterRequest) GetClusterName()(*string) {
-    return m.cluster_name
+func (m *CreateClusterRequest) GetClusterName() *string {
+	return m.cluster_name
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *CreateClusterRequest) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["cluster_name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetClusterName(val)
-        }
-        return nil
-    }
-    res["kind"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetKind(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *CreateClusterRequest) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["cluster_name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetClusterName(val)
+		}
+		return nil
+	}
+	res["kind"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetKind(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetKind gets the kind property value. Cluster kind: "kubernetes" (default) or "slurm"
 // returns a *string when successful
-func (m *CreateClusterRequest) GetKind()(*string) {
-    return m.kind
+func (m *CreateClusterRequest) GetKind() *string {
+	return m.kind
 }
+
 // Serialize serializes information the current object
-func (m *CreateClusterRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("cluster_name", m.GetClusterName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("kind", m.GetKind())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *CreateClusterRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("cluster_name", m.GetClusterName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("kind", m.GetKind())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *CreateClusterRequest) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *CreateClusterRequest) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetClusterName sets the cluster_name property value. The cluster_name property
-func (m *CreateClusterRequest) SetClusterName(value *string)() {
-    m.cluster_name = value
+func (m *CreateClusterRequest) SetClusterName(value *string) {
+	m.cluster_name = value
 }
+
 // SetKind sets the kind property value. Cluster kind: "kubernetes" (default) or "slurm"
-func (m *CreateClusterRequest) SetKind(value *string)() {
-    m.kind = value
+func (m *CreateClusterRequest) SetKind(value *string) {
+	m.kind = value
 }
+
 type CreateClusterRequestable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetClusterName()(*string)
-    GetKind()(*string)
-    SetClusterName(value *string)()
-    SetKind(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetClusterName() *string
+	GetKind() *string
+	SetClusterName(value *string)
+	SetKind(value *string)
 }

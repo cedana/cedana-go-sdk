@@ -4,93 +4,102 @@
 package v1
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
+	"context"
+	i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // PluginsRequestBuilder builds and executes requests for operations under \v1\plugins
 type PluginsRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // PluginsRequestBuilderGetQueryParameters supports direct query params (`names`, `compatibility`, `arch`, `build`)
 type PluginsRequestBuilderGetQueryParameters struct {
-    // Architecture, e.g. amd64
-    Arch *string `uriparametername:"arch"`
-    // Build type: alpha|release
-    Build *string `uriparametername:"build"`
-    // Exact version match, e.g. 0.9.2
-    Compatibility *string `uriparametername:"compatibility"`
-    // Plugin name, e.g. cedana, runc
-    Names []string `uriparametername:"names"`
+	// Architecture, e.g. amd64
+	Arch *string "uriparametername:\"arch\""
+	// Build type: alpha|release
+	Build *string "uriparametername:\"build\""
+	// Exact version match, e.g. 0.9.2
+	Compatibility *string "uriparametername:\"compatibility\""
+	// Plugin name, e.g. cedana, runc
+	Names []string "uriparametername:\"names\""
 }
+
 // PluginsRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type PluginsRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *PluginsRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *PluginsRequestBuilderGetQueryParameters
 }
+
 // NewPluginsRequestBuilderInternal instantiates a new PluginsRequestBuilder and sets the default values.
-func NewPluginsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PluginsRequestBuilder) {
-    m := &PluginsRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/plugins?names={names}{&arch*,build*,compatibility*}", pathParameters),
-    }
-    return m
+func NewPluginsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *PluginsRequestBuilder {
+	m := &PluginsRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/plugins{?arch*,build*,compatibility*,names*}", pathParameters),
+	}
+	return m
 }
+
 // NewPluginsRequestBuilder instantiates a new PluginsRequestBuilder and sets the default values.
-func NewPluginsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PluginsRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewPluginsRequestBuilderInternal(urlParams, requestAdapter)
+func NewPluginsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *PluginsRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewPluginsRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Download the download property
 // returns a *PluginsDownloadRequestBuilder when successful
-func (m *PluginsRequestBuilder) Download()(*PluginsDownloadRequestBuilder) {
-    return NewPluginsDownloadRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *PluginsRequestBuilder) Download() *PluginsDownloadRequestBuilder {
+	return NewPluginsDownloadRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Get supports direct query params (`names`, `compatibility`, `arch`, `build`)
 // returns a []Pluginable when successful
-func (m *PluginsRequestBuilder) Get(ctx context.Context, requestConfiguration *PluginsRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.Pluginable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreatePluginFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    val := make([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.Pluginable, len(res))
-    for i, v := range res {
-        if v != nil {
-            val[i] = v.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.Pluginable)
-        }
-    }
-    return val, nil
+func (m *PluginsRequestBuilder) Get(ctx context.Context, requestConfiguration *PluginsRequestBuilderGetRequestConfiguration) ([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.Pluginable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreatePluginFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	val := make([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.Pluginable, len(res))
+	for i, v := range res {
+		if v != nil {
+			val[i] = v.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.Pluginable)
+		}
+	}
+	return val, nil
 }
+
 // ToGetRequestInformation supports direct query params (`names`, `compatibility`, `arch`, `build`)
 // returns a *RequestInformation when successful
-func (m *PluginsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *PluginsRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *PluginsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *PluginsRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // Upload the upload property
 // returns a *PluginsUploadRequestBuilder when successful
-func (m *PluginsRequestBuilder) Upload()(*PluginsUploadRequestBuilder) {
-    return NewPluginsUploadRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *PluginsRequestBuilder) Upload() *PluginsUploadRequestBuilder {
+	return NewPluginsUploadRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *PluginsRequestBuilder when successful
-func (m *PluginsRequestBuilder) WithUrl(rawUrl string)(*PluginsRequestBuilder) {
-    return NewPluginsRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *PluginsRequestBuilder) WithUrl(rawUrl string) *PluginsRequestBuilder {
+	return NewPluginsRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

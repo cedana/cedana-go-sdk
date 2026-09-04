@@ -4,38 +4,43 @@
 package v1
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // InferenceCostsRequestBuilder builds and executes requests for operations under \v1\inference\costs
 type InferenceCostsRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // Breakdown the breakdown property
 // returns a *InferenceCostsBreakdownRequestBuilder when successful
-func (m *InferenceCostsRequestBuilder) Breakdown()(*InferenceCostsBreakdownRequestBuilder) {
-    return NewInferenceCostsBreakdownRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *InferenceCostsRequestBuilder) Breakdown() *InferenceCostsBreakdownRequestBuilder {
+	return NewInferenceCostsBreakdownRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Config the config property
 // returns a *InferenceCostsConfigRequestBuilder when successful
-func (m *InferenceCostsRequestBuilder) Config()(*InferenceCostsConfigRequestBuilder) {
-    return NewInferenceCostsConfigRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *InferenceCostsRequestBuilder) Config() *InferenceCostsConfigRequestBuilder {
+	return NewInferenceCostsConfigRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewInferenceCostsRequestBuilderInternal instantiates a new InferenceCostsRequestBuilder and sets the default values.
-func NewInferenceCostsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*InferenceCostsRequestBuilder) {
-    m := &InferenceCostsRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/inference/costs", pathParameters),
-    }
-    return m
+func NewInferenceCostsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *InferenceCostsRequestBuilder {
+	m := &InferenceCostsRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/inference/costs", pathParameters),
+	}
+	return m
 }
+
 // NewInferenceCostsRequestBuilder instantiates a new InferenceCostsRequestBuilder and sets the default values.
-func NewInferenceCostsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*InferenceCostsRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewInferenceCostsRequestBuilderInternal(urlParams, requestAdapter)
+func NewInferenceCostsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *InferenceCostsRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewInferenceCostsRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Report the report property
 // returns a *InferenceCostsReportRequestBuilder when successful
-func (m *InferenceCostsRequestBuilder) Report()(*InferenceCostsReportRequestBuilder) {
-    return NewInferenceCostsReportRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *InferenceCostsRequestBuilder) Report() *InferenceCostsReportRequestBuilder {
+	return NewInferenceCostsReportRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

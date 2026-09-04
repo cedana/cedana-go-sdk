@@ -4,88 +4,96 @@
 package v1
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
+	"context"
+	i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // MetricsPodsRequestBuilder builds and executes requests for operations under \v1\metrics\pods
 type MetricsPodsRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // MetricsPodsRequestBuilderGetQueryParameters get pod utilization metrics
 type MetricsPodsRequestBuilderGetQueryParameters struct {
-    // Time window in hours (default: 1, max: 168 = 7 days)
-    Hours *int64 `uriparametername:"hours"`
-    // Limit results (default: 100, max: 1000)
-    Limit *int64 `uriparametername:"limit"`
-    // Filter by node name
-    Node_name *string `uriparametername:"node_name"`
-    // Filter by pod UID
-    Pod_uid *string `uriparametername:"pod_uid"`
+	// Time window in hours (default: 1, max: 168 = 7 days)
+	Hours *int64 "uriparametername:\"hours\""
+	// Limit results (default: 100, max: 1000)
+	Limit *int64 "uriparametername:\"limit\""
+	// Filter by node name
+	Node_name *string "uriparametername:\"node_name\""
+	// Filter by pod UID
+	Pod_uid *string "uriparametername:\"pod_uid\""
 }
+
 // MetricsPodsRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type MetricsPodsRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *MetricsPodsRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *MetricsPodsRequestBuilderGetQueryParameters
 }
+
 // NewMetricsPodsRequestBuilderInternal instantiates a new MetricsPodsRequestBuilder and sets the default values.
-func NewMetricsPodsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*MetricsPodsRequestBuilder) {
-    m := &MetricsPodsRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/metrics/pods{?hours*,limit*,node_name*,pod_uid*}", pathParameters),
-    }
-    return m
+func NewMetricsPodsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *MetricsPodsRequestBuilder {
+	m := &MetricsPodsRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/metrics/pods{?hours*,limit*,node_name*,pod_uid*}", pathParameters),
+	}
+	return m
 }
+
 // NewMetricsPodsRequestBuilder instantiates a new MetricsPodsRequestBuilder and sets the default values.
-func NewMetricsPodsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*MetricsPodsRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewMetricsPodsRequestBuilderInternal(urlParams, requestAdapter)
+func NewMetricsPodsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *MetricsPodsRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewMetricsPodsRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get get pod utilization metrics
 // returns a []PodUtilizationable when successful
-func (m *MetricsPodsRequestBuilder) Get(ctx context.Context, requestConfiguration *MetricsPodsRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PodUtilizationable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreatePodUtilizationFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    val := make([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PodUtilizationable, len(res))
-    for i, v := range res {
-        if v != nil {
-            val[i] = v.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PodUtilizationable)
-        }
-    }
-    return val, nil
+func (m *MetricsPodsRequestBuilder) Get(ctx context.Context, requestConfiguration *MetricsPodsRequestBuilderGetRequestConfiguration) ([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PodUtilizationable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreatePodUtilizationFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	val := make([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PodUtilizationable, len(res))
+	for i, v := range res {
+		if v != nil {
+			val[i] = v.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PodUtilizationable)
+		}
+	}
+	return val, nil
 }
+
 // ToGetRequestInformation get pod utilization metrics
 // returns a *RequestInformation when successful
-func (m *MetricsPodsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *MetricsPodsRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *MetricsPodsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *MetricsPodsRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // Top the top property
 // returns a *MetricsPodsTopRequestBuilder when successful
-func (m *MetricsPodsRequestBuilder) Top()(*MetricsPodsTopRequestBuilder) {
-    return NewMetricsPodsTopRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *MetricsPodsRequestBuilder) Top() *MetricsPodsTopRequestBuilder {
+	return NewMetricsPodsTopRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *MetricsPodsRequestBuilder when successful
-func (m *MetricsPodsRequestBuilder) WithUrl(rawUrl string)(*MetricsPodsRequestBuilder) {
-    return NewMetricsPodsRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *MetricsPodsRequestBuilder) WithUrl(rawUrl string) *MetricsPodsRequestBuilder {
+	return NewMetricsPodsRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

@@ -2,44 +2,48 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type SlurmCheckpointStatus int
 
 const (
-    INITIALIZING_SLURMCHECKPOINTSTATUS SlurmCheckpointStatus = iota
-    UPDATED_INFO_SLURMCHECKPOINTSTATUS
-    POSSIBLY_UPLOADED_SLURMCHECKPOINTSTATUS
-    READY_SLURMCHECKPOINTSTATUS
-    DEPRECATED_SLURMCHECKPOINTSTATUS
+	INITIALIZING_SLURMCHECKPOINTSTATUS SlurmCheckpointStatus = iota
+	UPDATED_INFO_SLURMCHECKPOINTSTATUS
+	POSSIBLY_UPLOADED_SLURMCHECKPOINTSTATUS
+	READY_SLURMCHECKPOINTSTATUS
+	DEPRECATED_SLURMCHECKPOINTSTATUS
 )
 
 func (i SlurmCheckpointStatus) String() string {
-    return []string{"initializing", "updated_info", "possibly_uploaded", "ready", "deprecated"}[i]
+	return []string{"initializing", "updated_info", "possibly_uploaded", "ready", "deprecated"}[i]
 }
+
 func ParseSlurmCheckpointStatus(v string) (any, error) {
-    result := INITIALIZING_SLURMCHECKPOINTSTATUS
-    switch v {
-        case "initializing":
-            result = INITIALIZING_SLURMCHECKPOINTSTATUS
-        case "updated_info":
-            result = UPDATED_INFO_SLURMCHECKPOINTSTATUS
-        case "possibly_uploaded":
-            result = POSSIBLY_UPLOADED_SLURMCHECKPOINTSTATUS
-        case "ready":
-            result = READY_SLURMCHECKPOINTSTATUS
-        case "deprecated":
-            result = DEPRECATED_SLURMCHECKPOINTSTATUS
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := INITIALIZING_SLURMCHECKPOINTSTATUS
+	switch v {
+	case "initializing":
+		result = INITIALIZING_SLURMCHECKPOINTSTATUS
+	case "updated_info":
+		result = UPDATED_INFO_SLURMCHECKPOINTSTATUS
+	case "possibly_uploaded":
+		result = POSSIBLY_UPLOADED_SLURMCHECKPOINTSTATUS
+	case "ready":
+		result = READY_SLURMCHECKPOINTSTATUS
+	case "deprecated":
+		result = DEPRECATED_SLURMCHECKPOINTSTATUS
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeSlurmCheckpointStatus(values []SlurmCheckpointStatus) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i SlurmCheckpointStatus) isMultiValue() bool {
-    return false
+	return false
 }

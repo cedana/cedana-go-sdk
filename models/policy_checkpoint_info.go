@@ -4,283 +4,305 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type PolicyCheckpointInfo struct {
-    // The action_id property
-    action_id *string
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The checkpoint_id property
-    checkpoint_id *string
-    // The completed_at property
-    completed_at *string
-    // The duration_ms property
-    duration_ms *int64
-    // The namespace property
-    namespace *string
-    // The pod_name property
-    pod_name *string
-    // The size_bytes property
-    size_bytes *int64
-    // The status property
-    status *string
+	// The action_id property
+	action_id *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The checkpoint_id property
+	checkpoint_id *string
+	// The completed_at property
+	completed_at *string
+	// The duration_ms property
+	duration_ms *int64
+	// The namespace property
+	namespace *string
+	// The pod_name property
+	pod_name *string
+	// The size_bytes property
+	size_bytes *int64
+	// The status property
+	status *string
 }
+
 // NewPolicyCheckpointInfo instantiates a new PolicyCheckpointInfo and sets the default values.
-func NewPolicyCheckpointInfo()(*PolicyCheckpointInfo) {
-    m := &PolicyCheckpointInfo{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewPolicyCheckpointInfo() *PolicyCheckpointInfo {
+	m := &PolicyCheckpointInfo{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreatePolicyCheckpointInfoFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePolicyCheckpointInfoFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPolicyCheckpointInfo(), nil
+func CreatePolicyCheckpointInfoFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPolicyCheckpointInfo(), nil
 }
+
 // GetActionId gets the action_id property value. The action_id property
 // returns a *string when successful
-func (m *PolicyCheckpointInfo) GetActionId()(*string) {
-    return m.action_id
+func (m *PolicyCheckpointInfo) GetActionId() *string {
+	return m.action_id
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *PolicyCheckpointInfo) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *PolicyCheckpointInfo) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetCheckpointId gets the checkpoint_id property value. The checkpoint_id property
 // returns a *string when successful
-func (m *PolicyCheckpointInfo) GetCheckpointId()(*string) {
-    return m.checkpoint_id
+func (m *PolicyCheckpointInfo) GetCheckpointId() *string {
+	return m.checkpoint_id
 }
+
 // GetCompletedAt gets the completed_at property value. The completed_at property
 // returns a *string when successful
-func (m *PolicyCheckpointInfo) GetCompletedAt()(*string) {
-    return m.completed_at
+func (m *PolicyCheckpointInfo) GetCompletedAt() *string {
+	return m.completed_at
 }
+
 // GetDurationMs gets the duration_ms property value. The duration_ms property
 // returns a *int64 when successful
-func (m *PolicyCheckpointInfo) GetDurationMs()(*int64) {
-    return m.duration_ms
+func (m *PolicyCheckpointInfo) GetDurationMs() *int64 {
+	return m.duration_ms
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PolicyCheckpointInfo) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["action_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetActionId(val)
-        }
-        return nil
-    }
-    res["checkpoint_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCheckpointId(val)
-        }
-        return nil
-    }
-    res["completed_at"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCompletedAt(val)
-        }
-        return nil
-    }
-    res["duration_ms"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDurationMs(val)
-        }
-        return nil
-    }
-    res["namespace"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetNamespace(val)
-        }
-        return nil
-    }
-    res["pod_name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPodName(val)
-        }
-        return nil
-    }
-    res["size_bytes"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSizeBytes(val)
-        }
-        return nil
-    }
-    res["status"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStatus(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *PolicyCheckpointInfo) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["action_id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetActionId(val)
+		}
+		return nil
+	}
+	res["checkpoint_id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCheckpointId(val)
+		}
+		return nil
+	}
+	res["completed_at"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCompletedAt(val)
+		}
+		return nil
+	}
+	res["duration_ms"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDurationMs(val)
+		}
+		return nil
+	}
+	res["namespace"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNamespace(val)
+		}
+		return nil
+	}
+	res["pod_name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPodName(val)
+		}
+		return nil
+	}
+	res["size_bytes"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSizeBytes(val)
+		}
+		return nil
+	}
+	res["status"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStatus(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetNamespace gets the namespace property value. The namespace property
 // returns a *string when successful
-func (m *PolicyCheckpointInfo) GetNamespace()(*string) {
-    return m.namespace
+func (m *PolicyCheckpointInfo) GetNamespace() *string {
+	return m.namespace
 }
+
 // GetPodName gets the pod_name property value. The pod_name property
 // returns a *string when successful
-func (m *PolicyCheckpointInfo) GetPodName()(*string) {
-    return m.pod_name
+func (m *PolicyCheckpointInfo) GetPodName() *string {
+	return m.pod_name
 }
+
 // GetSizeBytes gets the size_bytes property value. The size_bytes property
 // returns a *int64 when successful
-func (m *PolicyCheckpointInfo) GetSizeBytes()(*int64) {
-    return m.size_bytes
+func (m *PolicyCheckpointInfo) GetSizeBytes() *int64 {
+	return m.size_bytes
 }
+
 // GetStatus gets the status property value. The status property
 // returns a *string when successful
-func (m *PolicyCheckpointInfo) GetStatus()(*string) {
-    return m.status
+func (m *PolicyCheckpointInfo) GetStatus() *string {
+	return m.status
 }
+
 // Serialize serializes information the current object
-func (m *PolicyCheckpointInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("action_id", m.GetActionId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("checkpoint_id", m.GetCheckpointId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("completed_at", m.GetCompletedAt())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("duration_ms", m.GetDurationMs())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("namespace", m.GetNamespace())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("pod_name", m.GetPodName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("size_bytes", m.GetSizeBytes())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("status", m.GetStatus())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PolicyCheckpointInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("action_id", m.GetActionId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("checkpoint_id", m.GetCheckpointId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("completed_at", m.GetCompletedAt())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("duration_ms", m.GetDurationMs())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("namespace", m.GetNamespace())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("pod_name", m.GetPodName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("size_bytes", m.GetSizeBytes())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("status", m.GetStatus())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetActionId sets the action_id property value. The action_id property
-func (m *PolicyCheckpointInfo) SetActionId(value *string)() {
-    m.action_id = value
+func (m *PolicyCheckpointInfo) SetActionId(value *string) {
+	m.action_id = value
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PolicyCheckpointInfo) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *PolicyCheckpointInfo) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetCheckpointId sets the checkpoint_id property value. The checkpoint_id property
-func (m *PolicyCheckpointInfo) SetCheckpointId(value *string)() {
-    m.checkpoint_id = value
+func (m *PolicyCheckpointInfo) SetCheckpointId(value *string) {
+	m.checkpoint_id = value
 }
+
 // SetCompletedAt sets the completed_at property value. The completed_at property
-func (m *PolicyCheckpointInfo) SetCompletedAt(value *string)() {
-    m.completed_at = value
+func (m *PolicyCheckpointInfo) SetCompletedAt(value *string) {
+	m.completed_at = value
 }
+
 // SetDurationMs sets the duration_ms property value. The duration_ms property
-func (m *PolicyCheckpointInfo) SetDurationMs(value *int64)() {
-    m.duration_ms = value
+func (m *PolicyCheckpointInfo) SetDurationMs(value *int64) {
+	m.duration_ms = value
 }
+
 // SetNamespace sets the namespace property value. The namespace property
-func (m *PolicyCheckpointInfo) SetNamespace(value *string)() {
-    m.namespace = value
+func (m *PolicyCheckpointInfo) SetNamespace(value *string) {
+	m.namespace = value
 }
+
 // SetPodName sets the pod_name property value. The pod_name property
-func (m *PolicyCheckpointInfo) SetPodName(value *string)() {
-    m.pod_name = value
+func (m *PolicyCheckpointInfo) SetPodName(value *string) {
+	m.pod_name = value
 }
+
 // SetSizeBytes sets the size_bytes property value. The size_bytes property
-func (m *PolicyCheckpointInfo) SetSizeBytes(value *int64)() {
-    m.size_bytes = value
+func (m *PolicyCheckpointInfo) SetSizeBytes(value *int64) {
+	m.size_bytes = value
 }
+
 // SetStatus sets the status property value. The status property
-func (m *PolicyCheckpointInfo) SetStatus(value *string)() {
-    m.status = value
+func (m *PolicyCheckpointInfo) SetStatus(value *string) {
+	m.status = value
 }
+
 type PolicyCheckpointInfoable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetActionId()(*string)
-    GetCheckpointId()(*string)
-    GetCompletedAt()(*string)
-    GetDurationMs()(*int64)
-    GetNamespace()(*string)
-    GetPodName()(*string)
-    GetSizeBytes()(*int64)
-    GetStatus()(*string)
-    SetActionId(value *string)()
-    SetCheckpointId(value *string)()
-    SetCompletedAt(value *string)()
-    SetDurationMs(value *int64)()
-    SetNamespace(value *string)()
-    SetPodName(value *string)()
-    SetSizeBytes(value *int64)()
-    SetStatus(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetActionId() *string
+	GetCheckpointId() *string
+	GetCompletedAt() *string
+	GetDurationMs() *int64
+	GetNamespace() *string
+	GetPodName() *string
+	GetSizeBytes() *int64
+	GetStatus() *string
+	SetActionId(value *string)
+	SetCheckpointId(value *string)
+	SetCompletedAt(value *string)
+	SetDurationMs(value *int64)
+	SetNamespace(value *string)
+	SetPodName(value *string)
+	SetSizeBytes(value *int64)
+	SetStatus(value *string)
 }

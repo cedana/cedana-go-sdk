@@ -4,67 +4,73 @@
 package v1
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
+	"context"
+	i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // InferenceUsageSeriesRequestBuilder builds and executes requests for operations under \v1\inference\usage\series
 type InferenceUsageSeriesRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // InferenceUsageSeriesRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type InferenceUsageSeriesRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+
 // NewInferenceUsageSeriesRequestBuilderInternal instantiates a new InferenceUsageSeriesRequestBuilder and sets the default values.
-func NewInferenceUsageSeriesRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*InferenceUsageSeriesRequestBuilder) {
-    m := &InferenceUsageSeriesRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/inference/usage/series", pathParameters),
-    }
-    return m
+func NewInferenceUsageSeriesRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *InferenceUsageSeriesRequestBuilder {
+	m := &InferenceUsageSeriesRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/inference/usage/series", pathParameters),
+	}
+	return m
 }
+
 // NewInferenceUsageSeriesRequestBuilder instantiates a new InferenceUsageSeriesRequestBuilder and sets the default values.
-func NewInferenceUsageSeriesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*InferenceUsageSeriesRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewInferenceUsageSeriesRequestBuilderInternal(urlParams, requestAdapter)
+func NewInferenceUsageSeriesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *InferenceUsageSeriesRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewInferenceUsageSeriesRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get bucketed usage time series
 // returns a []UsageBucketable when successful
-func (m *InferenceUsageSeriesRequestBuilder) Get(ctx context.Context, requestConfiguration *InferenceUsageSeriesRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.UsageBucketable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateUsageBucketFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    val := make([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.UsageBucketable, len(res))
-    for i, v := range res {
-        if v != nil {
-            val[i] = v.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.UsageBucketable)
-        }
-    }
-    return val, nil
+func (m *InferenceUsageSeriesRequestBuilder) Get(ctx context.Context, requestConfiguration *InferenceUsageSeriesRequestBuilderGetRequestConfiguration) ([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.UsageBucketable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateUsageBucketFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	val := make([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.UsageBucketable, len(res))
+	for i, v := range res {
+		if v != nil {
+			val[i] = v.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.UsageBucketable)
+		}
+	}
+	return val, nil
 }
+
 // ToGetRequestInformation bucketed usage time series
 // returns a *RequestInformation when successful
-func (m *InferenceUsageSeriesRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *InferenceUsageSeriesRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *InferenceUsageSeriesRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *InferenceUsageSeriesRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *InferenceUsageSeriesRequestBuilder when successful
-func (m *InferenceUsageSeriesRequestBuilder) WithUrl(rawUrl string)(*InferenceUsageSeriesRequestBuilder) {
-    return NewInferenceUsageSeriesRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *InferenceUsageSeriesRequestBuilder) WithUrl(rawUrl string) *InferenceUsageSeriesRequestBuilder {
+	return NewInferenceUsageSeriesRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

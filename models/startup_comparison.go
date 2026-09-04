@@ -4,344 +4,182 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // StartupComparison cold-start versus Cedana-restore startup latency for a deployment.
 type StartupComparison struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The cold property
-    cold StartupComparison_StartupComparison_coldable
-    // Milliseconds saved by restore at p50.
-    p50_saved_ms *int64
-    // Cold p50 divided by restore p50. Values above 1 mean restore is faster.
-    p50_speedup *float64
-    // The restore property
-    restore StartupComparison_StartupComparison_restoreable
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The cold property
+	cold StartupLatencySummaryable
+	// Milliseconds saved by restore at p50.
+	p50_saved_ms *int64
+	// Cold p50 divided by restore p50. Values above 1 mean restore is faster.
+	p50_speedup *float64
+	// The restore property
+	restore StartupLatencySummaryable
 }
-// StartupComparison_StartupComparison_cold composed type wrapper for classes StartupComparison_coldMember1able, StartupLatencySummaryable
-type StartupComparison_StartupComparison_cold struct {
-    // Composed type representation for type StartupComparison_coldMember1able
-    startupComparison_coldMember1 StartupComparison_coldMember1able
-    // Composed type representation for type StartupLatencySummaryable
-    startupLatencySummary StartupLatencySummaryable
-}
-// NewStartupComparison_StartupComparison_cold instantiates a new StartupComparison_StartupComparison_cold and sets the default values.
-func NewStartupComparison_StartupComparison_cold()(*StartupComparison_StartupComparison_cold) {
-    m := &StartupComparison_StartupComparison_cold{
-    }
-    return m
-}
-// CreateStartupComparison_StartupComparison_coldFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateStartupComparison_StartupComparison_coldFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewStartupComparison_StartupComparison_cold()
-    if parseNode != nil {
-        mappingValueNode, err := parseNode.GetChildNode("")
-        if err != nil {
-            return nil, err
-        }
-        if mappingValueNode != nil {
-            mappingValue, err := mappingValueNode.GetStringValue()
-            if err != nil {
-                return nil, err
-            }
-            if mappingValue != nil {
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *StartupComparison_StartupComparison_cold) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    if m.GetStartupComparisonColdMember1() != nil {
-        return m.GetStartupComparisonColdMember1().GetFieldDeserializers()
-    } else if m.GetStartupLatencySummary() != nil {
-        return m.GetStartupLatencySummary().GetFieldDeserializers()
-    }
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *StartupComparison_StartupComparison_cold) GetIsComposedType()(bool) {
-    return true
-}
-// GetStartupComparisonColdMember1 gets the StartupComparison_coldMember1 property value. Composed type representation for type StartupComparison_coldMember1able
-// returns a StartupComparison_coldMember1able when successful
-func (m *StartupComparison_StartupComparison_cold) GetStartupComparisonColdMember1()(StartupComparison_coldMember1able) {
-    return m.startupComparison_coldMember1
-}
-// GetStartupLatencySummary gets the StartupLatencySummary property value. Composed type representation for type StartupLatencySummaryable
-// returns a StartupLatencySummaryable when successful
-func (m *StartupComparison_StartupComparison_cold) GetStartupLatencySummary()(StartupLatencySummaryable) {
-    return m.startupLatencySummary
-}
-// Serialize serializes information the current object
-func (m *StartupComparison_StartupComparison_cold) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetStartupComparisonColdMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetStartupComparisonColdMember1())
-        if err != nil {
-            return err
-        }
-    } else if m.GetStartupLatencySummary() != nil {
-        err := writer.WriteObjectValue("", m.GetStartupLatencySummary())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetStartupComparisonColdMember1 sets the StartupComparison_coldMember1 property value. Composed type representation for type StartupComparison_coldMember1able
-func (m *StartupComparison_StartupComparison_cold) SetStartupComparisonColdMember1(value StartupComparison_coldMember1able)() {
-    m.startupComparison_coldMember1 = value
-}
-// SetStartupLatencySummary sets the StartupLatencySummary property value. Composed type representation for type StartupLatencySummaryable
-func (m *StartupComparison_StartupComparison_cold) SetStartupLatencySummary(value StartupLatencySummaryable)() {
-    m.startupLatencySummary = value
-}
-// StartupComparison_StartupComparison_restore composed type wrapper for classes StartupComparison_restoreMember1able, StartupLatencySummaryable
-type StartupComparison_StartupComparison_restore struct {
-    // Composed type representation for type StartupComparison_restoreMember1able
-    startupComparison_restoreMember1 StartupComparison_restoreMember1able
-    // Composed type representation for type StartupLatencySummaryable
-    startupLatencySummary StartupLatencySummaryable
-}
-// NewStartupComparison_StartupComparison_restore instantiates a new StartupComparison_StartupComparison_restore and sets the default values.
-func NewStartupComparison_StartupComparison_restore()(*StartupComparison_StartupComparison_restore) {
-    m := &StartupComparison_StartupComparison_restore{
-    }
-    return m
-}
-// CreateStartupComparison_StartupComparison_restoreFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateStartupComparison_StartupComparison_restoreFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewStartupComparison_StartupComparison_restore()
-    if parseNode != nil {
-        mappingValueNode, err := parseNode.GetChildNode("")
-        if err != nil {
-            return nil, err
-        }
-        if mappingValueNode != nil {
-            mappingValue, err := mappingValueNode.GetStringValue()
-            if err != nil {
-                return nil, err
-            }
-            if mappingValue != nil {
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *StartupComparison_StartupComparison_restore) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    if m.GetStartupComparisonRestoreMember1() != nil {
-        return m.GetStartupComparisonRestoreMember1().GetFieldDeserializers()
-    } else if m.GetStartupLatencySummary() != nil {
-        return m.GetStartupLatencySummary().GetFieldDeserializers()
-    }
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *StartupComparison_StartupComparison_restore) GetIsComposedType()(bool) {
-    return true
-}
-// GetStartupComparisonRestoreMember1 gets the StartupComparison_restoreMember1 property value. Composed type representation for type StartupComparison_restoreMember1able
-// returns a StartupComparison_restoreMember1able when successful
-func (m *StartupComparison_StartupComparison_restore) GetStartupComparisonRestoreMember1()(StartupComparison_restoreMember1able) {
-    return m.startupComparison_restoreMember1
-}
-// GetStartupLatencySummary gets the StartupLatencySummary property value. Composed type representation for type StartupLatencySummaryable
-// returns a StartupLatencySummaryable when successful
-func (m *StartupComparison_StartupComparison_restore) GetStartupLatencySummary()(StartupLatencySummaryable) {
-    return m.startupLatencySummary
-}
-// Serialize serializes information the current object
-func (m *StartupComparison_StartupComparison_restore) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetStartupComparisonRestoreMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetStartupComparisonRestoreMember1())
-        if err != nil {
-            return err
-        }
-    } else if m.GetStartupLatencySummary() != nil {
-        err := writer.WriteObjectValue("", m.GetStartupLatencySummary())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetStartupComparisonRestoreMember1 sets the StartupComparison_restoreMember1 property value. Composed type representation for type StartupComparison_restoreMember1able
-func (m *StartupComparison_StartupComparison_restore) SetStartupComparisonRestoreMember1(value StartupComparison_restoreMember1able)() {
-    m.startupComparison_restoreMember1 = value
-}
-// SetStartupLatencySummary sets the StartupLatencySummary property value. Composed type representation for type StartupLatencySummaryable
-func (m *StartupComparison_StartupComparison_restore) SetStartupLatencySummary(value StartupLatencySummaryable)() {
-    m.startupLatencySummary = value
-}
-type StartupComparison_StartupComparison_coldable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetStartupComparisonColdMember1()(StartupComparison_coldMember1able)
-    GetStartupLatencySummary()(StartupLatencySummaryable)
-    SetStartupComparisonColdMember1(value StartupComparison_coldMember1able)()
-    SetStartupLatencySummary(value StartupLatencySummaryable)()
-}
-type StartupComparison_StartupComparison_restoreable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetStartupComparisonRestoreMember1()(StartupComparison_restoreMember1able)
-    GetStartupLatencySummary()(StartupLatencySummaryable)
-    SetStartupComparisonRestoreMember1(value StartupComparison_restoreMember1able)()
-    SetStartupLatencySummary(value StartupLatencySummaryable)()
-}
+
 // NewStartupComparison instantiates a new StartupComparison and sets the default values.
-func NewStartupComparison()(*StartupComparison) {
-    m := &StartupComparison{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewStartupComparison() *StartupComparison {
+	m := &StartupComparison{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateStartupComparisonFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateStartupComparisonFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewStartupComparison(), nil
+func CreateStartupComparisonFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewStartupComparison(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *StartupComparison) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *StartupComparison) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetCold gets the cold property value. The cold property
-// returns a StartupComparison_StartupComparison_coldable when successful
-func (m *StartupComparison) GetCold()(StartupComparison_StartupComparison_coldable) {
-    return m.cold
+// returns a StartupLatencySummaryable when successful
+func (m *StartupComparison) GetCold() StartupLatencySummaryable {
+	return m.cold
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *StartupComparison) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["cold"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateStartupComparison_StartupComparison_coldFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCold(val.(StartupComparison_StartupComparison_coldable))
-        }
-        return nil
-    }
-    res["p50_saved_ms"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetP50SavedMs(val)
-        }
-        return nil
-    }
-    res["p50_speedup"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetP50Speedup(val)
-        }
-        return nil
-    }
-    res["restore"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateStartupComparison_StartupComparison_restoreFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRestore(val.(StartupComparison_StartupComparison_restoreable))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *StartupComparison) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["cold"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateStartupLatencySummaryFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCold(val.(StartupLatencySummaryable))
+		}
+		return nil
+	}
+	res["p50_saved_ms"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetP50SavedMs(val)
+		}
+		return nil
+	}
+	res["p50_speedup"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetP50Speedup(val)
+		}
+		return nil
+	}
+	res["restore"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateStartupLatencySummaryFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRestore(val.(StartupLatencySummaryable))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetP50SavedMs gets the p50_saved_ms property value. Milliseconds saved by restore at p50.
 // returns a *int64 when successful
-func (m *StartupComparison) GetP50SavedMs()(*int64) {
-    return m.p50_saved_ms
+func (m *StartupComparison) GetP50SavedMs() *int64 {
+	return m.p50_saved_ms
 }
+
 // GetP50Speedup gets the p50_speedup property value. Cold p50 divided by restore p50. Values above 1 mean restore is faster.
 // returns a *float64 when successful
-func (m *StartupComparison) GetP50Speedup()(*float64) {
-    return m.p50_speedup
+func (m *StartupComparison) GetP50Speedup() *float64 {
+	return m.p50_speedup
 }
+
 // GetRestore gets the restore property value. The restore property
-// returns a StartupComparison_StartupComparison_restoreable when successful
-func (m *StartupComparison) GetRestore()(StartupComparison_StartupComparison_restoreable) {
-    return m.restore
+// returns a StartupLatencySummaryable when successful
+func (m *StartupComparison) GetRestore() StartupLatencySummaryable {
+	return m.restore
 }
+
 // Serialize serializes information the current object
-func (m *StartupComparison) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("cold", m.GetCold())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("p50_saved_ms", m.GetP50SavedMs())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("p50_speedup", m.GetP50Speedup())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("restore", m.GetRestore())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *StartupComparison) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteObjectValue("cold", m.GetCold())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("p50_saved_ms", m.GetP50SavedMs())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("p50_speedup", m.GetP50Speedup())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("restore", m.GetRestore())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *StartupComparison) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *StartupComparison) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetCold sets the cold property value. The cold property
-func (m *StartupComparison) SetCold(value StartupComparison_StartupComparison_coldable)() {
-    m.cold = value
+func (m *StartupComparison) SetCold(value StartupLatencySummaryable) {
+	m.cold = value
 }
+
 // SetP50SavedMs sets the p50_saved_ms property value. Milliseconds saved by restore at p50.
-func (m *StartupComparison) SetP50SavedMs(value *int64)() {
-    m.p50_saved_ms = value
+func (m *StartupComparison) SetP50SavedMs(value *int64) {
+	m.p50_saved_ms = value
 }
+
 // SetP50Speedup sets the p50_speedup property value. Cold p50 divided by restore p50. Values above 1 mean restore is faster.
-func (m *StartupComparison) SetP50Speedup(value *float64)() {
-    m.p50_speedup = value
+func (m *StartupComparison) SetP50Speedup(value *float64) {
+	m.p50_speedup = value
 }
+
 // SetRestore sets the restore property value. The restore property
-func (m *StartupComparison) SetRestore(value StartupComparison_StartupComparison_restoreable)() {
-    m.restore = value
+func (m *StartupComparison) SetRestore(value StartupLatencySummaryable) {
+	m.restore = value
 }
+
 type StartupComparisonable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetCold()(StartupComparison_StartupComparison_coldable)
-    GetP50SavedMs()(*int64)
-    GetP50Speedup()(*float64)
-    GetRestore()(StartupComparison_StartupComparison_restoreable)
-    SetCold(value StartupComparison_StartupComparison_coldable)()
-    SetP50SavedMs(value *int64)()
-    SetP50Speedup(value *float64)()
-    SetRestore(value StartupComparison_StartupComparison_restoreable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetCold() StartupLatencySummaryable
+	GetP50SavedMs() *int64
+	GetP50Speedup() *float64
+	GetRestore() StartupLatencySummaryable
+	SetCold(value StartupLatencySummaryable)
+	SetP50SavedMs(value *int64)
+	SetP50Speedup(value *float64)
+	SetRestore(value StartupLatencySummaryable)
 }

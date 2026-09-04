@@ -4,342 +4,368 @@
 package models
 
 import (
-    i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type SlurmPartition struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The default_time property
-    default_time *int64
-    // The id property
-    id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
-    // The is_default property
-    is_default *bool
-    // The max_time property
-    max_time *int64
-    // The name property
-    name *string
-    // The nodes property
-    nodes *string
-    // The priority_tier property
-    priority_tier *int32
-    // The state property
-    state *string
-    // The total_cpus property
-    total_cpus *int32
-    // The total_nodes property
-    total_nodes *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The default_time property
+	default_time *int64
+	// The id property
+	id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+	// The is_default property
+	is_default *bool
+	// The max_time property
+	max_time *int64
+	// The name property
+	name *string
+	// The nodes property
+	nodes *string
+	// The priority_tier property
+	priority_tier *int32
+	// The state property
+	state *string
+	// The total_cpus property
+	total_cpus *int32
+	// The total_nodes property
+	total_nodes *int32
 }
+
 // NewSlurmPartition instantiates a new SlurmPartition and sets the default values.
-func NewSlurmPartition()(*SlurmPartition) {
-    m := &SlurmPartition{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewSlurmPartition() *SlurmPartition {
+	m := &SlurmPartition{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateSlurmPartitionFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateSlurmPartitionFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewSlurmPartition(), nil
+func CreateSlurmPartitionFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewSlurmPartition(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *SlurmPartition) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *SlurmPartition) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetDefaultTime gets the default_time property value. The default_time property
 // returns a *int64 when successful
-func (m *SlurmPartition) GetDefaultTime()(*int64) {
-    return m.default_time
+func (m *SlurmPartition) GetDefaultTime() *int64 {
+	return m.default_time
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *SlurmPartition) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["default_time"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDefaultTime(val)
-        }
-        return nil
-    }
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetUUIDValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
-        }
-        return nil
-    }
-    res["is_default"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetIsDefault(val)
-        }
-        return nil
-    }
-    res["max_time"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMaxTime(val)
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    res["nodes"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetNodes(val)
-        }
-        return nil
-    }
-    res["priority_tier"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPriorityTier(val)
-        }
-        return nil
-    }
-    res["state"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetState(val)
-        }
-        return nil
-    }
-    res["total_cpus"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTotalCpus(val)
-        }
-        return nil
-    }
-    res["total_nodes"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTotalNodes(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *SlurmPartition) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["default_time"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDefaultTime(val)
+		}
+		return nil
+	}
+	res["id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetUUIDValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetId(val)
+		}
+		return nil
+	}
+	res["is_default"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetIsDefault(val)
+		}
+		return nil
+	}
+	res["max_time"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMaxTime(val)
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	res["nodes"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNodes(val)
+		}
+		return nil
+	}
+	res["priority_tier"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPriorityTier(val)
+		}
+		return nil
+	}
+	res["state"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetState(val)
+		}
+		return nil
+	}
+	res["total_cpus"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTotalCpus(val)
+		}
+		return nil
+	}
+	res["total_nodes"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTotalNodes(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetId gets the id property value. The id property
 // returns a *UUID when successful
-func (m *SlurmPartition) GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
-    return m.id
+func (m *SlurmPartition) GetId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID {
+	return m.id
 }
+
 // GetIsDefault gets the is_default property value. The is_default property
 // returns a *bool when successful
-func (m *SlurmPartition) GetIsDefault()(*bool) {
-    return m.is_default
+func (m *SlurmPartition) GetIsDefault() *bool {
+	return m.is_default
 }
+
 // GetMaxTime gets the max_time property value. The max_time property
 // returns a *int64 when successful
-func (m *SlurmPartition) GetMaxTime()(*int64) {
-    return m.max_time
+func (m *SlurmPartition) GetMaxTime() *int64 {
+	return m.max_time
 }
+
 // GetName gets the name property value. The name property
 // returns a *string when successful
-func (m *SlurmPartition) GetName()(*string) {
-    return m.name
+func (m *SlurmPartition) GetName() *string {
+	return m.name
 }
+
 // GetNodes gets the nodes property value. The nodes property
 // returns a *string when successful
-func (m *SlurmPartition) GetNodes()(*string) {
-    return m.nodes
+func (m *SlurmPartition) GetNodes() *string {
+	return m.nodes
 }
+
 // GetPriorityTier gets the priority_tier property value. The priority_tier property
 // returns a *int32 when successful
-func (m *SlurmPartition) GetPriorityTier()(*int32) {
-    return m.priority_tier
+func (m *SlurmPartition) GetPriorityTier() *int32 {
+	return m.priority_tier
 }
+
 // GetState gets the state property value. The state property
 // returns a *string when successful
-func (m *SlurmPartition) GetState()(*string) {
-    return m.state
+func (m *SlurmPartition) GetState() *string {
+	return m.state
 }
+
 // GetTotalCpus gets the total_cpus property value. The total_cpus property
 // returns a *int32 when successful
-func (m *SlurmPartition) GetTotalCpus()(*int32) {
-    return m.total_cpus
+func (m *SlurmPartition) GetTotalCpus() *int32 {
+	return m.total_cpus
 }
+
 // GetTotalNodes gets the total_nodes property value. The total_nodes property
 // returns a *int32 when successful
-func (m *SlurmPartition) GetTotalNodes()(*int32) {
-    return m.total_nodes
+func (m *SlurmPartition) GetTotalNodes() *int32 {
+	return m.total_nodes
 }
+
 // Serialize serializes information the current object
-func (m *SlurmPartition) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt64Value("default_time", m.GetDefaultTime())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteUUIDValue("id", m.GetId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("is_default", m.GetIsDefault())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("max_time", m.GetMaxTime())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("nodes", m.GetNodes())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("priority_tier", m.GetPriorityTier())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("state", m.GetState())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("total_cpus", m.GetTotalCpus())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("total_nodes", m.GetTotalNodes())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *SlurmPartition) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt64Value("default_time", m.GetDefaultTime())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteUUIDValue("id", m.GetId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("is_default", m.GetIsDefault())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("max_time", m.GetMaxTime())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("nodes", m.GetNodes())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("priority_tier", m.GetPriorityTier())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("state", m.GetState())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("total_cpus", m.GetTotalCpus())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("total_nodes", m.GetTotalNodes())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SlurmPartition) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *SlurmPartition) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetDefaultTime sets the default_time property value. The default_time property
-func (m *SlurmPartition) SetDefaultTime(value *int64)() {
-    m.default_time = value
+func (m *SlurmPartition) SetDefaultTime(value *int64) {
+	m.default_time = value
 }
+
 // SetId sets the id property value. The id property
-func (m *SlurmPartition) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
-    m.id = value
+func (m *SlurmPartition) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
+	m.id = value
 }
+
 // SetIsDefault sets the is_default property value. The is_default property
-func (m *SlurmPartition) SetIsDefault(value *bool)() {
-    m.is_default = value
+func (m *SlurmPartition) SetIsDefault(value *bool) {
+	m.is_default = value
 }
+
 // SetMaxTime sets the max_time property value. The max_time property
-func (m *SlurmPartition) SetMaxTime(value *int64)() {
-    m.max_time = value
+func (m *SlurmPartition) SetMaxTime(value *int64) {
+	m.max_time = value
 }
+
 // SetName sets the name property value. The name property
-func (m *SlurmPartition) SetName(value *string)() {
-    m.name = value
+func (m *SlurmPartition) SetName(value *string) {
+	m.name = value
 }
+
 // SetNodes sets the nodes property value. The nodes property
-func (m *SlurmPartition) SetNodes(value *string)() {
-    m.nodes = value
+func (m *SlurmPartition) SetNodes(value *string) {
+	m.nodes = value
 }
+
 // SetPriorityTier sets the priority_tier property value. The priority_tier property
-func (m *SlurmPartition) SetPriorityTier(value *int32)() {
-    m.priority_tier = value
+func (m *SlurmPartition) SetPriorityTier(value *int32) {
+	m.priority_tier = value
 }
+
 // SetState sets the state property value. The state property
-func (m *SlurmPartition) SetState(value *string)() {
-    m.state = value
+func (m *SlurmPartition) SetState(value *string) {
+	m.state = value
 }
+
 // SetTotalCpus sets the total_cpus property value. The total_cpus property
-func (m *SlurmPartition) SetTotalCpus(value *int32)() {
-    m.total_cpus = value
+func (m *SlurmPartition) SetTotalCpus(value *int32) {
+	m.total_cpus = value
 }
+
 // SetTotalNodes sets the total_nodes property value. The total_nodes property
-func (m *SlurmPartition) SetTotalNodes(value *int32)() {
-    m.total_nodes = value
+func (m *SlurmPartition) SetTotalNodes(value *int32) {
+	m.total_nodes = value
 }
+
 type SlurmPartitionable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetDefaultTime()(*int64)
-    GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
-    GetIsDefault()(*bool)
-    GetMaxTime()(*int64)
-    GetName()(*string)
-    GetNodes()(*string)
-    GetPriorityTier()(*int32)
-    GetState()(*string)
-    GetTotalCpus()(*int32)
-    GetTotalNodes()(*int32)
-    SetDefaultTime(value *int64)()
-    SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
-    SetIsDefault(value *bool)()
-    SetMaxTime(value *int64)()
-    SetName(value *string)()
-    SetNodes(value *string)()
-    SetPriorityTier(value *int32)()
-    SetState(value *string)()
-    SetTotalCpus(value *int32)()
-    SetTotalNodes(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetDefaultTime() *int64
+	GetId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+	GetIsDefault() *bool
+	GetMaxTime() *int64
+	GetName() *string
+	GetNodes() *string
+	GetPriorityTier() *int32
+	GetState() *string
+	GetTotalCpus() *int32
+	GetTotalNodes() *int32
+	SetDefaultTime(value *int64)
+	SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+	SetIsDefault(value *bool)
+	SetMaxTime(value *int64)
+	SetName(value *string)
+	SetNodes(value *string)
+	SetPriorityTier(value *int32)
+	SetState(value *string)
+	SetTotalCpus(value *int32)
+	SetTotalNodes(value *int32)
 }

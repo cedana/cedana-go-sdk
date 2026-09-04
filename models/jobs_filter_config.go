@@ -4,138 +4,150 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type JobsFilterConfig struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The cluster_id property
-    cluster_id *string
-    // The namespace property
-    namespace *string
-    // The priority property
-    priority *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The cluster_id property
+	cluster_id *string
+	// The namespace property
+	namespace *string
+	// The priority property
+	priority *int32
 }
+
 // NewJobsFilterConfig instantiates a new JobsFilterConfig and sets the default values.
-func NewJobsFilterConfig()(*JobsFilterConfig) {
-    m := &JobsFilterConfig{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewJobsFilterConfig() *JobsFilterConfig {
+	m := &JobsFilterConfig{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateJobsFilterConfigFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateJobsFilterConfigFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewJobsFilterConfig(), nil
+func CreateJobsFilterConfigFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewJobsFilterConfig(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *JobsFilterConfig) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *JobsFilterConfig) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetClusterId gets the cluster_id property value. The cluster_id property
 // returns a *string when successful
-func (m *JobsFilterConfig) GetClusterId()(*string) {
-    return m.cluster_id
+func (m *JobsFilterConfig) GetClusterId() *string {
+	return m.cluster_id
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *JobsFilterConfig) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["cluster_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetClusterId(val)
-        }
-        return nil
-    }
-    res["namespace"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetNamespace(val)
-        }
-        return nil
-    }
-    res["priority"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPriority(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *JobsFilterConfig) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["cluster_id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetClusterId(val)
+		}
+		return nil
+	}
+	res["namespace"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNamespace(val)
+		}
+		return nil
+	}
+	res["priority"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPriority(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetNamespace gets the namespace property value. The namespace property
 // returns a *string when successful
-func (m *JobsFilterConfig) GetNamespace()(*string) {
-    return m.namespace
+func (m *JobsFilterConfig) GetNamespace() *string {
+	return m.namespace
 }
+
 // GetPriority gets the priority property value. The priority property
 // returns a *int32 when successful
-func (m *JobsFilterConfig) GetPriority()(*int32) {
-    return m.priority
+func (m *JobsFilterConfig) GetPriority() *int32 {
+	return m.priority
 }
+
 // Serialize serializes information the current object
-func (m *JobsFilterConfig) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("cluster_id", m.GetClusterId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("namespace", m.GetNamespace())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("priority", m.GetPriority())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *JobsFilterConfig) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("cluster_id", m.GetClusterId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("namespace", m.GetNamespace())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("priority", m.GetPriority())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *JobsFilterConfig) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *JobsFilterConfig) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetClusterId sets the cluster_id property value. The cluster_id property
-func (m *JobsFilterConfig) SetClusterId(value *string)() {
-    m.cluster_id = value
+func (m *JobsFilterConfig) SetClusterId(value *string) {
+	m.cluster_id = value
 }
+
 // SetNamespace sets the namespace property value. The namespace property
-func (m *JobsFilterConfig) SetNamespace(value *string)() {
-    m.namespace = value
+func (m *JobsFilterConfig) SetNamespace(value *string) {
+	m.namespace = value
 }
+
 // SetPriority sets the priority property value. The priority property
-func (m *JobsFilterConfig) SetPriority(value *int32)() {
-    m.priority = value
+func (m *JobsFilterConfig) SetPriority(value *int32) {
+	m.priority = value
 }
+
 type JobsFilterConfigable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetClusterId()(*string)
-    GetNamespace()(*string)
-    GetPriority()(*int32)
-    SetClusterId(value *string)()
-    SetNamespace(value *string)()
-    SetPriority(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetClusterId() *string
+	GetNamespace() *string
+	GetPriority() *int32
+	SetClusterId(value *string)
+	SetNamespace(value *string)
+	SetPriority(value *int32)
 }

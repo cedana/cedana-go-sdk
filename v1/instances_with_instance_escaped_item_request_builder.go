@@ -4,68 +4,75 @@
 package v1
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	"context"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // InstancesWithInstance_ItemRequestBuilder builds and executes requests for operations under \v1\instances\{instance_id}
 type InstancesWithInstance_ItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // InstancesWithInstance_ItemRequestBuilderDeleteRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type InstancesWithInstance_ItemRequestBuilderDeleteRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+
 // NewInstancesWithInstance_ItemRequestBuilderInternal instantiates a new InstancesWithInstance_ItemRequestBuilder and sets the default values.
-func NewInstancesWithInstance_ItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*InstancesWithInstance_ItemRequestBuilder) {
-    m := &InstancesWithInstance_ItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/instances/{instance_id}", pathParameters),
-    }
-    return m
+func NewInstancesWithInstance_ItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *InstancesWithInstance_ItemRequestBuilder {
+	m := &InstancesWithInstance_ItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/instances/{instance_id}", pathParameters),
+	}
+	return m
 }
+
 // NewInstancesWithInstance_ItemRequestBuilder instantiates a new InstancesWithInstance_ItemRequestBuilder and sets the default values.
-func NewInstancesWithInstance_ItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*InstancesWithInstance_ItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewInstancesWithInstance_ItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewInstancesWithInstance_ItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *InstancesWithInstance_ItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewInstancesWithInstance_ItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Delete delete instance
 // returns a *string when successful
-func (m *InstancesWithInstance_ItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *InstancesWithInstance_ItemRequestBuilderDeleteRequestConfiguration)(*string, error) {
-    requestInfo, err := m.ToDeleteRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(*string), nil
+func (m *InstancesWithInstance_ItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *InstancesWithInstance_ItemRequestBuilderDeleteRequestConfiguration) (*string, error) {
+	requestInfo, err := m.ToDeleteRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(*string), nil
 }
+
 // Status the status property
 // returns a *InstancesItemStatusRequestBuilder when successful
-func (m *InstancesWithInstance_ItemRequestBuilder) Status()(*InstancesItemStatusRequestBuilder) {
-    return NewInstancesItemStatusRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *InstancesWithInstance_ItemRequestBuilder) Status() *InstancesItemStatusRequestBuilder {
+	return NewInstancesItemStatusRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // ToDeleteRequestInformation delete instance
 // returns a *RequestInformation when successful
-func (m *InstancesWithInstance_ItemRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *InstancesWithInstance_ItemRequestBuilderDeleteRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DELETE, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "text/plain;q=0.9")
-    return requestInfo, nil
+func (m *InstancesWithInstance_ItemRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *InstancesWithInstance_ItemRequestBuilderDeleteRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DELETE, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "text/plain;q=0.9")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *InstancesWithInstance_ItemRequestBuilder when successful
-func (m *InstancesWithInstance_ItemRequestBuilder) WithUrl(rawUrl string)(*InstancesWithInstance_ItemRequestBuilder) {
-    return NewInstancesWithInstance_ItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *InstancesWithInstance_ItemRequestBuilder) WithUrl(rawUrl string) *InstancesWithInstance_ItemRequestBuilder {
+	return NewInstancesWithInstance_ItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

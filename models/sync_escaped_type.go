@@ -2,32 +2,36 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type Sync_type int
 
 const (
-    NONE_SYNC_TYPE Sync_type = iota
+	NONE_SYNC_TYPE Sync_type = iota
 )
 
 func (i Sync_type) String() string {
-    return []string{"None"}[i]
+	return []string{"None"}[i]
 }
+
 func ParseSync_type(v string) (any, error) {
-    result := NONE_SYNC_TYPE
-    switch v {
-        case "None":
-            result = NONE_SYNC_TYPE
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := NONE_SYNC_TYPE
+	switch v {
+	case "None":
+		result = NONE_SYNC_TYPE
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeSync_type(values []Sync_type) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i Sync_type) isMultiValue() bool {
-    return false
+	return false
 }

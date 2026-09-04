@@ -4,339 +4,363 @@
 package models
 
 import (
-    i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
 )
 
 type Plugin struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The binaries property
-    binaries []PluginBinaryable
-    // The latest_version property
-    latest_version *string
-    // The libraries property
-    libraries []PluginBinaryable
-    // The name property
-    name *string
-    // The published_at property
-    published_at *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The size property
-    size *int64
-    // The status property
-    status *Status
-    // The type property
-    typeEscaped *PluginType
-    // The version property
-    version *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The binaries property
+	binaries []PluginBinaryable
+	// The latest_version property
+	latest_version *string
+	// The libraries property
+	libraries []PluginBinaryable
+	// The name property
+	name *string
+	// The published_at property
+	published_at *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+	// The size property
+	size *int64
+	// The status property
+	status *Status
+	// The type property
+	typeEscaped *PluginType
+	// The version property
+	version *string
 }
+
 // NewPlugin instantiates a new Plugin and sets the default values.
-func NewPlugin()(*Plugin) {
-    m := &Plugin{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewPlugin() *Plugin {
+	m := &Plugin{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreatePluginFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePluginFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPlugin(), nil
+func CreatePluginFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPlugin(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *Plugin) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *Plugin) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetBinaries gets the binaries property value. The binaries property
 // returns a []PluginBinaryable when successful
-func (m *Plugin) GetBinaries()([]PluginBinaryable) {
-    return m.binaries
+func (m *Plugin) GetBinaries() []PluginBinaryable {
+	return m.binaries
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *Plugin) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["binaries"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreatePluginBinaryFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]PluginBinaryable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(PluginBinaryable)
-                }
-            }
-            m.SetBinaries(res)
-        }
-        return nil
-    }
-    res["latest_version"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetLatestVersion(val)
-        }
-        return nil
-    }
-    res["libraries"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreatePluginBinaryFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]PluginBinaryable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(PluginBinaryable)
-                }
-            }
-            m.SetLibraries(res)
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    res["published_at"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetTimeValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPublishedAt(val)
-        }
-        return nil
-    }
-    res["size"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSize(val)
-        }
-        return nil
-    }
-    res["status"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseStatus)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStatus(val.(*Status))
-        }
-        return nil
-    }
-    res["type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParsePluginType)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTypeEscaped(val.(*PluginType))
-        }
-        return nil
-    }
-    res["version"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetVersion(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *Plugin) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["binaries"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreatePluginBinaryFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]PluginBinaryable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(PluginBinaryable)
+				}
+			}
+			m.SetBinaries(res)
+		}
+		return nil
+	}
+	res["latest_version"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetLatestVersion(val)
+		}
+		return nil
+	}
+	res["libraries"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreatePluginBinaryFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]PluginBinaryable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(PluginBinaryable)
+				}
+			}
+			m.SetLibraries(res)
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	res["published_at"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetTimeValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPublishedAt(val)
+		}
+		return nil
+	}
+	res["size"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSize(val)
+		}
+		return nil
+	}
+	res["status"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseStatus)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStatus(val.(*Status))
+		}
+		return nil
+	}
+	res["type"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParsePluginType)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTypeEscaped(val.(*PluginType))
+		}
+		return nil
+	}
+	res["version"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetVersion(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetLatestVersion gets the latest_version property value. The latest_version property
 // returns a *string when successful
-func (m *Plugin) GetLatestVersion()(*string) {
-    return m.latest_version
+func (m *Plugin) GetLatestVersion() *string {
+	return m.latest_version
 }
+
 // GetLibraries gets the libraries property value. The libraries property
 // returns a []PluginBinaryable when successful
-func (m *Plugin) GetLibraries()([]PluginBinaryable) {
-    return m.libraries
+func (m *Plugin) GetLibraries() []PluginBinaryable {
+	return m.libraries
 }
+
 // GetName gets the name property value. The name property
 // returns a *string when successful
-func (m *Plugin) GetName()(*string) {
-    return m.name
+func (m *Plugin) GetName() *string {
+	return m.name
 }
+
 // GetPublishedAt gets the published_at property value. The published_at property
 // returns a *Time when successful
-func (m *Plugin) GetPublishedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.published_at
+func (m *Plugin) GetPublishedAt() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time {
+	return m.published_at
 }
+
 // GetSize gets the size property value. The size property
 // returns a *int64 when successful
-func (m *Plugin) GetSize()(*int64) {
-    return m.size
+func (m *Plugin) GetSize() *int64 {
+	return m.size
 }
+
 // GetStatus gets the status property value. The status property
 // returns a *Status when successful
-func (m *Plugin) GetStatus()(*Status) {
-    return m.status
+func (m *Plugin) GetStatus() *Status {
+	return m.status
 }
+
 // GetTypeEscaped gets the type property value. The type property
 // returns a *PluginType when successful
-func (m *Plugin) GetTypeEscaped()(*PluginType) {
-    return m.typeEscaped
+func (m *Plugin) GetTypeEscaped() *PluginType {
+	return m.typeEscaped
 }
+
 // GetVersion gets the version property value. The version property
 // returns a *string when successful
-func (m *Plugin) GetVersion()(*string) {
-    return m.version
+func (m *Plugin) GetVersion() *string {
+	return m.version
 }
+
 // Serialize serializes information the current object
-func (m *Plugin) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetBinaries() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetBinaries()))
-        for i, v := range m.GetBinaries() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("binaries", cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("latest_version", m.GetLatestVersion())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetLibraries() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetLibraries()))
-        for i, v := range m.GetLibraries() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("libraries", cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteTimeValue("published_at", m.GetPublishedAt())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("size", m.GetSize())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetStatus() != nil {
-        cast := (*m.GetStatus()).String()
-        err := writer.WriteStringValue("status", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetTypeEscaped() != nil {
-        cast := (*m.GetTypeEscaped()).String()
-        err := writer.WriteStringValue("type", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("version", m.GetVersion())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *Plugin) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetBinaries() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetBinaries()))
+		for i, v := range m.GetBinaries() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("binaries", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("latest_version", m.GetLatestVersion())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetLibraries() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetLibraries()))
+		for i, v := range m.GetLibraries() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("libraries", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteTimeValue("published_at", m.GetPublishedAt())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("size", m.GetSize())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetStatus() != nil {
+		cast := (*m.GetStatus()).String()
+		err := writer.WriteStringValue("status", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetTypeEscaped() != nil {
+		cast := (*m.GetTypeEscaped()).String()
+		err := writer.WriteStringValue("type", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("version", m.GetVersion())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Plugin) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *Plugin) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetBinaries sets the binaries property value. The binaries property
-func (m *Plugin) SetBinaries(value []PluginBinaryable)() {
-    m.binaries = value
+func (m *Plugin) SetBinaries(value []PluginBinaryable) {
+	m.binaries = value
 }
+
 // SetLatestVersion sets the latest_version property value. The latest_version property
-func (m *Plugin) SetLatestVersion(value *string)() {
-    m.latest_version = value
+func (m *Plugin) SetLatestVersion(value *string) {
+	m.latest_version = value
 }
+
 // SetLibraries sets the libraries property value. The libraries property
-func (m *Plugin) SetLibraries(value []PluginBinaryable)() {
-    m.libraries = value
+func (m *Plugin) SetLibraries(value []PluginBinaryable) {
+	m.libraries = value
 }
+
 // SetName sets the name property value. The name property
-func (m *Plugin) SetName(value *string)() {
-    m.name = value
+func (m *Plugin) SetName(value *string) {
+	m.name = value
 }
+
 // SetPublishedAt sets the published_at property value. The published_at property
-func (m *Plugin) SetPublishedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.published_at = value
+func (m *Plugin) SetPublishedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
+	m.published_at = value
 }
+
 // SetSize sets the size property value. The size property
-func (m *Plugin) SetSize(value *int64)() {
-    m.size = value
+func (m *Plugin) SetSize(value *int64) {
+	m.size = value
 }
+
 // SetStatus sets the status property value. The status property
-func (m *Plugin) SetStatus(value *Status)() {
-    m.status = value
+func (m *Plugin) SetStatus(value *Status) {
+	m.status = value
 }
+
 // SetTypeEscaped sets the type property value. The type property
-func (m *Plugin) SetTypeEscaped(value *PluginType)() {
-    m.typeEscaped = value
+func (m *Plugin) SetTypeEscaped(value *PluginType) {
+	m.typeEscaped = value
 }
+
 // SetVersion sets the version property value. The version property
-func (m *Plugin) SetVersion(value *string)() {
-    m.version = value
+func (m *Plugin) SetVersion(value *string) {
+	m.version = value
 }
+
 type Pluginable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetBinaries()([]PluginBinaryable)
-    GetLatestVersion()(*string)
-    GetLibraries()([]PluginBinaryable)
-    GetName()(*string)
-    GetPublishedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
-    GetSize()(*int64)
-    GetStatus()(*Status)
-    GetTypeEscaped()(*PluginType)
-    GetVersion()(*string)
-    SetBinaries(value []PluginBinaryable)()
-    SetLatestVersion(value *string)()
-    SetLibraries(value []PluginBinaryable)()
-    SetName(value *string)()
-    SetPublishedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
-    SetSize(value *int64)()
-    SetStatus(value *Status)()
-    SetTypeEscaped(value *PluginType)()
-    SetVersion(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetBinaries() []PluginBinaryable
+	GetLatestVersion() *string
+	GetLibraries() []PluginBinaryable
+	GetName() *string
+	GetPublishedAt() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+	GetSize() *int64
+	GetStatus() *Status
+	GetTypeEscaped() *PluginType
+	GetVersion() *string
+	SetBinaries(value []PluginBinaryable)
+	SetLatestVersion(value *string)
+	SetLibraries(value []PluginBinaryable)
+	SetName(value *string)
+	SetPublishedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+	SetSize(value *int64)
+	SetStatus(value *Status)
+	SetTypeEscaped(value *PluginType)
+	SetVersion(value *string)
 }

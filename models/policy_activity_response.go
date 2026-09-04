@@ -4,237 +4,255 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type PolicyActivityResponse struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The failed_checkpoints property
-    failed_checkpoints *int64
-    // The last_checkpoint_at property
-    last_checkpoint_at *string
-    // The policy_id property
-    policy_id *string
-    // The recent_checkpoints property
-    recent_checkpoints []PolicyCheckpointInfoable
-    // The successful_checkpoints property
-    successful_checkpoints *int64
-    // The total_checkpoints property
-    total_checkpoints *int64
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The failed_checkpoints property
+	failed_checkpoints *int64
+	// The last_checkpoint_at property
+	last_checkpoint_at *string
+	// The policy_id property
+	policy_id *string
+	// The recent_checkpoints property
+	recent_checkpoints []PolicyCheckpointInfoable
+	// The successful_checkpoints property
+	successful_checkpoints *int64
+	// The total_checkpoints property
+	total_checkpoints *int64
 }
+
 // NewPolicyActivityResponse instantiates a new PolicyActivityResponse and sets the default values.
-func NewPolicyActivityResponse()(*PolicyActivityResponse) {
-    m := &PolicyActivityResponse{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewPolicyActivityResponse() *PolicyActivityResponse {
+	m := &PolicyActivityResponse{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreatePolicyActivityResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePolicyActivityResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPolicyActivityResponse(), nil
+func CreatePolicyActivityResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPolicyActivityResponse(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *PolicyActivityResponse) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *PolicyActivityResponse) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFailedCheckpoints gets the failed_checkpoints property value. The failed_checkpoints property
 // returns a *int64 when successful
-func (m *PolicyActivityResponse) GetFailedCheckpoints()(*int64) {
-    return m.failed_checkpoints
+func (m *PolicyActivityResponse) GetFailedCheckpoints() *int64 {
+	return m.failed_checkpoints
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PolicyActivityResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["failed_checkpoints"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFailedCheckpoints(val)
-        }
-        return nil
-    }
-    res["last_checkpoint_at"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetLastCheckpointAt(val)
-        }
-        return nil
-    }
-    res["policy_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPolicyId(val)
-        }
-        return nil
-    }
-    res["recent_checkpoints"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreatePolicyCheckpointInfoFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]PolicyCheckpointInfoable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(PolicyCheckpointInfoable)
-                }
-            }
-            m.SetRecentCheckpoints(res)
-        }
-        return nil
-    }
-    res["successful_checkpoints"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSuccessfulCheckpoints(val)
-        }
-        return nil
-    }
-    res["total_checkpoints"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTotalCheckpoints(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *PolicyActivityResponse) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["failed_checkpoints"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFailedCheckpoints(val)
+		}
+		return nil
+	}
+	res["last_checkpoint_at"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetLastCheckpointAt(val)
+		}
+		return nil
+	}
+	res["policy_id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPolicyId(val)
+		}
+		return nil
+	}
+	res["recent_checkpoints"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreatePolicyCheckpointInfoFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]PolicyCheckpointInfoable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(PolicyCheckpointInfoable)
+				}
+			}
+			m.SetRecentCheckpoints(res)
+		}
+		return nil
+	}
+	res["successful_checkpoints"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSuccessfulCheckpoints(val)
+		}
+		return nil
+	}
+	res["total_checkpoints"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTotalCheckpoints(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetLastCheckpointAt gets the last_checkpoint_at property value. The last_checkpoint_at property
 // returns a *string when successful
-func (m *PolicyActivityResponse) GetLastCheckpointAt()(*string) {
-    return m.last_checkpoint_at
+func (m *PolicyActivityResponse) GetLastCheckpointAt() *string {
+	return m.last_checkpoint_at
 }
+
 // GetPolicyId gets the policy_id property value. The policy_id property
 // returns a *string when successful
-func (m *PolicyActivityResponse) GetPolicyId()(*string) {
-    return m.policy_id
+func (m *PolicyActivityResponse) GetPolicyId() *string {
+	return m.policy_id
 }
+
 // GetRecentCheckpoints gets the recent_checkpoints property value. The recent_checkpoints property
 // returns a []PolicyCheckpointInfoable when successful
-func (m *PolicyActivityResponse) GetRecentCheckpoints()([]PolicyCheckpointInfoable) {
-    return m.recent_checkpoints
+func (m *PolicyActivityResponse) GetRecentCheckpoints() []PolicyCheckpointInfoable {
+	return m.recent_checkpoints
 }
+
 // GetSuccessfulCheckpoints gets the successful_checkpoints property value. The successful_checkpoints property
 // returns a *int64 when successful
-func (m *PolicyActivityResponse) GetSuccessfulCheckpoints()(*int64) {
-    return m.successful_checkpoints
+func (m *PolicyActivityResponse) GetSuccessfulCheckpoints() *int64 {
+	return m.successful_checkpoints
 }
+
 // GetTotalCheckpoints gets the total_checkpoints property value. The total_checkpoints property
 // returns a *int64 when successful
-func (m *PolicyActivityResponse) GetTotalCheckpoints()(*int64) {
-    return m.total_checkpoints
+func (m *PolicyActivityResponse) GetTotalCheckpoints() *int64 {
+	return m.total_checkpoints
 }
+
 // Serialize serializes information the current object
-func (m *PolicyActivityResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt64Value("failed_checkpoints", m.GetFailedCheckpoints())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("last_checkpoint_at", m.GetLastCheckpointAt())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("policy_id", m.GetPolicyId())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetRecentCheckpoints() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetRecentCheckpoints()))
-        for i, v := range m.GetRecentCheckpoints() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("recent_checkpoints", cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("successful_checkpoints", m.GetSuccessfulCheckpoints())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("total_checkpoints", m.GetTotalCheckpoints())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PolicyActivityResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt64Value("failed_checkpoints", m.GetFailedCheckpoints())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("last_checkpoint_at", m.GetLastCheckpointAt())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("policy_id", m.GetPolicyId())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetRecentCheckpoints() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetRecentCheckpoints()))
+		for i, v := range m.GetRecentCheckpoints() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("recent_checkpoints", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("successful_checkpoints", m.GetSuccessfulCheckpoints())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("total_checkpoints", m.GetTotalCheckpoints())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PolicyActivityResponse) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *PolicyActivityResponse) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetFailedCheckpoints sets the failed_checkpoints property value. The failed_checkpoints property
-func (m *PolicyActivityResponse) SetFailedCheckpoints(value *int64)() {
-    m.failed_checkpoints = value
+func (m *PolicyActivityResponse) SetFailedCheckpoints(value *int64) {
+	m.failed_checkpoints = value
 }
+
 // SetLastCheckpointAt sets the last_checkpoint_at property value. The last_checkpoint_at property
-func (m *PolicyActivityResponse) SetLastCheckpointAt(value *string)() {
-    m.last_checkpoint_at = value
+func (m *PolicyActivityResponse) SetLastCheckpointAt(value *string) {
+	m.last_checkpoint_at = value
 }
+
 // SetPolicyId sets the policy_id property value. The policy_id property
-func (m *PolicyActivityResponse) SetPolicyId(value *string)() {
-    m.policy_id = value
+func (m *PolicyActivityResponse) SetPolicyId(value *string) {
+	m.policy_id = value
 }
+
 // SetRecentCheckpoints sets the recent_checkpoints property value. The recent_checkpoints property
-func (m *PolicyActivityResponse) SetRecentCheckpoints(value []PolicyCheckpointInfoable)() {
-    m.recent_checkpoints = value
+func (m *PolicyActivityResponse) SetRecentCheckpoints(value []PolicyCheckpointInfoable) {
+	m.recent_checkpoints = value
 }
+
 // SetSuccessfulCheckpoints sets the successful_checkpoints property value. The successful_checkpoints property
-func (m *PolicyActivityResponse) SetSuccessfulCheckpoints(value *int64)() {
-    m.successful_checkpoints = value
+func (m *PolicyActivityResponse) SetSuccessfulCheckpoints(value *int64) {
+	m.successful_checkpoints = value
 }
+
 // SetTotalCheckpoints sets the total_checkpoints property value. The total_checkpoints property
-func (m *PolicyActivityResponse) SetTotalCheckpoints(value *int64)() {
-    m.total_checkpoints = value
+func (m *PolicyActivityResponse) SetTotalCheckpoints(value *int64) {
+	m.total_checkpoints = value
 }
+
 type PolicyActivityResponseable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetFailedCheckpoints()(*int64)
-    GetLastCheckpointAt()(*string)
-    GetPolicyId()(*string)
-    GetRecentCheckpoints()([]PolicyCheckpointInfoable)
-    GetSuccessfulCheckpoints()(*int64)
-    GetTotalCheckpoints()(*int64)
-    SetFailedCheckpoints(value *int64)()
-    SetLastCheckpointAt(value *string)()
-    SetPolicyId(value *string)()
-    SetRecentCheckpoints(value []PolicyCheckpointInfoable)()
-    SetSuccessfulCheckpoints(value *int64)()
-    SetTotalCheckpoints(value *int64)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetFailedCheckpoints() *int64
+	GetLastCheckpointAt() *string
+	GetPolicyId() *string
+	GetRecentCheckpoints() []PolicyCheckpointInfoable
+	GetSuccessfulCheckpoints() *int64
+	GetTotalCheckpoints() *int64
+	SetFailedCheckpoints(value *int64)
+	SetLastCheckpointAt(value *string)
+	SetPolicyId(value *string)
+	SetRecentCheckpoints(value []PolicyCheckpointInfoable)
+	SetSuccessfulCheckpoints(value *int64)
+	SetTotalCheckpoints(value *int64)
 }

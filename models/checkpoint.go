@@ -4,315 +4,339 @@
 package models
 
 import (
-    i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // Checkpoint checkpoint is basic unit for cedana service operationit stores all the information regarding the snapshot we can use to save and then restore state
 type Checkpoint struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The checksum property
-    checksum *string
-    // Whether this checkpoint is a (GPU delta) increment. Authoritative evenwhen parent_checkpoint_id is null (malformed id at ingest, parent deleted)
-    delta *bool
-    // The gpu property
-    gpu *string
-    // The id property
-    id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
-    // The info property
-    info i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
-    // The name property
-    name *string
-    // Checkpoint this one is an increment of; null for full checkpoints andfor deltas whose parent is unknown or deleted
-    parent_checkpoint_id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
-    // The platform property
-    platform *string
-    // The status property
-    status *CheckpointStatus
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The checksum property
+	checksum *string
+	// Whether this checkpoint is a (GPU delta) increment. Authoritative evenwhen parent_checkpoint_id is null (malformed id at ingest, parent deleted)
+	delta *bool
+	// The gpu property
+	gpu *string
+	// The id property
+	id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+	// The info property
+	info i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+	// The name property
+	name *string
+	// Checkpoint this one is an increment of; null for full checkpoints andfor deltas whose parent is unknown or deleted
+	parent_checkpoint_id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+	// The platform property
+	platform *string
+	// The status property
+	status *CheckpointStatus
 }
+
 // NewCheckpoint instantiates a new Checkpoint and sets the default values.
-func NewCheckpoint()(*Checkpoint) {
-    m := &Checkpoint{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewCheckpoint() *Checkpoint {
+	m := &Checkpoint{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateCheckpointFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateCheckpointFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewCheckpoint(), nil
+func CreateCheckpointFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewCheckpoint(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *Checkpoint) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *Checkpoint) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetChecksum gets the checksum property value. The checksum property
 // returns a *string when successful
-func (m *Checkpoint) GetChecksum()(*string) {
-    return m.checksum
+func (m *Checkpoint) GetChecksum() *string {
+	return m.checksum
 }
+
 // GetDelta gets the delta property value. Whether this checkpoint is a (GPU delta) increment. Authoritative evenwhen parent_checkpoint_id is null (malformed id at ingest, parent deleted)
 // returns a *bool when successful
-func (m *Checkpoint) GetDelta()(*bool) {
-    return m.delta
+func (m *Checkpoint) GetDelta() *bool {
+	return m.delta
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *Checkpoint) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["checksum"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetChecksum(val)
-        }
-        return nil
-    }
-    res["delta"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDelta(val)
-        }
-        return nil
-    }
-    res["gpu"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetGpu(val)
-        }
-        return nil
-    }
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetUUIDValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
-        }
-        return nil
-    }
-    res["info"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetInfo(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    res["parent_checkpoint_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetUUIDValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetParentCheckpointId(val)
-        }
-        return nil
-    }
-    res["platform"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPlatform(val)
-        }
-        return nil
-    }
-    res["status"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseCheckpointStatus)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStatus(val.(*CheckpointStatus))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *Checkpoint) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["checksum"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetChecksum(val)
+		}
+		return nil
+	}
+	res["delta"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDelta(val)
+		}
+		return nil
+	}
+	res["gpu"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetGpu(val)
+		}
+		return nil
+	}
+	res["id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetUUIDValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetId(val)
+		}
+		return nil
+	}
+	res["info"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetInfo(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	res["parent_checkpoint_id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetUUIDValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetParentCheckpointId(val)
+		}
+		return nil
+	}
+	res["platform"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPlatform(val)
+		}
+		return nil
+	}
+	res["status"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseCheckpointStatus)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStatus(val.(*CheckpointStatus))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetGpu gets the gpu property value. The gpu property
 // returns a *string when successful
-func (m *Checkpoint) GetGpu()(*string) {
-    return m.gpu
+func (m *Checkpoint) GetGpu() *string {
+	return m.gpu
 }
+
 // GetId gets the id property value. The id property
 // returns a *UUID when successful
-func (m *Checkpoint) GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
-    return m.id
+func (m *Checkpoint) GetId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID {
+	return m.id
 }
+
 // GetInfo gets the info property value. The info property
 // returns a UntypedNodeable when successful
-func (m *Checkpoint) GetInfo()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
-    return m.info
+func (m *Checkpoint) GetInfo() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable {
+	return m.info
 }
+
 // GetName gets the name property value. The name property
 // returns a *string when successful
-func (m *Checkpoint) GetName()(*string) {
-    return m.name
+func (m *Checkpoint) GetName() *string {
+	return m.name
 }
+
 // GetParentCheckpointId gets the parent_checkpoint_id property value. Checkpoint this one is an increment of; null for full checkpoints andfor deltas whose parent is unknown or deleted
 // returns a *UUID when successful
-func (m *Checkpoint) GetParentCheckpointId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
-    return m.parent_checkpoint_id
+func (m *Checkpoint) GetParentCheckpointId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID {
+	return m.parent_checkpoint_id
 }
+
 // GetPlatform gets the platform property value. The platform property
 // returns a *string when successful
-func (m *Checkpoint) GetPlatform()(*string) {
-    return m.platform
+func (m *Checkpoint) GetPlatform() *string {
+	return m.platform
 }
+
 // GetStatus gets the status property value. The status property
 // returns a *CheckpointStatus when successful
-func (m *Checkpoint) GetStatus()(*CheckpointStatus) {
-    return m.status
+func (m *Checkpoint) GetStatus() *CheckpointStatus {
+	return m.status
 }
+
 // Serialize serializes information the current object
-func (m *Checkpoint) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("checksum", m.GetChecksum())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("delta", m.GetDelta())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("gpu", m.GetGpu())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteUUIDValue("id", m.GetId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("info", m.GetInfo())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteUUIDValue("parent_checkpoint_id", m.GetParentCheckpointId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("platform", m.GetPlatform())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetStatus() != nil {
-        cast := (*m.GetStatus()).String()
-        err := writer.WriteStringValue("status", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *Checkpoint) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("checksum", m.GetChecksum())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("delta", m.GetDelta())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("gpu", m.GetGpu())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteUUIDValue("id", m.GetId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("info", m.GetInfo())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteUUIDValue("parent_checkpoint_id", m.GetParentCheckpointId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("platform", m.GetPlatform())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetStatus() != nil {
+		cast := (*m.GetStatus()).String()
+		err := writer.WriteStringValue("status", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Checkpoint) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *Checkpoint) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetChecksum sets the checksum property value. The checksum property
-func (m *Checkpoint) SetChecksum(value *string)() {
-    m.checksum = value
+func (m *Checkpoint) SetChecksum(value *string) {
+	m.checksum = value
 }
+
 // SetDelta sets the delta property value. Whether this checkpoint is a (GPU delta) increment. Authoritative evenwhen parent_checkpoint_id is null (malformed id at ingest, parent deleted)
-func (m *Checkpoint) SetDelta(value *bool)() {
-    m.delta = value
+func (m *Checkpoint) SetDelta(value *bool) {
+	m.delta = value
 }
+
 // SetGpu sets the gpu property value. The gpu property
-func (m *Checkpoint) SetGpu(value *string)() {
-    m.gpu = value
+func (m *Checkpoint) SetGpu(value *string) {
+	m.gpu = value
 }
+
 // SetId sets the id property value. The id property
-func (m *Checkpoint) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
-    m.id = value
+func (m *Checkpoint) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
+	m.id = value
 }
+
 // SetInfo sets the info property value. The info property
-func (m *Checkpoint) SetInfo(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
-    m.info = value
+func (m *Checkpoint) SetInfo(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
+	m.info = value
 }
+
 // SetName sets the name property value. The name property
-func (m *Checkpoint) SetName(value *string)() {
-    m.name = value
+func (m *Checkpoint) SetName(value *string) {
+	m.name = value
 }
+
 // SetParentCheckpointId sets the parent_checkpoint_id property value. Checkpoint this one is an increment of; null for full checkpoints andfor deltas whose parent is unknown or deleted
-func (m *Checkpoint) SetParentCheckpointId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
-    m.parent_checkpoint_id = value
+func (m *Checkpoint) SetParentCheckpointId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
+	m.parent_checkpoint_id = value
 }
+
 // SetPlatform sets the platform property value. The platform property
-func (m *Checkpoint) SetPlatform(value *string)() {
-    m.platform = value
+func (m *Checkpoint) SetPlatform(value *string) {
+	m.platform = value
 }
+
 // SetStatus sets the status property value. The status property
-func (m *Checkpoint) SetStatus(value *CheckpointStatus)() {
-    m.status = value
+func (m *Checkpoint) SetStatus(value *CheckpointStatus) {
+	m.status = value
 }
+
 type Checkpointable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetChecksum()(*string)
-    GetDelta()(*bool)
-    GetGpu()(*string)
-    GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
-    GetInfo()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
-    GetName()(*string)
-    GetParentCheckpointId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
-    GetPlatform()(*string)
-    GetStatus()(*CheckpointStatus)
-    SetChecksum(value *string)()
-    SetDelta(value *bool)()
-    SetGpu(value *string)()
-    SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
-    SetInfo(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
-    SetName(value *string)()
-    SetParentCheckpointId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
-    SetPlatform(value *string)()
-    SetStatus(value *CheckpointStatus)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetChecksum() *string
+	GetDelta() *bool
+	GetGpu() *string
+	GetId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+	GetInfo() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+	GetName() *string
+	GetParentCheckpointId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+	GetPlatform() *string
+	GetStatus() *CheckpointStatus
+	SetChecksum(value *string)
+	SetDelta(value *bool)
+	SetGpu(value *string)
+	SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+	SetInfo(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+	SetName(value *string)
+	SetParentCheckpointId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+	SetPlatform(value *string)
+	SetStatus(value *CheckpointStatus)
 }

@@ -4,138 +4,150 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type AuthorizeRequest struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The estimated_prompt_tokens property
-    estimated_prompt_tokens *int64
-    // The logical_model property
-    logical_model *string
-    // The request_id property
-    request_id *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The estimated_prompt_tokens property
+	estimated_prompt_tokens *int64
+	// The logical_model property
+	logical_model *string
+	// The request_id property
+	request_id *string
 }
+
 // NewAuthorizeRequest instantiates a new AuthorizeRequest and sets the default values.
-func NewAuthorizeRequest()(*AuthorizeRequest) {
-    m := &AuthorizeRequest{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewAuthorizeRequest() *AuthorizeRequest {
+	m := &AuthorizeRequest{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateAuthorizeRequestFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateAuthorizeRequestFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewAuthorizeRequest(), nil
+func CreateAuthorizeRequestFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewAuthorizeRequest(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *AuthorizeRequest) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *AuthorizeRequest) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetEstimatedPromptTokens gets the estimated_prompt_tokens property value. The estimated_prompt_tokens property
 // returns a *int64 when successful
-func (m *AuthorizeRequest) GetEstimatedPromptTokens()(*int64) {
-    return m.estimated_prompt_tokens
+func (m *AuthorizeRequest) GetEstimatedPromptTokens() *int64 {
+	return m.estimated_prompt_tokens
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *AuthorizeRequest) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["estimated_prompt_tokens"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetEstimatedPromptTokens(val)
-        }
-        return nil
-    }
-    res["logical_model"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetLogicalModel(val)
-        }
-        return nil
-    }
-    res["request_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRequestId(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *AuthorizeRequest) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["estimated_prompt_tokens"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetEstimatedPromptTokens(val)
+		}
+		return nil
+	}
+	res["logical_model"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetLogicalModel(val)
+		}
+		return nil
+	}
+	res["request_id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRequestId(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetLogicalModel gets the logical_model property value. The logical_model property
 // returns a *string when successful
-func (m *AuthorizeRequest) GetLogicalModel()(*string) {
-    return m.logical_model
+func (m *AuthorizeRequest) GetLogicalModel() *string {
+	return m.logical_model
 }
+
 // GetRequestId gets the request_id property value. The request_id property
 // returns a *string when successful
-func (m *AuthorizeRequest) GetRequestId()(*string) {
-    return m.request_id
+func (m *AuthorizeRequest) GetRequestId() *string {
+	return m.request_id
 }
+
 // Serialize serializes information the current object
-func (m *AuthorizeRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt64Value("estimated_prompt_tokens", m.GetEstimatedPromptTokens())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("logical_model", m.GetLogicalModel())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("request_id", m.GetRequestId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *AuthorizeRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt64Value("estimated_prompt_tokens", m.GetEstimatedPromptTokens())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("logical_model", m.GetLogicalModel())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("request_id", m.GetRequestId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *AuthorizeRequest) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *AuthorizeRequest) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetEstimatedPromptTokens sets the estimated_prompt_tokens property value. The estimated_prompt_tokens property
-func (m *AuthorizeRequest) SetEstimatedPromptTokens(value *int64)() {
-    m.estimated_prompt_tokens = value
+func (m *AuthorizeRequest) SetEstimatedPromptTokens(value *int64) {
+	m.estimated_prompt_tokens = value
 }
+
 // SetLogicalModel sets the logical_model property value. The logical_model property
-func (m *AuthorizeRequest) SetLogicalModel(value *string)() {
-    m.logical_model = value
+func (m *AuthorizeRequest) SetLogicalModel(value *string) {
+	m.logical_model = value
 }
+
 // SetRequestId sets the request_id property value. The request_id property
-func (m *AuthorizeRequest) SetRequestId(value *string)() {
-    m.request_id = value
+func (m *AuthorizeRequest) SetRequestId(value *string) {
+	m.request_id = value
 }
+
 type AuthorizeRequestable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetEstimatedPromptTokens()(*int64)
-    GetLogicalModel()(*string)
-    GetRequestId()(*string)
-    SetEstimatedPromptTokens(value *int64)()
-    SetLogicalModel(value *string)()
-    SetRequestId(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetEstimatedPromptTokens() *int64
+	GetLogicalModel() *string
+	GetRequestId() *string
+	SetEstimatedPromptTokens(value *int64)
+	SetLogicalModel(value *string)
+	SetRequestId(value *string)
 }

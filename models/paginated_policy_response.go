@@ -4,162 +4,174 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type PaginatedPolicyResponse struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // Auto-restore policies (only included when include_automatic=true)
-    automatic_policies []AutoRestorePolicyInfoable
-    // The policies property
-    policies []PolicyResponseable
-    // The total_count property
-    total_count *int64
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// Auto-restore policies (only included when include_automatic=true)
+	automatic_policies []AutoRestorePolicyInfoable
+	// The policies property
+	policies []PolicyResponseable
+	// The total_count property
+	total_count *int64
 }
+
 // NewPaginatedPolicyResponse instantiates a new PaginatedPolicyResponse and sets the default values.
-func NewPaginatedPolicyResponse()(*PaginatedPolicyResponse) {
-    m := &PaginatedPolicyResponse{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewPaginatedPolicyResponse() *PaginatedPolicyResponse {
+	m := &PaginatedPolicyResponse{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreatePaginatedPolicyResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePaginatedPolicyResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPaginatedPolicyResponse(), nil
+func CreatePaginatedPolicyResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPaginatedPolicyResponse(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *PaginatedPolicyResponse) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *PaginatedPolicyResponse) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetAutomaticPolicies gets the automatic_policies property value. Auto-restore policies (only included when include_automatic=true)
 // returns a []AutoRestorePolicyInfoable when successful
-func (m *PaginatedPolicyResponse) GetAutomaticPolicies()([]AutoRestorePolicyInfoable) {
-    return m.automatic_policies
+func (m *PaginatedPolicyResponse) GetAutomaticPolicies() []AutoRestorePolicyInfoable {
+	return m.automatic_policies
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PaginatedPolicyResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["automatic_policies"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateAutoRestorePolicyInfoFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]AutoRestorePolicyInfoable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(AutoRestorePolicyInfoable)
-                }
-            }
-            m.SetAutomaticPolicies(res)
-        }
-        return nil
-    }
-    res["policies"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreatePolicyResponseFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]PolicyResponseable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(PolicyResponseable)
-                }
-            }
-            m.SetPolicies(res)
-        }
-        return nil
-    }
-    res["total_count"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTotalCount(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *PaginatedPolicyResponse) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["automatic_policies"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateAutoRestorePolicyInfoFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]AutoRestorePolicyInfoable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(AutoRestorePolicyInfoable)
+				}
+			}
+			m.SetAutomaticPolicies(res)
+		}
+		return nil
+	}
+	res["policies"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreatePolicyResponseFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]PolicyResponseable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(PolicyResponseable)
+				}
+			}
+			m.SetPolicies(res)
+		}
+		return nil
+	}
+	res["total_count"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTotalCount(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetPolicies gets the policies property value. The policies property
 // returns a []PolicyResponseable when successful
-func (m *PaginatedPolicyResponse) GetPolicies()([]PolicyResponseable) {
-    return m.policies
+func (m *PaginatedPolicyResponse) GetPolicies() []PolicyResponseable {
+	return m.policies
 }
+
 // GetTotalCount gets the total_count property value. The total_count property
 // returns a *int64 when successful
-func (m *PaginatedPolicyResponse) GetTotalCount()(*int64) {
-    return m.total_count
+func (m *PaginatedPolicyResponse) GetTotalCount() *int64 {
+	return m.total_count
 }
+
 // Serialize serializes information the current object
-func (m *PaginatedPolicyResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetAutomaticPolicies() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAutomaticPolicies()))
-        for i, v := range m.GetAutomaticPolicies() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("automatic_policies", cast)
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetPolicies() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPolicies()))
-        for i, v := range m.GetPolicies() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("policies", cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("total_count", m.GetTotalCount())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PaginatedPolicyResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetAutomaticPolicies() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAutomaticPolicies()))
+		for i, v := range m.GetAutomaticPolicies() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("automatic_policies", cast)
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetPolicies() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPolicies()))
+		for i, v := range m.GetPolicies() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("policies", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("total_count", m.GetTotalCount())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PaginatedPolicyResponse) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *PaginatedPolicyResponse) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetAutomaticPolicies sets the automatic_policies property value. Auto-restore policies (only included when include_automatic=true)
-func (m *PaginatedPolicyResponse) SetAutomaticPolicies(value []AutoRestorePolicyInfoable)() {
-    m.automatic_policies = value
+func (m *PaginatedPolicyResponse) SetAutomaticPolicies(value []AutoRestorePolicyInfoable) {
+	m.automatic_policies = value
 }
+
 // SetPolicies sets the policies property value. The policies property
-func (m *PaginatedPolicyResponse) SetPolicies(value []PolicyResponseable)() {
-    m.policies = value
+func (m *PaginatedPolicyResponse) SetPolicies(value []PolicyResponseable) {
+	m.policies = value
 }
+
 // SetTotalCount sets the total_count property value. The total_count property
-func (m *PaginatedPolicyResponse) SetTotalCount(value *int64)() {
-    m.total_count = value
+func (m *PaginatedPolicyResponse) SetTotalCount(value *int64) {
+	m.total_count = value
 }
+
 type PaginatedPolicyResponseable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAutomaticPolicies()([]AutoRestorePolicyInfoable)
-    GetPolicies()([]PolicyResponseable)
-    GetTotalCount()(*int64)
-    SetAutomaticPolicies(value []AutoRestorePolicyInfoable)()
-    SetPolicies(value []PolicyResponseable)()
-    SetTotalCount(value *int64)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetAutomaticPolicies() []AutoRestorePolicyInfoable
+	GetPolicies() []PolicyResponseable
+	GetTotalCount() *int64
+	SetAutomaticPolicies(value []AutoRestorePolicyInfoable)
+	SetPolicies(value []PolicyResponseable)
+	SetTotalCount(value *int64)
 }

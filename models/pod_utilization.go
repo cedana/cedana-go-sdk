@@ -4,313 +4,337 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // PodUtilization pod utilization metrics grouped by pod
 type PodUtilization struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The cpu_usage_seconds property
-    cpu_usage_seconds *float64
-    // The memory_bytes property
-    memory_bytes *float64
-    // The namespace property
-    namespace *string
-    // The node_name property
-    node_name *string
-    // Owner kind from kube-state-metrics (e.g., "Job", "ReplicaSet", "DaemonSet", "StatefulSet")
-    owner_kind *string
-    // Owner name from kube-state-metrics (e.g., "my-job", "my-deployment-abc123")
-    owner_name *string
-    // The pod_name property
-    pod_name *string
-    // The pod_uid property
-    pod_uid *string
-    // The timestamp property
-    timestamp *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The cpu_usage_seconds property
+	cpu_usage_seconds *float64
+	// The memory_bytes property
+	memory_bytes *float64
+	// The namespace property
+	namespace *string
+	// The node_name property
+	node_name *string
+	// Owner kind from kube-state-metrics (e.g., "Job", "ReplicaSet", "DaemonSet", "StatefulSet")
+	owner_kind *string
+	// Owner name from kube-state-metrics (e.g., "my-job", "my-deployment-abc123")
+	owner_name *string
+	// The pod_name property
+	pod_name *string
+	// The pod_uid property
+	pod_uid *string
+	// The timestamp property
+	timestamp *string
 }
+
 // NewPodUtilization instantiates a new PodUtilization and sets the default values.
-func NewPodUtilization()(*PodUtilization) {
-    m := &PodUtilization{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewPodUtilization() *PodUtilization {
+	m := &PodUtilization{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreatePodUtilizationFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePodUtilizationFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPodUtilization(), nil
+func CreatePodUtilizationFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPodUtilization(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *PodUtilization) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *PodUtilization) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetCpuUsageSeconds gets the cpu_usage_seconds property value. The cpu_usage_seconds property
 // returns a *float64 when successful
-func (m *PodUtilization) GetCpuUsageSeconds()(*float64) {
-    return m.cpu_usage_seconds
+func (m *PodUtilization) GetCpuUsageSeconds() *float64 {
+	return m.cpu_usage_seconds
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PodUtilization) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["cpu_usage_seconds"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCpuUsageSeconds(val)
-        }
-        return nil
-    }
-    res["memory_bytes"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMemoryBytes(val)
-        }
-        return nil
-    }
-    res["namespace"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetNamespace(val)
-        }
-        return nil
-    }
-    res["node_name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetNodeName(val)
-        }
-        return nil
-    }
-    res["owner_kind"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetOwnerKind(val)
-        }
-        return nil
-    }
-    res["owner_name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetOwnerName(val)
-        }
-        return nil
-    }
-    res["pod_name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPodName(val)
-        }
-        return nil
-    }
-    res["pod_uid"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPodUid(val)
-        }
-        return nil
-    }
-    res["timestamp"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTimestamp(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *PodUtilization) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["cpu_usage_seconds"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCpuUsageSeconds(val)
+		}
+		return nil
+	}
+	res["memory_bytes"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMemoryBytes(val)
+		}
+		return nil
+	}
+	res["namespace"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNamespace(val)
+		}
+		return nil
+	}
+	res["node_name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNodeName(val)
+		}
+		return nil
+	}
+	res["owner_kind"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetOwnerKind(val)
+		}
+		return nil
+	}
+	res["owner_name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetOwnerName(val)
+		}
+		return nil
+	}
+	res["pod_name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPodName(val)
+		}
+		return nil
+	}
+	res["pod_uid"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPodUid(val)
+		}
+		return nil
+	}
+	res["timestamp"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTimestamp(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetMemoryBytes gets the memory_bytes property value. The memory_bytes property
 // returns a *float64 when successful
-func (m *PodUtilization) GetMemoryBytes()(*float64) {
-    return m.memory_bytes
+func (m *PodUtilization) GetMemoryBytes() *float64 {
+	return m.memory_bytes
 }
+
 // GetNamespace gets the namespace property value. The namespace property
 // returns a *string when successful
-func (m *PodUtilization) GetNamespace()(*string) {
-    return m.namespace
+func (m *PodUtilization) GetNamespace() *string {
+	return m.namespace
 }
+
 // GetNodeName gets the node_name property value. The node_name property
 // returns a *string when successful
-func (m *PodUtilization) GetNodeName()(*string) {
-    return m.node_name
+func (m *PodUtilization) GetNodeName() *string {
+	return m.node_name
 }
+
 // GetOwnerKind gets the owner_kind property value. Owner kind from kube-state-metrics (e.g., "Job", "ReplicaSet", "DaemonSet", "StatefulSet")
 // returns a *string when successful
-func (m *PodUtilization) GetOwnerKind()(*string) {
-    return m.owner_kind
+func (m *PodUtilization) GetOwnerKind() *string {
+	return m.owner_kind
 }
+
 // GetOwnerName gets the owner_name property value. Owner name from kube-state-metrics (e.g., "my-job", "my-deployment-abc123")
 // returns a *string when successful
-func (m *PodUtilization) GetOwnerName()(*string) {
-    return m.owner_name
+func (m *PodUtilization) GetOwnerName() *string {
+	return m.owner_name
 }
+
 // GetPodName gets the pod_name property value. The pod_name property
 // returns a *string when successful
-func (m *PodUtilization) GetPodName()(*string) {
-    return m.pod_name
+func (m *PodUtilization) GetPodName() *string {
+	return m.pod_name
 }
+
 // GetPodUid gets the pod_uid property value. The pod_uid property
 // returns a *string when successful
-func (m *PodUtilization) GetPodUid()(*string) {
-    return m.pod_uid
+func (m *PodUtilization) GetPodUid() *string {
+	return m.pod_uid
 }
+
 // GetTimestamp gets the timestamp property value. The timestamp property
 // returns a *string when successful
-func (m *PodUtilization) GetTimestamp()(*string) {
-    return m.timestamp
+func (m *PodUtilization) GetTimestamp() *string {
+	return m.timestamp
 }
+
 // Serialize serializes information the current object
-func (m *PodUtilization) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteFloat64Value("cpu_usage_seconds", m.GetCpuUsageSeconds())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("memory_bytes", m.GetMemoryBytes())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("namespace", m.GetNamespace())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("node_name", m.GetNodeName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("owner_kind", m.GetOwnerKind())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("owner_name", m.GetOwnerName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("pod_name", m.GetPodName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("pod_uid", m.GetPodUid())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("timestamp", m.GetTimestamp())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PodUtilization) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteFloat64Value("cpu_usage_seconds", m.GetCpuUsageSeconds())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("memory_bytes", m.GetMemoryBytes())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("namespace", m.GetNamespace())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("node_name", m.GetNodeName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("owner_kind", m.GetOwnerKind())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("owner_name", m.GetOwnerName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("pod_name", m.GetPodName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("pod_uid", m.GetPodUid())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("timestamp", m.GetTimestamp())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PodUtilization) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *PodUtilization) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetCpuUsageSeconds sets the cpu_usage_seconds property value. The cpu_usage_seconds property
-func (m *PodUtilization) SetCpuUsageSeconds(value *float64)() {
-    m.cpu_usage_seconds = value
+func (m *PodUtilization) SetCpuUsageSeconds(value *float64) {
+	m.cpu_usage_seconds = value
 }
+
 // SetMemoryBytes sets the memory_bytes property value. The memory_bytes property
-func (m *PodUtilization) SetMemoryBytes(value *float64)() {
-    m.memory_bytes = value
+func (m *PodUtilization) SetMemoryBytes(value *float64) {
+	m.memory_bytes = value
 }
+
 // SetNamespace sets the namespace property value. The namespace property
-func (m *PodUtilization) SetNamespace(value *string)() {
-    m.namespace = value
+func (m *PodUtilization) SetNamespace(value *string) {
+	m.namespace = value
 }
+
 // SetNodeName sets the node_name property value. The node_name property
-func (m *PodUtilization) SetNodeName(value *string)() {
-    m.node_name = value
+func (m *PodUtilization) SetNodeName(value *string) {
+	m.node_name = value
 }
+
 // SetOwnerKind sets the owner_kind property value. Owner kind from kube-state-metrics (e.g., "Job", "ReplicaSet", "DaemonSet", "StatefulSet")
-func (m *PodUtilization) SetOwnerKind(value *string)() {
-    m.owner_kind = value
+func (m *PodUtilization) SetOwnerKind(value *string) {
+	m.owner_kind = value
 }
+
 // SetOwnerName sets the owner_name property value. Owner name from kube-state-metrics (e.g., "my-job", "my-deployment-abc123")
-func (m *PodUtilization) SetOwnerName(value *string)() {
-    m.owner_name = value
+func (m *PodUtilization) SetOwnerName(value *string) {
+	m.owner_name = value
 }
+
 // SetPodName sets the pod_name property value. The pod_name property
-func (m *PodUtilization) SetPodName(value *string)() {
-    m.pod_name = value
+func (m *PodUtilization) SetPodName(value *string) {
+	m.pod_name = value
 }
+
 // SetPodUid sets the pod_uid property value. The pod_uid property
-func (m *PodUtilization) SetPodUid(value *string)() {
-    m.pod_uid = value
+func (m *PodUtilization) SetPodUid(value *string) {
+	m.pod_uid = value
 }
+
 // SetTimestamp sets the timestamp property value. The timestamp property
-func (m *PodUtilization) SetTimestamp(value *string)() {
-    m.timestamp = value
+func (m *PodUtilization) SetTimestamp(value *string) {
+	m.timestamp = value
 }
+
 type PodUtilizationable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetCpuUsageSeconds()(*float64)
-    GetMemoryBytes()(*float64)
-    GetNamespace()(*string)
-    GetNodeName()(*string)
-    GetOwnerKind()(*string)
-    GetOwnerName()(*string)
-    GetPodName()(*string)
-    GetPodUid()(*string)
-    GetTimestamp()(*string)
-    SetCpuUsageSeconds(value *float64)()
-    SetMemoryBytes(value *float64)()
-    SetNamespace(value *string)()
-    SetNodeName(value *string)()
-    SetOwnerKind(value *string)()
-    SetOwnerName(value *string)()
-    SetPodName(value *string)()
-    SetPodUid(value *string)()
-    SetTimestamp(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetCpuUsageSeconds() *float64
+	GetMemoryBytes() *float64
+	GetNamespace() *string
+	GetNodeName() *string
+	GetOwnerKind() *string
+	GetOwnerName() *string
+	GetPodName() *string
+	GetPodUid() *string
+	GetTimestamp() *string
+	SetCpuUsageSeconds(value *float64)
+	SetMemoryBytes(value *float64)
+	SetNamespace(value *string)
+	SetNodeName(value *string)
+	SetOwnerKind(value *string)
+	SetOwnerName(value *string)
+	SetPodName(value *string)
+	SetPodUid(value *string)
+	SetTimestamp(value *string)
 }

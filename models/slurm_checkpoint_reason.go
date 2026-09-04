@@ -2,35 +2,39 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type SlurmCheckpointReason int
 
 const (
-    HEARTBEAT_SLURMCHECKPOINTREASON SlurmCheckpointReason = iota
-    MANUAL_SLURMCHECKPOINTREASON
+	HEARTBEAT_SLURMCHECKPOINTREASON SlurmCheckpointReason = iota
+	MANUAL_SLURMCHECKPOINTREASON
 )
 
 func (i SlurmCheckpointReason) String() string {
-    return []string{"heartbeat", "manual"}[i]
+	return []string{"heartbeat", "manual"}[i]
 }
+
 func ParseSlurmCheckpointReason(v string) (any, error) {
-    result := HEARTBEAT_SLURMCHECKPOINTREASON
-    switch v {
-        case "heartbeat":
-            result = HEARTBEAT_SLURMCHECKPOINTREASON
-        case "manual":
-            result = MANUAL_SLURMCHECKPOINTREASON
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := HEARTBEAT_SLURMCHECKPOINTREASON
+	switch v {
+	case "heartbeat":
+		result = HEARTBEAT_SLURMCHECKPOINTREASON
+	case "manual":
+		result = MANUAL_SLURMCHECKPOINTREASON
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeSlurmCheckpointReason(values []SlurmCheckpointReason) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i SlurmCheckpointReason) isMultiValue() bool {
-    return false
+	return false
 }

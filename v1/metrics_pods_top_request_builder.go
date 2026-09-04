@@ -4,33 +4,37 @@
 package v1
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // MetricsPodsTopRequestBuilder builds and executes requests for operations under \v1\metrics\pods\top
 type MetricsPodsTopRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // NewMetricsPodsTopRequestBuilderInternal instantiates a new MetricsPodsTopRequestBuilder and sets the default values.
-func NewMetricsPodsTopRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*MetricsPodsTopRequestBuilder) {
-    m := &MetricsPodsTopRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/metrics/pods/top", pathParameters),
-    }
-    return m
+func NewMetricsPodsTopRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *MetricsPodsTopRequestBuilder {
+	m := &MetricsPodsTopRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/metrics/pods/top", pathParameters),
+	}
+	return m
 }
+
 // NewMetricsPodsTopRequestBuilder instantiates a new MetricsPodsTopRequestBuilder and sets the default values.
-func NewMetricsPodsTopRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*MetricsPodsTopRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewMetricsPodsTopRequestBuilderInternal(urlParams, requestAdapter)
+func NewMetricsPodsTopRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *MetricsPodsTopRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewMetricsPodsTopRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Cpu the cpu property
 // returns a *MetricsPodsTopCpuRequestBuilder when successful
-func (m *MetricsPodsTopRequestBuilder) Cpu()(*MetricsPodsTopCpuRequestBuilder) {
-    return NewMetricsPodsTopCpuRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *MetricsPodsTopRequestBuilder) Cpu() *MetricsPodsTopCpuRequestBuilder {
+	return NewMetricsPodsTopCpuRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Memory the memory property
 // returns a *MetricsPodsTopMemoryRequestBuilder when successful
-func (m *MetricsPodsTopRequestBuilder) Memory()(*MetricsPodsTopMemoryRequestBuilder) {
-    return NewMetricsPodsTopMemoryRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *MetricsPodsTopRequestBuilder) Memory() *MetricsPodsTopMemoryRequestBuilder {
+	return NewMetricsPodsTopMemoryRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

@@ -4,38 +4,43 @@
 package v1
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // RestoresEventsRequestBuilder builds and executes requests for operations under \v1\restores\events
 type RestoresEventsRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // NewRestoresEventsRequestBuilderInternal instantiates a new RestoresEventsRequestBuilder and sets the default values.
-func NewRestoresEventsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*RestoresEventsRequestBuilder) {
-    m := &RestoresEventsRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/restores/events", pathParameters),
-    }
-    return m
+func NewRestoresEventsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *RestoresEventsRequestBuilder {
+	m := &RestoresEventsRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/restores/events", pathParameters),
+	}
+	return m
 }
+
 // NewRestoresEventsRequestBuilder instantiates a new RestoresEventsRequestBuilder and sets the default values.
-func NewRestoresEventsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*RestoresEventsRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewRestoresEventsRequestBuilderInternal(urlParams, requestAdapter)
+func NewRestoresEventsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *RestoresEventsRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewRestoresEventsRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Restore_error the restore_error property
 // returns a *RestoresEventsRestore_errorRequestBuilder when successful
-func (m *RestoresEventsRequestBuilder) Restore_error()(*RestoresEventsRestore_errorRequestBuilder) {
-    return NewRestoresEventsRestore_errorRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *RestoresEventsRequestBuilder) Restore_error() *RestoresEventsRestore_errorRequestBuilder {
+	return NewRestoresEventsRestore_errorRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Restore_start the restore_start property
 // returns a *RestoresEventsRestore_startRequestBuilder when successful
-func (m *RestoresEventsRequestBuilder) Restore_start()(*RestoresEventsRestore_startRequestBuilder) {
-    return NewRestoresEventsRestore_startRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *RestoresEventsRequestBuilder) Restore_start() *RestoresEventsRestore_startRequestBuilder {
+	return NewRestoresEventsRestore_startRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Restore_success the restore_success property
 // returns a *RestoresEventsRestore_successRequestBuilder when successful
-func (m *RestoresEventsRequestBuilder) Restore_success()(*RestoresEventsRestore_successRequestBuilder) {
-    return NewRestoresEventsRestore_successRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *RestoresEventsRequestBuilder) Restore_success() *RestoresEventsRestore_successRequestBuilder {
+	return NewRestoresEventsRestore_successRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

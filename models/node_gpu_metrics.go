@@ -4,122 +4,132 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // NodeGpuMetrics gPU metrics grouped by node
 type NodeGpuMetrics struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The gpus property
-    gpus []GpuMetricable
-    // The node_name property
-    node_name *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The gpus property
+	gpus []GpuMetricable
+	// The node_name property
+	node_name *string
 }
+
 // NewNodeGpuMetrics instantiates a new NodeGpuMetrics and sets the default values.
-func NewNodeGpuMetrics()(*NodeGpuMetrics) {
-    m := &NodeGpuMetrics{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewNodeGpuMetrics() *NodeGpuMetrics {
+	m := &NodeGpuMetrics{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateNodeGpuMetricsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateNodeGpuMetricsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewNodeGpuMetrics(), nil
+func CreateNodeGpuMetricsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewNodeGpuMetrics(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *NodeGpuMetrics) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *NodeGpuMetrics) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *NodeGpuMetrics) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["gpus"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateGpuMetricFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]GpuMetricable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(GpuMetricable)
-                }
-            }
-            m.SetGpus(res)
-        }
-        return nil
-    }
-    res["node_name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetNodeName(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *NodeGpuMetrics) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["gpus"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateGpuMetricFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]GpuMetricable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(GpuMetricable)
+				}
+			}
+			m.SetGpus(res)
+		}
+		return nil
+	}
+	res["node_name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNodeName(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetGpus gets the gpus property value. The gpus property
 // returns a []GpuMetricable when successful
-func (m *NodeGpuMetrics) GetGpus()([]GpuMetricable) {
-    return m.gpus
+func (m *NodeGpuMetrics) GetGpus() []GpuMetricable {
+	return m.gpus
 }
+
 // GetNodeName gets the node_name property value. The node_name property
 // returns a *string when successful
-func (m *NodeGpuMetrics) GetNodeName()(*string) {
-    return m.node_name
+func (m *NodeGpuMetrics) GetNodeName() *string {
+	return m.node_name
 }
+
 // Serialize serializes information the current object
-func (m *NodeGpuMetrics) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetGpus() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetGpus()))
-        for i, v := range m.GetGpus() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("gpus", cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("node_name", m.GetNodeName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *NodeGpuMetrics) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetGpus() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetGpus()))
+		for i, v := range m.GetGpus() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("gpus", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("node_name", m.GetNodeName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *NodeGpuMetrics) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *NodeGpuMetrics) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetGpus sets the gpus property value. The gpus property
-func (m *NodeGpuMetrics) SetGpus(value []GpuMetricable)() {
-    m.gpus = value
+func (m *NodeGpuMetrics) SetGpus(value []GpuMetricable) {
+	m.gpus = value
 }
+
 // SetNodeName sets the node_name property value. The node_name property
-func (m *NodeGpuMetrics) SetNodeName(value *string)() {
-    m.node_name = value
+func (m *NodeGpuMetrics) SetNodeName(value *string) {
+	m.node_name = value
 }
+
 type NodeGpuMetricsable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetGpus()([]GpuMetricable)
-    GetNodeName()(*string)
-    SetGpus(value []GpuMetricable)()
-    SetNodeName(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetGpus() []GpuMetricable
+	GetNodeName() *string
+	SetGpus(value []GpuMetricable)
+	SetNodeName(value *string)
 }

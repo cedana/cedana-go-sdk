@@ -4,63 +4,69 @@
 package v1
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
+	"context"
+	i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // InferenceProfilesItemWorkerEndpointRequestBuilder builds and executes requests for operations under \v1\inference\profiles\{profile_id}\worker-endpoint
 type InferenceProfilesItemWorkerEndpointRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // InferenceProfilesItemWorkerEndpointRequestBuilderPutRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type InferenceProfilesItemWorkerEndpointRequestBuilderPutRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+
 // NewInferenceProfilesItemWorkerEndpointRequestBuilderInternal instantiates a new InferenceProfilesItemWorkerEndpointRequestBuilder and sets the default values.
-func NewInferenceProfilesItemWorkerEndpointRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*InferenceProfilesItemWorkerEndpointRequestBuilder) {
-    m := &InferenceProfilesItemWorkerEndpointRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/inference/profiles/{profile_id}/worker-endpoint", pathParameters),
-    }
-    return m
+func NewInferenceProfilesItemWorkerEndpointRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *InferenceProfilesItemWorkerEndpointRequestBuilder {
+	m := &InferenceProfilesItemWorkerEndpointRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/inference/profiles/{profile_id}/worker-endpoint", pathParameters),
+	}
+	return m
 }
+
 // NewInferenceProfilesItemWorkerEndpointRequestBuilder instantiates a new InferenceProfilesItemWorkerEndpointRequestBuilder and sets the default values.
-func NewInferenceProfilesItemWorkerEndpointRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*InferenceProfilesItemWorkerEndpointRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewInferenceProfilesItemWorkerEndpointRequestBuilderInternal(urlParams, requestAdapter)
+func NewInferenceProfilesItemWorkerEndpointRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *InferenceProfilesItemWorkerEndpointRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewInferenceProfilesItemWorkerEndpointRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Put record where a profile's worker publishes its metrics (controller only). Thepropagator can reach the port but cannot find the pod IP itself.
-func (m *InferenceProfilesItemWorkerEndpointRequestBuilder) Put(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.ReportWorkerEndpointable, requestConfiguration *InferenceProfilesItemWorkerEndpointRequestBuilderPutRequestConfiguration)(error) {
-    requestInfo, err := m.ToPutRequestInformation(ctx, body, requestConfiguration);
-    if err != nil {
-        return err
-    }
-    err = m.BaseRequestBuilder.RequestAdapter.SendNoContent(ctx, requestInfo, nil)
-    if err != nil {
-        return err
-    }
-    return nil
+func (m *InferenceProfilesItemWorkerEndpointRequestBuilder) Put(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.ReportWorkerEndpointable, requestConfiguration *InferenceProfilesItemWorkerEndpointRequestBuilderPutRequestConfiguration) error {
+	requestInfo, err := m.ToPutRequestInformation(ctx, body, requestConfiguration)
+	if err != nil {
+		return err
+	}
+	err = m.BaseRequestBuilder.RequestAdapter.SendNoContent(ctx, requestInfo, nil)
+	if err != nil {
+		return err
+	}
+	return nil
 }
+
 // ToPutRequestInformation record where a profile's worker publishes its metrics (controller only). Thepropagator can reach the port but cannot find the pod IP itself.
 // returns a *RequestInformation when successful
-func (m *InferenceProfilesItemWorkerEndpointRequestBuilder) ToPutRequestInformation(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.ReportWorkerEndpointable, requestConfiguration *InferenceProfilesItemWorkerEndpointRequestBuilderPutRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.PUT, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    err := requestInfo.SetContentFromParsable(ctx, m.BaseRequestBuilder.RequestAdapter, "application/json", body)
-    if err != nil {
-        return nil, err
-    }
-    return requestInfo, nil
+func (m *InferenceProfilesItemWorkerEndpointRequestBuilder) ToPutRequestInformation(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.ReportWorkerEndpointable, requestConfiguration *InferenceProfilesItemWorkerEndpointRequestBuilderPutRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.PUT, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	err := requestInfo.SetContentFromParsable(ctx, m.BaseRequestBuilder.RequestAdapter, "application/json", body)
+	if err != nil {
+		return nil, err
+	}
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *InferenceProfilesItemWorkerEndpointRequestBuilder when successful
-func (m *InferenceProfilesItemWorkerEndpointRequestBuilder) WithUrl(rawUrl string)(*InferenceProfilesItemWorkerEndpointRequestBuilder) {
-    return NewInferenceProfilesItemWorkerEndpointRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *InferenceProfilesItemWorkerEndpointRequestBuilder) WithUrl(rawUrl string) *InferenceProfilesItemWorkerEndpointRequestBuilder {
+	return NewInferenceProfilesItemWorkerEndpointRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

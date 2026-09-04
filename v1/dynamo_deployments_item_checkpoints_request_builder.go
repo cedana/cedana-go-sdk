@@ -4,77 +4,84 @@
 package v1
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
-    i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
+	"context"
+	i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
+	i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // DynamoDeploymentsItemCheckpointsRequestBuilder builds and executes requests for operations under \v1\dynamo\deployments\{name}\checkpoints
 type DynamoDeploymentsItemCheckpointsRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // DynamoDeploymentsItemCheckpointsRequestBuilderGetQueryParameters returns a summary of checkpoints taken for all worker pods belonging to the deployment.Matches pods whose name starts with the deployment name.
 type DynamoDeploymentsItemCheckpointsRequestBuilderGetQueryParameters struct {
-    // UUID of the cluster to filter by
-    Cluster_id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID `uriparametername:"cluster_id"`
-    // Kubernetes namespace
-    Namespace *string `uriparametername:"namespace"`
+	// UUID of the cluster to filter by
+	Cluster_id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID "uriparametername:\"cluster_id\""
+	// Kubernetes namespace
+	Namespace *string "uriparametername:\"namespace\""
 }
+
 // DynamoDeploymentsItemCheckpointsRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type DynamoDeploymentsItemCheckpointsRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *DynamoDeploymentsItemCheckpointsRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *DynamoDeploymentsItemCheckpointsRequestBuilderGetQueryParameters
 }
+
 // NewDynamoDeploymentsItemCheckpointsRequestBuilderInternal instantiates a new DynamoDeploymentsItemCheckpointsRequestBuilder and sets the default values.
-func NewDynamoDeploymentsItemCheckpointsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*DynamoDeploymentsItemCheckpointsRequestBuilder) {
-    m := &DynamoDeploymentsItemCheckpointsRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/dynamo/deployments/{name}/checkpoints?cluster_id={cluster_id}{&namespace*}", pathParameters),
-    }
-    return m
+func NewDynamoDeploymentsItemCheckpointsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *DynamoDeploymentsItemCheckpointsRequestBuilder {
+	m := &DynamoDeploymentsItemCheckpointsRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/dynamo/deployments/{name}/checkpoints?cluster_id={cluster_id}{&namespace*}", pathParameters),
+	}
+	return m
 }
+
 // NewDynamoDeploymentsItemCheckpointsRequestBuilder instantiates a new DynamoDeploymentsItemCheckpointsRequestBuilder and sets the default values.
-func NewDynamoDeploymentsItemCheckpointsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*DynamoDeploymentsItemCheckpointsRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewDynamoDeploymentsItemCheckpointsRequestBuilderInternal(urlParams, requestAdapter)
+func NewDynamoDeploymentsItemCheckpointsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *DynamoDeploymentsItemCheckpointsRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewDynamoDeploymentsItemCheckpointsRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get returns a summary of checkpoints taken for all worker pods belonging to the deployment.Matches pods whose name starts with the deployment name.
 // returns a DynamoCheckpointSummaryable when successful
-func (m *DynamoDeploymentsItemCheckpointsRequestBuilder) Get(ctx context.Context, requestConfiguration *DynamoDeploymentsItemCheckpointsRequestBuilderGetRequestConfiguration)(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.DynamoCheckpointSummaryable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateDynamoCheckpointSummaryFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.DynamoCheckpointSummaryable), nil
+func (m *DynamoDeploymentsItemCheckpointsRequestBuilder) Get(ctx context.Context, requestConfiguration *DynamoDeploymentsItemCheckpointsRequestBuilderGetRequestConfiguration) (i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.DynamoCheckpointSummaryable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateDynamoCheckpointSummaryFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.DynamoCheckpointSummaryable), nil
 }
+
 // ToGetRequestInformation returns a summary of checkpoints taken for all worker pods belonging to the deployment.Matches pods whose name starts with the deployment name.
 // returns a *RequestInformation when successful
-func (m *DynamoDeploymentsItemCheckpointsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *DynamoDeploymentsItemCheckpointsRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *DynamoDeploymentsItemCheckpointsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *DynamoDeploymentsItemCheckpointsRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *DynamoDeploymentsItemCheckpointsRequestBuilder when successful
-func (m *DynamoDeploymentsItemCheckpointsRequestBuilder) WithUrl(rawUrl string)(*DynamoDeploymentsItemCheckpointsRequestBuilder) {
-    return NewDynamoDeploymentsItemCheckpointsRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *DynamoDeploymentsItemCheckpointsRequestBuilder) WithUrl(rawUrl string) *DynamoDeploymentsItemCheckpointsRequestBuilder {
+	return NewDynamoDeploymentsItemCheckpointsRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

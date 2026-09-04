@@ -4,67 +4,73 @@
 package v1
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
+	"context"
+	i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // MetricsSlurmPartitionsNodesRequestBuilder builds and executes requests for operations under \v1\metrics\slurm\partitions\nodes
 type MetricsSlurmPartitionsNodesRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // MetricsSlurmPartitionsNodesRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type MetricsSlurmPartitionsNodesRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+
 // NewMetricsSlurmPartitionsNodesRequestBuilderInternal instantiates a new MetricsSlurmPartitionsNodesRequestBuilder and sets the default values.
-func NewMetricsSlurmPartitionsNodesRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*MetricsSlurmPartitionsNodesRequestBuilder) {
-    m := &MetricsSlurmPartitionsNodesRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/metrics/slurm/partitions/nodes", pathParameters),
-    }
-    return m
+func NewMetricsSlurmPartitionsNodesRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *MetricsSlurmPartitionsNodesRequestBuilder {
+	m := &MetricsSlurmPartitionsNodesRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/metrics/slurm/partitions/nodes", pathParameters),
+	}
+	return m
 }
+
 // NewMetricsSlurmPartitionsNodesRequestBuilder instantiates a new MetricsSlurmPartitionsNodesRequestBuilder and sets the default values.
-func NewMetricsSlurmPartitionsNodesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*MetricsSlurmPartitionsNodesRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewMetricsSlurmPartitionsNodesRequestBuilderInternal(urlParams, requestAdapter)
+func NewMetricsSlurmPartitionsNodesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *MetricsSlurmPartitionsNodesRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewMetricsSlurmPartitionsNodesRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get get partition node counts by state (Slurm)
 // returns a []PartitionNodeCountable when successful
-func (m *MetricsSlurmPartitionsNodesRequestBuilder) Get(ctx context.Context, requestConfiguration *MetricsSlurmPartitionsNodesRequestBuilderGetRequestConfiguration)([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PartitionNodeCountable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreatePartitionNodeCountFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    val := make([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PartitionNodeCountable, len(res))
-    for i, v := range res {
-        if v != nil {
-            val[i] = v.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PartitionNodeCountable)
-        }
-    }
-    return val, nil
+func (m *MetricsSlurmPartitionsNodesRequestBuilder) Get(ctx context.Context, requestConfiguration *MetricsSlurmPartitionsNodesRequestBuilderGetRequestConfiguration) ([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PartitionNodeCountable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreatePartitionNodeCountFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	val := make([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PartitionNodeCountable, len(res))
+	for i, v := range res {
+		if v != nil {
+			val[i] = v.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PartitionNodeCountable)
+		}
+	}
+	return val, nil
 }
+
 // ToGetRequestInformation get partition node counts by state (Slurm)
 // returns a *RequestInformation when successful
-func (m *MetricsSlurmPartitionsNodesRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *MetricsSlurmPartitionsNodesRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *MetricsSlurmPartitionsNodesRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *MetricsSlurmPartitionsNodesRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *MetricsSlurmPartitionsNodesRequestBuilder when successful
-func (m *MetricsSlurmPartitionsNodesRequestBuilder) WithUrl(rawUrl string)(*MetricsSlurmPartitionsNodesRequestBuilder) {
-    return NewMetricsSlurmPartitionsNodesRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *MetricsSlurmPartitionsNodesRequestBuilder) WithUrl(rawUrl string) *MetricsSlurmPartitionsNodesRequestBuilder {
+	return NewMetricsSlurmPartitionsNodesRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

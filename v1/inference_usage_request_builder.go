@@ -4,28 +4,31 @@
 package v1
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // InferenceUsageRequestBuilder builds and executes requests for operations under \v1\inference\usage
 type InferenceUsageRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // NewInferenceUsageRequestBuilderInternal instantiates a new InferenceUsageRequestBuilder and sets the default values.
-func NewInferenceUsageRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*InferenceUsageRequestBuilder) {
-    m := &InferenceUsageRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/inference/usage", pathParameters),
-    }
-    return m
+func NewInferenceUsageRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *InferenceUsageRequestBuilder {
+	m := &InferenceUsageRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/inference/usage", pathParameters),
+	}
+	return m
 }
+
 // NewInferenceUsageRequestBuilder instantiates a new InferenceUsageRequestBuilder and sets the default values.
-func NewInferenceUsageRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*InferenceUsageRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewInferenceUsageRequestBuilderInternal(urlParams, requestAdapter)
+func NewInferenceUsageRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *InferenceUsageRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewInferenceUsageRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Series the series property
 // returns a *InferenceUsageSeriesRequestBuilder when successful
-func (m *InferenceUsageRequestBuilder) Series()(*InferenceUsageSeriesRequestBuilder) {
-    return NewInferenceUsageSeriesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *InferenceUsageRequestBuilder) Series() *InferenceUsageSeriesRequestBuilder {
+	return NewInferenceUsageSeriesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

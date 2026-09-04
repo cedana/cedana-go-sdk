@@ -4,139 +4,151 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // PolicyPipeline complete policy pipeline definition
 type PolicyPipeline struct {
-    // Action defines WHAT to do when triggered
-    action Createable
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // Filter defines WHAT resources are targeted
-    filter PipelineFilterable
-    // Trigger defines WHEN a policy activates
-    trigger Createable
+	// Action defines WHAT to do when triggered
+	action WithPolicy_able
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// Filter defines WHAT resources are targeted
+	filter PipelineFilterable
+	// Trigger defines WHEN a policy activates
+	trigger WithPolicy_able
 }
+
 // NewPolicyPipeline instantiates a new PolicyPipeline and sets the default values.
-func NewPolicyPipeline()(*PolicyPipeline) {
-    m := &PolicyPipeline{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewPolicyPipeline() *PolicyPipeline {
+	m := &PolicyPipeline{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreatePolicyPipelineFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePolicyPipelineFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPolicyPipeline(), nil
+func CreatePolicyPipelineFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPolicyPipeline(), nil
 }
+
 // GetAction gets the action property value. Action defines WHAT to do when triggered
-// returns a Createable when successful
-func (m *PolicyPipeline) GetAction()(Createable) {
-    return m.action
+// returns a WithPolicy_able when successful
+func (m *PolicyPipeline) GetAction() WithPolicy_able {
+	return m.action
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *PolicyPipeline) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *PolicyPipeline) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PolicyPipeline) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["action"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateCreateFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetAction(val.(Createable))
-        }
-        return nil
-    }
-    res["filter"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePipelineFilterFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFilter(val.(PipelineFilterable))
-        }
-        return nil
-    }
-    res["trigger"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateCreateFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTrigger(val.(Createable))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *PolicyPipeline) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["action"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateWithPolicy_FromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetAction(val.(WithPolicy_able))
+		}
+		return nil
+	}
+	res["filter"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreatePipelineFilterFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFilter(val.(PipelineFilterable))
+		}
+		return nil
+	}
+	res["trigger"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateWithPolicy_FromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTrigger(val.(WithPolicy_able))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetFilter gets the filter property value. Filter defines WHAT resources are targeted
 // returns a PipelineFilterable when successful
-func (m *PolicyPipeline) GetFilter()(PipelineFilterable) {
-    return m.filter
+func (m *PolicyPipeline) GetFilter() PipelineFilterable {
+	return m.filter
 }
+
 // GetTrigger gets the trigger property value. Trigger defines WHEN a policy activates
-// returns a Createable when successful
-func (m *PolicyPipeline) GetTrigger()(Createable) {
-    return m.trigger
+// returns a WithPolicy_able when successful
+func (m *PolicyPipeline) GetTrigger() WithPolicy_able {
+	return m.trigger
 }
+
 // Serialize serializes information the current object
-func (m *PolicyPipeline) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("action", m.GetAction())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("filter", m.GetFilter())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("trigger", m.GetTrigger())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PolicyPipeline) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteObjectValue("action", m.GetAction())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("filter", m.GetFilter())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("trigger", m.GetTrigger())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAction sets the action property value. Action defines WHAT to do when triggered
-func (m *PolicyPipeline) SetAction(value Createable)() {
-    m.action = value
+func (m *PolicyPipeline) SetAction(value WithPolicy_able) {
+	m.action = value
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PolicyPipeline) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *PolicyPipeline) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetFilter sets the filter property value. Filter defines WHAT resources are targeted
-func (m *PolicyPipeline) SetFilter(value PipelineFilterable)() {
-    m.filter = value
+func (m *PolicyPipeline) SetFilter(value PipelineFilterable) {
+	m.filter = value
 }
+
 // SetTrigger sets the trigger property value. Trigger defines WHEN a policy activates
-func (m *PolicyPipeline) SetTrigger(value Createable)() {
-    m.trigger = value
+func (m *PolicyPipeline) SetTrigger(value WithPolicy_able) {
+	m.trigger = value
 }
+
 type PolicyPipelineable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAction()(Createable)
-    GetFilter()(PipelineFilterable)
-    GetTrigger()(Createable)
-    SetAction(value Createable)()
-    SetFilter(value PipelineFilterable)()
-    SetTrigger(value Createable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetAction() WithPolicy_able
+	GetFilter() PipelineFilterable
+	GetTrigger() WithPolicy_able
+	SetAction(value WithPolicy_able)
+	SetFilter(value PipelineFilterable)
+	SetTrigger(value WithPolicy_able)
 }

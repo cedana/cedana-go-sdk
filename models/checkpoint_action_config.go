@@ -4,109 +4,119 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type CheckpointActionConfig struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The kind property
-    kind *string
-    // The runc_root property
-    runc_root *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The kind property
+	kind *string
+	// The runc_root property
+	runc_root *string
 }
+
 // NewCheckpointActionConfig instantiates a new CheckpointActionConfig and sets the default values.
-func NewCheckpointActionConfig()(*CheckpointActionConfig) {
-    m := &CheckpointActionConfig{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewCheckpointActionConfig() *CheckpointActionConfig {
+	m := &CheckpointActionConfig{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateCheckpointActionConfigFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateCheckpointActionConfigFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewCheckpointActionConfig(), nil
+func CreateCheckpointActionConfigFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewCheckpointActionConfig(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *CheckpointActionConfig) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *CheckpointActionConfig) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *CheckpointActionConfig) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["kind"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetKind(val)
-        }
-        return nil
-    }
-    res["runc_root"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRuncRoot(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *CheckpointActionConfig) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["kind"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetKind(val)
+		}
+		return nil
+	}
+	res["runc_root"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRuncRoot(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetKind gets the kind property value. The kind property
 // returns a *string when successful
-func (m *CheckpointActionConfig) GetKind()(*string) {
-    return m.kind
+func (m *CheckpointActionConfig) GetKind() *string {
+	return m.kind
 }
+
 // GetRuncRoot gets the runc_root property value. The runc_root property
 // returns a *string when successful
-func (m *CheckpointActionConfig) GetRuncRoot()(*string) {
-    return m.runc_root
+func (m *CheckpointActionConfig) GetRuncRoot() *string {
+	return m.runc_root
 }
+
 // Serialize serializes information the current object
-func (m *CheckpointActionConfig) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("kind", m.GetKind())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("runc_root", m.GetRuncRoot())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *CheckpointActionConfig) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("kind", m.GetKind())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("runc_root", m.GetRuncRoot())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *CheckpointActionConfig) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *CheckpointActionConfig) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetKind sets the kind property value. The kind property
-func (m *CheckpointActionConfig) SetKind(value *string)() {
-    m.kind = value
+func (m *CheckpointActionConfig) SetKind(value *string) {
+	m.kind = value
 }
+
 // SetRuncRoot sets the runc_root property value. The runc_root property
-func (m *CheckpointActionConfig) SetRuncRoot(value *string)() {
-    m.runc_root = value
+func (m *CheckpointActionConfig) SetRuncRoot(value *string) {
+	m.runc_root = value
 }
+
 type CheckpointActionConfigable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetKind()(*string)
-    GetRuncRoot()(*string)
-    SetKind(value *string)()
-    SetRuncRoot(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetKind() *string
+	GetRuncRoot() *string
+	SetKind(value *string)
+	SetRuncRoot(value *string)
 }

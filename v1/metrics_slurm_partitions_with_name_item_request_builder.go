@@ -4,28 +4,31 @@
 package v1
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // MetricsSlurmPartitionsWithNameItemRequestBuilder builds and executes requests for operations under \v1\metrics\slurm\partitions\{name}
 type MetricsSlurmPartitionsWithNameItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // NewMetricsSlurmPartitionsWithNameItemRequestBuilderInternal instantiates a new MetricsSlurmPartitionsWithNameItemRequestBuilder and sets the default values.
-func NewMetricsSlurmPartitionsWithNameItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*MetricsSlurmPartitionsWithNameItemRequestBuilder) {
-    m := &MetricsSlurmPartitionsWithNameItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/metrics/slurm/partitions/{name}", pathParameters),
-    }
-    return m
+func NewMetricsSlurmPartitionsWithNameItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *MetricsSlurmPartitionsWithNameItemRequestBuilder {
+	m := &MetricsSlurmPartitionsWithNameItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/metrics/slurm/partitions/{name}", pathParameters),
+	}
+	return m
 }
+
 // NewMetricsSlurmPartitionsWithNameItemRequestBuilder instantiates a new MetricsSlurmPartitionsWithNameItemRequestBuilder and sets the default values.
-func NewMetricsSlurmPartitionsWithNameItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*MetricsSlurmPartitionsWithNameItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewMetricsSlurmPartitionsWithNameItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewMetricsSlurmPartitionsWithNameItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *MetricsSlurmPartitionsWithNameItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewMetricsSlurmPartitionsWithNameItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Timeseries the timeseries property
 // returns a *MetricsSlurmPartitionsItemTimeseriesRequestBuilder when successful
-func (m *MetricsSlurmPartitionsWithNameItemRequestBuilder) Timeseries()(*MetricsSlurmPartitionsItemTimeseriesRequestBuilder) {
-    return NewMetricsSlurmPartitionsItemTimeseriesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *MetricsSlurmPartitionsWithNameItemRequestBuilder) Timeseries() *MetricsSlurmPartitionsItemTimeseriesRequestBuilder {
+	return NewMetricsSlurmPartitionsItemTimeseriesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

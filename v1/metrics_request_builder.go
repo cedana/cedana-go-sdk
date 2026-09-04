@@ -4,53 +4,73 @@
 package v1
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // MetricsRequestBuilder builds and executes requests for operations under \v1\metrics
 type MetricsRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // CheckpointCpu the checkpointCpu property
 // returns a *MetricsCheckpointCpuRequestBuilder when successful
-func (m *MetricsRequestBuilder) CheckpointCpu()(*MetricsCheckpointCpuRequestBuilder) {
-    return NewMetricsCheckpointCpuRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *MetricsRequestBuilder) CheckpointCpu() *MetricsCheckpointCpuRequestBuilder {
+	return NewMetricsCheckpointCpuRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // CheckpointSavings the checkpointSavings property
 // returns a *MetricsCheckpointSavingsRequestBuilder when successful
-func (m *MetricsRequestBuilder) CheckpointSavings()(*MetricsCheckpointSavingsRequestBuilder) {
-    return NewMetricsCheckpointSavingsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *MetricsRequestBuilder) CheckpointSavings() *MetricsCheckpointSavingsRequestBuilder {
+	return NewMetricsCheckpointSavingsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewMetricsRequestBuilderInternal instantiates a new MetricsRequestBuilder and sets the default values.
-func NewMetricsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*MetricsRequestBuilder) {
-    m := &MetricsRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/metrics", pathParameters),
-    }
-    return m
+func NewMetricsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *MetricsRequestBuilder {
+	m := &MetricsRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/metrics", pathParameters),
+	}
+	return m
 }
+
 // NewMetricsRequestBuilder instantiates a new MetricsRequestBuilder and sets the default values.
-func NewMetricsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*MetricsRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewMetricsRequestBuilderInternal(urlParams, requestAdapter)
+func NewMetricsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *MetricsRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewMetricsRequestBuilderInternal(urlParams, requestAdapter)
 }
+
+// Export the export property
+// returns a *MetricsExportRequestBuilder when successful
+func (m *MetricsRequestBuilder) Export() *MetricsExportRequestBuilder {
+	return NewMetricsExportRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+
 // Gpu the gpu property
 // returns a *MetricsGpuRequestBuilder when successful
-func (m *MetricsRequestBuilder) Gpu()(*MetricsGpuRequestBuilder) {
-    return NewMetricsGpuRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *MetricsRequestBuilder) Gpu() *MetricsGpuRequestBuilder {
+	return NewMetricsGpuRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // K8 the k8 property
 // returns a *MetricsK8RequestBuilder when successful
-func (m *MetricsRequestBuilder) K8()(*MetricsK8RequestBuilder) {
-    return NewMetricsK8RequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *MetricsRequestBuilder) K8() *MetricsK8RequestBuilder {
+	return NewMetricsK8RequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
+// Operations the operations property
+// returns a *MetricsOperationsRequestBuilder when successful
+func (m *MetricsRequestBuilder) Operations() *MetricsOperationsRequestBuilder {
+	return NewMetricsOperationsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+
 // Pods the pods property
 // returns a *MetricsPodsRequestBuilder when successful
-func (m *MetricsRequestBuilder) Pods()(*MetricsPodsRequestBuilder) {
-    return NewMetricsPodsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *MetricsRequestBuilder) Pods() *MetricsPodsRequestBuilder {
+	return NewMetricsPodsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Slurm the slurm property
 // returns a *MetricsSlurmRequestBuilder when successful
-func (m *MetricsRequestBuilder) Slurm()(*MetricsSlurmRequestBuilder) {
-    return NewMetricsSlurmRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *MetricsRequestBuilder) Slurm() *MetricsSlurmRequestBuilder {
+	return NewMetricsSlurmRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

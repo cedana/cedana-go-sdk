@@ -4,35 +4,38 @@
 package v1
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // SlurmCheckpointsDeprecateRequestBuilder builds and executes requests for operations under \v1\slurm\checkpoints\deprecate
 type SlurmCheckpointsDeprecateRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // ById gets an item from the github.com/cedana/cedana-go-sdk.v1.slurm.checkpoints.deprecate.item collection
 // returns a *SlurmCheckpointsDeprecateDeprecateItemRequestBuilder when successful
-func (m *SlurmCheckpointsDeprecateRequestBuilder) ById(id string)(*SlurmCheckpointsDeprecateDeprecateItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if id != "" {
-        urlTplParams["id"] = id
-    }
-    return NewSlurmCheckpointsDeprecateDeprecateItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *SlurmCheckpointsDeprecateRequestBuilder) ById(id string) *SlurmCheckpointsDeprecateDeprecateItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	if id != "" {
+		urlTplParams["id"] = id
+	}
+	return NewSlurmCheckpointsDeprecateDeprecateItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewSlurmCheckpointsDeprecateRequestBuilderInternal instantiates a new SlurmCheckpointsDeprecateRequestBuilder and sets the default values.
-func NewSlurmCheckpointsDeprecateRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*SlurmCheckpointsDeprecateRequestBuilder) {
-    m := &SlurmCheckpointsDeprecateRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/slurm/checkpoints/deprecate", pathParameters),
-    }
-    return m
+func NewSlurmCheckpointsDeprecateRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *SlurmCheckpointsDeprecateRequestBuilder {
+	m := &SlurmCheckpointsDeprecateRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/slurm/checkpoints/deprecate", pathParameters),
+	}
+	return m
 }
+
 // NewSlurmCheckpointsDeprecateRequestBuilder instantiates a new SlurmCheckpointsDeprecateRequestBuilder and sets the default values.
-func NewSlurmCheckpointsDeprecateRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*SlurmCheckpointsDeprecateRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewSlurmCheckpointsDeprecateRequestBuilderInternal(urlParams, requestAdapter)
+func NewSlurmCheckpointsDeprecateRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *SlurmCheckpointsDeprecateRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewSlurmCheckpointsDeprecateRequestBuilderInternal(urlParams, requestAdapter)
 }

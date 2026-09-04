@@ -4,284 +4,306 @@
 package models
 
 import (
-    i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type NodeResponse struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // "spot" or "on-demand" - detected from node labels
-    capacity_type *string
-    // The cluster_name property
-    cluster_name *string
-    // The compute_type property
-    compute_type *string
-    // The id property
-    id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
-    // The instance_type property
-    instance_type *string
-    // The name property
-    name *string
-    // The region property
-    region *string
-    // The status property
-    status *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// "spot" or "on-demand" - detected from node labels
+	capacity_type *string
+	// The cluster_name property
+	cluster_name *string
+	// The compute_type property
+	compute_type *string
+	// The id property
+	id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+	// The instance_type property
+	instance_type *string
+	// The name property
+	name *string
+	// The region property
+	region *string
+	// The status property
+	status *string
 }
+
 // NewNodeResponse instantiates a new NodeResponse and sets the default values.
-func NewNodeResponse()(*NodeResponse) {
-    m := &NodeResponse{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewNodeResponse() *NodeResponse {
+	m := &NodeResponse{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateNodeResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateNodeResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewNodeResponse(), nil
+func CreateNodeResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewNodeResponse(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *NodeResponse) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *NodeResponse) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetCapacityType gets the capacity_type property value. "spot" or "on-demand" - detected from node labels
 // returns a *string when successful
-func (m *NodeResponse) GetCapacityType()(*string) {
-    return m.capacity_type
+func (m *NodeResponse) GetCapacityType() *string {
+	return m.capacity_type
 }
+
 // GetClusterName gets the cluster_name property value. The cluster_name property
 // returns a *string when successful
-func (m *NodeResponse) GetClusterName()(*string) {
-    return m.cluster_name
+func (m *NodeResponse) GetClusterName() *string {
+	return m.cluster_name
 }
+
 // GetComputeType gets the compute_type property value. The compute_type property
 // returns a *string when successful
-func (m *NodeResponse) GetComputeType()(*string) {
-    return m.compute_type
+func (m *NodeResponse) GetComputeType() *string {
+	return m.compute_type
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *NodeResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["capacity_type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCapacityType(val)
-        }
-        return nil
-    }
-    res["cluster_name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetClusterName(val)
-        }
-        return nil
-    }
-    res["compute_type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetComputeType(val)
-        }
-        return nil
-    }
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetUUIDValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
-        }
-        return nil
-    }
-    res["instance_type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetInstanceType(val)
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    res["region"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRegion(val)
-        }
-        return nil
-    }
-    res["status"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStatus(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *NodeResponse) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["capacity_type"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCapacityType(val)
+		}
+		return nil
+	}
+	res["cluster_name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetClusterName(val)
+		}
+		return nil
+	}
+	res["compute_type"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetComputeType(val)
+		}
+		return nil
+	}
+	res["id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetUUIDValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetId(val)
+		}
+		return nil
+	}
+	res["instance_type"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetInstanceType(val)
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	res["region"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRegion(val)
+		}
+		return nil
+	}
+	res["status"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStatus(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetId gets the id property value. The id property
 // returns a *UUID when successful
-func (m *NodeResponse) GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
-    return m.id
+func (m *NodeResponse) GetId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID {
+	return m.id
 }
+
 // GetInstanceType gets the instance_type property value. The instance_type property
 // returns a *string when successful
-func (m *NodeResponse) GetInstanceType()(*string) {
-    return m.instance_type
+func (m *NodeResponse) GetInstanceType() *string {
+	return m.instance_type
 }
+
 // GetName gets the name property value. The name property
 // returns a *string when successful
-func (m *NodeResponse) GetName()(*string) {
-    return m.name
+func (m *NodeResponse) GetName() *string {
+	return m.name
 }
+
 // GetRegion gets the region property value. The region property
 // returns a *string when successful
-func (m *NodeResponse) GetRegion()(*string) {
-    return m.region
+func (m *NodeResponse) GetRegion() *string {
+	return m.region
 }
+
 // GetStatus gets the status property value. The status property
 // returns a *string when successful
-func (m *NodeResponse) GetStatus()(*string) {
-    return m.status
+func (m *NodeResponse) GetStatus() *string {
+	return m.status
 }
+
 // Serialize serializes information the current object
-func (m *NodeResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("capacity_type", m.GetCapacityType())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("cluster_name", m.GetClusterName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("compute_type", m.GetComputeType())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteUUIDValue("id", m.GetId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("instance_type", m.GetInstanceType())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("region", m.GetRegion())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("status", m.GetStatus())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *NodeResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("capacity_type", m.GetCapacityType())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("cluster_name", m.GetClusterName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("compute_type", m.GetComputeType())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteUUIDValue("id", m.GetId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("instance_type", m.GetInstanceType())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("region", m.GetRegion())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("status", m.GetStatus())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *NodeResponse) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *NodeResponse) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetCapacityType sets the capacity_type property value. "spot" or "on-demand" - detected from node labels
-func (m *NodeResponse) SetCapacityType(value *string)() {
-    m.capacity_type = value
+func (m *NodeResponse) SetCapacityType(value *string) {
+	m.capacity_type = value
 }
+
 // SetClusterName sets the cluster_name property value. The cluster_name property
-func (m *NodeResponse) SetClusterName(value *string)() {
-    m.cluster_name = value
+func (m *NodeResponse) SetClusterName(value *string) {
+	m.cluster_name = value
 }
+
 // SetComputeType sets the compute_type property value. The compute_type property
-func (m *NodeResponse) SetComputeType(value *string)() {
-    m.compute_type = value
+func (m *NodeResponse) SetComputeType(value *string) {
+	m.compute_type = value
 }
+
 // SetId sets the id property value. The id property
-func (m *NodeResponse) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
-    m.id = value
+func (m *NodeResponse) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
+	m.id = value
 }
+
 // SetInstanceType sets the instance_type property value. The instance_type property
-func (m *NodeResponse) SetInstanceType(value *string)() {
-    m.instance_type = value
+func (m *NodeResponse) SetInstanceType(value *string) {
+	m.instance_type = value
 }
+
 // SetName sets the name property value. The name property
-func (m *NodeResponse) SetName(value *string)() {
-    m.name = value
+func (m *NodeResponse) SetName(value *string) {
+	m.name = value
 }
+
 // SetRegion sets the region property value. The region property
-func (m *NodeResponse) SetRegion(value *string)() {
-    m.region = value
+func (m *NodeResponse) SetRegion(value *string) {
+	m.region = value
 }
+
 // SetStatus sets the status property value. The status property
-func (m *NodeResponse) SetStatus(value *string)() {
-    m.status = value
+func (m *NodeResponse) SetStatus(value *string) {
+	m.status = value
 }
+
 type NodeResponseable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetCapacityType()(*string)
-    GetClusterName()(*string)
-    GetComputeType()(*string)
-    GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
-    GetInstanceType()(*string)
-    GetName()(*string)
-    GetRegion()(*string)
-    GetStatus()(*string)
-    SetCapacityType(value *string)()
-    SetClusterName(value *string)()
-    SetComputeType(value *string)()
-    SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
-    SetInstanceType(value *string)()
-    SetName(value *string)()
-    SetRegion(value *string)()
-    SetStatus(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetCapacityType() *string
+	GetClusterName() *string
+	GetComputeType() *string
+	GetId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+	GetInstanceType() *string
+	GetName() *string
+	GetRegion() *string
+	GetStatus() *string
+	SetCapacityType(value *string)
+	SetClusterName(value *string)
+	SetComputeType(value *string)
+	SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+	SetInstanceType(value *string)
+	SetName(value *string)
+	SetRegion(value *string)
+	SetStatus(value *string)
 }

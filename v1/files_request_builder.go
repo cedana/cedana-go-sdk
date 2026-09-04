@@ -4,40 +4,44 @@
 package v1
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // FilesRequestBuilder builds and executes requests for operations under \v1\files
 type FilesRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // ByPath gets an item from the github.com/cedana/cedana-go-sdk.v1.files.item collection
 // returns a *FilesWithPathItemRequestBuilder when successful
-func (m *FilesRequestBuilder) ByPath(path string)(*FilesWithPathItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if path != "" {
-        urlTplParams["path"] = path
-    }
-    return NewFilesWithPathItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *FilesRequestBuilder) ByPath(path string) *FilesWithPathItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	if path != "" {
+		urlTplParams["path"] = path
+	}
+	return NewFilesWithPathItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewFilesRequestBuilderInternal instantiates a new FilesRequestBuilder and sets the default values.
-func NewFilesRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*FilesRequestBuilder) {
-    m := &FilesRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/files", pathParameters),
-    }
-    return m
+func NewFilesRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *FilesRequestBuilder {
+	m := &FilesRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/files", pathParameters),
+	}
+	return m
 }
+
 // NewFilesRequestBuilder instantiates a new FilesRequestBuilder and sets the default values.
-func NewFilesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*FilesRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewFilesRequestBuilderInternal(urlParams, requestAdapter)
+func NewFilesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *FilesRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewFilesRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Dir the dir property
 // returns a *FilesDirRequestBuilder when successful
-func (m *FilesRequestBuilder) Dir()(*FilesDirRequestBuilder) {
-    return NewFilesDirRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *FilesRequestBuilder) Dir() *FilesDirRequestBuilder {
+	return NewFilesDirRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

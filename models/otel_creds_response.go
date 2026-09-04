@@ -4,109 +4,119 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type OtelCredsResponse struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The OTEL_EXPORTER_OTLP_ENDPOINT property
-    oTEL_EXPORTER_OTLP_ENDPOINT *string
-    // The OTEL_EXPORTER_OTLP_HEADERS property
-    oTEL_EXPORTER_OTLP_HEADERS *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The OTEL_EXPORTER_OTLP_ENDPOINT property
+	oTEL_EXPORTER_OTLP_ENDPOINT *string
+	// The OTEL_EXPORTER_OTLP_HEADERS property
+	oTEL_EXPORTER_OTLP_HEADERS *string
 }
+
 // NewOtelCredsResponse instantiates a new OtelCredsResponse and sets the default values.
-func NewOtelCredsResponse()(*OtelCredsResponse) {
-    m := &OtelCredsResponse{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewOtelCredsResponse() *OtelCredsResponse {
+	m := &OtelCredsResponse{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateOtelCredsResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateOtelCredsResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewOtelCredsResponse(), nil
+func CreateOtelCredsResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewOtelCredsResponse(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *OtelCredsResponse) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *OtelCredsResponse) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *OtelCredsResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["OTEL_EXPORTER_OTLP_ENDPOINT"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetOTELEXPORTEROTLPENDPOINT(val)
-        }
-        return nil
-    }
-    res["OTEL_EXPORTER_OTLP_HEADERS"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetOTELEXPORTEROTLPHEADERS(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *OtelCredsResponse) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["OTEL_EXPORTER_OTLP_ENDPOINT"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetOTELEXPORTEROTLPENDPOINT(val)
+		}
+		return nil
+	}
+	res["OTEL_EXPORTER_OTLP_HEADERS"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetOTELEXPORTEROTLPHEADERS(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetOTELEXPORTEROTLPENDPOINT gets the OTEL_EXPORTER_OTLP_ENDPOINT property value. The OTEL_EXPORTER_OTLP_ENDPOINT property
 // returns a *string when successful
-func (m *OtelCredsResponse) GetOTELEXPORTEROTLPENDPOINT()(*string) {
-    return m.oTEL_EXPORTER_OTLP_ENDPOINT
+func (m *OtelCredsResponse) GetOTELEXPORTEROTLPENDPOINT() *string {
+	return m.oTEL_EXPORTER_OTLP_ENDPOINT
 }
+
 // GetOTELEXPORTEROTLPHEADERS gets the OTEL_EXPORTER_OTLP_HEADERS property value. The OTEL_EXPORTER_OTLP_HEADERS property
 // returns a *string when successful
-func (m *OtelCredsResponse) GetOTELEXPORTEROTLPHEADERS()(*string) {
-    return m.oTEL_EXPORTER_OTLP_HEADERS
+func (m *OtelCredsResponse) GetOTELEXPORTEROTLPHEADERS() *string {
+	return m.oTEL_EXPORTER_OTLP_HEADERS
 }
+
 // Serialize serializes information the current object
-func (m *OtelCredsResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("OTEL_EXPORTER_OTLP_ENDPOINT", m.GetOTELEXPORTEROTLPENDPOINT())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("OTEL_EXPORTER_OTLP_HEADERS", m.GetOTELEXPORTEROTLPHEADERS())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *OtelCredsResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("OTEL_EXPORTER_OTLP_ENDPOINT", m.GetOTELEXPORTEROTLPENDPOINT())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("OTEL_EXPORTER_OTLP_HEADERS", m.GetOTELEXPORTEROTLPHEADERS())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *OtelCredsResponse) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *OtelCredsResponse) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetOTELEXPORTEROTLPENDPOINT sets the OTEL_EXPORTER_OTLP_ENDPOINT property value. The OTEL_EXPORTER_OTLP_ENDPOINT property
-func (m *OtelCredsResponse) SetOTELEXPORTEROTLPENDPOINT(value *string)() {
-    m.oTEL_EXPORTER_OTLP_ENDPOINT = value
+func (m *OtelCredsResponse) SetOTELEXPORTEROTLPENDPOINT(value *string) {
+	m.oTEL_EXPORTER_OTLP_ENDPOINT = value
 }
+
 // SetOTELEXPORTEROTLPHEADERS sets the OTEL_EXPORTER_OTLP_HEADERS property value. The OTEL_EXPORTER_OTLP_HEADERS property
-func (m *OtelCredsResponse) SetOTELEXPORTEROTLPHEADERS(value *string)() {
-    m.oTEL_EXPORTER_OTLP_HEADERS = value
+func (m *OtelCredsResponse) SetOTELEXPORTEROTLPHEADERS(value *string) {
+	m.oTEL_EXPORTER_OTLP_HEADERS = value
 }
+
 type OtelCredsResponseable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetOTELEXPORTEROTLPENDPOINT()(*string)
-    GetOTELEXPORTEROTLPHEADERS()(*string)
-    SetOTELEXPORTEROTLPENDPOINT(value *string)()
-    SetOTELEXPORTEROTLPHEADERS(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetOTELEXPORTEROTLPENDPOINT() *string
+	GetOTELEXPORTEROTLPHEADERS() *string
+	SetOTELEXPORTEROTLPENDPOINT(value *string)
+	SetOTELEXPORTEROTLPHEADERS(value *string)
 }

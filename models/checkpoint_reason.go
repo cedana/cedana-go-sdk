@@ -2,35 +2,39 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type CheckpointReason int
 
 const (
-    HEARTBEAT_CHECKPOINTREASON CheckpointReason = iota
-    MANUAL_CHECKPOINTREASON
+	HEARTBEAT_CHECKPOINTREASON CheckpointReason = iota
+	MANUAL_CHECKPOINTREASON
 )
 
 func (i CheckpointReason) String() string {
-    return []string{"heartbeat", "manual"}[i]
+	return []string{"heartbeat", "manual"}[i]
 }
+
 func ParseCheckpointReason(v string) (any, error) {
-    result := HEARTBEAT_CHECKPOINTREASON
-    switch v {
-        case "heartbeat":
-            result = HEARTBEAT_CHECKPOINTREASON
-        case "manual":
-            result = MANUAL_CHECKPOINTREASON
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := HEARTBEAT_CHECKPOINTREASON
+	switch v {
+	case "heartbeat":
+		result = HEARTBEAT_CHECKPOINTREASON
+	case "manual":
+		result = MANUAL_CHECKPOINTREASON
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeCheckpointReason(values []CheckpointReason) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i CheckpointReason) isMultiValue() bool {
-    return false
+	return false
 }

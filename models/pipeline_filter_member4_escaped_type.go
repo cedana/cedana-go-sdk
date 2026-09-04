@@ -2,32 +2,36 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type PipelineFilterMember4_type int
 
 const (
-    SLURM_JOBS_PIPELINEFILTERMEMBER4_TYPE PipelineFilterMember4_type = iota
+	SLURM_JOBS_PIPELINEFILTERMEMBER4_TYPE PipelineFilterMember4_type = iota
 )
 
 func (i PipelineFilterMember4_type) String() string {
-    return []string{"slurm_jobs"}[i]
+	return []string{"slurm_jobs"}[i]
 }
+
 func ParsePipelineFilterMember4_type(v string) (any, error) {
-    result := SLURM_JOBS_PIPELINEFILTERMEMBER4_TYPE
-    switch v {
-        case "slurm_jobs":
-            result = SLURM_JOBS_PIPELINEFILTERMEMBER4_TYPE
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := SLURM_JOBS_PIPELINEFILTERMEMBER4_TYPE
+	switch v {
+	case "slurm_jobs":
+		result = SLURM_JOBS_PIPELINEFILTERMEMBER4_TYPE
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializePipelineFilterMember4_type(values []PipelineFilterMember4_type) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i PipelineFilterMember4_type) isMultiValue() bool {
-    return false
+	return false
 }

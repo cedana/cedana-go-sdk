@@ -4,138 +4,150 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type CheckpointInfo struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The gpu property
-    gpu *string
-    // The info property
-    info i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
-    // The platform property
-    platform *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The gpu property
+	gpu *string
+	// The info property
+	info i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+	// The platform property
+	platform *string
 }
+
 // NewCheckpointInfo instantiates a new CheckpointInfo and sets the default values.
-func NewCheckpointInfo()(*CheckpointInfo) {
-    m := &CheckpointInfo{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewCheckpointInfo() *CheckpointInfo {
+	m := &CheckpointInfo{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateCheckpointInfoFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateCheckpointInfoFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewCheckpointInfo(), nil
+func CreateCheckpointInfoFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewCheckpointInfo(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *CheckpointInfo) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *CheckpointInfo) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *CheckpointInfo) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["gpu"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetGpu(val)
-        }
-        return nil
-    }
-    res["info"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetInfo(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
-        }
-        return nil
-    }
-    res["platform"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPlatform(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *CheckpointInfo) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["gpu"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetGpu(val)
+		}
+		return nil
+	}
+	res["info"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetInfo(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
+		}
+		return nil
+	}
+	res["platform"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPlatform(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetGpu gets the gpu property value. The gpu property
 // returns a *string when successful
-func (m *CheckpointInfo) GetGpu()(*string) {
-    return m.gpu
+func (m *CheckpointInfo) GetGpu() *string {
+	return m.gpu
 }
+
 // GetInfo gets the info property value. The info property
 // returns a UntypedNodeable when successful
-func (m *CheckpointInfo) GetInfo()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
-    return m.info
+func (m *CheckpointInfo) GetInfo() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable {
+	return m.info
 }
+
 // GetPlatform gets the platform property value. The platform property
 // returns a *string when successful
-func (m *CheckpointInfo) GetPlatform()(*string) {
-    return m.platform
+func (m *CheckpointInfo) GetPlatform() *string {
+	return m.platform
 }
+
 // Serialize serializes information the current object
-func (m *CheckpointInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("gpu", m.GetGpu())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("info", m.GetInfo())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("platform", m.GetPlatform())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *CheckpointInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("gpu", m.GetGpu())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("info", m.GetInfo())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("platform", m.GetPlatform())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *CheckpointInfo) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *CheckpointInfo) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetGpu sets the gpu property value. The gpu property
-func (m *CheckpointInfo) SetGpu(value *string)() {
-    m.gpu = value
+func (m *CheckpointInfo) SetGpu(value *string) {
+	m.gpu = value
 }
+
 // SetInfo sets the info property value. The info property
-func (m *CheckpointInfo) SetInfo(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
-    m.info = value
+func (m *CheckpointInfo) SetInfo(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
+	m.info = value
 }
+
 // SetPlatform sets the platform property value. The platform property
-func (m *CheckpointInfo) SetPlatform(value *string)() {
-    m.platform = value
+func (m *CheckpointInfo) SetPlatform(value *string) {
+	m.platform = value
 }
+
 type CheckpointInfoable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetGpu()(*string)
-    GetInfo()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
-    GetPlatform()(*string)
-    SetGpu(value *string)()
-    SetInfo(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
-    SetPlatform(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetGpu() *string
+	GetInfo() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+	GetPlatform() *string
+	SetGpu(value *string)
+	SetInfo(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+	SetPlatform(value *string)
 }

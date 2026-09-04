@@ -4,428 +4,460 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type RouterTargetConfig struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The current_replicas property
-    current_replicas *int32
-    // The draining property
-    draining *bool
-    // The max_queue_depth property
-    max_queue_depth *int32
-    // The max_replicas property
-    max_replicas *int32
-    // The min_replicas property
-    min_replicas *int32
-    // The node_hourly_usd property
-    node_hourly_usd *float64
-    // The priority property
-    priority *int32
-    // The profile_id property
-    profile_id *string
-    // The ready property
-    ready *bool
-    // Stable internal service URL; never contains an activation/generation.
-    service_url *string
-    // The target_concurrency property
-    target_concurrency *int32
-    // The tier property
-    tier *string
-    // The upstream_model property
-    upstream_model *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The current_replicas property
+	current_replicas *int32
+	// The draining property
+	draining *bool
+	// The max_queue_depth property
+	max_queue_depth *int32
+	// The max_replicas property
+	max_replicas *int32
+	// The min_replicas property
+	min_replicas *int32
+	// The node_hourly_usd property
+	node_hourly_usd *float64
+	// The priority property
+	priority *int32
+	// The profile_id property
+	profile_id *string
+	// The ready property
+	ready *bool
+	// Stable internal service URL; never contains an activation/generation.
+	service_url *string
+	// The target_concurrency property
+	target_concurrency *int32
+	// The tier property
+	tier *string
+	// The upstream_model property
+	upstream_model *string
 }
+
 // NewRouterTargetConfig instantiates a new RouterTargetConfig and sets the default values.
-func NewRouterTargetConfig()(*RouterTargetConfig) {
-    m := &RouterTargetConfig{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewRouterTargetConfig() *RouterTargetConfig {
+	m := &RouterTargetConfig{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateRouterTargetConfigFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateRouterTargetConfigFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewRouterTargetConfig(), nil
+func CreateRouterTargetConfigFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewRouterTargetConfig(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *RouterTargetConfig) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *RouterTargetConfig) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetCurrentReplicas gets the current_replicas property value. The current_replicas property
 // returns a *int32 when successful
-func (m *RouterTargetConfig) GetCurrentReplicas()(*int32) {
-    return m.current_replicas
+func (m *RouterTargetConfig) GetCurrentReplicas() *int32 {
+	return m.current_replicas
 }
+
 // GetDraining gets the draining property value. The draining property
 // returns a *bool when successful
-func (m *RouterTargetConfig) GetDraining()(*bool) {
-    return m.draining
+func (m *RouterTargetConfig) GetDraining() *bool {
+	return m.draining
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *RouterTargetConfig) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["current_replicas"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCurrentReplicas(val)
-        }
-        return nil
-    }
-    res["draining"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDraining(val)
-        }
-        return nil
-    }
-    res["max_queue_depth"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMaxQueueDepth(val)
-        }
-        return nil
-    }
-    res["max_replicas"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMaxReplicas(val)
-        }
-        return nil
-    }
-    res["min_replicas"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMinReplicas(val)
-        }
-        return nil
-    }
-    res["node_hourly_usd"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetNodeHourlyUsd(val)
-        }
-        return nil
-    }
-    res["priority"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPriority(val)
-        }
-        return nil
-    }
-    res["profile_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetProfileId(val)
-        }
-        return nil
-    }
-    res["ready"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetReady(val)
-        }
-        return nil
-    }
-    res["service_url"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetServiceUrl(val)
-        }
-        return nil
-    }
-    res["target_concurrency"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTargetConcurrency(val)
-        }
-        return nil
-    }
-    res["tier"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTier(val)
-        }
-        return nil
-    }
-    res["upstream_model"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetUpstreamModel(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *RouterTargetConfig) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["current_replicas"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCurrentReplicas(val)
+		}
+		return nil
+	}
+	res["draining"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDraining(val)
+		}
+		return nil
+	}
+	res["max_queue_depth"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMaxQueueDepth(val)
+		}
+		return nil
+	}
+	res["max_replicas"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMaxReplicas(val)
+		}
+		return nil
+	}
+	res["min_replicas"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMinReplicas(val)
+		}
+		return nil
+	}
+	res["node_hourly_usd"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNodeHourlyUsd(val)
+		}
+		return nil
+	}
+	res["priority"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPriority(val)
+		}
+		return nil
+	}
+	res["profile_id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetProfileId(val)
+		}
+		return nil
+	}
+	res["ready"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetReady(val)
+		}
+		return nil
+	}
+	res["service_url"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetServiceUrl(val)
+		}
+		return nil
+	}
+	res["target_concurrency"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTargetConcurrency(val)
+		}
+		return nil
+	}
+	res["tier"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTier(val)
+		}
+		return nil
+	}
+	res["upstream_model"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetUpstreamModel(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetMaxQueueDepth gets the max_queue_depth property value. The max_queue_depth property
 // returns a *int32 when successful
-func (m *RouterTargetConfig) GetMaxQueueDepth()(*int32) {
-    return m.max_queue_depth
+func (m *RouterTargetConfig) GetMaxQueueDepth() *int32 {
+	return m.max_queue_depth
 }
+
 // GetMaxReplicas gets the max_replicas property value. The max_replicas property
 // returns a *int32 when successful
-func (m *RouterTargetConfig) GetMaxReplicas()(*int32) {
-    return m.max_replicas
+func (m *RouterTargetConfig) GetMaxReplicas() *int32 {
+	return m.max_replicas
 }
+
 // GetMinReplicas gets the min_replicas property value. The min_replicas property
 // returns a *int32 when successful
-func (m *RouterTargetConfig) GetMinReplicas()(*int32) {
-    return m.min_replicas
+func (m *RouterTargetConfig) GetMinReplicas() *int32 {
+	return m.min_replicas
 }
+
 // GetNodeHourlyUsd gets the node_hourly_usd property value. The node_hourly_usd property
 // returns a *float64 when successful
-func (m *RouterTargetConfig) GetNodeHourlyUsd()(*float64) {
-    return m.node_hourly_usd
+func (m *RouterTargetConfig) GetNodeHourlyUsd() *float64 {
+	return m.node_hourly_usd
 }
+
 // GetPriority gets the priority property value. The priority property
 // returns a *int32 when successful
-func (m *RouterTargetConfig) GetPriority()(*int32) {
-    return m.priority
+func (m *RouterTargetConfig) GetPriority() *int32 {
+	return m.priority
 }
+
 // GetProfileId gets the profile_id property value. The profile_id property
 // returns a *string when successful
-func (m *RouterTargetConfig) GetProfileId()(*string) {
-    return m.profile_id
+func (m *RouterTargetConfig) GetProfileId() *string {
+	return m.profile_id
 }
+
 // GetReady gets the ready property value. The ready property
 // returns a *bool when successful
-func (m *RouterTargetConfig) GetReady()(*bool) {
-    return m.ready
+func (m *RouterTargetConfig) GetReady() *bool {
+	return m.ready
 }
+
 // GetServiceUrl gets the service_url property value. Stable internal service URL; never contains an activation/generation.
 // returns a *string when successful
-func (m *RouterTargetConfig) GetServiceUrl()(*string) {
-    return m.service_url
+func (m *RouterTargetConfig) GetServiceUrl() *string {
+	return m.service_url
 }
+
 // GetTargetConcurrency gets the target_concurrency property value. The target_concurrency property
 // returns a *int32 when successful
-func (m *RouterTargetConfig) GetTargetConcurrency()(*int32) {
-    return m.target_concurrency
+func (m *RouterTargetConfig) GetTargetConcurrency() *int32 {
+	return m.target_concurrency
 }
+
 // GetTier gets the tier property value. The tier property
 // returns a *string when successful
-func (m *RouterTargetConfig) GetTier()(*string) {
-    return m.tier
+func (m *RouterTargetConfig) GetTier() *string {
+	return m.tier
 }
+
 // GetUpstreamModel gets the upstream_model property value. The upstream_model property
 // returns a *string when successful
-func (m *RouterTargetConfig) GetUpstreamModel()(*string) {
-    return m.upstream_model
+func (m *RouterTargetConfig) GetUpstreamModel() *string {
+	return m.upstream_model
 }
+
 // Serialize serializes information the current object
-func (m *RouterTargetConfig) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt32Value("current_replicas", m.GetCurrentReplicas())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("draining", m.GetDraining())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("max_queue_depth", m.GetMaxQueueDepth())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("max_replicas", m.GetMaxReplicas())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("min_replicas", m.GetMinReplicas())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("node_hourly_usd", m.GetNodeHourlyUsd())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("priority", m.GetPriority())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("profile_id", m.GetProfileId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("ready", m.GetReady())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("service_url", m.GetServiceUrl())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("target_concurrency", m.GetTargetConcurrency())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("tier", m.GetTier())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("upstream_model", m.GetUpstreamModel())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *RouterTargetConfig) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt32Value("current_replicas", m.GetCurrentReplicas())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("draining", m.GetDraining())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("max_queue_depth", m.GetMaxQueueDepth())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("max_replicas", m.GetMaxReplicas())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("min_replicas", m.GetMinReplicas())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("node_hourly_usd", m.GetNodeHourlyUsd())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("priority", m.GetPriority())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("profile_id", m.GetProfileId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("ready", m.GetReady())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("service_url", m.GetServiceUrl())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("target_concurrency", m.GetTargetConcurrency())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("tier", m.GetTier())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("upstream_model", m.GetUpstreamModel())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RouterTargetConfig) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *RouterTargetConfig) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetCurrentReplicas sets the current_replicas property value. The current_replicas property
-func (m *RouterTargetConfig) SetCurrentReplicas(value *int32)() {
-    m.current_replicas = value
+func (m *RouterTargetConfig) SetCurrentReplicas(value *int32) {
+	m.current_replicas = value
 }
+
 // SetDraining sets the draining property value. The draining property
-func (m *RouterTargetConfig) SetDraining(value *bool)() {
-    m.draining = value
+func (m *RouterTargetConfig) SetDraining(value *bool) {
+	m.draining = value
 }
+
 // SetMaxQueueDepth sets the max_queue_depth property value. The max_queue_depth property
-func (m *RouterTargetConfig) SetMaxQueueDepth(value *int32)() {
-    m.max_queue_depth = value
+func (m *RouterTargetConfig) SetMaxQueueDepth(value *int32) {
+	m.max_queue_depth = value
 }
+
 // SetMaxReplicas sets the max_replicas property value. The max_replicas property
-func (m *RouterTargetConfig) SetMaxReplicas(value *int32)() {
-    m.max_replicas = value
+func (m *RouterTargetConfig) SetMaxReplicas(value *int32) {
+	m.max_replicas = value
 }
+
 // SetMinReplicas sets the min_replicas property value. The min_replicas property
-func (m *RouterTargetConfig) SetMinReplicas(value *int32)() {
-    m.min_replicas = value
+func (m *RouterTargetConfig) SetMinReplicas(value *int32) {
+	m.min_replicas = value
 }
+
 // SetNodeHourlyUsd sets the node_hourly_usd property value. The node_hourly_usd property
-func (m *RouterTargetConfig) SetNodeHourlyUsd(value *float64)() {
-    m.node_hourly_usd = value
+func (m *RouterTargetConfig) SetNodeHourlyUsd(value *float64) {
+	m.node_hourly_usd = value
 }
+
 // SetPriority sets the priority property value. The priority property
-func (m *RouterTargetConfig) SetPriority(value *int32)() {
-    m.priority = value
+func (m *RouterTargetConfig) SetPriority(value *int32) {
+	m.priority = value
 }
+
 // SetProfileId sets the profile_id property value. The profile_id property
-func (m *RouterTargetConfig) SetProfileId(value *string)() {
-    m.profile_id = value
+func (m *RouterTargetConfig) SetProfileId(value *string) {
+	m.profile_id = value
 }
+
 // SetReady sets the ready property value. The ready property
-func (m *RouterTargetConfig) SetReady(value *bool)() {
-    m.ready = value
+func (m *RouterTargetConfig) SetReady(value *bool) {
+	m.ready = value
 }
+
 // SetServiceUrl sets the service_url property value. Stable internal service URL; never contains an activation/generation.
-func (m *RouterTargetConfig) SetServiceUrl(value *string)() {
-    m.service_url = value
+func (m *RouterTargetConfig) SetServiceUrl(value *string) {
+	m.service_url = value
 }
+
 // SetTargetConcurrency sets the target_concurrency property value. The target_concurrency property
-func (m *RouterTargetConfig) SetTargetConcurrency(value *int32)() {
-    m.target_concurrency = value
+func (m *RouterTargetConfig) SetTargetConcurrency(value *int32) {
+	m.target_concurrency = value
 }
+
 // SetTier sets the tier property value. The tier property
-func (m *RouterTargetConfig) SetTier(value *string)() {
-    m.tier = value
+func (m *RouterTargetConfig) SetTier(value *string) {
+	m.tier = value
 }
+
 // SetUpstreamModel sets the upstream_model property value. The upstream_model property
-func (m *RouterTargetConfig) SetUpstreamModel(value *string)() {
-    m.upstream_model = value
+func (m *RouterTargetConfig) SetUpstreamModel(value *string) {
+	m.upstream_model = value
 }
+
 type RouterTargetConfigable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetCurrentReplicas()(*int32)
-    GetDraining()(*bool)
-    GetMaxQueueDepth()(*int32)
-    GetMaxReplicas()(*int32)
-    GetMinReplicas()(*int32)
-    GetNodeHourlyUsd()(*float64)
-    GetPriority()(*int32)
-    GetProfileId()(*string)
-    GetReady()(*bool)
-    GetServiceUrl()(*string)
-    GetTargetConcurrency()(*int32)
-    GetTier()(*string)
-    GetUpstreamModel()(*string)
-    SetCurrentReplicas(value *int32)()
-    SetDraining(value *bool)()
-    SetMaxQueueDepth(value *int32)()
-    SetMaxReplicas(value *int32)()
-    SetMinReplicas(value *int32)()
-    SetNodeHourlyUsd(value *float64)()
-    SetPriority(value *int32)()
-    SetProfileId(value *string)()
-    SetReady(value *bool)()
-    SetServiceUrl(value *string)()
-    SetTargetConcurrency(value *int32)()
-    SetTier(value *string)()
-    SetUpstreamModel(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetCurrentReplicas() *int32
+	GetDraining() *bool
+	GetMaxQueueDepth() *int32
+	GetMaxReplicas() *int32
+	GetMinReplicas() *int32
+	GetNodeHourlyUsd() *float64
+	GetPriority() *int32
+	GetProfileId() *string
+	GetReady() *bool
+	GetServiceUrl() *string
+	GetTargetConcurrency() *int32
+	GetTier() *string
+	GetUpstreamModel() *string
+	SetCurrentReplicas(value *int32)
+	SetDraining(value *bool)
+	SetMaxQueueDepth(value *int32)
+	SetMaxReplicas(value *int32)
+	SetMinReplicas(value *int32)
+	SetNodeHourlyUsd(value *float64)
+	SetPriority(value *int32)
+	SetProfileId(value *string)
+	SetReady(value *bool)
+	SetServiceUrl(value *string)
+	SetTargetConcurrency(value *int32)
+	SetTier(value *string)
+	SetUpstreamModel(value *string)
 }

@@ -4,66 +4,72 @@
 package v1
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	"context"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // PricingInstanceTypesAvailableRequestBuilder builds and executes requests for operations under \v1\pricing\instance-types\available
 type PricingInstanceTypesAvailableRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // PricingInstanceTypesAvailableRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type PricingInstanceTypesAvailableRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+
 // NewPricingInstanceTypesAvailableRequestBuilderInternal instantiates a new PricingInstanceTypesAvailableRequestBuilder and sets the default values.
-func NewPricingInstanceTypesAvailableRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PricingInstanceTypesAvailableRequestBuilder) {
-    m := &PricingInstanceTypesAvailableRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/pricing/instance-types/available", pathParameters),
-    }
-    return m
+func NewPricingInstanceTypesAvailableRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *PricingInstanceTypesAvailableRequestBuilder {
+	m := &PricingInstanceTypesAvailableRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/pricing/instance-types/available", pathParameters),
+	}
+	return m
 }
+
 // NewPricingInstanceTypesAvailableRequestBuilder instantiates a new PricingInstanceTypesAvailableRequestBuilder and sets the default values.
-func NewPricingInstanceTypesAvailableRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PricingInstanceTypesAvailableRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewPricingInstanceTypesAvailableRequestBuilderInternal(urlParams, requestAdapter)
+func NewPricingInstanceTypesAvailableRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *PricingInstanceTypesAvailableRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewPricingInstanceTypesAvailableRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get get distinct instance types from nodes (for auto-populating the UI)
 // returns a []string when successful
-func (m *PricingInstanceTypesAvailableRequestBuilder) Get(ctx context.Context, requestConfiguration *PricingInstanceTypesAvailableRequestBuilderGetRequestConfiguration)([]string, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitiveCollection(ctx, requestInfo, "string", nil)
-    if err != nil {
-        return nil, err
-    }
-    val := make([]string, len(res))
-    for i, v := range res {
-        if v != nil {
-            val[i] = *(v.(*string))
-        }
-    }
-    return val, nil
+func (m *PricingInstanceTypesAvailableRequestBuilder) Get(ctx context.Context, requestConfiguration *PricingInstanceTypesAvailableRequestBuilderGetRequestConfiguration) ([]string, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitiveCollection(ctx, requestInfo, "string", nil)
+	if err != nil {
+		return nil, err
+	}
+	val := make([]string, len(res))
+	for i, v := range res {
+		if v != nil {
+			val[i] = *(v.(*string))
+		}
+	}
+	return val, nil
 }
+
 // ToGetRequestInformation get distinct instance types from nodes (for auto-populating the UI)
 // returns a *RequestInformation when successful
-func (m *PricingInstanceTypesAvailableRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *PricingInstanceTypesAvailableRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *PricingInstanceTypesAvailableRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *PricingInstanceTypesAvailableRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *PricingInstanceTypesAvailableRequestBuilder when successful
-func (m *PricingInstanceTypesAvailableRequestBuilder) WithUrl(rawUrl string)(*PricingInstanceTypesAvailableRequestBuilder) {
-    return NewPricingInstanceTypesAvailableRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *PricingInstanceTypesAvailableRequestBuilder) WithUrl(rawUrl string) *PricingInstanceTypesAvailableRequestBuilder {
+	return NewPricingInstanceTypesAvailableRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

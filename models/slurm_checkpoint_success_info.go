@@ -4,80 +4,88 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type SlurmCheckpointSuccessInfo struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The restore_path property
-    restore_path *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The restore_path property
+	restore_path *string
 }
+
 // NewSlurmCheckpointSuccessInfo instantiates a new SlurmCheckpointSuccessInfo and sets the default values.
-func NewSlurmCheckpointSuccessInfo()(*SlurmCheckpointSuccessInfo) {
-    m := &SlurmCheckpointSuccessInfo{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewSlurmCheckpointSuccessInfo() *SlurmCheckpointSuccessInfo {
+	m := &SlurmCheckpointSuccessInfo{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateSlurmCheckpointSuccessInfoFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateSlurmCheckpointSuccessInfoFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewSlurmCheckpointSuccessInfo(), nil
+func CreateSlurmCheckpointSuccessInfoFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewSlurmCheckpointSuccessInfo(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *SlurmCheckpointSuccessInfo) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *SlurmCheckpointSuccessInfo) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *SlurmCheckpointSuccessInfo) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["restore_path"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRestorePath(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *SlurmCheckpointSuccessInfo) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["restore_path"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRestorePath(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetRestorePath gets the restore_path property value. The restore_path property
 // returns a *string when successful
-func (m *SlurmCheckpointSuccessInfo) GetRestorePath()(*string) {
-    return m.restore_path
+func (m *SlurmCheckpointSuccessInfo) GetRestorePath() *string {
+	return m.restore_path
 }
+
 // Serialize serializes information the current object
-func (m *SlurmCheckpointSuccessInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("restore_path", m.GetRestorePath())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *SlurmCheckpointSuccessInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("restore_path", m.GetRestorePath())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SlurmCheckpointSuccessInfo) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *SlurmCheckpointSuccessInfo) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetRestorePath sets the restore_path property value. The restore_path property
-func (m *SlurmCheckpointSuccessInfo) SetRestorePath(value *string)() {
-    m.restore_path = value
+func (m *SlurmCheckpointSuccessInfo) SetRestorePath(value *string) {
+	m.restore_path = value
 }
+
 type SlurmCheckpointSuccessInfoable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetRestorePath()(*string)
-    SetRestorePath(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetRestorePath() *string
+	SetRestorePath(value *string)
 }

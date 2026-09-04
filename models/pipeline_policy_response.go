@@ -4,343 +4,275 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // PipelinePolicyResponse response for pipeline-based policies
 type PipelinePolicyResponse struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The id property
-    id *string
-    // The job_count property
-    job_count *int32
-    // The name property
-    name *string
-    // The pipeline property
-    pipeline PipelinePolicyResponse_PipelinePolicyResponse_pipelineable
-    // The pod_count property
-    pod_count *int32
-    // The status property
-    status *string
-    // The timestamp property
-    timestamp *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The id property
+	id *string
+	// The job_count property
+	job_count *int32
+	// The name property
+	name *string
+	// The pipeline property
+	pipeline PolicyPipelineable
+	// The pod_count property
+	pod_count *int32
+	// The status property
+	status *string
+	// The timestamp property
+	timestamp *string
 }
-// PipelinePolicyResponse_PipelinePolicyResponse_pipeline composed type wrapper for classes PipelinePolicyResponse_pipelineMember1able, PolicyPipelineable
-type PipelinePolicyResponse_PipelinePolicyResponse_pipeline struct {
-    // Composed type representation for type PipelinePolicyResponse_pipelineMember1able
-    pipelinePolicyResponse_pipelineMember1 PipelinePolicyResponse_pipelineMember1able
-    // Composed type representation for type PolicyPipelineable
-    policyPipeline PolicyPipelineable
-}
-// NewPipelinePolicyResponse_PipelinePolicyResponse_pipeline instantiates a new PipelinePolicyResponse_PipelinePolicyResponse_pipeline and sets the default values.
-func NewPipelinePolicyResponse_PipelinePolicyResponse_pipeline()(*PipelinePolicyResponse_PipelinePolicyResponse_pipeline) {
-    m := &PipelinePolicyResponse_PipelinePolicyResponse_pipeline{
-    }
-    return m
-}
-// CreatePipelinePolicyResponse_PipelinePolicyResponse_pipelineFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreatePipelinePolicyResponse_PipelinePolicyResponse_pipelineFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewPipelinePolicyResponse_PipelinePolicyResponse_pipeline()
-    if parseNode != nil {
-        mappingValueNode, err := parseNode.GetChildNode("")
-        if err != nil {
-            return nil, err
-        }
-        if mappingValueNode != nil {
-            mappingValue, err := mappingValueNode.GetStringValue()
-            if err != nil {
-                return nil, err
-            }
-            if mappingValue != nil {
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PipelinePolicyResponse_PipelinePolicyResponse_pipeline) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    if m.GetPipelinePolicyResponsePipelineMember1() != nil {
-        return m.GetPipelinePolicyResponsePipelineMember1().GetFieldDeserializers()
-    } else if m.GetPolicyPipeline() != nil {
-        return m.GetPolicyPipeline().GetFieldDeserializers()
-    }
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *PipelinePolicyResponse_PipelinePolicyResponse_pipeline) GetIsComposedType()(bool) {
-    return true
-}
-// GetPipelinePolicyResponsePipelineMember1 gets the PipelinePolicyResponse_pipelineMember1 property value. Composed type representation for type PipelinePolicyResponse_pipelineMember1able
-// returns a PipelinePolicyResponse_pipelineMember1able when successful
-func (m *PipelinePolicyResponse_PipelinePolicyResponse_pipeline) GetPipelinePolicyResponsePipelineMember1()(PipelinePolicyResponse_pipelineMember1able) {
-    return m.pipelinePolicyResponse_pipelineMember1
-}
-// GetPolicyPipeline gets the PolicyPipeline property value. Composed type representation for type PolicyPipelineable
-// returns a PolicyPipelineable when successful
-func (m *PipelinePolicyResponse_PipelinePolicyResponse_pipeline) GetPolicyPipeline()(PolicyPipelineable) {
-    return m.policyPipeline
-}
-// Serialize serializes information the current object
-func (m *PipelinePolicyResponse_PipelinePolicyResponse_pipeline) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetPipelinePolicyResponsePipelineMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetPipelinePolicyResponsePipelineMember1())
-        if err != nil {
-            return err
-        }
-    } else if m.GetPolicyPipeline() != nil {
-        err := writer.WriteObjectValue("", m.GetPolicyPipeline())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetPipelinePolicyResponsePipelineMember1 sets the PipelinePolicyResponse_pipelineMember1 property value. Composed type representation for type PipelinePolicyResponse_pipelineMember1able
-func (m *PipelinePolicyResponse_PipelinePolicyResponse_pipeline) SetPipelinePolicyResponsePipelineMember1(value PipelinePolicyResponse_pipelineMember1able)() {
-    m.pipelinePolicyResponse_pipelineMember1 = value
-}
-// SetPolicyPipeline sets the PolicyPipeline property value. Composed type representation for type PolicyPipelineable
-func (m *PipelinePolicyResponse_PipelinePolicyResponse_pipeline) SetPolicyPipeline(value PolicyPipelineable)() {
-    m.policyPipeline = value
-}
-type PipelinePolicyResponse_PipelinePolicyResponse_pipelineable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetPipelinePolicyResponsePipelineMember1()(PipelinePolicyResponse_pipelineMember1able)
-    GetPolicyPipeline()(PolicyPipelineable)
-    SetPipelinePolicyResponsePipelineMember1(value PipelinePolicyResponse_pipelineMember1able)()
-    SetPolicyPipeline(value PolicyPipelineable)()
-}
+
 // NewPipelinePolicyResponse instantiates a new PipelinePolicyResponse and sets the default values.
-func NewPipelinePolicyResponse()(*PipelinePolicyResponse) {
-    m := &PipelinePolicyResponse{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewPipelinePolicyResponse() *PipelinePolicyResponse {
+	m := &PipelinePolicyResponse{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreatePipelinePolicyResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePipelinePolicyResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPipelinePolicyResponse(), nil
+func CreatePipelinePolicyResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPipelinePolicyResponse(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *PipelinePolicyResponse) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *PipelinePolicyResponse) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PipelinePolicyResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
-        }
-        return nil
-    }
-    res["job_count"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetJobCount(val)
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    res["pipeline"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePipelinePolicyResponse_PipelinePolicyResponse_pipelineFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPipeline(val.(PipelinePolicyResponse_PipelinePolicyResponse_pipelineable))
-        }
-        return nil
-    }
-    res["pod_count"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPodCount(val)
-        }
-        return nil
-    }
-    res["status"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStatus(val)
-        }
-        return nil
-    }
-    res["timestamp"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTimestamp(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *PipelinePolicyResponse) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetId(val)
+		}
+		return nil
+	}
+	res["job_count"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetJobCount(val)
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	res["pipeline"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreatePolicyPipelineFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPipeline(val.(PolicyPipelineable))
+		}
+		return nil
+	}
+	res["pod_count"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPodCount(val)
+		}
+		return nil
+	}
+	res["status"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStatus(val)
+		}
+		return nil
+	}
+	res["timestamp"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTimestamp(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetId gets the id property value. The id property
 // returns a *string when successful
-func (m *PipelinePolicyResponse) GetId()(*string) {
-    return m.id
+func (m *PipelinePolicyResponse) GetId() *string {
+	return m.id
 }
+
 // GetJobCount gets the job_count property value. The job_count property
 // returns a *int32 when successful
-func (m *PipelinePolicyResponse) GetJobCount()(*int32) {
-    return m.job_count
+func (m *PipelinePolicyResponse) GetJobCount() *int32 {
+	return m.job_count
 }
+
 // GetName gets the name property value. The name property
 // returns a *string when successful
-func (m *PipelinePolicyResponse) GetName()(*string) {
-    return m.name
+func (m *PipelinePolicyResponse) GetName() *string {
+	return m.name
 }
+
 // GetPipeline gets the pipeline property value. The pipeline property
-// returns a PipelinePolicyResponse_PipelinePolicyResponse_pipelineable when successful
-func (m *PipelinePolicyResponse) GetPipeline()(PipelinePolicyResponse_PipelinePolicyResponse_pipelineable) {
-    return m.pipeline
+// returns a PolicyPipelineable when successful
+func (m *PipelinePolicyResponse) GetPipeline() PolicyPipelineable {
+	return m.pipeline
 }
+
 // GetPodCount gets the pod_count property value. The pod_count property
 // returns a *int32 when successful
-func (m *PipelinePolicyResponse) GetPodCount()(*int32) {
-    return m.pod_count
+func (m *PipelinePolicyResponse) GetPodCount() *int32 {
+	return m.pod_count
 }
+
 // GetStatus gets the status property value. The status property
 // returns a *string when successful
-func (m *PipelinePolicyResponse) GetStatus()(*string) {
-    return m.status
+func (m *PipelinePolicyResponse) GetStatus() *string {
+	return m.status
 }
+
 // GetTimestamp gets the timestamp property value. The timestamp property
 // returns a *string when successful
-func (m *PipelinePolicyResponse) GetTimestamp()(*string) {
-    return m.timestamp
+func (m *PipelinePolicyResponse) GetTimestamp() *string {
+	return m.timestamp
 }
+
 // Serialize serializes information the current object
-func (m *PipelinePolicyResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("id", m.GetId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("job_count", m.GetJobCount())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("pipeline", m.GetPipeline())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("pod_count", m.GetPodCount())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("status", m.GetStatus())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("timestamp", m.GetTimestamp())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PipelinePolicyResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("id", m.GetId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("job_count", m.GetJobCount())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("pipeline", m.GetPipeline())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("pod_count", m.GetPodCount())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("status", m.GetStatus())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("timestamp", m.GetTimestamp())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PipelinePolicyResponse) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *PipelinePolicyResponse) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetId sets the id property value. The id property
-func (m *PipelinePolicyResponse) SetId(value *string)() {
-    m.id = value
+func (m *PipelinePolicyResponse) SetId(value *string) {
+	m.id = value
 }
+
 // SetJobCount sets the job_count property value. The job_count property
-func (m *PipelinePolicyResponse) SetJobCount(value *int32)() {
-    m.job_count = value
+func (m *PipelinePolicyResponse) SetJobCount(value *int32) {
+	m.job_count = value
 }
+
 // SetName sets the name property value. The name property
-func (m *PipelinePolicyResponse) SetName(value *string)() {
-    m.name = value
+func (m *PipelinePolicyResponse) SetName(value *string) {
+	m.name = value
 }
+
 // SetPipeline sets the pipeline property value. The pipeline property
-func (m *PipelinePolicyResponse) SetPipeline(value PipelinePolicyResponse_PipelinePolicyResponse_pipelineable)() {
-    m.pipeline = value
+func (m *PipelinePolicyResponse) SetPipeline(value PolicyPipelineable) {
+	m.pipeline = value
 }
+
 // SetPodCount sets the pod_count property value. The pod_count property
-func (m *PipelinePolicyResponse) SetPodCount(value *int32)() {
-    m.pod_count = value
+func (m *PipelinePolicyResponse) SetPodCount(value *int32) {
+	m.pod_count = value
 }
+
 // SetStatus sets the status property value. The status property
-func (m *PipelinePolicyResponse) SetStatus(value *string)() {
-    m.status = value
+func (m *PipelinePolicyResponse) SetStatus(value *string) {
+	m.status = value
 }
+
 // SetTimestamp sets the timestamp property value. The timestamp property
-func (m *PipelinePolicyResponse) SetTimestamp(value *string)() {
-    m.timestamp = value
+func (m *PipelinePolicyResponse) SetTimestamp(value *string) {
+	m.timestamp = value
 }
+
 type PipelinePolicyResponseable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetId()(*string)
-    GetJobCount()(*int32)
-    GetName()(*string)
-    GetPipeline()(PipelinePolicyResponse_PipelinePolicyResponse_pipelineable)
-    GetPodCount()(*int32)
-    GetStatus()(*string)
-    GetTimestamp()(*string)
-    SetId(value *string)()
-    SetJobCount(value *int32)()
-    SetName(value *string)()
-    SetPipeline(value PipelinePolicyResponse_PipelinePolicyResponse_pipelineable)()
-    SetPodCount(value *int32)()
-    SetStatus(value *string)()
-    SetTimestamp(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetId() *string
+	GetJobCount() *int32
+	GetName() *string
+	GetPipeline() PolicyPipelineable
+	GetPodCount() *int32
+	GetStatus() *string
+	GetTimestamp() *string
+	SetId(value *string)
+	SetJobCount(value *int32)
+	SetName(value *string)
+	SetPipeline(value PolicyPipelineable)
+	SetPodCount(value *int32)
+	SetStatus(value *string)
+	SetTimestamp(value *string)
 }

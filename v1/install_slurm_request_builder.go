@@ -4,75 +4,82 @@
 package v1
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	"context"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // InstallSlurmRequestBuilder builds and executes requests for operations under \v1\install\slurm
 type InstallSlurmRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // InstallSlurmRequestBuilderGetQueryParameters download install-release.sh from cedana-slurm.
 type InstallSlurmRequestBuilderGetQueryParameters struct {
-    // Architecture, e.g. amd64
-    Arch *string `uriparametername:"arch"`
-    // Build type: alpha|release
-    Build *string `uriparametername:"build"`
-    // set to true to fetch with exact repository name and build name
-    Exact *string `uriparametername:"exact"`
-    // Exact version match, e.g. 0.9.2
-    Version *string `uriparametername:"version"`
+	// Architecture, e.g. amd64
+	Arch *string "uriparametername:\"arch\""
+	// Build type: alpha|release
+	Build *string "uriparametername:\"build\""
+	// set to true to fetch with exact repository name and build name
+	Exact *string "uriparametername:\"exact\""
+	// Exact version match, e.g. 0.9.2
+	Version *string "uriparametername:\"version\""
 }
+
 // InstallSlurmRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type InstallSlurmRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *InstallSlurmRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *InstallSlurmRequestBuilderGetQueryParameters
 }
+
 // NewInstallSlurmRequestBuilderInternal instantiates a new InstallSlurmRequestBuilder and sets the default values.
-func NewInstallSlurmRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*InstallSlurmRequestBuilder) {
-    m := &InstallSlurmRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/install/slurm{?arch*,build*,exact*,version*}", pathParameters),
-    }
-    return m
+func NewInstallSlurmRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *InstallSlurmRequestBuilder {
+	m := &InstallSlurmRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/install/slurm{?arch*,build*,exact*,version*}", pathParameters),
+	}
+	return m
 }
+
 // NewInstallSlurmRequestBuilder instantiates a new InstallSlurmRequestBuilder and sets the default values.
-func NewInstallSlurmRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*InstallSlurmRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewInstallSlurmRequestBuilderInternal(urlParams, requestAdapter)
+func NewInstallSlurmRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *InstallSlurmRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewInstallSlurmRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get download install-release.sh from cedana-slurm.
-func (m *InstallSlurmRequestBuilder) Get(ctx context.Context, requestConfiguration *InstallSlurmRequestBuilderGetRequestConfiguration)(error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return err
-    }
-    err = m.BaseRequestBuilder.RequestAdapter.SendNoContent(ctx, requestInfo, nil)
-    if err != nil {
-        return err
-    }
-    return nil
+func (m *InstallSlurmRequestBuilder) Get(ctx context.Context, requestConfiguration *InstallSlurmRequestBuilderGetRequestConfiguration) error {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return err
+	}
+	err = m.BaseRequestBuilder.RequestAdapter.SendNoContent(ctx, requestInfo, nil)
+	if err != nil {
+		return err
+	}
+	return nil
 }
+
 // ToGetRequestInformation download install-release.sh from cedana-slurm.
 // returns a *RequestInformation when successful
-func (m *InstallSlurmRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *InstallSlurmRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "text/plain;q=0.9")
-    return requestInfo, nil
+func (m *InstallSlurmRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *InstallSlurmRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "text/plain;q=0.9")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *InstallSlurmRequestBuilder when successful
-func (m *InstallSlurmRequestBuilder) WithUrl(rawUrl string)(*InstallSlurmRequestBuilder) {
-    return NewInstallSlurmRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *InstallSlurmRequestBuilder) WithUrl(rawUrl string) *InstallSlurmRequestBuilder {
+	return NewInstallSlurmRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

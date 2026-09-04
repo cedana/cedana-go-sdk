@@ -4,38 +4,43 @@
 package v1
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // DynamoRequestBuilder builds and executes requests for operations under \v1\dynamo
 type DynamoRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // Checkpoints the checkpoints property
 // returns a *DynamoCheckpointsRequestBuilder when successful
-func (m *DynamoRequestBuilder) Checkpoints()(*DynamoCheckpointsRequestBuilder) {
-    return NewDynamoCheckpointsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *DynamoRequestBuilder) Checkpoints() *DynamoCheckpointsRequestBuilder {
+	return NewDynamoCheckpointsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewDynamoRequestBuilderInternal instantiates a new DynamoRequestBuilder and sets the default values.
-func NewDynamoRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*DynamoRequestBuilder) {
-    m := &DynamoRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/dynamo", pathParameters),
-    }
-    return m
+func NewDynamoRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *DynamoRequestBuilder {
+	m := &DynamoRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/dynamo", pathParameters),
+	}
+	return m
 }
+
 // NewDynamoRequestBuilder instantiates a new DynamoRequestBuilder and sets the default values.
-func NewDynamoRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*DynamoRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewDynamoRequestBuilderInternal(urlParams, requestAdapter)
+func NewDynamoRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *DynamoRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewDynamoRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Deploy the deploy property
 // returns a *DynamoDeployRequestBuilder when successful
-func (m *DynamoRequestBuilder) Deploy()(*DynamoDeployRequestBuilder) {
-    return NewDynamoDeployRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *DynamoRequestBuilder) Deploy() *DynamoDeployRequestBuilder {
+	return NewDynamoDeployRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Deployments the deployments property
 // returns a *DynamoDeploymentsRequestBuilder when successful
-func (m *DynamoRequestBuilder) Deployments()(*DynamoDeploymentsRequestBuilder) {
-    return NewDynamoDeploymentsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *DynamoRequestBuilder) Deployments() *DynamoDeploymentsRequestBuilder {
+	return NewDynamoDeploymentsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

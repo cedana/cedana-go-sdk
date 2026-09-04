@@ -2,38 +2,42 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type SlurmCheckpointKind int
 
 const (
-    SIMPLE_SLURMCHECKPOINTKIND SlurmCheckpointKind = iota
-    ROOTFS_SLURMCHECKPOINTKIND
-    ROOTFSONLY_SLURMCHECKPOINTKIND
+	SIMPLE_SLURMCHECKPOINTKIND SlurmCheckpointKind = iota
+	ROOTFS_SLURMCHECKPOINTKIND
+	ROOTFSONLY_SLURMCHECKPOINTKIND
 )
 
 func (i SlurmCheckpointKind) String() string {
-    return []string{"simple", "rootfs", "rootfsonly"}[i]
+	return []string{"simple", "rootfs", "rootfsonly"}[i]
 }
+
 func ParseSlurmCheckpointKind(v string) (any, error) {
-    result := SIMPLE_SLURMCHECKPOINTKIND
-    switch v {
-        case "simple":
-            result = SIMPLE_SLURMCHECKPOINTKIND
-        case "rootfs":
-            result = ROOTFS_SLURMCHECKPOINTKIND
-        case "rootfsonly":
-            result = ROOTFSONLY_SLURMCHECKPOINTKIND
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := SIMPLE_SLURMCHECKPOINTKIND
+	switch v {
+	case "simple":
+		result = SIMPLE_SLURMCHECKPOINTKIND
+	case "rootfs":
+		result = ROOTFS_SLURMCHECKPOINTKIND
+	case "rootfsonly":
+		result = ROOTFSONLY_SLURMCHECKPOINTKIND
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeSlurmCheckpointKind(values []SlurmCheckpointKind) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i SlurmCheckpointKind) isMultiValue() bool {
-    return false
+	return false
 }

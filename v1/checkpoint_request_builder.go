@@ -4,38 +4,43 @@
 package v1
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // CheckpointRequestBuilder builds and executes requests for operations under \v1\checkpoint
 type CheckpointRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // NewCheckpointRequestBuilderInternal instantiates a new CheckpointRequestBuilder and sets the default values.
-func NewCheckpointRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*CheckpointRequestBuilder) {
-    m := &CheckpointRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/checkpoint", pathParameters),
-    }
-    return m
+func NewCheckpointRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *CheckpointRequestBuilder {
+	m := &CheckpointRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/checkpoint", pathParameters),
+	}
+	return m
 }
+
 // NewCheckpointRequestBuilder instantiates a new CheckpointRequestBuilder and sets the default values.
-func NewCheckpointRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*CheckpointRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewCheckpointRequestBuilderInternal(urlParams, requestAdapter)
+func NewCheckpointRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *CheckpointRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewCheckpointRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Path the path property
 // returns a *CheckpointPathRequestBuilder when successful
-func (m *CheckpointRequestBuilder) Path()(*CheckpointPathRequestBuilder) {
-    return NewCheckpointPathRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *CheckpointRequestBuilder) Path() *CheckpointPathRequestBuilder {
+	return NewCheckpointPathRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Pod the pod property
 // returns a *CheckpointPodRequestBuilder when successful
-func (m *CheckpointRequestBuilder) Pod()(*CheckpointPodRequestBuilder) {
-    return NewCheckpointPodRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *CheckpointRequestBuilder) Pod() *CheckpointPodRequestBuilder {
+	return NewCheckpointPodRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Status the status property
 // returns a *CheckpointStatusRequestBuilder when successful
-func (m *CheckpointRequestBuilder) Status()(*CheckpointStatusRequestBuilder) {
-    return NewCheckpointStatusRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *CheckpointRequestBuilder) Status() *CheckpointStatusRequestBuilder {
+	return NewCheckpointStatusRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

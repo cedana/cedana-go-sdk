@@ -4,153 +4,170 @@
 package v1
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
-    i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
+	"context"
+	i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
+	i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // DynamoDeploymentsWithNameItemRequestBuilder builds and executes requests for operations under \v1\dynamo\deployments\{name}
 type DynamoDeploymentsWithNameItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // DynamoDeploymentsWithNameItemRequestBuilderDeleteQueryParameters publishes a delete event for the DynamoGraphDeployment and removes the DB record.
 type DynamoDeploymentsWithNameItemRequestBuilderDeleteQueryParameters struct {
-    // UUID of the cluster to filter by
-    Cluster_id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID `uriparametername:"cluster_id"`
-    // Kubernetes namespace
-    Namespace *string `uriparametername:"namespace"`
+	// UUID of the cluster to filter by
+	Cluster_id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID "uriparametername:\"cluster_id\""
+	// Kubernetes namespace
+	Namespace *string "uriparametername:\"namespace\""
 }
+
 // DynamoDeploymentsWithNameItemRequestBuilderDeleteRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type DynamoDeploymentsWithNameItemRequestBuilderDeleteRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *DynamoDeploymentsWithNameItemRequestBuilderDeleteQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *DynamoDeploymentsWithNameItemRequestBuilderDeleteQueryParameters
 }
+
 // DynamoDeploymentsWithNameItemRequestBuilderGetQueryParameters returns a single DynamoGraphDeployment by name.
 type DynamoDeploymentsWithNameItemRequestBuilderGetQueryParameters struct {
-    // UUID of the cluster to filter by
-    Cluster_id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID `uriparametername:"cluster_id"`
-    // Kubernetes namespace
-    Namespace *string `uriparametername:"namespace"`
+	// UUID of the cluster to filter by
+	Cluster_id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID "uriparametername:\"cluster_id\""
+	// Kubernetes namespace
+	Namespace *string "uriparametername:\"namespace\""
 }
+
 // DynamoDeploymentsWithNameItemRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type DynamoDeploymentsWithNameItemRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *DynamoDeploymentsWithNameItemRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *DynamoDeploymentsWithNameItemRequestBuilderGetQueryParameters
 }
+
 // Checkpoint the checkpoint property
 // returns a *DynamoDeploymentsItemCheckpointRequestBuilder when successful
-func (m *DynamoDeploymentsWithNameItemRequestBuilder) Checkpoint()(*DynamoDeploymentsItemCheckpointRequestBuilder) {
-    return NewDynamoDeploymentsItemCheckpointRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *DynamoDeploymentsWithNameItemRequestBuilder) Checkpoint() *DynamoDeploymentsItemCheckpointRequestBuilder {
+	return NewDynamoDeploymentsItemCheckpointRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Checkpoints the checkpoints property
 // returns a *DynamoDeploymentsItemCheckpointsRequestBuilder when successful
-func (m *DynamoDeploymentsWithNameItemRequestBuilder) Checkpoints()(*DynamoDeploymentsItemCheckpointsRequestBuilder) {
-    return NewDynamoDeploymentsItemCheckpointsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *DynamoDeploymentsWithNameItemRequestBuilder) Checkpoints() *DynamoDeploymentsItemCheckpointsRequestBuilder {
+	return NewDynamoDeploymentsItemCheckpointsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewDynamoDeploymentsWithNameItemRequestBuilderInternal instantiates a new DynamoDeploymentsWithNameItemRequestBuilder and sets the default values.
-func NewDynamoDeploymentsWithNameItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*DynamoDeploymentsWithNameItemRequestBuilder) {
-    m := &DynamoDeploymentsWithNameItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/dynamo/deployments/{name}?cluster_id={cluster_id}{&namespace*}", pathParameters),
-    }
-    return m
+func NewDynamoDeploymentsWithNameItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *DynamoDeploymentsWithNameItemRequestBuilder {
+	m := &DynamoDeploymentsWithNameItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/dynamo/deployments/{name}?cluster_id={cluster_id}{&namespace*}", pathParameters),
+	}
+	return m
 }
+
 // NewDynamoDeploymentsWithNameItemRequestBuilder instantiates a new DynamoDeploymentsWithNameItemRequestBuilder and sets the default values.
-func NewDynamoDeploymentsWithNameItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*DynamoDeploymentsWithNameItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewDynamoDeploymentsWithNameItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewDynamoDeploymentsWithNameItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *DynamoDeploymentsWithNameItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewDynamoDeploymentsWithNameItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Delete publishes a delete event for the DynamoGraphDeployment and removes the DB record.
 // returns a *string when successful
-func (m *DynamoDeploymentsWithNameItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *DynamoDeploymentsWithNameItemRequestBuilderDeleteRequestConfiguration)(*string, error) {
-    requestInfo, err := m.ToDeleteRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(*string), nil
+func (m *DynamoDeploymentsWithNameItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *DynamoDeploymentsWithNameItemRequestBuilderDeleteRequestConfiguration) (*string, error) {
+	requestInfo, err := m.ToDeleteRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(*string), nil
 }
+
 // Get returns a single DynamoGraphDeployment by name.
 // returns a DynamoDeploymentViewable when successful
-func (m *DynamoDeploymentsWithNameItemRequestBuilder) Get(ctx context.Context, requestConfiguration *DynamoDeploymentsWithNameItemRequestBuilderGetRequestConfiguration)(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.DynamoDeploymentViewable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateDynamoDeploymentViewFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.DynamoDeploymentViewable), nil
+func (m *DynamoDeploymentsWithNameItemRequestBuilder) Get(ctx context.Context, requestConfiguration *DynamoDeploymentsWithNameItemRequestBuilderGetRequestConfiguration) (i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.DynamoDeploymentViewable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateDynamoDeploymentViewFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.DynamoDeploymentViewable), nil
 }
+
 // Metrics the metrics property
 // returns a *DynamoDeploymentsItemMetricsRequestBuilder when successful
-func (m *DynamoDeploymentsWithNameItemRequestBuilder) Metrics()(*DynamoDeploymentsItemMetricsRequestBuilder) {
-    return NewDynamoDeploymentsItemMetricsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *DynamoDeploymentsWithNameItemRequestBuilder) Metrics() *DynamoDeploymentsItemMetricsRequestBuilder {
+	return NewDynamoDeploymentsItemMetricsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // PodStartupTimes the podStartupTimes property
 // returns a *DynamoDeploymentsItemPodStartupTimesRequestBuilder when successful
-func (m *DynamoDeploymentsWithNameItemRequestBuilder) PodStartupTimes()(*DynamoDeploymentsItemPodStartupTimesRequestBuilder) {
-    return NewDynamoDeploymentsItemPodStartupTimesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *DynamoDeploymentsWithNameItemRequestBuilder) PodStartupTimes() *DynamoDeploymentsItemPodStartupTimesRequestBuilder {
+	return NewDynamoDeploymentsItemPodStartupTimesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Scrape the scrape property
 // returns a *DynamoDeploymentsItemScrapeRequestBuilder when successful
-func (m *DynamoDeploymentsWithNameItemRequestBuilder) Scrape()(*DynamoDeploymentsItemScrapeRequestBuilder) {
-    return NewDynamoDeploymentsItemScrapeRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *DynamoDeploymentsWithNameItemRequestBuilder) Scrape() *DynamoDeploymentsItemScrapeRequestBuilder {
+	return NewDynamoDeploymentsItemScrapeRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // StartupComparison the startupComparison property
 // returns a *DynamoDeploymentsItemStartupComparisonRequestBuilder when successful
-func (m *DynamoDeploymentsWithNameItemRequestBuilder) StartupComparison()(*DynamoDeploymentsItemStartupComparisonRequestBuilder) {
-    return NewDynamoDeploymentsItemStartupComparisonRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *DynamoDeploymentsWithNameItemRequestBuilder) StartupComparison() *DynamoDeploymentsItemStartupComparisonRequestBuilder {
+	return NewDynamoDeploymentsItemStartupComparisonRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // ToDeleteRequestInformation publishes a delete event for the DynamoGraphDeployment and removes the DB record.
 // returns a *RequestInformation when successful
-func (m *DynamoDeploymentsWithNameItemRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *DynamoDeploymentsWithNameItemRequestBuilderDeleteRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DELETE, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "text/plain;q=0.9")
-    return requestInfo, nil
+func (m *DynamoDeploymentsWithNameItemRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *DynamoDeploymentsWithNameItemRequestBuilderDeleteRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DELETE, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "text/plain;q=0.9")
+	return requestInfo, nil
 }
+
 // ToGetRequestInformation returns a single DynamoGraphDeployment by name.
 // returns a *RequestInformation when successful
-func (m *DynamoDeploymentsWithNameItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *DynamoDeploymentsWithNameItemRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *DynamoDeploymentsWithNameItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *DynamoDeploymentsWithNameItemRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *DynamoDeploymentsWithNameItemRequestBuilder when successful
-func (m *DynamoDeploymentsWithNameItemRequestBuilder) WithUrl(rawUrl string)(*DynamoDeploymentsWithNameItemRequestBuilder) {
-    return NewDynamoDeploymentsWithNameItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *DynamoDeploymentsWithNameItemRequestBuilder) WithUrl(rawUrl string) *DynamoDeploymentsWithNameItemRequestBuilder {
+	return NewDynamoDeploymentsWithNameItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

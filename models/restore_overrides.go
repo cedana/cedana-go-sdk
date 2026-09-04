@@ -4,109 +4,119 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type RestoreOverrides struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The criu_opts property
-    criu_opts *string
-    // The pod_name property
-    pod_name *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The criu_opts property
+	criu_opts *string
+	// The pod_name property
+	pod_name *string
 }
+
 // NewRestoreOverrides instantiates a new RestoreOverrides and sets the default values.
-func NewRestoreOverrides()(*RestoreOverrides) {
-    m := &RestoreOverrides{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewRestoreOverrides() *RestoreOverrides {
+	m := &RestoreOverrides{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateRestoreOverridesFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateRestoreOverridesFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewRestoreOverrides(), nil
+func CreateRestoreOverridesFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewRestoreOverrides(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *RestoreOverrides) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *RestoreOverrides) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetCriuOpts gets the criu_opts property value. The criu_opts property
 // returns a *string when successful
-func (m *RestoreOverrides) GetCriuOpts()(*string) {
-    return m.criu_opts
+func (m *RestoreOverrides) GetCriuOpts() *string {
+	return m.criu_opts
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *RestoreOverrides) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["criu_opts"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCriuOpts(val)
-        }
-        return nil
-    }
-    res["pod_name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPodName(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *RestoreOverrides) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["criu_opts"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCriuOpts(val)
+		}
+		return nil
+	}
+	res["pod_name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPodName(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetPodName gets the pod_name property value. The pod_name property
 // returns a *string when successful
-func (m *RestoreOverrides) GetPodName()(*string) {
-    return m.pod_name
+func (m *RestoreOverrides) GetPodName() *string {
+	return m.pod_name
 }
+
 // Serialize serializes information the current object
-func (m *RestoreOverrides) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("criu_opts", m.GetCriuOpts())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("pod_name", m.GetPodName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *RestoreOverrides) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("criu_opts", m.GetCriuOpts())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("pod_name", m.GetPodName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RestoreOverrides) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *RestoreOverrides) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetCriuOpts sets the criu_opts property value. The criu_opts property
-func (m *RestoreOverrides) SetCriuOpts(value *string)() {
-    m.criu_opts = value
+func (m *RestoreOverrides) SetCriuOpts(value *string) {
+	m.criu_opts = value
 }
+
 // SetPodName sets the pod_name property value. The pod_name property
-func (m *RestoreOverrides) SetPodName(value *string)() {
-    m.pod_name = value
+func (m *RestoreOverrides) SetPodName(value *string) {
+	m.pod_name = value
 }
+
 type RestoreOverridesable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetCriuOpts()(*string)
-    GetPodName()(*string)
-    SetCriuOpts(value *string)()
-    SetPodName(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetCriuOpts() *string
+	GetPodName() *string
+	SetCriuOpts(value *string)
+	SetPodName(value *string)
 }

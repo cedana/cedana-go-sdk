@@ -2,44 +2,48 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type PluginType int
 
 const (
-    UNIMPLEMENTED_PLUGINTYPE PluginType = iota
-    DEPRECATED_PLUGINTYPE
-    EXPERIMENTAL_PLUGINTYPE
-    EXTERNAL_PLUGINTYPE
-    SUPPORTED_PLUGINTYPE
+	UNIMPLEMENTED_PLUGINTYPE PluginType = iota
+	DEPRECATED_PLUGINTYPE
+	EXPERIMENTAL_PLUGINTYPE
+	EXTERNAL_PLUGINTYPE
+	SUPPORTED_PLUGINTYPE
 )
 
 func (i PluginType) String() string {
-    return []string{"UNIMPLEMENTED", "DEPRECATED", "EXPERIMENTAL", "EXTERNAL", "SUPPORTED"}[i]
+	return []string{"UNIMPLEMENTED", "DEPRECATED", "EXPERIMENTAL", "EXTERNAL", "SUPPORTED"}[i]
 }
+
 func ParsePluginType(v string) (any, error) {
-    result := UNIMPLEMENTED_PLUGINTYPE
-    switch v {
-        case "UNIMPLEMENTED":
-            result = UNIMPLEMENTED_PLUGINTYPE
-        case "DEPRECATED":
-            result = DEPRECATED_PLUGINTYPE
-        case "EXPERIMENTAL":
-            result = EXPERIMENTAL_PLUGINTYPE
-        case "EXTERNAL":
-            result = EXTERNAL_PLUGINTYPE
-        case "SUPPORTED":
-            result = SUPPORTED_PLUGINTYPE
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := UNIMPLEMENTED_PLUGINTYPE
+	switch v {
+	case "UNIMPLEMENTED":
+		result = UNIMPLEMENTED_PLUGINTYPE
+	case "DEPRECATED":
+		result = DEPRECATED_PLUGINTYPE
+	case "EXPERIMENTAL":
+		result = EXPERIMENTAL_PLUGINTYPE
+	case "EXTERNAL":
+		result = EXTERNAL_PLUGINTYPE
+	case "SUPPORTED":
+		result = SUPPORTED_PLUGINTYPE
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializePluginType(values []PluginType) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i PluginType) isMultiValue() bool {
-    return false
+	return false
 }

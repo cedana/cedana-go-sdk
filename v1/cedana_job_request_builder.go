@@ -4,28 +4,31 @@
 package v1
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // CedanaJobRequestBuilder builds and executes requests for operations under \v1\cedana\job
 type CedanaJobRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // Checkpoints the checkpoints property
 // returns a *CedanaJobCheckpointsRequestBuilder when successful
-func (m *CedanaJobRequestBuilder) Checkpoints()(*CedanaJobCheckpointsRequestBuilder) {
-    return NewCedanaJobCheckpointsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *CedanaJobRequestBuilder) Checkpoints() *CedanaJobCheckpointsRequestBuilder {
+	return NewCedanaJobCheckpointsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewCedanaJobRequestBuilderInternal instantiates a new CedanaJobRequestBuilder and sets the default values.
-func NewCedanaJobRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*CedanaJobRequestBuilder) {
-    m := &CedanaJobRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/cedana/job", pathParameters),
-    }
-    return m
+func NewCedanaJobRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *CedanaJobRequestBuilder {
+	m := &CedanaJobRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/cedana/job", pathParameters),
+	}
+	return m
 }
+
 // NewCedanaJobRequestBuilder instantiates a new CedanaJobRequestBuilder and sets the default values.
-func NewCedanaJobRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*CedanaJobRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewCedanaJobRequestBuilderInternal(urlParams, requestAdapter)
+func NewCedanaJobRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *CedanaJobRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewCedanaJobRequestBuilderInternal(urlParams, requestAdapter)
 }

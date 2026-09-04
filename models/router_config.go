@@ -4,150 +4,162 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type RouterConfig struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The generation property
-    generation *int64
-    // The routes property
-    routes []RouterRouteConfigable
-    // The schema_version property
-    schema_version *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The generation property
+	generation *int64
+	// The routes property
+	routes []RouterRouteConfigable
+	// The schema_version property
+	schema_version *int32
 }
+
 // NewRouterConfig instantiates a new RouterConfig and sets the default values.
-func NewRouterConfig()(*RouterConfig) {
-    m := &RouterConfig{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewRouterConfig() *RouterConfig {
+	m := &RouterConfig{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateRouterConfigFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateRouterConfigFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewRouterConfig(), nil
+func CreateRouterConfigFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewRouterConfig(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *RouterConfig) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *RouterConfig) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *RouterConfig) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["generation"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetGeneration(val)
-        }
-        return nil
-    }
-    res["routes"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateRouterRouteConfigFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]RouterRouteConfigable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(RouterRouteConfigable)
-                }
-            }
-            m.SetRoutes(res)
-        }
-        return nil
-    }
-    res["schema_version"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSchemaVersion(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *RouterConfig) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["generation"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetGeneration(val)
+		}
+		return nil
+	}
+	res["routes"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateRouterRouteConfigFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]RouterRouteConfigable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(RouterRouteConfigable)
+				}
+			}
+			m.SetRoutes(res)
+		}
+		return nil
+	}
+	res["schema_version"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSchemaVersion(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetGeneration gets the generation property value. The generation property
 // returns a *int64 when successful
-func (m *RouterConfig) GetGeneration()(*int64) {
-    return m.generation
+func (m *RouterConfig) GetGeneration() *int64 {
+	return m.generation
 }
+
 // GetRoutes gets the routes property value. The routes property
 // returns a []RouterRouteConfigable when successful
-func (m *RouterConfig) GetRoutes()([]RouterRouteConfigable) {
-    return m.routes
+func (m *RouterConfig) GetRoutes() []RouterRouteConfigable {
+	return m.routes
 }
+
 // GetSchemaVersion gets the schema_version property value. The schema_version property
 // returns a *int32 when successful
-func (m *RouterConfig) GetSchemaVersion()(*int32) {
-    return m.schema_version
+func (m *RouterConfig) GetSchemaVersion() *int32 {
+	return m.schema_version
 }
+
 // Serialize serializes information the current object
-func (m *RouterConfig) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt64Value("generation", m.GetGeneration())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetRoutes() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetRoutes()))
-        for i, v := range m.GetRoutes() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("routes", cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("schema_version", m.GetSchemaVersion())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *RouterConfig) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt64Value("generation", m.GetGeneration())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetRoutes() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetRoutes()))
+		for i, v := range m.GetRoutes() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("routes", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("schema_version", m.GetSchemaVersion())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RouterConfig) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *RouterConfig) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetGeneration sets the generation property value. The generation property
-func (m *RouterConfig) SetGeneration(value *int64)() {
-    m.generation = value
+func (m *RouterConfig) SetGeneration(value *int64) {
+	m.generation = value
 }
+
 // SetRoutes sets the routes property value. The routes property
-func (m *RouterConfig) SetRoutes(value []RouterRouteConfigable)() {
-    m.routes = value
+func (m *RouterConfig) SetRoutes(value []RouterRouteConfigable) {
+	m.routes = value
 }
+
 // SetSchemaVersion sets the schema_version property value. The schema_version property
-func (m *RouterConfig) SetSchemaVersion(value *int32)() {
-    m.schema_version = value
+func (m *RouterConfig) SetSchemaVersion(value *int32) {
+	m.schema_version = value
 }
+
 type RouterConfigable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetGeneration()(*int64)
-    GetRoutes()([]RouterRouteConfigable)
-    GetSchemaVersion()(*int32)
-    SetGeneration(value *int64)()
-    SetRoutes(value []RouterRouteConfigable)()
-    SetSchemaVersion(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetGeneration() *int64
+	GetRoutes() []RouterRouteConfigable
+	GetSchemaVersion() *int32
+	SetGeneration(value *int64)
+	SetRoutes(value []RouterRouteConfigable)
+	SetSchemaVersion(value *int32)
 }

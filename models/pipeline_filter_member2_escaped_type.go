@@ -2,32 +2,36 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type PipelineFilterMember2_type int
 
 const (
-    PODS_PIPELINEFILTERMEMBER2_TYPE PipelineFilterMember2_type = iota
+	PODS_PIPELINEFILTERMEMBER2_TYPE PipelineFilterMember2_type = iota
 )
 
 func (i PipelineFilterMember2_type) String() string {
-    return []string{"pods"}[i]
+	return []string{"pods"}[i]
 }
+
 func ParsePipelineFilterMember2_type(v string) (any, error) {
-    result := PODS_PIPELINEFILTERMEMBER2_TYPE
-    switch v {
-        case "pods":
-            result = PODS_PIPELINEFILTERMEMBER2_TYPE
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := PODS_PIPELINEFILTERMEMBER2_TYPE
+	switch v {
+	case "pods":
+		result = PODS_PIPELINEFILTERMEMBER2_TYPE
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializePipelineFilterMember2_type(values []PipelineFilterMember2_type) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i PipelineFilterMember2_type) isMultiValue() bool {
-    return false
+	return false
 }

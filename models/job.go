@@ -4,196 +4,212 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type Job struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The Details property
-    details i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
-    // The JID property
-    jID *string
-    // The Log property
-    log *string
-    // The State property
-    state ProcessStateable
-    // The Type property
-    typeEscaped *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The Details property
+	details i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+	// The JID property
+	jID *string
+	// The Log property
+	log *string
+	// The State property
+	state ProcessStateable
+	// The Type property
+	typeEscaped *string
 }
+
 // NewJob instantiates a new Job and sets the default values.
-func NewJob()(*Job) {
-    m := &Job{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewJob() *Job {
+	m := &Job{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateJobFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateJobFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewJob(), nil
+func CreateJobFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewJob(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *Job) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *Job) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetDetails gets the Details property value. The Details property
 // returns a UntypedNodeable when successful
-func (m *Job) GetDetails()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
-    return m.details
+func (m *Job) GetDetails() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable {
+	return m.details
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *Job) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["Details"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDetails(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
-        }
-        return nil
-    }
-    res["JID"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetJID(val)
-        }
-        return nil
-    }
-    res["Log"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetLog(val)
-        }
-        return nil
-    }
-    res["State"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateProcessStateFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetState(val.(ProcessStateable))
-        }
-        return nil
-    }
-    res["Type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTypeEscaped(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *Job) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["Details"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDetails(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
+		}
+		return nil
+	}
+	res["JID"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetJID(val)
+		}
+		return nil
+	}
+	res["Log"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetLog(val)
+		}
+		return nil
+	}
+	res["State"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateProcessStateFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetState(val.(ProcessStateable))
+		}
+		return nil
+	}
+	res["Type"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTypeEscaped(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetJID gets the JID property value. The JID property
 // returns a *string when successful
-func (m *Job) GetJID()(*string) {
-    return m.jID
+func (m *Job) GetJID() *string {
+	return m.jID
 }
+
 // GetLog gets the Log property value. The Log property
 // returns a *string when successful
-func (m *Job) GetLog()(*string) {
-    return m.log
+func (m *Job) GetLog() *string {
+	return m.log
 }
+
 // GetState gets the State property value. The State property
 // returns a ProcessStateable when successful
-func (m *Job) GetState()(ProcessStateable) {
-    return m.state
+func (m *Job) GetState() ProcessStateable {
+	return m.state
 }
+
 // GetTypeEscaped gets the Type property value. The Type property
 // returns a *string when successful
-func (m *Job) GetTypeEscaped()(*string) {
-    return m.typeEscaped
+func (m *Job) GetTypeEscaped() *string {
+	return m.typeEscaped
 }
+
 // Serialize serializes information the current object
-func (m *Job) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("Details", m.GetDetails())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("JID", m.GetJID())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("Log", m.GetLog())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("State", m.GetState())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("Type", m.GetTypeEscaped())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *Job) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteObjectValue("Details", m.GetDetails())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("JID", m.GetJID())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("Log", m.GetLog())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("State", m.GetState())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("Type", m.GetTypeEscaped())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Job) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *Job) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetDetails sets the Details property value. The Details property
-func (m *Job) SetDetails(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
-    m.details = value
+func (m *Job) SetDetails(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
+	m.details = value
 }
+
 // SetJID sets the JID property value. The JID property
-func (m *Job) SetJID(value *string)() {
-    m.jID = value
+func (m *Job) SetJID(value *string) {
+	m.jID = value
 }
+
 // SetLog sets the Log property value. The Log property
-func (m *Job) SetLog(value *string)() {
-    m.log = value
+func (m *Job) SetLog(value *string) {
+	m.log = value
 }
+
 // SetState sets the State property value. The State property
-func (m *Job) SetState(value ProcessStateable)() {
-    m.state = value
+func (m *Job) SetState(value ProcessStateable) {
+	m.state = value
 }
+
 // SetTypeEscaped sets the Type property value. The Type property
-func (m *Job) SetTypeEscaped(value *string)() {
-    m.typeEscaped = value
+func (m *Job) SetTypeEscaped(value *string) {
+	m.typeEscaped = value
 }
+
 type Jobable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetDetails()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
-    GetJID()(*string)
-    GetLog()(*string)
-    GetState()(ProcessStateable)
-    GetTypeEscaped()(*string)
-    SetDetails(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
-    SetJID(value *string)()
-    SetLog(value *string)()
-    SetState(value ProcessStateable)()
-    SetTypeEscaped(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetDetails() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+	GetJID() *string
+	GetLog() *string
+	GetState() ProcessStateable
+	GetTypeEscaped() *string
+	SetDetails(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+	SetJID(value *string)
+	SetLog(value *string)
+	SetState(value ProcessStateable)
+	SetTypeEscaped(value *string)
 }

@@ -2,38 +2,42 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type CheckpointKind int
 
 const (
-    SIMPLE_CHECKPOINTKIND CheckpointKind = iota
-    ROOTFS_CHECKPOINTKIND
-    ROOTFSONLY_CHECKPOINTKIND
+	SIMPLE_CHECKPOINTKIND CheckpointKind = iota
+	ROOTFS_CHECKPOINTKIND
+	ROOTFSONLY_CHECKPOINTKIND
 )
 
 func (i CheckpointKind) String() string {
-    return []string{"simple", "rootfs", "rootfsonly"}[i]
+	return []string{"simple", "rootfs", "rootfsonly"}[i]
 }
+
 func ParseCheckpointKind(v string) (any, error) {
-    result := SIMPLE_CHECKPOINTKIND
-    switch v {
-        case "simple":
-            result = SIMPLE_CHECKPOINTKIND
-        case "rootfs":
-            result = ROOTFS_CHECKPOINTKIND
-        case "rootfsonly":
-            result = ROOTFSONLY_CHECKPOINTKIND
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := SIMPLE_CHECKPOINTKIND
+	switch v {
+	case "simple":
+		result = SIMPLE_CHECKPOINTKIND
+	case "rootfs":
+		result = ROOTFS_CHECKPOINTKIND
+	case "rootfsonly":
+		result = ROOTFSONLY_CHECKPOINTKIND
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeCheckpointKind(values []CheckpointKind) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i CheckpointKind) isMultiValue() bool {
-    return false
+	return false
 }

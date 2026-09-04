@@ -4,202 +4,218 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type CreateInferenceKey struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The budget_usd property
-    budget_usd *float64
-    // The models property
-    models []string
-    // The name property
-    name *string
-    // The rate_limit_rps property
-    rate_limit_rps *int64
-    // The tenant_id property
-    tenant_id *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The budget_usd property
+	budget_usd *float64
+	// The models property
+	models []string
+	// The name property
+	name *string
+	// The rate_limit_rps property
+	rate_limit_rps *int64
+	// The tenant_id property
+	tenant_id *string
 }
+
 // NewCreateInferenceKey instantiates a new CreateInferenceKey and sets the default values.
-func NewCreateInferenceKey()(*CreateInferenceKey) {
-    m := &CreateInferenceKey{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewCreateInferenceKey() *CreateInferenceKey {
+	m := &CreateInferenceKey{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateCreateInferenceKeyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateCreateInferenceKeyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewCreateInferenceKey(), nil
+func CreateCreateInferenceKeyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewCreateInferenceKey(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *CreateInferenceKey) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *CreateInferenceKey) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetBudgetUsd gets the budget_usd property value. The budget_usd property
 // returns a *float64 when successful
-func (m *CreateInferenceKey) GetBudgetUsd()(*float64) {
-    return m.budget_usd
+func (m *CreateInferenceKey) GetBudgetUsd() *float64 {
+	return m.budget_usd
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *CreateInferenceKey) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["budget_usd"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetBudgetUsd(val)
-        }
-        return nil
-    }
-    res["models"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfPrimitiveValues("string")
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]string, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = *(v.(*string))
-                }
-            }
-            m.SetModels(res)
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    res["rate_limit_rps"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRateLimitRps(val)
-        }
-        return nil
-    }
-    res["tenant_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTenantId(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *CreateInferenceKey) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["budget_usd"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetBudgetUsd(val)
+		}
+		return nil
+	}
+	res["models"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfPrimitiveValues("string")
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]string, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = *(v.(*string))
+				}
+			}
+			m.SetModels(res)
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	res["rate_limit_rps"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRateLimitRps(val)
+		}
+		return nil
+	}
+	res["tenant_id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTenantId(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetModels gets the models property value. The models property
 // returns a []string when successful
-func (m *CreateInferenceKey) GetModels()([]string) {
-    return m.models
+func (m *CreateInferenceKey) GetModels() []string {
+	return m.models
 }
+
 // GetName gets the name property value. The name property
 // returns a *string when successful
-func (m *CreateInferenceKey) GetName()(*string) {
-    return m.name
+func (m *CreateInferenceKey) GetName() *string {
+	return m.name
 }
+
 // GetRateLimitRps gets the rate_limit_rps property value. The rate_limit_rps property
 // returns a *int64 when successful
-func (m *CreateInferenceKey) GetRateLimitRps()(*int64) {
-    return m.rate_limit_rps
+func (m *CreateInferenceKey) GetRateLimitRps() *int64 {
+	return m.rate_limit_rps
 }
+
 // GetTenantId gets the tenant_id property value. The tenant_id property
 // returns a *string when successful
-func (m *CreateInferenceKey) GetTenantId()(*string) {
-    return m.tenant_id
+func (m *CreateInferenceKey) GetTenantId() *string {
+	return m.tenant_id
 }
+
 // Serialize serializes information the current object
-func (m *CreateInferenceKey) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteFloat64Value("budget_usd", m.GetBudgetUsd())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetModels() != nil {
-        err := writer.WriteCollectionOfStringValues("models", m.GetModels())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("rate_limit_rps", m.GetRateLimitRps())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("tenant_id", m.GetTenantId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *CreateInferenceKey) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteFloat64Value("budget_usd", m.GetBudgetUsd())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetModels() != nil {
+		err := writer.WriteCollectionOfStringValues("models", m.GetModels())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("rate_limit_rps", m.GetRateLimitRps())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("tenant_id", m.GetTenantId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *CreateInferenceKey) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *CreateInferenceKey) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetBudgetUsd sets the budget_usd property value. The budget_usd property
-func (m *CreateInferenceKey) SetBudgetUsd(value *float64)() {
-    m.budget_usd = value
+func (m *CreateInferenceKey) SetBudgetUsd(value *float64) {
+	m.budget_usd = value
 }
+
 // SetModels sets the models property value. The models property
-func (m *CreateInferenceKey) SetModels(value []string)() {
-    m.models = value
+func (m *CreateInferenceKey) SetModels(value []string) {
+	m.models = value
 }
+
 // SetName sets the name property value. The name property
-func (m *CreateInferenceKey) SetName(value *string)() {
-    m.name = value
+func (m *CreateInferenceKey) SetName(value *string) {
+	m.name = value
 }
+
 // SetRateLimitRps sets the rate_limit_rps property value. The rate_limit_rps property
-func (m *CreateInferenceKey) SetRateLimitRps(value *int64)() {
-    m.rate_limit_rps = value
+func (m *CreateInferenceKey) SetRateLimitRps(value *int64) {
+	m.rate_limit_rps = value
 }
+
 // SetTenantId sets the tenant_id property value. The tenant_id property
-func (m *CreateInferenceKey) SetTenantId(value *string)() {
-    m.tenant_id = value
+func (m *CreateInferenceKey) SetTenantId(value *string) {
+	m.tenant_id = value
 }
+
 type CreateInferenceKeyable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetBudgetUsd()(*float64)
-    GetModels()([]string)
-    GetName()(*string)
-    GetRateLimitRps()(*int64)
-    GetTenantId()(*string)
-    SetBudgetUsd(value *float64)()
-    SetModels(value []string)()
-    SetName(value *string)()
-    SetRateLimitRps(value *int64)()
-    SetTenantId(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetBudgetUsd() *float64
+	GetModels() []string
+	GetName() *string
+	GetRateLimitRps() *int64
+	GetTenantId() *string
+	SetBudgetUsd(value *float64)
+	SetModels(value []string)
+	SetName(value *string)
+	SetRateLimitRps(value *int64)
+	SetTenantId(value *string)
 }

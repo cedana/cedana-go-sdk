@@ -4,167 +4,181 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type StartLatency struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The max_ms property
-    max_ms *int64
-    // The median_ms property
-    median_ms *int64
-    // The min_ms property
-    min_ms *int64
-    // The samples property
-    samples *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The max_ms property
+	max_ms *int64
+	// The median_ms property
+	median_ms *int64
+	// The min_ms property
+	min_ms *int64
+	// The samples property
+	samples *int32
 }
+
 // NewStartLatency instantiates a new StartLatency and sets the default values.
-func NewStartLatency()(*StartLatency) {
-    m := &StartLatency{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewStartLatency() *StartLatency {
+	m := &StartLatency{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateStartLatencyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateStartLatencyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewStartLatency(), nil
+func CreateStartLatencyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewStartLatency(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *StartLatency) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *StartLatency) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *StartLatency) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["max_ms"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMaxMs(val)
-        }
-        return nil
-    }
-    res["median_ms"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMedianMs(val)
-        }
-        return nil
-    }
-    res["min_ms"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMinMs(val)
-        }
-        return nil
-    }
-    res["samples"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSamples(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *StartLatency) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["max_ms"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMaxMs(val)
+		}
+		return nil
+	}
+	res["median_ms"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMedianMs(val)
+		}
+		return nil
+	}
+	res["min_ms"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMinMs(val)
+		}
+		return nil
+	}
+	res["samples"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSamples(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetMaxMs gets the max_ms property value. The max_ms property
 // returns a *int64 when successful
-func (m *StartLatency) GetMaxMs()(*int64) {
-    return m.max_ms
+func (m *StartLatency) GetMaxMs() *int64 {
+	return m.max_ms
 }
+
 // GetMedianMs gets the median_ms property value. The median_ms property
 // returns a *int64 when successful
-func (m *StartLatency) GetMedianMs()(*int64) {
-    return m.median_ms
+func (m *StartLatency) GetMedianMs() *int64 {
+	return m.median_ms
 }
+
 // GetMinMs gets the min_ms property value. The min_ms property
 // returns a *int64 when successful
-func (m *StartLatency) GetMinMs()(*int64) {
-    return m.min_ms
+func (m *StartLatency) GetMinMs() *int64 {
+	return m.min_ms
 }
+
 // GetSamples gets the samples property value. The samples property
 // returns a *int32 when successful
-func (m *StartLatency) GetSamples()(*int32) {
-    return m.samples
+func (m *StartLatency) GetSamples() *int32 {
+	return m.samples
 }
+
 // Serialize serializes information the current object
-func (m *StartLatency) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt64Value("max_ms", m.GetMaxMs())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("median_ms", m.GetMedianMs())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("min_ms", m.GetMinMs())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("samples", m.GetSamples())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *StartLatency) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt64Value("max_ms", m.GetMaxMs())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("median_ms", m.GetMedianMs())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("min_ms", m.GetMinMs())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("samples", m.GetSamples())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *StartLatency) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *StartLatency) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetMaxMs sets the max_ms property value. The max_ms property
-func (m *StartLatency) SetMaxMs(value *int64)() {
-    m.max_ms = value
+func (m *StartLatency) SetMaxMs(value *int64) {
+	m.max_ms = value
 }
+
 // SetMedianMs sets the median_ms property value. The median_ms property
-func (m *StartLatency) SetMedianMs(value *int64)() {
-    m.median_ms = value
+func (m *StartLatency) SetMedianMs(value *int64) {
+	m.median_ms = value
 }
+
 // SetMinMs sets the min_ms property value. The min_ms property
-func (m *StartLatency) SetMinMs(value *int64)() {
-    m.min_ms = value
+func (m *StartLatency) SetMinMs(value *int64) {
+	m.min_ms = value
 }
+
 // SetSamples sets the samples property value. The samples property
-func (m *StartLatency) SetSamples(value *int32)() {
-    m.samples = value
+func (m *StartLatency) SetSamples(value *int32) {
+	m.samples = value
 }
+
 type StartLatencyable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetMaxMs()(*int64)
-    GetMedianMs()(*int64)
-    GetMinMs()(*int64)
-    GetSamples()(*int32)
-    SetMaxMs(value *int64)()
-    SetMedianMs(value *int64)()
-    SetMinMs(value *int64)()
-    SetSamples(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetMaxMs() *int64
+	GetMedianMs() *int64
+	GetMinMs() *int64
+	GetSamples() *int32
+	SetMaxMs(value *int64)
+	SetMedianMs(value *int64)
+	SetMinMs(value *int64)
+	SetSamples(value *int32)
 }

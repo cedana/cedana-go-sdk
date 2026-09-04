@@ -4,68 +4,75 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type CreatedInferenceKey struct {
-    InferenceKeyView
-    // The raw key, shown exactly once at creation.
-    raw_key *string
+	InferenceKeyView
+	// The raw key, shown exactly once at creation.
+	raw_key *string
 }
+
 // NewCreatedInferenceKey instantiates a new CreatedInferenceKey and sets the default values.
-func NewCreatedInferenceKey()(*CreatedInferenceKey) {
-    m := &CreatedInferenceKey{
-        InferenceKeyView: *NewInferenceKeyView(),
-    }
-    return m
+func NewCreatedInferenceKey() *CreatedInferenceKey {
+	m := &CreatedInferenceKey{
+		InferenceKeyView: *NewInferenceKeyView(),
+	}
+	return m
 }
+
 // CreateCreatedInferenceKeyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateCreatedInferenceKeyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewCreatedInferenceKey(), nil
+func CreateCreatedInferenceKeyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewCreatedInferenceKey(), nil
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *CreatedInferenceKey) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := m.InferenceKeyView.GetFieldDeserializers()
-    res["raw_key"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRawKey(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *CreatedInferenceKey) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := m.InferenceKeyView.GetFieldDeserializers()
+	res["raw_key"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRawKey(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetRawKey gets the raw_key property value. The raw key, shown exactly once at creation.
 // returns a *string when successful
-func (m *CreatedInferenceKey) GetRawKey()(*string) {
-    return m.raw_key
+func (m *CreatedInferenceKey) GetRawKey() *string {
+	return m.raw_key
 }
+
 // Serialize serializes information the current object
-func (m *CreatedInferenceKey) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    err := m.InferenceKeyView.Serialize(writer)
-    if err != nil {
-        return err
-    }
-    {
-        err = writer.WriteStringValue("raw_key", m.GetRawKey())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *CreatedInferenceKey) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	err := m.InferenceKeyView.Serialize(writer)
+	if err != nil {
+		return err
+	}
+	{
+		err = writer.WriteStringValue("raw_key", m.GetRawKey())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetRawKey sets the raw_key property value. The raw key, shown exactly once at creation.
-func (m *CreatedInferenceKey) SetRawKey(value *string)() {
-    m.raw_key = value
+func (m *CreatedInferenceKey) SetRawKey(value *string) {
+	m.raw_key = value
 }
+
 type CreatedInferenceKeyable interface {
-    InferenceKeyViewable
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetRawKey()(*string)
-    SetRawKey(value *string)()
+	InferenceKeyViewable
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetRawKey() *string
+	SetRawKey(value *string)
 }

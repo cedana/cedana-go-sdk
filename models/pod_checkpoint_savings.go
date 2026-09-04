@@ -4,778 +4,834 @@
 package models
 
 import (
-    i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
 )
 
 // PodCheckpointSavings per-pod checkpoint savings data
 type PodCheckpointSavings struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // Average interval between checkpoints (seconds)
-    avg_interval_seconds *float64
-    // Node capacity type: "spot" or "on-demand"
-    capacity_type *string
-    // The checkpoint_count property
-    checkpoint_count *int64
-    // The cluster_id property
-    cluster_id *string
-    // Estimated savings (if spot instance)
-    estimated_savings *float64
-    // The first_checkpoint property
-    first_checkpoint *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The gpu property
-    gpu *string
-    // Number of automatic heartbeat checkpoints
-    heartbeat_checkpoints *int64
-    // Node instance type (e.g., "m5.xlarge", "n1-standard-4")
-    instance_type *string
-    // The last_checkpoint property
-    last_checkpoint *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Number of manual checkpoints
-    manual_checkpoints *int64
-    // Maximum interval - worst case data loss on failure (seconds)
-    max_recovery_point_seconds *float64
-    // Minimum interval between checkpoints (seconds)
-    min_interval_seconds *float64
-    // The namespace property
-    namespace *string
-    // Node name (for linking to node details page)
-    node_name *string
-    // Node region
-    node_region *string
-    // On-demand price per hour (from user config)
-    ondemand_price_per_hour *float64
-    // The platform property
-    platform *string
-    // The pod_name property
-    pod_name *string
-    // Ratio of time protected to checkpoint overhead (higher = more efficient)
-    protection_efficiency_ratio *float64
-    // The refreshed_at property
-    refreshed_at *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Spot price per hour (from user config)
-    spot_price_per_hour *float64
-    // Total time (seconds) between first and last checkpoint - time "protected"
-    time_protected_seconds *float64
-    // Total time spent checkpointing (nanoseconds)
-    total_checkpoint_duration_ns *int64
-    // Total data checkpointed (bytes)
-    total_checkpoint_size_bytes *int64
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// Average interval between checkpoints (seconds)
+	avg_interval_seconds *float64
+	// Node capacity type: "spot" or "on-demand"
+	capacity_type *string
+	// The checkpoint_count property
+	checkpoint_count *int64
+	// The cluster_id property
+	cluster_id *string
+	// Estimated savings (if spot instance)
+	estimated_savings *float64
+	// The first_checkpoint property
+	first_checkpoint *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+	// The gpu property
+	gpu *string
+	// Number of automatic heartbeat checkpoints
+	heartbeat_checkpoints *int64
+	// Node instance type (e.g., "m5.xlarge", "n1-standard-4")
+	instance_type *string
+	// The last_checkpoint property
+	last_checkpoint *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+	// Number of manual checkpoints
+	manual_checkpoints *int64
+	// Maximum interval - worst case data loss on failure (seconds)
+	max_recovery_point_seconds *float64
+	// Minimum interval between checkpoints (seconds)
+	min_interval_seconds *float64
+	// The namespace property
+	namespace *string
+	// Node name (for linking to node details page)
+	node_name *string
+	// Node region
+	node_region *string
+	// On-demand price per hour (from user config)
+	ondemand_price_per_hour *float64
+	// The platform property
+	platform *string
+	// The pod_name property
+	pod_name *string
+	// Ratio of time protected to checkpoint overhead (higher = more efficient)
+	protection_efficiency_ratio *float64
+	// The refreshed_at property
+	refreshed_at *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+	// Spot price per hour (from user config)
+	spot_price_per_hour *float64
+	// Total time (seconds) between first and last checkpoint - time "protected"
+	time_protected_seconds *float64
+	// Total time spent checkpointing (nanoseconds)
+	total_checkpoint_duration_ns *int64
+	// Total data checkpointed (bytes)
+	total_checkpoint_size_bytes *int64
 }
+
 // NewPodCheckpointSavings instantiates a new PodCheckpointSavings and sets the default values.
-func NewPodCheckpointSavings()(*PodCheckpointSavings) {
-    m := &PodCheckpointSavings{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewPodCheckpointSavings() *PodCheckpointSavings {
+	m := &PodCheckpointSavings{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreatePodCheckpointSavingsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePodCheckpointSavingsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPodCheckpointSavings(), nil
+func CreatePodCheckpointSavingsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPodCheckpointSavings(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *PodCheckpointSavings) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *PodCheckpointSavings) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetAvgIntervalSeconds gets the avg_interval_seconds property value. Average interval between checkpoints (seconds)
 // returns a *float64 when successful
-func (m *PodCheckpointSavings) GetAvgIntervalSeconds()(*float64) {
-    return m.avg_interval_seconds
+func (m *PodCheckpointSavings) GetAvgIntervalSeconds() *float64 {
+	return m.avg_interval_seconds
 }
+
 // GetCapacityType gets the capacity_type property value. Node capacity type: "spot" or "on-demand"
 // returns a *string when successful
-func (m *PodCheckpointSavings) GetCapacityType()(*string) {
-    return m.capacity_type
+func (m *PodCheckpointSavings) GetCapacityType() *string {
+	return m.capacity_type
 }
+
 // GetCheckpointCount gets the checkpoint_count property value. The checkpoint_count property
 // returns a *int64 when successful
-func (m *PodCheckpointSavings) GetCheckpointCount()(*int64) {
-    return m.checkpoint_count
+func (m *PodCheckpointSavings) GetCheckpointCount() *int64 {
+	return m.checkpoint_count
 }
+
 // GetClusterId gets the cluster_id property value. The cluster_id property
 // returns a *string when successful
-func (m *PodCheckpointSavings) GetClusterId()(*string) {
-    return m.cluster_id
+func (m *PodCheckpointSavings) GetClusterId() *string {
+	return m.cluster_id
 }
+
 // GetEstimatedSavings gets the estimated_savings property value. Estimated savings (if spot instance)
 // returns a *float64 when successful
-func (m *PodCheckpointSavings) GetEstimatedSavings()(*float64) {
-    return m.estimated_savings
+func (m *PodCheckpointSavings) GetEstimatedSavings() *float64 {
+	return m.estimated_savings
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PodCheckpointSavings) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["avg_interval_seconds"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetAvgIntervalSeconds(val)
-        }
-        return nil
-    }
-    res["capacity_type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCapacityType(val)
-        }
-        return nil
-    }
-    res["checkpoint_count"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCheckpointCount(val)
-        }
-        return nil
-    }
-    res["cluster_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetClusterId(val)
-        }
-        return nil
-    }
-    res["estimated_savings"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetEstimatedSavings(val)
-        }
-        return nil
-    }
-    res["first_checkpoint"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetTimeValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFirstCheckpoint(val)
-        }
-        return nil
-    }
-    res["gpu"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetGpu(val)
-        }
-        return nil
-    }
-    res["heartbeat_checkpoints"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetHeartbeatCheckpoints(val)
-        }
-        return nil
-    }
-    res["instance_type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetInstanceType(val)
-        }
-        return nil
-    }
-    res["last_checkpoint"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetTimeValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetLastCheckpoint(val)
-        }
-        return nil
-    }
-    res["manual_checkpoints"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetManualCheckpoints(val)
-        }
-        return nil
-    }
-    res["max_recovery_point_seconds"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMaxRecoveryPointSeconds(val)
-        }
-        return nil
-    }
-    res["min_interval_seconds"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMinIntervalSeconds(val)
-        }
-        return nil
-    }
-    res["namespace"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetNamespace(val)
-        }
-        return nil
-    }
-    res["node_name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetNodeName(val)
-        }
-        return nil
-    }
-    res["node_region"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetNodeRegion(val)
-        }
-        return nil
-    }
-    res["ondemand_price_per_hour"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetOndemandPricePerHour(val)
-        }
-        return nil
-    }
-    res["platform"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPlatform(val)
-        }
-        return nil
-    }
-    res["pod_name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPodName(val)
-        }
-        return nil
-    }
-    res["protection_efficiency_ratio"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetProtectionEfficiencyRatio(val)
-        }
-        return nil
-    }
-    res["refreshed_at"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetTimeValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRefreshedAt(val)
-        }
-        return nil
-    }
-    res["spot_price_per_hour"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSpotPricePerHour(val)
-        }
-        return nil
-    }
-    res["time_protected_seconds"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTimeProtectedSeconds(val)
-        }
-        return nil
-    }
-    res["total_checkpoint_duration_ns"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTotalCheckpointDurationNs(val)
-        }
-        return nil
-    }
-    res["total_checkpoint_size_bytes"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTotalCheckpointSizeBytes(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *PodCheckpointSavings) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["avg_interval_seconds"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetAvgIntervalSeconds(val)
+		}
+		return nil
+	}
+	res["capacity_type"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCapacityType(val)
+		}
+		return nil
+	}
+	res["checkpoint_count"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCheckpointCount(val)
+		}
+		return nil
+	}
+	res["cluster_id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetClusterId(val)
+		}
+		return nil
+	}
+	res["estimated_savings"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetEstimatedSavings(val)
+		}
+		return nil
+	}
+	res["first_checkpoint"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetTimeValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFirstCheckpoint(val)
+		}
+		return nil
+	}
+	res["gpu"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetGpu(val)
+		}
+		return nil
+	}
+	res["heartbeat_checkpoints"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetHeartbeatCheckpoints(val)
+		}
+		return nil
+	}
+	res["instance_type"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetInstanceType(val)
+		}
+		return nil
+	}
+	res["last_checkpoint"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetTimeValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetLastCheckpoint(val)
+		}
+		return nil
+	}
+	res["manual_checkpoints"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetManualCheckpoints(val)
+		}
+		return nil
+	}
+	res["max_recovery_point_seconds"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMaxRecoveryPointSeconds(val)
+		}
+		return nil
+	}
+	res["min_interval_seconds"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMinIntervalSeconds(val)
+		}
+		return nil
+	}
+	res["namespace"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNamespace(val)
+		}
+		return nil
+	}
+	res["node_name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNodeName(val)
+		}
+		return nil
+	}
+	res["node_region"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNodeRegion(val)
+		}
+		return nil
+	}
+	res["ondemand_price_per_hour"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetOndemandPricePerHour(val)
+		}
+		return nil
+	}
+	res["platform"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPlatform(val)
+		}
+		return nil
+	}
+	res["pod_name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPodName(val)
+		}
+		return nil
+	}
+	res["protection_efficiency_ratio"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetProtectionEfficiencyRatio(val)
+		}
+		return nil
+	}
+	res["refreshed_at"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetTimeValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRefreshedAt(val)
+		}
+		return nil
+	}
+	res["spot_price_per_hour"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSpotPricePerHour(val)
+		}
+		return nil
+	}
+	res["time_protected_seconds"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTimeProtectedSeconds(val)
+		}
+		return nil
+	}
+	res["total_checkpoint_duration_ns"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTotalCheckpointDurationNs(val)
+		}
+		return nil
+	}
+	res["total_checkpoint_size_bytes"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTotalCheckpointSizeBytes(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetFirstCheckpoint gets the first_checkpoint property value. The first_checkpoint property
 // returns a *Time when successful
-func (m *PodCheckpointSavings) GetFirstCheckpoint()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.first_checkpoint
+func (m *PodCheckpointSavings) GetFirstCheckpoint() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time {
+	return m.first_checkpoint
 }
+
 // GetGpu gets the gpu property value. The gpu property
 // returns a *string when successful
-func (m *PodCheckpointSavings) GetGpu()(*string) {
-    return m.gpu
+func (m *PodCheckpointSavings) GetGpu() *string {
+	return m.gpu
 }
+
 // GetHeartbeatCheckpoints gets the heartbeat_checkpoints property value. Number of automatic heartbeat checkpoints
 // returns a *int64 when successful
-func (m *PodCheckpointSavings) GetHeartbeatCheckpoints()(*int64) {
-    return m.heartbeat_checkpoints
+func (m *PodCheckpointSavings) GetHeartbeatCheckpoints() *int64 {
+	return m.heartbeat_checkpoints
 }
+
 // GetInstanceType gets the instance_type property value. Node instance type (e.g., "m5.xlarge", "n1-standard-4")
 // returns a *string when successful
-func (m *PodCheckpointSavings) GetInstanceType()(*string) {
-    return m.instance_type
+func (m *PodCheckpointSavings) GetInstanceType() *string {
+	return m.instance_type
 }
+
 // GetLastCheckpoint gets the last_checkpoint property value. The last_checkpoint property
 // returns a *Time when successful
-func (m *PodCheckpointSavings) GetLastCheckpoint()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.last_checkpoint
+func (m *PodCheckpointSavings) GetLastCheckpoint() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time {
+	return m.last_checkpoint
 }
+
 // GetManualCheckpoints gets the manual_checkpoints property value. Number of manual checkpoints
 // returns a *int64 when successful
-func (m *PodCheckpointSavings) GetManualCheckpoints()(*int64) {
-    return m.manual_checkpoints
+func (m *PodCheckpointSavings) GetManualCheckpoints() *int64 {
+	return m.manual_checkpoints
 }
+
 // GetMaxRecoveryPointSeconds gets the max_recovery_point_seconds property value. Maximum interval - worst case data loss on failure (seconds)
 // returns a *float64 when successful
-func (m *PodCheckpointSavings) GetMaxRecoveryPointSeconds()(*float64) {
-    return m.max_recovery_point_seconds
+func (m *PodCheckpointSavings) GetMaxRecoveryPointSeconds() *float64 {
+	return m.max_recovery_point_seconds
 }
+
 // GetMinIntervalSeconds gets the min_interval_seconds property value. Minimum interval between checkpoints (seconds)
 // returns a *float64 when successful
-func (m *PodCheckpointSavings) GetMinIntervalSeconds()(*float64) {
-    return m.min_interval_seconds
+func (m *PodCheckpointSavings) GetMinIntervalSeconds() *float64 {
+	return m.min_interval_seconds
 }
+
 // GetNamespace gets the namespace property value. The namespace property
 // returns a *string when successful
-func (m *PodCheckpointSavings) GetNamespace()(*string) {
-    return m.namespace
+func (m *PodCheckpointSavings) GetNamespace() *string {
+	return m.namespace
 }
+
 // GetNodeName gets the node_name property value. Node name (for linking to node details page)
 // returns a *string when successful
-func (m *PodCheckpointSavings) GetNodeName()(*string) {
-    return m.node_name
+func (m *PodCheckpointSavings) GetNodeName() *string {
+	return m.node_name
 }
+
 // GetNodeRegion gets the node_region property value. Node region
 // returns a *string when successful
-func (m *PodCheckpointSavings) GetNodeRegion()(*string) {
-    return m.node_region
+func (m *PodCheckpointSavings) GetNodeRegion() *string {
+	return m.node_region
 }
+
 // GetOndemandPricePerHour gets the ondemand_price_per_hour property value. On-demand price per hour (from user config)
 // returns a *float64 when successful
-func (m *PodCheckpointSavings) GetOndemandPricePerHour()(*float64) {
-    return m.ondemand_price_per_hour
+func (m *PodCheckpointSavings) GetOndemandPricePerHour() *float64 {
+	return m.ondemand_price_per_hour
 }
+
 // GetPlatform gets the platform property value. The platform property
 // returns a *string when successful
-func (m *PodCheckpointSavings) GetPlatform()(*string) {
-    return m.platform
+func (m *PodCheckpointSavings) GetPlatform() *string {
+	return m.platform
 }
+
 // GetPodName gets the pod_name property value. The pod_name property
 // returns a *string when successful
-func (m *PodCheckpointSavings) GetPodName()(*string) {
-    return m.pod_name
+func (m *PodCheckpointSavings) GetPodName() *string {
+	return m.pod_name
 }
+
 // GetProtectionEfficiencyRatio gets the protection_efficiency_ratio property value. Ratio of time protected to checkpoint overhead (higher = more efficient)
 // returns a *float64 when successful
-func (m *PodCheckpointSavings) GetProtectionEfficiencyRatio()(*float64) {
-    return m.protection_efficiency_ratio
+func (m *PodCheckpointSavings) GetProtectionEfficiencyRatio() *float64 {
+	return m.protection_efficiency_ratio
 }
+
 // GetRefreshedAt gets the refreshed_at property value. The refreshed_at property
 // returns a *Time when successful
-func (m *PodCheckpointSavings) GetRefreshedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.refreshed_at
+func (m *PodCheckpointSavings) GetRefreshedAt() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time {
+	return m.refreshed_at
 }
+
 // GetSpotPricePerHour gets the spot_price_per_hour property value. Spot price per hour (from user config)
 // returns a *float64 when successful
-func (m *PodCheckpointSavings) GetSpotPricePerHour()(*float64) {
-    return m.spot_price_per_hour
+func (m *PodCheckpointSavings) GetSpotPricePerHour() *float64 {
+	return m.spot_price_per_hour
 }
+
 // GetTimeProtectedSeconds gets the time_protected_seconds property value. Total time (seconds) between first and last checkpoint - time "protected"
 // returns a *float64 when successful
-func (m *PodCheckpointSavings) GetTimeProtectedSeconds()(*float64) {
-    return m.time_protected_seconds
+func (m *PodCheckpointSavings) GetTimeProtectedSeconds() *float64 {
+	return m.time_protected_seconds
 }
+
 // GetTotalCheckpointDurationNs gets the total_checkpoint_duration_ns property value. Total time spent checkpointing (nanoseconds)
 // returns a *int64 when successful
-func (m *PodCheckpointSavings) GetTotalCheckpointDurationNs()(*int64) {
-    return m.total_checkpoint_duration_ns
+func (m *PodCheckpointSavings) GetTotalCheckpointDurationNs() *int64 {
+	return m.total_checkpoint_duration_ns
 }
+
 // GetTotalCheckpointSizeBytes gets the total_checkpoint_size_bytes property value. Total data checkpointed (bytes)
 // returns a *int64 when successful
-func (m *PodCheckpointSavings) GetTotalCheckpointSizeBytes()(*int64) {
-    return m.total_checkpoint_size_bytes
+func (m *PodCheckpointSavings) GetTotalCheckpointSizeBytes() *int64 {
+	return m.total_checkpoint_size_bytes
 }
+
 // Serialize serializes information the current object
-func (m *PodCheckpointSavings) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteFloat64Value("avg_interval_seconds", m.GetAvgIntervalSeconds())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("capacity_type", m.GetCapacityType())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("checkpoint_count", m.GetCheckpointCount())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("cluster_id", m.GetClusterId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("estimated_savings", m.GetEstimatedSavings())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteTimeValue("first_checkpoint", m.GetFirstCheckpoint())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("gpu", m.GetGpu())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("heartbeat_checkpoints", m.GetHeartbeatCheckpoints())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("instance_type", m.GetInstanceType())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteTimeValue("last_checkpoint", m.GetLastCheckpoint())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("manual_checkpoints", m.GetManualCheckpoints())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("max_recovery_point_seconds", m.GetMaxRecoveryPointSeconds())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("min_interval_seconds", m.GetMinIntervalSeconds())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("namespace", m.GetNamespace())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("node_name", m.GetNodeName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("node_region", m.GetNodeRegion())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("ondemand_price_per_hour", m.GetOndemandPricePerHour())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("platform", m.GetPlatform())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("pod_name", m.GetPodName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("protection_efficiency_ratio", m.GetProtectionEfficiencyRatio())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteTimeValue("refreshed_at", m.GetRefreshedAt())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("spot_price_per_hour", m.GetSpotPricePerHour())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("time_protected_seconds", m.GetTimeProtectedSeconds())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("total_checkpoint_duration_ns", m.GetTotalCheckpointDurationNs())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("total_checkpoint_size_bytes", m.GetTotalCheckpointSizeBytes())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PodCheckpointSavings) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteFloat64Value("avg_interval_seconds", m.GetAvgIntervalSeconds())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("capacity_type", m.GetCapacityType())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("checkpoint_count", m.GetCheckpointCount())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("cluster_id", m.GetClusterId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("estimated_savings", m.GetEstimatedSavings())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteTimeValue("first_checkpoint", m.GetFirstCheckpoint())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("gpu", m.GetGpu())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("heartbeat_checkpoints", m.GetHeartbeatCheckpoints())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("instance_type", m.GetInstanceType())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteTimeValue("last_checkpoint", m.GetLastCheckpoint())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("manual_checkpoints", m.GetManualCheckpoints())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("max_recovery_point_seconds", m.GetMaxRecoveryPointSeconds())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("min_interval_seconds", m.GetMinIntervalSeconds())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("namespace", m.GetNamespace())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("node_name", m.GetNodeName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("node_region", m.GetNodeRegion())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("ondemand_price_per_hour", m.GetOndemandPricePerHour())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("platform", m.GetPlatform())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("pod_name", m.GetPodName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("protection_efficiency_ratio", m.GetProtectionEfficiencyRatio())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteTimeValue("refreshed_at", m.GetRefreshedAt())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("spot_price_per_hour", m.GetSpotPricePerHour())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("time_protected_seconds", m.GetTimeProtectedSeconds())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("total_checkpoint_duration_ns", m.GetTotalCheckpointDurationNs())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("total_checkpoint_size_bytes", m.GetTotalCheckpointSizeBytes())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PodCheckpointSavings) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *PodCheckpointSavings) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetAvgIntervalSeconds sets the avg_interval_seconds property value. Average interval between checkpoints (seconds)
-func (m *PodCheckpointSavings) SetAvgIntervalSeconds(value *float64)() {
-    m.avg_interval_seconds = value
+func (m *PodCheckpointSavings) SetAvgIntervalSeconds(value *float64) {
+	m.avg_interval_seconds = value
 }
+
 // SetCapacityType sets the capacity_type property value. Node capacity type: "spot" or "on-demand"
-func (m *PodCheckpointSavings) SetCapacityType(value *string)() {
-    m.capacity_type = value
+func (m *PodCheckpointSavings) SetCapacityType(value *string) {
+	m.capacity_type = value
 }
+
 // SetCheckpointCount sets the checkpoint_count property value. The checkpoint_count property
-func (m *PodCheckpointSavings) SetCheckpointCount(value *int64)() {
-    m.checkpoint_count = value
+func (m *PodCheckpointSavings) SetCheckpointCount(value *int64) {
+	m.checkpoint_count = value
 }
+
 // SetClusterId sets the cluster_id property value. The cluster_id property
-func (m *PodCheckpointSavings) SetClusterId(value *string)() {
-    m.cluster_id = value
+func (m *PodCheckpointSavings) SetClusterId(value *string) {
+	m.cluster_id = value
 }
+
 // SetEstimatedSavings sets the estimated_savings property value. Estimated savings (if spot instance)
-func (m *PodCheckpointSavings) SetEstimatedSavings(value *float64)() {
-    m.estimated_savings = value
+func (m *PodCheckpointSavings) SetEstimatedSavings(value *float64) {
+	m.estimated_savings = value
 }
+
 // SetFirstCheckpoint sets the first_checkpoint property value. The first_checkpoint property
-func (m *PodCheckpointSavings) SetFirstCheckpoint(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.first_checkpoint = value
+func (m *PodCheckpointSavings) SetFirstCheckpoint(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
+	m.first_checkpoint = value
 }
+
 // SetGpu sets the gpu property value. The gpu property
-func (m *PodCheckpointSavings) SetGpu(value *string)() {
-    m.gpu = value
+func (m *PodCheckpointSavings) SetGpu(value *string) {
+	m.gpu = value
 }
+
 // SetHeartbeatCheckpoints sets the heartbeat_checkpoints property value. Number of automatic heartbeat checkpoints
-func (m *PodCheckpointSavings) SetHeartbeatCheckpoints(value *int64)() {
-    m.heartbeat_checkpoints = value
+func (m *PodCheckpointSavings) SetHeartbeatCheckpoints(value *int64) {
+	m.heartbeat_checkpoints = value
 }
+
 // SetInstanceType sets the instance_type property value. Node instance type (e.g., "m5.xlarge", "n1-standard-4")
-func (m *PodCheckpointSavings) SetInstanceType(value *string)() {
-    m.instance_type = value
+func (m *PodCheckpointSavings) SetInstanceType(value *string) {
+	m.instance_type = value
 }
+
 // SetLastCheckpoint sets the last_checkpoint property value. The last_checkpoint property
-func (m *PodCheckpointSavings) SetLastCheckpoint(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.last_checkpoint = value
+func (m *PodCheckpointSavings) SetLastCheckpoint(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
+	m.last_checkpoint = value
 }
+
 // SetManualCheckpoints sets the manual_checkpoints property value. Number of manual checkpoints
-func (m *PodCheckpointSavings) SetManualCheckpoints(value *int64)() {
-    m.manual_checkpoints = value
+func (m *PodCheckpointSavings) SetManualCheckpoints(value *int64) {
+	m.manual_checkpoints = value
 }
+
 // SetMaxRecoveryPointSeconds sets the max_recovery_point_seconds property value. Maximum interval - worst case data loss on failure (seconds)
-func (m *PodCheckpointSavings) SetMaxRecoveryPointSeconds(value *float64)() {
-    m.max_recovery_point_seconds = value
+func (m *PodCheckpointSavings) SetMaxRecoveryPointSeconds(value *float64) {
+	m.max_recovery_point_seconds = value
 }
+
 // SetMinIntervalSeconds sets the min_interval_seconds property value. Minimum interval between checkpoints (seconds)
-func (m *PodCheckpointSavings) SetMinIntervalSeconds(value *float64)() {
-    m.min_interval_seconds = value
+func (m *PodCheckpointSavings) SetMinIntervalSeconds(value *float64) {
+	m.min_interval_seconds = value
 }
+
 // SetNamespace sets the namespace property value. The namespace property
-func (m *PodCheckpointSavings) SetNamespace(value *string)() {
-    m.namespace = value
+func (m *PodCheckpointSavings) SetNamespace(value *string) {
+	m.namespace = value
 }
+
 // SetNodeName sets the node_name property value. Node name (for linking to node details page)
-func (m *PodCheckpointSavings) SetNodeName(value *string)() {
-    m.node_name = value
+func (m *PodCheckpointSavings) SetNodeName(value *string) {
+	m.node_name = value
 }
+
 // SetNodeRegion sets the node_region property value. Node region
-func (m *PodCheckpointSavings) SetNodeRegion(value *string)() {
-    m.node_region = value
+func (m *PodCheckpointSavings) SetNodeRegion(value *string) {
+	m.node_region = value
 }
+
 // SetOndemandPricePerHour sets the ondemand_price_per_hour property value. On-demand price per hour (from user config)
-func (m *PodCheckpointSavings) SetOndemandPricePerHour(value *float64)() {
-    m.ondemand_price_per_hour = value
+func (m *PodCheckpointSavings) SetOndemandPricePerHour(value *float64) {
+	m.ondemand_price_per_hour = value
 }
+
 // SetPlatform sets the platform property value. The platform property
-func (m *PodCheckpointSavings) SetPlatform(value *string)() {
-    m.platform = value
+func (m *PodCheckpointSavings) SetPlatform(value *string) {
+	m.platform = value
 }
+
 // SetPodName sets the pod_name property value. The pod_name property
-func (m *PodCheckpointSavings) SetPodName(value *string)() {
-    m.pod_name = value
+func (m *PodCheckpointSavings) SetPodName(value *string) {
+	m.pod_name = value
 }
+
 // SetProtectionEfficiencyRatio sets the protection_efficiency_ratio property value. Ratio of time protected to checkpoint overhead (higher = more efficient)
-func (m *PodCheckpointSavings) SetProtectionEfficiencyRatio(value *float64)() {
-    m.protection_efficiency_ratio = value
+func (m *PodCheckpointSavings) SetProtectionEfficiencyRatio(value *float64) {
+	m.protection_efficiency_ratio = value
 }
+
 // SetRefreshedAt sets the refreshed_at property value. The refreshed_at property
-func (m *PodCheckpointSavings) SetRefreshedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.refreshed_at = value
+func (m *PodCheckpointSavings) SetRefreshedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
+	m.refreshed_at = value
 }
+
 // SetSpotPricePerHour sets the spot_price_per_hour property value. Spot price per hour (from user config)
-func (m *PodCheckpointSavings) SetSpotPricePerHour(value *float64)() {
-    m.spot_price_per_hour = value
+func (m *PodCheckpointSavings) SetSpotPricePerHour(value *float64) {
+	m.spot_price_per_hour = value
 }
+
 // SetTimeProtectedSeconds sets the time_protected_seconds property value. Total time (seconds) between first and last checkpoint - time "protected"
-func (m *PodCheckpointSavings) SetTimeProtectedSeconds(value *float64)() {
-    m.time_protected_seconds = value
+func (m *PodCheckpointSavings) SetTimeProtectedSeconds(value *float64) {
+	m.time_protected_seconds = value
 }
+
 // SetTotalCheckpointDurationNs sets the total_checkpoint_duration_ns property value. Total time spent checkpointing (nanoseconds)
-func (m *PodCheckpointSavings) SetTotalCheckpointDurationNs(value *int64)() {
-    m.total_checkpoint_duration_ns = value
+func (m *PodCheckpointSavings) SetTotalCheckpointDurationNs(value *int64) {
+	m.total_checkpoint_duration_ns = value
 }
+
 // SetTotalCheckpointSizeBytes sets the total_checkpoint_size_bytes property value. Total data checkpointed (bytes)
-func (m *PodCheckpointSavings) SetTotalCheckpointSizeBytes(value *int64)() {
-    m.total_checkpoint_size_bytes = value
+func (m *PodCheckpointSavings) SetTotalCheckpointSizeBytes(value *int64) {
+	m.total_checkpoint_size_bytes = value
 }
+
 type PodCheckpointSavingsable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAvgIntervalSeconds()(*float64)
-    GetCapacityType()(*string)
-    GetCheckpointCount()(*int64)
-    GetClusterId()(*string)
-    GetEstimatedSavings()(*float64)
-    GetFirstCheckpoint()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
-    GetGpu()(*string)
-    GetHeartbeatCheckpoints()(*int64)
-    GetInstanceType()(*string)
-    GetLastCheckpoint()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
-    GetManualCheckpoints()(*int64)
-    GetMaxRecoveryPointSeconds()(*float64)
-    GetMinIntervalSeconds()(*float64)
-    GetNamespace()(*string)
-    GetNodeName()(*string)
-    GetNodeRegion()(*string)
-    GetOndemandPricePerHour()(*float64)
-    GetPlatform()(*string)
-    GetPodName()(*string)
-    GetProtectionEfficiencyRatio()(*float64)
-    GetRefreshedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
-    GetSpotPricePerHour()(*float64)
-    GetTimeProtectedSeconds()(*float64)
-    GetTotalCheckpointDurationNs()(*int64)
-    GetTotalCheckpointSizeBytes()(*int64)
-    SetAvgIntervalSeconds(value *float64)()
-    SetCapacityType(value *string)()
-    SetCheckpointCount(value *int64)()
-    SetClusterId(value *string)()
-    SetEstimatedSavings(value *float64)()
-    SetFirstCheckpoint(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
-    SetGpu(value *string)()
-    SetHeartbeatCheckpoints(value *int64)()
-    SetInstanceType(value *string)()
-    SetLastCheckpoint(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
-    SetManualCheckpoints(value *int64)()
-    SetMaxRecoveryPointSeconds(value *float64)()
-    SetMinIntervalSeconds(value *float64)()
-    SetNamespace(value *string)()
-    SetNodeName(value *string)()
-    SetNodeRegion(value *string)()
-    SetOndemandPricePerHour(value *float64)()
-    SetPlatform(value *string)()
-    SetPodName(value *string)()
-    SetProtectionEfficiencyRatio(value *float64)()
-    SetRefreshedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
-    SetSpotPricePerHour(value *float64)()
-    SetTimeProtectedSeconds(value *float64)()
-    SetTotalCheckpointDurationNs(value *int64)()
-    SetTotalCheckpointSizeBytes(value *int64)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetAvgIntervalSeconds() *float64
+	GetCapacityType() *string
+	GetCheckpointCount() *int64
+	GetClusterId() *string
+	GetEstimatedSavings() *float64
+	GetFirstCheckpoint() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+	GetGpu() *string
+	GetHeartbeatCheckpoints() *int64
+	GetInstanceType() *string
+	GetLastCheckpoint() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+	GetManualCheckpoints() *int64
+	GetMaxRecoveryPointSeconds() *float64
+	GetMinIntervalSeconds() *float64
+	GetNamespace() *string
+	GetNodeName() *string
+	GetNodeRegion() *string
+	GetOndemandPricePerHour() *float64
+	GetPlatform() *string
+	GetPodName() *string
+	GetProtectionEfficiencyRatio() *float64
+	GetRefreshedAt() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+	GetSpotPricePerHour() *float64
+	GetTimeProtectedSeconds() *float64
+	GetTotalCheckpointDurationNs() *int64
+	GetTotalCheckpointSizeBytes() *int64
+	SetAvgIntervalSeconds(value *float64)
+	SetCapacityType(value *string)
+	SetCheckpointCount(value *int64)
+	SetClusterId(value *string)
+	SetEstimatedSavings(value *float64)
+	SetFirstCheckpoint(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+	SetGpu(value *string)
+	SetHeartbeatCheckpoints(value *int64)
+	SetInstanceType(value *string)
+	SetLastCheckpoint(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+	SetManualCheckpoints(value *int64)
+	SetMaxRecoveryPointSeconds(value *float64)
+	SetMinIntervalSeconds(value *float64)
+	SetNamespace(value *string)
+	SetNodeName(value *string)
+	SetNodeRegion(value *string)
+	SetOndemandPricePerHour(value *float64)
+	SetPlatform(value *string)
+	SetPodName(value *string)
+	SetProtectionEfficiencyRatio(value *float64)
+	SetRefreshedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+	SetSpotPricePerHour(value *float64)
+	SetTimeProtectedSeconds(value *float64)
+	SetTotalCheckpointDurationNs(value *int64)
+	SetTotalCheckpointSizeBytes(value *int64)
 }

@@ -4,225 +4,243 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type CheckpointStatusWithPodSpec struct {
-    // The action_id property
-    action_id *string
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The persistent_volume_claim property
-    persistent_volume_claim i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
-    // The pod_id property
-    pod_id *string
-    // The pod_metadata_spec property
-    pod_metadata_spec i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
-    // The pod_spec property
-    pod_spec i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
-    // The status property
-    status *string
+	// The action_id property
+	action_id *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The persistent_volume_claim property
+	persistent_volume_claim i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+	// The pod_id property
+	pod_id *string
+	// The pod_metadata_spec property
+	pod_metadata_spec i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+	// The pod_spec property
+	pod_spec i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+	// The status property
+	status *string
 }
+
 // NewCheckpointStatusWithPodSpec instantiates a new CheckpointStatusWithPodSpec and sets the default values.
-func NewCheckpointStatusWithPodSpec()(*CheckpointStatusWithPodSpec) {
-    m := &CheckpointStatusWithPodSpec{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewCheckpointStatusWithPodSpec() *CheckpointStatusWithPodSpec {
+	m := &CheckpointStatusWithPodSpec{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateCheckpointStatusWithPodSpecFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateCheckpointStatusWithPodSpecFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewCheckpointStatusWithPodSpec(), nil
+func CreateCheckpointStatusWithPodSpecFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewCheckpointStatusWithPodSpec(), nil
 }
+
 // GetActionId gets the action_id property value. The action_id property
 // returns a *string when successful
-func (m *CheckpointStatusWithPodSpec) GetActionId()(*string) {
-    return m.action_id
+func (m *CheckpointStatusWithPodSpec) GetActionId() *string {
+	return m.action_id
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *CheckpointStatusWithPodSpec) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *CheckpointStatusWithPodSpec) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *CheckpointStatusWithPodSpec) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["action_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetActionId(val)
-        }
-        return nil
-    }
-    res["persistent_volume_claim"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPersistentVolumeClaim(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
-        }
-        return nil
-    }
-    res["pod_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPodId(val)
-        }
-        return nil
-    }
-    res["pod_metadata_spec"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPodMetadataSpec(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
-        }
-        return nil
-    }
-    res["pod_spec"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPodSpec(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
-        }
-        return nil
-    }
-    res["status"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStatus(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *CheckpointStatusWithPodSpec) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["action_id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetActionId(val)
+		}
+		return nil
+	}
+	res["persistent_volume_claim"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPersistentVolumeClaim(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
+		}
+		return nil
+	}
+	res["pod_id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPodId(val)
+		}
+		return nil
+	}
+	res["pod_metadata_spec"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPodMetadataSpec(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
+		}
+		return nil
+	}
+	res["pod_spec"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPodSpec(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
+		}
+		return nil
+	}
+	res["status"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStatus(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetPersistentVolumeClaim gets the persistent_volume_claim property value. The persistent_volume_claim property
 // returns a UntypedNodeable when successful
-func (m *CheckpointStatusWithPodSpec) GetPersistentVolumeClaim()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
-    return m.persistent_volume_claim
+func (m *CheckpointStatusWithPodSpec) GetPersistentVolumeClaim() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable {
+	return m.persistent_volume_claim
 }
+
 // GetPodId gets the pod_id property value. The pod_id property
 // returns a *string when successful
-func (m *CheckpointStatusWithPodSpec) GetPodId()(*string) {
-    return m.pod_id
+func (m *CheckpointStatusWithPodSpec) GetPodId() *string {
+	return m.pod_id
 }
+
 // GetPodMetadataSpec gets the pod_metadata_spec property value. The pod_metadata_spec property
 // returns a UntypedNodeable when successful
-func (m *CheckpointStatusWithPodSpec) GetPodMetadataSpec()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
-    return m.pod_metadata_spec
+func (m *CheckpointStatusWithPodSpec) GetPodMetadataSpec() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable {
+	return m.pod_metadata_spec
 }
+
 // GetPodSpec gets the pod_spec property value. The pod_spec property
 // returns a UntypedNodeable when successful
-func (m *CheckpointStatusWithPodSpec) GetPodSpec()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
-    return m.pod_spec
+func (m *CheckpointStatusWithPodSpec) GetPodSpec() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable {
+	return m.pod_spec
 }
+
 // GetStatus gets the status property value. The status property
 // returns a *string when successful
-func (m *CheckpointStatusWithPodSpec) GetStatus()(*string) {
-    return m.status
+func (m *CheckpointStatusWithPodSpec) GetStatus() *string {
+	return m.status
 }
+
 // Serialize serializes information the current object
-func (m *CheckpointStatusWithPodSpec) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("action_id", m.GetActionId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("persistent_volume_claim", m.GetPersistentVolumeClaim())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("pod_id", m.GetPodId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("pod_metadata_spec", m.GetPodMetadataSpec())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("pod_spec", m.GetPodSpec())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("status", m.GetStatus())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *CheckpointStatusWithPodSpec) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("action_id", m.GetActionId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("persistent_volume_claim", m.GetPersistentVolumeClaim())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("pod_id", m.GetPodId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("pod_metadata_spec", m.GetPodMetadataSpec())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("pod_spec", m.GetPodSpec())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("status", m.GetStatus())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetActionId sets the action_id property value. The action_id property
-func (m *CheckpointStatusWithPodSpec) SetActionId(value *string)() {
-    m.action_id = value
+func (m *CheckpointStatusWithPodSpec) SetActionId(value *string) {
+	m.action_id = value
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *CheckpointStatusWithPodSpec) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *CheckpointStatusWithPodSpec) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetPersistentVolumeClaim sets the persistent_volume_claim property value. The persistent_volume_claim property
-func (m *CheckpointStatusWithPodSpec) SetPersistentVolumeClaim(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
-    m.persistent_volume_claim = value
+func (m *CheckpointStatusWithPodSpec) SetPersistentVolumeClaim(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
+	m.persistent_volume_claim = value
 }
+
 // SetPodId sets the pod_id property value. The pod_id property
-func (m *CheckpointStatusWithPodSpec) SetPodId(value *string)() {
-    m.pod_id = value
+func (m *CheckpointStatusWithPodSpec) SetPodId(value *string) {
+	m.pod_id = value
 }
+
 // SetPodMetadataSpec sets the pod_metadata_spec property value. The pod_metadata_spec property
-func (m *CheckpointStatusWithPodSpec) SetPodMetadataSpec(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
-    m.pod_metadata_spec = value
+func (m *CheckpointStatusWithPodSpec) SetPodMetadataSpec(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
+	m.pod_metadata_spec = value
 }
+
 // SetPodSpec sets the pod_spec property value. The pod_spec property
-func (m *CheckpointStatusWithPodSpec) SetPodSpec(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
-    m.pod_spec = value
+func (m *CheckpointStatusWithPodSpec) SetPodSpec(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
+	m.pod_spec = value
 }
+
 // SetStatus sets the status property value. The status property
-func (m *CheckpointStatusWithPodSpec) SetStatus(value *string)() {
-    m.status = value
+func (m *CheckpointStatusWithPodSpec) SetStatus(value *string) {
+	m.status = value
 }
+
 type CheckpointStatusWithPodSpecable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetActionId()(*string)
-    GetPersistentVolumeClaim()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
-    GetPodId()(*string)
-    GetPodMetadataSpec()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
-    GetPodSpec()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
-    GetStatus()(*string)
-    SetActionId(value *string)()
-    SetPersistentVolumeClaim(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
-    SetPodId(value *string)()
-    SetPodMetadataSpec(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
-    SetPodSpec(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
-    SetStatus(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetActionId() *string
+	GetPersistentVolumeClaim() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+	GetPodId() *string
+	GetPodMetadataSpec() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+	GetPodSpec() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+	GetStatus() *string
+	SetActionId(value *string)
+	SetPersistentVolumeClaim(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+	SetPodId(value *string)
+	SetPodMetadataSpec(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+	SetPodSpec(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+	SetStatus(value *string)
 }

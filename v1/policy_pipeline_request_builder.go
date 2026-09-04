@@ -4,57 +4,63 @@
 package v1
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
+	i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // PolicyPipelineRequestBuilder builds and executes requests for operations under \v1\policy\pipeline
 type PolicyPipelineRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // ByPolicy_id gets an item from the github.com/cedana/cedana-go-sdk.v1.policy.pipeline.item collection
 // Deprecated: This indexer is deprecated and will be removed in the next major version. Use the one with the typed parameter instead.
 // returns a *PolicyPipelineWithPolicy_ItemRequestBuilder when successful
-func (m *PolicyPipelineRequestBuilder) ByPolicy_id(policy_id string)(*PolicyPipelineWithPolicy_ItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if policy_id != "" {
-        urlTplParams["policy_id"] = policy_id
-    }
-    return NewPolicyPipelineWithPolicy_ItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *PolicyPipelineRequestBuilder) ByPolicy_id(policy_id string) *PolicyPipelineWithPolicy_ItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	if policy_id != "" {
+		urlTplParams["policy_id"] = policy_id
+	}
+	return NewPolicyPipelineWithPolicy_ItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // ByPolicy_idGuid gets an item from the github.com/cedana/cedana-go-sdk.v1.policy.pipeline.item collection
 // returns a *PolicyPipelineWithPolicy_ItemRequestBuilder when successful
-func (m *PolicyPipelineRequestBuilder) ByPolicy_idGuid(policy_id i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)(*PolicyPipelineWithPolicy_ItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    urlTplParams["policy_id"] = policy_id.String()
-    return NewPolicyPipelineWithPolicy_ItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *PolicyPipelineRequestBuilder) ByPolicy_idGuid(policy_id i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) *PolicyPipelineWithPolicy_ItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	urlTplParams["policy_id"] = policy_id.String()
+	return NewPolicyPipelineWithPolicy_ItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewPolicyPipelineRequestBuilderInternal instantiates a new PolicyPipelineRequestBuilder and sets the default values.
-func NewPolicyPipelineRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PolicyPipelineRequestBuilder) {
-    m := &PolicyPipelineRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/policy/pipeline", pathParameters),
-    }
-    return m
+func NewPolicyPipelineRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *PolicyPipelineRequestBuilder {
+	m := &PolicyPipelineRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/policy/pipeline", pathParameters),
+	}
+	return m
 }
+
 // NewPolicyPipelineRequestBuilder instantiates a new PolicyPipelineRequestBuilder and sets the default values.
-func NewPolicyPipelineRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PolicyPipelineRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewPolicyPipelineRequestBuilderInternal(urlParams, requestAdapter)
+func NewPolicyPipelineRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *PolicyPipelineRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewPolicyPipelineRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Create the create property
 // returns a *PolicyPipelineCreateRequestBuilder when successful
-func (m *PolicyPipelineRequestBuilder) Create()(*PolicyPipelineCreateRequestBuilder) {
-    return NewPolicyPipelineCreateRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *PolicyPipelineRequestBuilder) Create() *PolicyPipelineCreateRequestBuilder {
+	return NewPolicyPipelineCreateRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // List the list property
 // returns a *PolicyPipelineListRequestBuilder when successful
-func (m *PolicyPipelineRequestBuilder) List()(*PolicyPipelineListRequestBuilder) {
-    return NewPolicyPipelineListRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *PolicyPipelineRequestBuilder) List() *PolicyPipelineListRequestBuilder {
+	return NewPolicyPipelineListRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
