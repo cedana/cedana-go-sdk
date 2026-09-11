@@ -14,18 +14,25 @@ type PodsCountRequestBuilder struct {
 	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
 
+// PodsCountRequestBuilderGetQueryParameters get total count of pods
+type PodsCountRequestBuilderGetQueryParameters struct {
+	Status *string "uriparametername:\"status\""
+}
+
 // PodsCountRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type PodsCountRequestBuilderGetRequestConfiguration struct {
 	// Request headers
 	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
 	// Request options
 	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *PodsCountRequestBuilderGetQueryParameters
 }
 
 // NewPodsCountRequestBuilderInternal instantiates a new PodsCountRequestBuilder and sets the default values.
 func NewPodsCountRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *PodsCountRequestBuilder {
 	m := &PodsCountRequestBuilder{
-		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/pods/count", pathParameters),
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/pods/count{?status*}", pathParameters),
 	}
 	return m
 }
@@ -65,6 +72,9 @@ func (m *PodsCountRequestBuilder) Get(ctx context.Context, requestConfiguration 
 func (m *PodsCountRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *PodsCountRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
 	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
 	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
 		requestInfo.Headers.AddAll(requestConfiguration.Headers)
 		requestInfo.AddRequestOptions(requestConfiguration.Options)
 	}

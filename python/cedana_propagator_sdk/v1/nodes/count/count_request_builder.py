@@ -28,9 +28,9 @@ class CountRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/v1/nodes/count", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/v1/nodes/count{?status*}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[TotalCountResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[CountRequestBuilderGetQueryParameters]] = None) -> Optional[TotalCountResponse]:
         """
         Get nodes total count
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -51,7 +51,7 @@ class CountRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TotalCountResponse, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[CountRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Get nodes total count
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -73,7 +73,15 @@ class CountRequestBuilder(BaseRequestBuilder):
         return CountRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
-    class CountRequestBuilderGetRequestConfiguration(RequestConfiguration[QueryParameters]):
+    class CountRequestBuilderGetQueryParameters():
+        """
+        Get nodes total count
+        """
+        status: Optional[str] = None
+
+    
+    @dataclass
+    class CountRequestBuilderGetRequestConfiguration(RequestConfiguration[CountRequestBuilderGetQueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """

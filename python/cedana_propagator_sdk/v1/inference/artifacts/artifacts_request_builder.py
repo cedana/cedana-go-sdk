@@ -30,7 +30,7 @@ class ArtifactsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/v1/inference/artifacts", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/v1/inference/artifacts{?limit*,mode*,profile_id*,status*}", path_parameters)
     
     def by_artifact_id(self,artifact_id: str) -> WithArtifact_ItemRequestBuilder:
         """
@@ -46,7 +46,7 @@ class ArtifactsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["artifact_id"] = artifact_id
         return WithArtifact_ItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[list[CheckpointArtifactView]]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[ArtifactsRequestBuilderGetQueryParameters]] = None) -> Optional[list[CheckpointArtifactView]]:
         """
         List checkpoint artefacts
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -91,7 +91,7 @@ class ArtifactsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CheckpointArtifactView, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ArtifactsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         List checkpoint artefacts
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -128,7 +128,21 @@ class ArtifactsRequestBuilder(BaseRequestBuilder):
         return ArtifactsRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
-    class ArtifactsRequestBuilderGetRequestConfiguration(RequestConfiguration[QueryParameters]):
+    class ArtifactsRequestBuilderGetQueryParameters():
+        """
+        List checkpoint artefacts
+        """
+        limit: Optional[int] = None
+
+        mode: Optional[str] = None
+
+        profile_id: Optional[str] = None
+
+        status: Optional[str] = None
+
+    
+    @dataclass
+    class ArtifactsRequestBuilderGetRequestConfiguration(RequestConfiguration[ArtifactsRequestBuilderGetQueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """

@@ -7,25 +7,35 @@ import (
 	"context"
 	i89856fb30cc728ac649e5f2184f35b3dbca9c394c0e717f9e3ad3070b5506e89 "github.com/cedana/cedana-propagator-sdk/go/models"
 	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
 )
 
-// InferenceLifecycleEventsRequestBuilder builds and executes requests for operations under \v1\inference\lifecycle\events
+// InferenceLifecycleEventsRequestBuilder builds and executes requests for operations under \v1\inference\lifecycle-events
 type InferenceLifecycleEventsRequestBuilder struct {
 	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
 
-// InferenceLifecycleEventsRequestBuilderPostRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
-type InferenceLifecycleEventsRequestBuilderPostRequestConfiguration struct {
+// InferenceLifecycleEventsRequestBuilderGetQueryParameters the cluster's recent lifecycle events across all profiles, time-ascending, so aUI can replay how the routing topology changed over time.
+type InferenceLifecycleEventsRequestBuilderGetQueryParameters struct {
+	Limit *int64 "uriparametername:\"limit\""
+	// Only events at or after this instant, so a poller can page forward.
+	Since *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time "uriparametername:\"since\""
+}
+
+// InferenceLifecycleEventsRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
+type InferenceLifecycleEventsRequestBuilderGetRequestConfiguration struct {
 	// Request headers
 	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
 	// Request options
 	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *InferenceLifecycleEventsRequestBuilderGetQueryParameters
 }
 
 // NewInferenceLifecycleEventsRequestBuilderInternal instantiates a new InferenceLifecycleEventsRequestBuilder and sets the default values.
 func NewInferenceLifecycleEventsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *InferenceLifecycleEventsRequestBuilder {
 	m := &InferenceLifecycleEventsRequestBuilder{
-		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/inference/lifecycle/events", pathParameters),
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/inference/lifecycle-events{?limit*,since*}", pathParameters),
 	}
 	return m
 }
@@ -37,42 +47,44 @@ func NewInferenceLifecycleEventsRequestBuilder(rawUrl string, requestAdapter i2a
 	return NewInferenceLifecycleEventsRequestBuilderInternal(urlParams, requestAdapter)
 }
 
-// Post ingest one trusted lifecycle envelope over HTTP. Same event_id dedupe andtransactional ingestion as the RabbitMQ path.
+// Get the cluster's recent lifecycle events across all profiles, time-ascending, so aUI can replay how the routing topology changed over time.
+// returns a []LifecycleEventViewable when successful
 // returns a HttpError error when the service returns a 400 status code
-// returns a HttpError error when the service returns a 401 status code
-// returns a HttpError error when the service returns a 409 status code
 // returns a HttpError error when the service returns a 4XX or 5XX status code
-func (m *InferenceLifecycleEventsRequestBuilder) Post(ctx context.Context, body i89856fb30cc728ac649e5f2184f35b3dbca9c394c0e717f9e3ad3070b5506e89.LifecycleEnvelopeable, requestConfiguration *InferenceLifecycleEventsRequestBuilderPostRequestConfiguration) error {
-	requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration)
+func (m *InferenceLifecycleEventsRequestBuilder) Get(ctx context.Context, requestConfiguration *InferenceLifecycleEventsRequestBuilderGetRequestConfiguration) ([]i89856fb30cc728ac649e5f2184f35b3dbca9c394c0e717f9e3ad3070b5506e89.LifecycleEventViewable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
 	if err != nil {
-		return err
+		return nil, err
 	}
 	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
 		"400": i89856fb30cc728ac649e5f2184f35b3dbca9c394c0e717f9e3ad3070b5506e89.CreateHttpErrorFromDiscriminatorValue,
-		"401": i89856fb30cc728ac649e5f2184f35b3dbca9c394c0e717f9e3ad3070b5506e89.CreateHttpErrorFromDiscriminatorValue,
-		"409": i89856fb30cc728ac649e5f2184f35b3dbca9c394c0e717f9e3ad3070b5506e89.CreateHttpErrorFromDiscriminatorValue,
 		"XXX": i89856fb30cc728ac649e5f2184f35b3dbca9c394c0e717f9e3ad3070b5506e89.CreateHttpErrorFromDiscriminatorValue,
 	}
-	err = m.BaseRequestBuilder.RequestAdapter.SendNoContent(ctx, requestInfo, errorMapping)
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i89856fb30cc728ac649e5f2184f35b3dbca9c394c0e717f9e3ad3070b5506e89.CreateLifecycleEventViewFromDiscriminatorValue, errorMapping)
 	if err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+	val := make([]i89856fb30cc728ac649e5f2184f35b3dbca9c394c0e717f9e3ad3070b5506e89.LifecycleEventViewable, len(res))
+	for i, v := range res {
+		if v != nil {
+			val[i] = v.(i89856fb30cc728ac649e5f2184f35b3dbca9c394c0e717f9e3ad3070b5506e89.LifecycleEventViewable)
+		}
+	}
+	return val, nil
 }
 
-// ToPostRequestInformation ingest one trusted lifecycle envelope over HTTP. Same event_id dedupe andtransactional ingestion as the RabbitMQ path.
+// ToGetRequestInformation the cluster's recent lifecycle events across all profiles, time-ascending, so aUI can replay how the routing topology changed over time.
 // returns a *RequestInformation when successful
-func (m *InferenceLifecycleEventsRequestBuilder) ToPostRequestInformation(ctx context.Context, body i89856fb30cc728ac649e5f2184f35b3dbca9c394c0e717f9e3ad3070b5506e89.LifecycleEnvelopeable, requestConfiguration *InferenceLifecycleEventsRequestBuilderPostRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+func (m *InferenceLifecycleEventsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *InferenceLifecycleEventsRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
 	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
 		requestInfo.Headers.AddAll(requestConfiguration.Headers)
 		requestInfo.AddRequestOptions(requestConfiguration.Options)
 	}
 	requestInfo.Headers.TryAdd("Accept", "application/json")
-	err := requestInfo.SetContentFromParsable(ctx, m.BaseRequestBuilder.RequestAdapter, "application/json", body)
-	if err != nil {
-		return nil, err
-	}
 	return requestInfo, nil
 }
 

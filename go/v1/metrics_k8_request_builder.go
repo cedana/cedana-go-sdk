@@ -14,18 +14,26 @@ type MetricsK8RequestBuilder struct {
 	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
 
+// MetricsK8RequestBuilderGetQueryParameters get metrics (K8s)
+type MetricsK8RequestBuilderGetQueryParameters struct {
+	Collector_type *string "uriparametername:\"collector_type\""
+	Name           *string "uriparametername:\"name\""
+}
+
 // MetricsK8RequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type MetricsK8RequestBuilderGetRequestConfiguration struct {
 	// Request headers
 	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
 	// Request options
 	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *MetricsK8RequestBuilderGetQueryParameters
 }
 
 // NewMetricsK8RequestBuilderInternal instantiates a new MetricsK8RequestBuilder and sets the default values.
 func NewMetricsK8RequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *MetricsK8RequestBuilder {
 	m := &MetricsK8RequestBuilder{
-		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/metrics/k8", pathParameters),
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/metrics/k8{?collector_type*,name*}", pathParameters),
 	}
 	return m
 }
@@ -68,6 +76,9 @@ func (m *MetricsK8RequestBuilder) Get(ctx context.Context, requestConfiguration 
 func (m *MetricsK8RequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *MetricsK8RequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
 	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
 	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
 		requestInfo.Headers.AddAll(requestConfiguration.Headers)
 		requestInfo.AddRequestOptions(requestConfiguration.Options)
 	}

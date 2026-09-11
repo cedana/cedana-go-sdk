@@ -14,12 +14,22 @@ type InferenceArtifactsRequestBuilder struct {
 	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
 
+// InferenceArtifactsRequestBuilderGetQueryParameters list checkpoint artefacts
+type InferenceArtifactsRequestBuilderGetQueryParameters struct {
+	Limit      *int64  "uriparametername:\"limit\""
+	Mode       *string "uriparametername:\"mode\""
+	Profile_id *string "uriparametername:\"profile_id\""
+	Status     *string "uriparametername:\"status\""
+}
+
 // InferenceArtifactsRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type InferenceArtifactsRequestBuilderGetRequestConfiguration struct {
 	// Request headers
 	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
 	// Request options
 	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *InferenceArtifactsRequestBuilderGetQueryParameters
 }
 
 // InferenceArtifactsRequestBuilderPostRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
@@ -46,7 +56,7 @@ func (m *InferenceArtifactsRequestBuilder) ByArtifact_id(artifact_id string) *In
 // NewInferenceArtifactsRequestBuilderInternal instantiates a new InferenceArtifactsRequestBuilder and sets the default values.
 func NewInferenceArtifactsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *InferenceArtifactsRequestBuilder {
 	m := &InferenceArtifactsRequestBuilder{
-		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/inference/artifacts", pathParameters),
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/inference/artifacts{?limit*,mode*,profile_id*,status*}", pathParameters),
 	}
 	return m
 }
@@ -112,6 +122,9 @@ func (m *InferenceArtifactsRequestBuilder) Post(ctx context.Context, body i89856
 func (m *InferenceArtifactsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *InferenceArtifactsRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
 	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
 	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
 		requestInfo.Headers.AddAll(requestConfiguration.Headers)
 		requestInfo.AddRequestOptions(requestConfiguration.Options)
 	}

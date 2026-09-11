@@ -28,9 +28,9 @@ class K8RequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/v1/metrics/k8", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/v1/metrics/k8{?collector_type*,name*}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[list[NodeResourceMetricList]]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[K8RequestBuilderGetQueryParameters]] = None) -> Optional[list[NodeResourceMetricList]]:
         """
         Get metrics (K8s)
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -51,7 +51,7 @@ class K8RequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_collection_async(request_info, NodeResourceMetricList, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[K8RequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Get metrics (K8s)
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -73,7 +73,17 @@ class K8RequestBuilder(BaseRequestBuilder):
         return K8RequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
-    class K8RequestBuilderGetRequestConfiguration(RequestConfiguration[QueryParameters]):
+    class K8RequestBuilderGetQueryParameters():
+        """
+        Get metrics (K8s)
+        """
+        collector_type: Optional[str] = None
+
+        name: Optional[str] = None
+
+    
+    @dataclass
+    class K8RequestBuilderGetRequestConfiguration(RequestConfiguration[K8RequestBuilderGetQueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """

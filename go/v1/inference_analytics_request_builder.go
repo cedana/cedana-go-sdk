@@ -6,6 +6,7 @@ package v1
 import (
 	"context"
 	i89856fb30cc728ac649e5f2184f35b3dbca9c394c0e717f9e3ad3070b5506e89 "github.com/cedana/cedana-propagator-sdk/go/models"
+	i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
 	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
@@ -14,18 +15,27 @@ type InferenceAnalyticsRequestBuilder struct {
 	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
 
+// InferenceAnalyticsRequestBuilderGetQueryParameters startup, serving, and storage aggregate
+type InferenceAnalyticsRequestBuilderGetQueryParameters struct {
+	Experiment_id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID "uriparametername:\"experiment_id\""
+	Hours         *int64                                                                  "uriparametername:\"hours\""
+	Profile_id    *string                                                                 "uriparametername:\"profile_id\""
+}
+
 // InferenceAnalyticsRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type InferenceAnalyticsRequestBuilderGetRequestConfiguration struct {
 	// Request headers
 	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
 	// Request options
 	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *InferenceAnalyticsRequestBuilderGetQueryParameters
 }
 
 // NewInferenceAnalyticsRequestBuilderInternal instantiates a new InferenceAnalyticsRequestBuilder and sets the default values.
 func NewInferenceAnalyticsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *InferenceAnalyticsRequestBuilder {
 	m := &InferenceAnalyticsRequestBuilder{
-		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/inference/analytics", pathParameters),
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/inference/analytics{?experiment_id*,hours*,profile_id*}", pathParameters),
 	}
 	return m
 }
@@ -65,6 +75,9 @@ func (m *InferenceAnalyticsRequestBuilder) Get(ctx context.Context, requestConfi
 func (m *InferenceAnalyticsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *InferenceAnalyticsRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
 	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
 	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
 		requestInfo.Headers.AddAll(requestConfiguration.Headers)
 		requestInfo.AddRequestOptions(requestConfiguration.Options)
 	}

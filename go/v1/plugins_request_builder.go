@@ -22,8 +22,8 @@ type PluginsRequestBuilderGetQueryParameters struct {
 	Build *string "uriparametername:\"build\""
 	// Exact version match, e.g. 0.9.2
 	Compatibility *string "uriparametername:\"compatibility\""
-	// Plugin name, e.g. cedana, runc
-	Names []string "uriparametername:\"names\""
+	// Comma-separated plugin names, e.g. cedana,runc; each may pin a version with name@version
+	Names *string "uriparametername:\"names\""
 }
 
 // PluginsRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.

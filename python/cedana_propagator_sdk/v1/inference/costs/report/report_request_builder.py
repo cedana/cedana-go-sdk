@@ -11,6 +11,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Optional, TYPE_CHECKING, Union
+from uuid import UUID
 from warnings import warn
 
 if TYPE_CHECKING:
@@ -28,9 +29,9 @@ class ReportRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/v1/inference/costs/report", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/v1/inference/costs/report{?experiment_id*,hours*,profile_id*}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CostReport]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[ReportRequestBuilderGetQueryParameters]] = None) -> Optional[CostReport]:
         """
         Baseline vs treatment savings report
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -51,7 +52,7 @@ class ReportRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CostReport, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ReportRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Baseline vs treatment savings report
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -73,7 +74,19 @@ class ReportRequestBuilder(BaseRequestBuilder):
         return ReportRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
-    class ReportRequestBuilderGetRequestConfiguration(RequestConfiguration[QueryParameters]):
+    class ReportRequestBuilderGetQueryParameters():
+        """
+        Baseline vs treatment savings report
+        """
+        experiment_id: Optional[UUID] = None
+
+        hours: Optional[int] = None
+
+        profile_id: Optional[str] = None
+
+    
+    @dataclass
+    class ReportRequestBuilderGetRequestConfiguration(RequestConfiguration[ReportRequestBuilderGetQueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """

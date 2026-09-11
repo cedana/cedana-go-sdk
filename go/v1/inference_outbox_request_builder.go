@@ -14,12 +14,21 @@ type InferenceOutboxRequestBuilder struct {
 	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
 
+// InferenceOutboxRequestBuilderGetQueryParameters read durable outbox events
+type InferenceOutboxRequestBuilderGetQueryParameters struct {
+	After       *int64  "uriparametername:\"after\""
+	Consumer_id *string "uriparametername:\"consumer_id\""
+	Limit       *int64  "uriparametername:\"limit\""
+}
+
 // InferenceOutboxRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type InferenceOutboxRequestBuilderGetRequestConfiguration struct {
 	// Request headers
 	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
 	// Request options
 	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *InferenceOutboxRequestBuilderGetQueryParameters
 }
 
 // Ack the ack property
@@ -31,7 +40,7 @@ func (m *InferenceOutboxRequestBuilder) Ack() *InferenceOutboxAckRequestBuilder 
 // NewInferenceOutboxRequestBuilderInternal instantiates a new InferenceOutboxRequestBuilder and sets the default values.
 func NewInferenceOutboxRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *InferenceOutboxRequestBuilder {
 	m := &InferenceOutboxRequestBuilder{
-		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/inference/outbox", pathParameters),
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/inference/outbox?consumer_id={consumer_id}{&after*,limit*}", pathParameters),
 	}
 	return m
 }
@@ -74,6 +83,9 @@ func (m *InferenceOutboxRequestBuilder) Get(ctx context.Context, requestConfigur
 func (m *InferenceOutboxRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *InferenceOutboxRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
 	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
 	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
 		requestInfo.Headers.AddAll(requestConfiguration.Headers)
 		requestInfo.AddRequestOptions(requestConfiguration.Options)
 	}

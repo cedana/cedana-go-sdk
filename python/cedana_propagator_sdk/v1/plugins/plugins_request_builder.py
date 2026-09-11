@@ -107,8 +107,8 @@ class PluginsRequestBuilder(BaseRequestBuilder):
         # Exact version match, e.g. 0.9.2
         compatibility: Optional[str] = None
 
-        # Plugin name, e.g. cedana, runc
-        names: Optional[list[str]] = None
+        # Comma-separated plugin names, e.g. cedana,runc; each may pin a version with name@version
+        names: Optional[str] = None
 
     
     @dataclass

@@ -27,9 +27,9 @@ class PathRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/v1/slurm/checkpoint/path", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/v1/slurm/checkpoint/path{?name*}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[str]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[PathRequestBuilderGetQueryParameters]] = None) -> Optional[str]:
         """
         Returns the path of the latest successful checkpoint for a given checkpoint name
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -50,7 +50,7 @@ class PathRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_primitive_async(request_info, "str", error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PathRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Returns the path of the latest successful checkpoint for a given checkpoint name
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -72,7 +72,15 @@ class PathRequestBuilder(BaseRequestBuilder):
         return PathRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
-    class PathRequestBuilderGetRequestConfiguration(RequestConfiguration[QueryParameters]):
+    class PathRequestBuilderGetQueryParameters():
+        """
+        Returns the path of the latest successful checkpoint for a given checkpoint name
+        """
+        name: Optional[str] = None
+
+    
+    @dataclass
+    class PathRequestBuilderGetRequestConfiguration(RequestConfiguration[PathRequestBuilderGetQueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """

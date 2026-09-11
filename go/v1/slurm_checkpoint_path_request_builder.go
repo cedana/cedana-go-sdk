@@ -14,18 +14,25 @@ type SlurmCheckpointPathRequestBuilder struct {
 	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
 
+// SlurmCheckpointPathRequestBuilderGetQueryParameters returns the path of the latest successful checkpoint for a given checkpoint name
+type SlurmCheckpointPathRequestBuilderGetQueryParameters struct {
+	Name *string "uriparametername:\"name\""
+}
+
 // SlurmCheckpointPathRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type SlurmCheckpointPathRequestBuilderGetRequestConfiguration struct {
 	// Request headers
 	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
 	// Request options
 	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *SlurmCheckpointPathRequestBuilderGetQueryParameters
 }
 
 // NewSlurmCheckpointPathRequestBuilderInternal instantiates a new SlurmCheckpointPathRequestBuilder and sets the default values.
 func NewSlurmCheckpointPathRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *SlurmCheckpointPathRequestBuilder {
 	m := &SlurmCheckpointPathRequestBuilder{
-		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/slurm/checkpoint/path", pathParameters),
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/slurm/checkpoint/path{?name*}", pathParameters),
 	}
 	return m
 }
@@ -69,6 +76,9 @@ func (m *SlurmCheckpointPathRequestBuilder) Get(ctx context.Context, requestConf
 func (m *SlurmCheckpointPathRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *SlurmCheckpointPathRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
 	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
 	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
 		requestInfo.Headers.AddAll(requestConfiguration.Headers)
 		requestInfo.AddRequestOptions(requestConfiguration.Options)
 	}

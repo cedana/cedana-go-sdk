@@ -29,9 +29,9 @@ class OutboxRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/v1/inference/outbox", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/v1/inference/outbox?consumer_id={consumer_id}{&after*,limit*}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[list[OutboxEvent]]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[OutboxRequestBuilderGetQueryParameters]] = None) -> Optional[list[OutboxEvent]]:
         """
         Read durable outbox events
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -52,7 +52,7 @@ class OutboxRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_collection_async(request_info, OutboxEvent, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[OutboxRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Read durable outbox events
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -83,7 +83,19 @@ class OutboxRequestBuilder(BaseRequestBuilder):
         return AckRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
-    class OutboxRequestBuilderGetRequestConfiguration(RequestConfiguration[QueryParameters]):
+    class OutboxRequestBuilderGetQueryParameters():
+        """
+        Read durable outbox events
+        """
+        after: Optional[int] = None
+
+        consumer_id: Optional[str] = None
+
+        limit: Optional[int] = None
+
+    
+    @dataclass
+    class OutboxRequestBuilderGetRequestConfiguration(RequestConfiguration[OutboxRequestBuilderGetQueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """

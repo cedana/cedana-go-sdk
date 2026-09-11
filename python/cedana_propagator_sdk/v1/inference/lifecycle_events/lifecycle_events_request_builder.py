@@ -1,4 +1,5 @@
 from __future__ import annotations
+import datetime
 from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
@@ -28,9 +29,9 @@ class LifecycleEventsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/v1/inference/lifecycle-events", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/v1/inference/lifecycle-events{?limit*,since*}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[list[LifecycleEventView]]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[LifecycleEventsRequestBuilderGetQueryParameters]] = None) -> Optional[list[LifecycleEventView]]:
         """
         The cluster's recent lifecycle events across all profiles, time-ascending, so aUI can replay how the routing topology changed over time.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -51,7 +52,7 @@ class LifecycleEventsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_collection_async(request_info, LifecycleEventView, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[LifecycleEventsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         The cluster's recent lifecycle events across all profiles, time-ascending, so aUI can replay how the routing topology changed over time.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -73,7 +74,18 @@ class LifecycleEventsRequestBuilder(BaseRequestBuilder):
         return LifecycleEventsRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
-    class LifecycleEventsRequestBuilderGetRequestConfiguration(RequestConfiguration[QueryParameters]):
+    class LifecycleEventsRequestBuilderGetQueryParameters():
+        """
+        The cluster's recent lifecycle events across all profiles, time-ascending, so aUI can replay how the routing topology changed over time.
+        """
+        limit: Optional[int] = None
+
+        # Only events at or after this instant, so a poller can page forward.
+        since: Optional[datetime.datetime] = None
+
+    
+    @dataclass
+    class LifecycleEventsRequestBuilderGetRequestConfiguration(RequestConfiguration[LifecycleEventsRequestBuilderGetQueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """

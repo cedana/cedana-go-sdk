@@ -31,9 +31,9 @@ class WithArtifact_ItemRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/v1/inference/artifacts/{artifact_id}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/v1/inference/artifacts/{artifact_id}{?force*}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[bytes]:
+    async def delete(self,request_configuration: Optional[RequestConfiguration[WithArtifact_ItemRequestBuilderDeleteQueryParameters]] = None) -> Optional[bytes]:
         """
         Soft-delete an artefact (golden requires force)
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +99,7 @@ class WithArtifact_ItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CheckpointArtifactView, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[WithArtifact_ItemRequestBuilderDeleteQueryParameters]] = None) -> RequestInformation:
         """
         Soft-delete an artefact (golden requires force)
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -165,7 +165,15 @@ class WithArtifact_ItemRequestBuilder(BaseRequestBuilder):
         return PromoteRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
-    class WithArtifact_ItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):
+    class WithArtifact_ItemRequestBuilderDeleteQueryParameters():
+        """
+        Soft-delete an artefact (golden requires force)
+        """
+        force: Optional[bool] = None
+
+    
+    @dataclass
+    class WithArtifact_ItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[WithArtifact_ItemRequestBuilderDeleteQueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """

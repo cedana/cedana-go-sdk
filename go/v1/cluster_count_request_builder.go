@@ -14,18 +14,25 @@ type ClusterCountRequestBuilder struct {
 	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
 
+// ClusterCountRequestBuilderGetQueryParameters get clusters total count
+type ClusterCountRequestBuilderGetQueryParameters struct {
+	Status *string "uriparametername:\"status\""
+}
+
 // ClusterCountRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type ClusterCountRequestBuilderGetRequestConfiguration struct {
 	// Request headers
 	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
 	// Request options
 	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *ClusterCountRequestBuilderGetQueryParameters
 }
 
 // NewClusterCountRequestBuilderInternal instantiates a new ClusterCountRequestBuilder and sets the default values.
 func NewClusterCountRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *ClusterCountRequestBuilder {
 	m := &ClusterCountRequestBuilder{
-		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/cluster/count", pathParameters),
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/cluster/count{?status*}", pathParameters),
 	}
 	return m
 }
@@ -65,6 +72,9 @@ func (m *ClusterCountRequestBuilder) Get(ctx context.Context, requestConfigurati
 func (m *ClusterCountRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *ClusterCountRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
 	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
 	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
 		requestInfo.Headers.AddAll(requestConfiguration.Headers)
 		requestInfo.AddRequestOptions(requestConfiguration.Options)
 	}

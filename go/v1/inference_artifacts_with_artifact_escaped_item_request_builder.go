@@ -15,12 +15,19 @@ type InferenceArtifactsWithArtifact_ItemRequestBuilder struct {
 	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
 
+// InferenceArtifactsWithArtifact_ItemRequestBuilderDeleteQueryParameters soft-delete an artefact (golden requires force)
+type InferenceArtifactsWithArtifact_ItemRequestBuilderDeleteQueryParameters struct {
+	Force *bool "uriparametername:\"force\""
+}
+
 // InferenceArtifactsWithArtifact_ItemRequestBuilderDeleteRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type InferenceArtifactsWithArtifact_ItemRequestBuilderDeleteRequestConfiguration struct {
 	// Request headers
 	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
 	// Request options
 	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *InferenceArtifactsWithArtifact_ItemRequestBuilderDeleteQueryParameters
 }
 
 // InferenceArtifactsWithArtifact_ItemRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
@@ -48,7 +55,7 @@ func (m *InferenceArtifactsWithArtifact_ItemRequestBuilder) Ancestry() *Inferenc
 // NewInferenceArtifactsWithArtifact_ItemRequestBuilderInternal instantiates a new InferenceArtifactsWithArtifact_ItemRequestBuilder and sets the default values.
 func NewInferenceArtifactsWithArtifact_ItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *InferenceArtifactsWithArtifact_ItemRequestBuilder {
 	m := &InferenceArtifactsWithArtifact_ItemRequestBuilder{
-		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/inference/artifacts/{artifact_id}", pathParameters),
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/inference/artifacts/{artifact_id}{?force*}", pathParameters),
 	}
 	return m
 }
@@ -144,6 +151,9 @@ func (m *InferenceArtifactsWithArtifact_ItemRequestBuilder) Promote() *Inference
 func (m *InferenceArtifactsWithArtifact_ItemRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *InferenceArtifactsWithArtifact_ItemRequestBuilderDeleteRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
 	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DELETE, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
 	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
 		requestInfo.Headers.AddAll(requestConfiguration.Headers)
 		requestInfo.AddRequestOptions(requestConfiguration.Options)
 	}

@@ -14,18 +14,25 @@ type NodesCountRequestBuilder struct {
 	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
 
+// NodesCountRequestBuilderGetQueryParameters get nodes total count
+type NodesCountRequestBuilderGetQueryParameters struct {
+	Status *string "uriparametername:\"status\""
+}
+
 // NodesCountRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type NodesCountRequestBuilderGetRequestConfiguration struct {
 	// Request headers
 	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
 	// Request options
 	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *NodesCountRequestBuilderGetQueryParameters
 }
 
 // NewNodesCountRequestBuilderInternal instantiates a new NodesCountRequestBuilder and sets the default values.
 func NewNodesCountRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *NodesCountRequestBuilder {
 	m := &NodesCountRequestBuilder{
-		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/nodes/count", pathParameters),
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/nodes/count{?status*}", pathParameters),
 	}
 	return m
 }
@@ -65,6 +72,9 @@ func (m *NodesCountRequestBuilder) Get(ctx context.Context, requestConfiguration
 func (m *NodesCountRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *NodesCountRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
 	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
 	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
 		requestInfo.Headers.AddAll(requestConfiguration.Headers)
 		requestInfo.AddRequestOptions(requestConfiguration.Options)
 	}

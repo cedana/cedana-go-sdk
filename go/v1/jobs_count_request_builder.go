@@ -14,18 +14,25 @@ type JobsCountRequestBuilder struct {
 	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
 
+// JobsCountRequestBuilderGetQueryParameters get total count of jobs
+type JobsCountRequestBuilderGetQueryParameters struct {
+	Status *string "uriparametername:\"status\""
+}
+
 // JobsCountRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type JobsCountRequestBuilderGetRequestConfiguration struct {
 	// Request headers
 	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
 	// Request options
 	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *JobsCountRequestBuilderGetQueryParameters
 }
 
 // NewJobsCountRequestBuilderInternal instantiates a new JobsCountRequestBuilder and sets the default values.
 func NewJobsCountRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *JobsCountRequestBuilder {
 	m := &JobsCountRequestBuilder{
-		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/jobs/count", pathParameters),
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/v1/jobs/count{?status*}", pathParameters),
 	}
 	return m
 }
@@ -65,6 +72,9 @@ func (m *JobsCountRequestBuilder) Get(ctx context.Context, requestConfiguration 
 func (m *JobsCountRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *JobsCountRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
 	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
 	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
 		requestInfo.Headers.AddAll(requestConfiguration.Headers)
 		requestInfo.AddRequestOptions(requestConfiguration.Options)
 	}
