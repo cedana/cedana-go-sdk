@@ -20452,6 +20452,18 @@
       "description": "Cedana inference control plane"
     },
     {
+      "name": "Dynamo",
+      "description": "Cedana API for Dynamo deployments"
+    },
+    {
+      "name": "Router",
+      "description": "Cedana API for the inference router"
+    },
+    {
+      "name": "Pricing",
+      "description": "Cedana API for instance type pricing"
+    },
+    {
       "name": "Jobs (Slurm)",
       "description": "Cedana API for jobs (Slurm)"
     },
@@ -20466,6 +20478,22 @@
     {
       "name": "Clusters (Slurm)",
       "description": "Cedana API for clusters (Slurm)"
+    },
+    {
+      "name": "Partitions (Slurm)",
+      "description": "Cedana API for partitions (Slurm)"
+    },
+    {
+      "name": "Checkpoints (Slurm)",
+      "description": "Cedana API for checkpoints (Slurm)"
+    },
+    {
+      "name": "Events (Slurm)",
+      "description": "Cedana API for events (Slurm)"
+    },
+    {
+      "name": "Policy (Slurm)",
+      "description": "Cedana API for policies (Slurm)"
     },
     {
       "name": "Events",
