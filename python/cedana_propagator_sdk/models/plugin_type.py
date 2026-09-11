@@ -1,0 +1,9 @@
+from enum import Enum
+
+class PluginType(str, Enum):
+    UNIMPLEMENTED = "UNIMPLEMENTED",
+    DEPRECATED = "DEPRECATED",
+    EXPERIMENTAL = "EXPERIMENTAL",
+    EXTERNAL = "EXTERNAL",
+    SUPPORTED = "SUPPORTED",
+

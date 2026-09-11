@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cedana-propagator-sdk"
+description = "Python SDK for the Cedana Propagator API, generated with kiota"
+version = "0.1.0"
+requires-python = ">=3.9"
+license = "GPL-3.0-only"
+dependencies = [
+    "microsoft-kiota-abstractions>=1.9.4,<2.0.0",
+    "microsoft-kiota-http>=1.9.4,<2.0.0",
+    "microsoft-kiota-serialization-json>=1.9.4,<2.0.0",
+    "microsoft-kiota-serialization-text>=1.9.4,<2.0.0",
+    "microsoft-kiota-serialization-form>=1.9.4,<2.0.0",
+    "microsoft-kiota-serialization-multipart>=1.9.4,<2.0.0",
+]
+
+[project.urls]
+Repository = "https://github.com/cedana/cedana-propagator-sdk"
+
+[tool.setuptools.packages.find]
+include = ["cedana_propagator_sdk*"]
