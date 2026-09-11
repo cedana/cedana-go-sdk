@@ -9799,7 +9799,7 @@
         "tags": [
           "Clusters (Slurm)"
         ],
-        "summary": "Sync SLURM clusters",
+        "summary": "Sync clusters",
         "description": "Receives a batch of SLURM clusters from the cedana-slurm plugin and upserts them.\nClusters missing from the payload (for this cluster_id) are marked STALE.",
         "operationId": "sync",
         "requestBody": {
@@ -9907,7 +9907,7 @@
         "tags": [
           "Events (Slurm)"
         ],
-        "summary": "List SLURM job events",
+        "summary": "List job events",
         "description": "Derives an event stream from `slurm_jobs` rows in terminal states\n(PREEMPTED, NODE_FAIL, OOM, TIMEOUT, etc). Powered by data already\narriving via `/slurm/jobs/sync` — no separate ingestion path.",
         "operationId": "list",
         "parameters": [
@@ -9993,8 +9993,22 @@
           "Jobs (Slurm)"
         ],
         "summary": "List jobs",
-        "description": "Returns SLURM jobs from the database",
+        "description": "Returns SLURM jobs from the database. Supports filtering by `job_ids` (comma-separated list)",
         "operationId": "list",
+        "parameters": [
+          {
+            "name": "job_ids",
+            "in": "query",
+            "description": "Comma-separated list of SLURM job ids to filter by",
+            "required": false,
+            "schema": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Returns jobs",
@@ -10005,6 +10019,16 @@
                   "items": {
                     "$ref": "#/components/schemas/SlurmJob"
                   }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query parameters",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
                 }
               }
             }
@@ -10032,7 +10056,7 @@
         "tags": [
           "Jobs (Slurm)"
         ],
-        "summary": "Sync SLURM jobs",
+        "summary": "Sync jobs",
         "description": "Receives a batch of SLURM jobs from the cedana-slurm plugin and upserts them into the database",
         "operationId": "sync",
         "requestBody": {
@@ -10485,7 +10509,7 @@
         "tags": [
           "Nodes (Slurm)"
         ],
-        "summary": "Sync SLURM nodes",
+        "summary": "Sync nodes",
         "description": "Receives a batch of SLURM nodes from the cedana-slurm plugin and upserts them.\nNodes missing from the payload are marked as STALE.",
         "operationId": "sync",
         "requestBody": {
@@ -10632,7 +10656,7 @@
         "tags": [
           "Partitions (Slurm)"
         ],
-        "summary": "Sync SLURM partitions",
+        "summary": "Sync partitions",
         "description": "Receives a batch of SLURM partitions from the cedana-slurm plugin and upserts them.\nPartitions missing from the payload are marked STALE.",
         "operationId": "sync",
         "requestBody": {
@@ -15428,7 +15452,8 @@
           "failure_stage",
           "failure_reason",
           "duration_ns",
-          "physical_bytes"
+          "physical_bytes",
+          "pause_ns"
         ],
         "properties": {
           "action_id": {
@@ -15472,10 +15497,31 @@
           "operation": {
             "type": "string"
           },
+          "pause_ns": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Checkpoints: time the workload was held (see facts::checkpoint_pause_ns).",
+            "minimum": 0
+          },
           "physical_bytes": {
             "type": "integer",
             "format": "int64",
             "minimum": 0
+          },
+          "pod_ready_at_ms": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          },
+          "pod_scheduled_at_ms": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64",
+            "description": "Restores: PodScheduled / Ready transitions of the restored pod, once known."
           },
           "pod_uid": {
             "type": "string"
@@ -15787,6 +15833,21 @@
           "platform": {
             "type": "string"
           },
+          "pod_ready_at_ms": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          },
+          "pod_scheduled_at_ms": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64",
+            "description": "Restores only: PodScheduled / Ready transitions of the restored pod, once known."
+          },
           "pod_uid": {
             "type": "string"
           },
@@ -15869,7 +15930,12 @@
           "p50_ns",
           "p95_ns",
           "bytes_total",
-          "duration_buckets"
+          "duration_buckets",
+          "pause_p50_ns",
+          "pause_p95_ns",
+          "to_ready_p50_ns",
+          "to_ready_p95_ns",
+          "to_ready_count"
         ],
         "properties": {
           "attempts": {
@@ -15909,10 +15975,33 @@
             "type": "number",
             "format": "double"
           },
+          "pause_p50_ns": {
+            "type": "number",
+            "format": "double",
+            "description": "Checkpoints: pause percentiles over attempts with a pause recorded (0 otherwise)."
+          },
+          "pause_p95_ns": {
+            "type": "number",
+            "format": "double"
+          },
           "succeeded": {
             "type": "integer",
             "format": "int64",
             "minimum": 0
+          },
+          "to_ready_count": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "to_ready_p50_ns": {
+            "type": "number",
+            "format": "double",
+            "description": "Restores: PodScheduled→Ready percentiles over attempts whose pod reached Ready (0 otherwise)."
+          },
+          "to_ready_p95_ns": {
+            "type": "number",
+            "format": "double"
           }
         }
       },

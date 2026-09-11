@@ -46,6 +46,10 @@ type OperationRow struct {
 	physical_bytes *int64
 	// The platform property
 	platform *string
+	// The pod_ready_at_ms property
+	pod_ready_at_ms *int64
+	// Restores only: PodScheduled / Ready transitions of the restored pod, once known.
+	pod_scheduled_at_ms *int64
 	// The pod_uid property
 	pod_uid *string
 	// The reason property
@@ -309,6 +313,26 @@ func (m *OperationRow) GetFieldDeserializers() map[string]func(i878a80d2330e89d2
 		}
 		return nil
 	}
+	res["pod_ready_at_ms"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPodReadyAtMs(val)
+		}
+		return nil
+	}
+	res["pod_scheduled_at_ms"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPodScheduledAtMs(val)
+		}
+		return nil
+	}
 	res["pod_uid"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 		val, err := n.GetStringValue()
 		if err != nil {
@@ -456,6 +480,18 @@ func (m *OperationRow) GetPhysicalBytes() *int64 {
 // returns a *string when successful
 func (m *OperationRow) GetPlatform() *string {
 	return m.platform
+}
+
+// GetPodReadyAtMs gets the pod_ready_at_ms property value. The pod_ready_at_ms property
+// returns a *int64 when successful
+func (m *OperationRow) GetPodReadyAtMs() *int64 {
+	return m.pod_ready_at_ms
+}
+
+// GetPodScheduledAtMs gets the pod_scheduled_at_ms property value. Restores only: PodScheduled / Ready transitions of the restored pod, once known.
+// returns a *int64 when successful
+func (m *OperationRow) GetPodScheduledAtMs() *int64 {
+	return m.pod_scheduled_at_ms
 }
 
 // GetPodUid gets the pod_uid property value. The pod_uid property
@@ -617,6 +653,18 @@ func (m *OperationRow) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
 		}
 	}
 	{
+		err := writer.WriteInt64Value("pod_ready_at_ms", m.GetPodReadyAtMs())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("pod_scheduled_at_ms", m.GetPodScheduledAtMs())
+		if err != nil {
+			return err
+		}
+	}
+	{
 		err := writer.WriteStringValue("pod_uid", m.GetPodUid())
 		if err != nil {
 			return err
@@ -768,6 +816,16 @@ func (m *OperationRow) SetPlatform(value *string) {
 	m.platform = value
 }
 
+// SetPodReadyAtMs sets the pod_ready_at_ms property value. The pod_ready_at_ms property
+func (m *OperationRow) SetPodReadyAtMs(value *int64) {
+	m.pod_ready_at_ms = value
+}
+
+// SetPodScheduledAtMs sets the pod_scheduled_at_ms property value. Restores only: PodScheduled / Ready transitions of the restored pod, once known.
+func (m *OperationRow) SetPodScheduledAtMs(value *int64) {
+	m.pod_scheduled_at_ms = value
+}
+
 // SetPodUid sets the pod_uid property value. The pod_uid property
 func (m *OperationRow) SetPodUid(value *string) {
 	m.pod_uid = value
@@ -829,6 +887,8 @@ type OperationRowable interface {
 	GetPauseNs() *int64
 	GetPhysicalBytes() *int64
 	GetPlatform() *string
+	GetPodReadyAtMs() *int64
+	GetPodScheduledAtMs() *int64
 	GetPodUid() *string
 	GetReason() *string
 	GetRestoreUuid() *string
@@ -855,6 +915,8 @@ type OperationRowable interface {
 	SetPauseNs(value *int64)
 	SetPhysicalBytes(value *int64)
 	SetPlatform(value *string)
+	SetPodReadyAtMs(value *int64)
+	SetPodScheduledAtMs(value *int64)
 	SetPodUid(value *string)
 	SetReason(value *string)
 	SetRestoreUuid(value *string)

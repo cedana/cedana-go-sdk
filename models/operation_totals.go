@@ -26,8 +26,18 @@ type OperationTotals struct {
 	p50_ns *float64
 	// The p95_ns property
 	p95_ns *float64
+	// Checkpoints: pause percentiles over attempts with a pause recorded (0 otherwise).
+	pause_p50_ns *float64
+	// The pause_p95_ns property
+	pause_p95_ns *float64
 	// The succeeded property
 	succeeded *int64
+	// The to_ready_count property
+	to_ready_count *int64
+	// Restores: PodScheduled→Ready percentiles over attempts whose pod reached Ready (0 otherwise).
+	to_ready_p50_ns *float64
+	// The to_ready_p95_ns property
+	to_ready_p95_ns *float64
 }
 
 // NewOperationTotals instantiates a new OperationTotals and sets the default values.
@@ -169,6 +179,26 @@ func (m *OperationTotals) GetFieldDeserializers() map[string]func(i878a80d2330e8
 		}
 		return nil
 	}
+	res["pause_p50_ns"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPauseP50Ns(val)
+		}
+		return nil
+	}
+	res["pause_p95_ns"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPauseP95Ns(val)
+		}
+		return nil
+	}
 	res["succeeded"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 		val, err := n.GetInt64Value()
 		if err != nil {
@@ -176,6 +206,36 @@ func (m *OperationTotals) GetFieldDeserializers() map[string]func(i878a80d2330e8
 		}
 		if val != nil {
 			m.SetSucceeded(val)
+		}
+		return nil
+	}
+	res["to_ready_count"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetToReadyCount(val)
+		}
+		return nil
+	}
+	res["to_ready_p50_ns"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetToReadyP50Ns(val)
+		}
+		return nil
+	}
+	res["to_ready_p95_ns"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetToReadyP95Ns(val)
 		}
 		return nil
 	}
@@ -200,10 +260,40 @@ func (m *OperationTotals) GetP95Ns() *float64 {
 	return m.p95_ns
 }
 
+// GetPauseP50Ns gets the pause_p50_ns property value. Checkpoints: pause percentiles over attempts with a pause recorded (0 otherwise).
+// returns a *float64 when successful
+func (m *OperationTotals) GetPauseP50Ns() *float64 {
+	return m.pause_p50_ns
+}
+
+// GetPauseP95Ns gets the pause_p95_ns property value. The pause_p95_ns property
+// returns a *float64 when successful
+func (m *OperationTotals) GetPauseP95Ns() *float64 {
+	return m.pause_p95_ns
+}
+
 // GetSucceeded gets the succeeded property value. The succeeded property
 // returns a *int64 when successful
 func (m *OperationTotals) GetSucceeded() *int64 {
 	return m.succeeded
+}
+
+// GetToReadyCount gets the to_ready_count property value. The to_ready_count property
+// returns a *int64 when successful
+func (m *OperationTotals) GetToReadyCount() *int64 {
+	return m.to_ready_count
+}
+
+// GetToReadyP50Ns gets the to_ready_p50_ns property value. Restores: PodScheduled→Ready percentiles over attempts whose pod reached Ready (0 otherwise).
+// returns a *float64 when successful
+func (m *OperationTotals) GetToReadyP50Ns() *float64 {
+	return m.to_ready_p50_ns
+}
+
+// GetToReadyP95Ns gets the to_ready_p95_ns property value. The to_ready_p95_ns property
+// returns a *float64 when successful
+func (m *OperationTotals) GetToReadyP95Ns() *float64 {
+	return m.to_ready_p95_ns
 }
 
 // Serialize serializes information the current object
@@ -263,7 +353,37 @@ func (m *OperationTotals) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
 		}
 	}
 	{
+		err := writer.WriteFloat64Value("pause_p50_ns", m.GetPauseP50Ns())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("pause_p95_ns", m.GetPauseP95Ns())
+		if err != nil {
+			return err
+		}
+	}
+	{
 		err := writer.WriteInt64Value("succeeded", m.GetSucceeded())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("to_ready_count", m.GetToReadyCount())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("to_ready_p50_ns", m.GetToReadyP50Ns())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("to_ready_p95_ns", m.GetToReadyP95Ns())
 		if err != nil {
 			return err
 		}
@@ -322,9 +442,34 @@ func (m *OperationTotals) SetP95Ns(value *float64) {
 	m.p95_ns = value
 }
 
+// SetPauseP50Ns sets the pause_p50_ns property value. Checkpoints: pause percentiles over attempts with a pause recorded (0 otherwise).
+func (m *OperationTotals) SetPauseP50Ns(value *float64) {
+	m.pause_p50_ns = value
+}
+
+// SetPauseP95Ns sets the pause_p95_ns property value. The pause_p95_ns property
+func (m *OperationTotals) SetPauseP95Ns(value *float64) {
+	m.pause_p95_ns = value
+}
+
 // SetSucceeded sets the succeeded property value. The succeeded property
 func (m *OperationTotals) SetSucceeded(value *int64) {
 	m.succeeded = value
+}
+
+// SetToReadyCount sets the to_ready_count property value. The to_ready_count property
+func (m *OperationTotals) SetToReadyCount(value *int64) {
+	m.to_ready_count = value
+}
+
+// SetToReadyP50Ns sets the to_ready_p50_ns property value. Restores: PodScheduled→Ready percentiles over attempts whose pod reached Ready (0 otherwise).
+func (m *OperationTotals) SetToReadyP50Ns(value *float64) {
+	m.to_ready_p50_ns = value
+}
+
+// SetToReadyP95Ns sets the to_ready_p95_ns property value. The to_ready_p95_ns property
+func (m *OperationTotals) SetToReadyP95Ns(value *float64) {
+	m.to_ready_p95_ns = value
 }
 
 type OperationTotalsable interface {
@@ -338,7 +483,12 @@ type OperationTotalsable interface {
 	GetOperation() *string
 	GetP50Ns() *float64
 	GetP95Ns() *float64
+	GetPauseP50Ns() *float64
+	GetPauseP95Ns() *float64
 	GetSucceeded() *int64
+	GetToReadyCount() *int64
+	GetToReadyP50Ns() *float64
+	GetToReadyP95Ns() *float64
 	SetAttempts(value *int64)
 	SetBytesTotal(value *int64)
 	SetDurationBuckets(value []HistogramBucketable)
@@ -347,5 +497,10 @@ type OperationTotalsable interface {
 	SetOperation(value *string)
 	SetP50Ns(value *float64)
 	SetP95Ns(value *float64)
+	SetPauseP50Ns(value *float64)
+	SetPauseP95Ns(value *float64)
 	SetSucceeded(value *int64)
+	SetToReadyCount(value *int64)
+	SetToReadyP50Ns(value *float64)
+	SetToReadyP95Ns(value *float64)
 }

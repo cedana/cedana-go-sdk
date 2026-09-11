@@ -36,8 +36,14 @@ type NotificationEvent struct {
 	node_name *string
 	// The operation property
 	operation *string
+	// Checkpoints: time the workload was held (see facts::checkpoint_pause_ns).
+	pause_ns *int64
 	// The physical_bytes property
 	physical_bytes *int64
+	// The pod_ready_at_ms property
+	pod_ready_at_ms *int64
+	// Restores: PodScheduled / Ready transitions of the restored pod, once known.
+	pod_scheduled_at_ms *int64
 	// The pod_uid property
 	pod_uid *string
 	// The read property
@@ -257,6 +263,16 @@ func (m *NotificationEvent) GetFieldDeserializers() map[string]func(i878a80d2330
 		}
 		return nil
 	}
+	res["pause_ns"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPauseNs(val)
+		}
+		return nil
+	}
 	res["physical_bytes"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 		val, err := n.GetInt64Value()
 		if err != nil {
@@ -264,6 +280,26 @@ func (m *NotificationEvent) GetFieldDeserializers() map[string]func(i878a80d2330
 		}
 		if val != nil {
 			m.SetPhysicalBytes(val)
+		}
+		return nil
+	}
+	res["pod_ready_at_ms"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPodReadyAtMs(val)
+		}
+		return nil
+	}
+	res["pod_scheduled_at_ms"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPodScheduledAtMs(val)
 		}
 		return nil
 	}
@@ -380,10 +416,28 @@ func (m *NotificationEvent) GetOperation() *string {
 	return m.operation
 }
 
+// GetPauseNs gets the pause_ns property value. Checkpoints: time the workload was held (see facts::checkpoint_pause_ns).
+// returns a *int64 when successful
+func (m *NotificationEvent) GetPauseNs() *int64 {
+	return m.pause_ns
+}
+
 // GetPhysicalBytes gets the physical_bytes property value. The physical_bytes property
 // returns a *int64 when successful
 func (m *NotificationEvent) GetPhysicalBytes() *int64 {
 	return m.physical_bytes
+}
+
+// GetPodReadyAtMs gets the pod_ready_at_ms property value. The pod_ready_at_ms property
+// returns a *int64 when successful
+func (m *NotificationEvent) GetPodReadyAtMs() *int64 {
+	return m.pod_ready_at_ms
+}
+
+// GetPodScheduledAtMs gets the pod_scheduled_at_ms property value. Restores: PodScheduled / Ready transitions of the restored pod, once known.
+// returns a *int64 when successful
+func (m *NotificationEvent) GetPodScheduledAtMs() *int64 {
+	return m.pod_scheduled_at_ms
 }
 
 // GetPodUid gets the pod_uid property value. The pod_uid property
@@ -515,7 +569,25 @@ func (m *NotificationEvent) Serialize(writer i878a80d2330e89d26896388a3f487eef27
 		}
 	}
 	{
+		err := writer.WriteInt64Value("pause_ns", m.GetPauseNs())
+		if err != nil {
+			return err
+		}
+	}
+	{
 		err := writer.WriteInt64Value("physical_bytes", m.GetPhysicalBytes())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("pod_ready_at_ms", m.GetPodReadyAtMs())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("pod_scheduled_at_ms", m.GetPodScheduledAtMs())
 		if err != nil {
 			return err
 		}
@@ -647,9 +719,24 @@ func (m *NotificationEvent) SetOperation(value *string) {
 	m.operation = value
 }
 
+// SetPauseNs sets the pause_ns property value. Checkpoints: time the workload was held (see facts::checkpoint_pause_ns).
+func (m *NotificationEvent) SetPauseNs(value *int64) {
+	m.pause_ns = value
+}
+
 // SetPhysicalBytes sets the physical_bytes property value. The physical_bytes property
 func (m *NotificationEvent) SetPhysicalBytes(value *int64) {
 	m.physical_bytes = value
+}
+
+// SetPodReadyAtMs sets the pod_ready_at_ms property value. The pod_ready_at_ms property
+func (m *NotificationEvent) SetPodReadyAtMs(value *int64) {
+	m.pod_ready_at_ms = value
+}
+
+// SetPodScheduledAtMs sets the pod_scheduled_at_ms property value. Restores: PodScheduled / Ready transitions of the restored pod, once known.
+func (m *NotificationEvent) SetPodScheduledAtMs(value *int64) {
+	m.pod_scheduled_at_ms = value
 }
 
 // SetPodUid sets the pod_uid property value. The pod_uid property
@@ -708,7 +795,10 @@ type NotificationEventable interface {
 	GetNamespace() *string
 	GetNodeName() *string
 	GetOperation() *string
+	GetPauseNs() *int64
 	GetPhysicalBytes() *int64
+	GetPodReadyAtMs() *int64
+	GetPodScheduledAtMs() *int64
 	GetPodUid() *string
 	GetRead() *bool
 	GetRestoreUuid() *string
@@ -730,7 +820,10 @@ type NotificationEventable interface {
 	SetNamespace(value *string)
 	SetNodeName(value *string)
 	SetOperation(value *string)
+	SetPauseNs(value *int64)
 	SetPhysicalBytes(value *int64)
+	SetPodReadyAtMs(value *int64)
+	SetPodScheduledAtMs(value *int64)
 	SetPodUid(value *string)
 	SetRead(value *bool)
 	SetRestoreUuid(value *string)
