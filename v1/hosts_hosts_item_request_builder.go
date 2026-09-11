@@ -47,12 +47,18 @@ func NewHostsHostsItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7dae
 
 // Delete delete a host
 // returns a []byte when successful
+// returns a HttpError error when the service returns a 500 status code
+// returns a HttpError error when the service returns a 4XX or 5XX status code
 func (m *HostsHostsItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *HostsHostsItemRequestBuilderDeleteRequestConfiguration) ([]byte, error) {
 	requestInfo, err := m.ToDeleteRequestInformation(ctx, requestConfiguration)
 	if err != nil {
 		return nil, err
 	}
-	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"XXX": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", errorMapping)
 	if err != nil {
 		return nil, err
 	}
@@ -64,12 +70,20 @@ func (m *HostsHostsItemRequestBuilder) Delete(ctx context.Context, requestConfig
 
 // Put create or update a host
 // returns a []byte when successful
+// returns a HttpError error when the service returns a 400 status code
+// returns a HttpError error when the service returns a 500 status code
+// returns a HttpError error when the service returns a 4XX or 5XX status code
 func (m *HostsHostsItemRequestBuilder) Put(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.Hostable, requestConfiguration *HostsHostsItemRequestBuilderPutRequestConfiguration) ([]byte, error) {
 	requestInfo, err := m.ToPutRequestInformation(ctx, body, requestConfiguration)
 	if err != nil {
 		return nil, err
 	}
-	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"400": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"XXX": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", errorMapping)
 	if err != nil {
 		return nil, err
 	}
@@ -87,7 +101,7 @@ func (m *HostsHostsItemRequestBuilder) ToDeleteRequestInformation(ctx context.Co
 		requestInfo.Headers.AddAll(requestConfiguration.Headers)
 		requestInfo.AddRequestOptions(requestConfiguration.Options)
 	}
-	requestInfo.Headers.TryAdd("Accept", "text/plain;q=0.9")
+	requestInfo.Headers.TryAdd("Accept", "application/json")
 	return requestInfo, nil
 }
 
@@ -99,7 +113,7 @@ func (m *HostsHostsItemRequestBuilder) ToPutRequestInformation(ctx context.Conte
 		requestInfo.Headers.AddAll(requestConfiguration.Headers)
 		requestInfo.AddRequestOptions(requestConfiguration.Options)
 	}
-	requestInfo.Headers.TryAdd("Accept", "text/plain;q=0.9")
+	requestInfo.Headers.TryAdd("Accept", "application/json")
 	err := requestInfo.SetContentFromParsable(ctx, m.BaseRequestBuilder.RequestAdapter, "application/json", body)
 	if err != nil {
 		return nil, err

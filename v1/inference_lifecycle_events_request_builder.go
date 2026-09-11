@@ -38,12 +38,22 @@ func NewInferenceLifecycleEventsRequestBuilder(rawUrl string, requestAdapter i2a
 }
 
 // Post ingest one trusted lifecycle envelope over HTTP. Same event_id dedupe andtransactional ingestion as the RabbitMQ path.
+// returns a HttpError error when the service returns a 400 status code
+// returns a HttpError error when the service returns a 401 status code
+// returns a HttpError error when the service returns a 409 status code
+// returns a HttpError error when the service returns a 4XX or 5XX status code
 func (m *InferenceLifecycleEventsRequestBuilder) Post(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.LifecycleEnvelopeable, requestConfiguration *InferenceLifecycleEventsRequestBuilderPostRequestConfiguration) error {
 	requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration)
 	if err != nil {
 		return err
 	}
-	err = m.BaseRequestBuilder.RequestAdapter.SendNoContent(ctx, requestInfo, nil)
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"400": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"401": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"409": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"XXX": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+	}
+	err = m.BaseRequestBuilder.RequestAdapter.SendNoContent(ctx, requestInfo, errorMapping)
 	if err != nil {
 		return err
 	}
@@ -58,7 +68,7 @@ func (m *InferenceLifecycleEventsRequestBuilder) ToPostRequestInformation(ctx co
 		requestInfo.Headers.AddAll(requestConfiguration.Headers)
 		requestInfo.AddRequestOptions(requestConfiguration.Options)
 	}
-	requestInfo.Headers.TryAdd("Accept", "text/plain;q=0.9")
+	requestInfo.Headers.TryAdd("Accept", "application/json")
 	err := requestInfo.SetContentFromParsable(ctx, m.BaseRequestBuilder.RequestAdapter, "application/json", body)
 	if err != nil {
 		return nil, err

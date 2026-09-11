@@ -5,6 +5,7 @@ package v1
 
 import (
 	"context"
+	i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
 	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
@@ -46,12 +47,18 @@ func NewFilesWithPathItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7
 
 // Get download file
 // returns a *string when successful
+// returns a HttpError error when the service returns a 500 status code
+// returns a HttpError error when the service returns a 4XX or 5XX status code
 func (m *FilesWithPathItemRequestBuilder) Get(ctx context.Context, requestConfiguration *FilesWithPathItemRequestBuilderGetRequestConfiguration) (*string, error) {
 	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
 	if err != nil {
 		return nil, err
 	}
-	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", nil)
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"XXX": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", errorMapping)
 	if err != nil {
 		return nil, err
 	}
@@ -63,12 +70,18 @@ func (m *FilesWithPathItemRequestBuilder) Get(ctx context.Context, requestConfig
 
 // Put upload file
 // returns a *string when successful
+// returns a HttpError error when the service returns a 500 status code
+// returns a HttpError error when the service returns a 4XX or 5XX status code
 func (m *FilesWithPathItemRequestBuilder) Put(ctx context.Context, requestConfiguration *FilesWithPathItemRequestBuilderPutRequestConfiguration) (*string, error) {
 	requestInfo, err := m.ToPutRequestInformation(ctx, requestConfiguration)
 	if err != nil {
 		return nil, err
 	}
-	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", nil)
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"XXX": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", errorMapping)
 	if err != nil {
 		return nil, err
 	}

@@ -5,6 +5,7 @@ package v1
 
 import (
 	"context"
+	i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2 "github.com/cedana/cedana-go-sdk/models"
 	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
@@ -37,12 +38,18 @@ func NewInferenceKeysWithKey_ItemRequestBuilder(rawUrl string, requestAdapter i2
 }
 
 // Delete revoke an inference API key
+// returns a HttpError error when the service returns a 404 status code
+// returns a HttpError error when the service returns a 4XX or 5XX status code
 func (m *InferenceKeysWithKey_ItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *InferenceKeysWithKey_ItemRequestBuilderDeleteRequestConfiguration) error {
 	requestInfo, err := m.ToDeleteRequestInformation(ctx, requestConfiguration)
 	if err != nil {
 		return err
 	}
-	err = m.BaseRequestBuilder.RequestAdapter.SendNoContent(ctx, requestInfo, nil)
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"404": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"XXX": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+	}
+	err = m.BaseRequestBuilder.RequestAdapter.SendNoContent(ctx, requestInfo, errorMapping)
 	if err != nil {
 		return err
 	}
@@ -57,7 +64,7 @@ func (m *InferenceKeysWithKey_ItemRequestBuilder) ToDeleteRequestInformation(ctx
 		requestInfo.Headers.AddAll(requestConfiguration.Headers)
 		requestInfo.AddRequestOptions(requestConfiguration.Options)
 	}
-	requestInfo.Headers.TryAdd("Accept", "text/plain;q=0.9")
+	requestInfo.Headers.TryAdd("Accept", "application/json")
 	return requestInfo, nil
 }
 

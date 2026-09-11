@@ -39,12 +39,16 @@ func NewInferenceRouterTelemetryRequestBuilder(rawUrl string, requestAdapter i2a
 
 // Post accept one completed-request record from Switchyard, service-token-only.Idempotent by request_id: replays of the same completed record are no-ops.
 // returns a []byte when successful
+// returns a HttpError error when the service returns a 4XX or 5XX status code
 func (m *InferenceRouterTelemetryRequestBuilder) Post(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.TelemetryRecordable, requestConfiguration *InferenceRouterTelemetryRequestBuilderPostRequestConfiguration) ([]byte, error) {
 	requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration)
 	if err != nil {
 		return nil, err
 	}
-	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"XXX": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", errorMapping)
 	if err != nil {
 		return nil, err
 	}
@@ -62,6 +66,7 @@ func (m *InferenceRouterTelemetryRequestBuilder) ToPostRequestInformation(ctx co
 		requestInfo.Headers.AddAll(requestConfiguration.Headers)
 		requestInfo.AddRequestOptions(requestConfiguration.Options)
 	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
 	err := requestInfo.SetContentFromParsable(ctx, m.BaseRequestBuilder.RequestAdapter, "application/json", body)
 	if err != nil {
 		return nil, err

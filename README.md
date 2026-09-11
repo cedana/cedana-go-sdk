@@ -2,6 +2,12 @@
 
 A very robust `cedana-go-sdk` library generated using [kiota](https://github.com/microsoft/kiota) from OpenAPI spec.
 
+## Errors
+
+Every 4xx/5xx response from the API deserializes into `*models.HttpError`, whose
+`Error()` returns the server's error message. The HTTP status code is available
+via its embedded `ResponseStatusCode` field, as shown in the examples below.
+
 ## Usage
 
 ```go
@@ -36,7 +42,7 @@ func Main() {
 	if err != nil {
 		switch v := err.(type) {
 		case *sdk_models.HttpError:
-			fmt.Printf("failed to get user: %s :error_code(%d)", *v.GetMessage(), *v.GetCedanaErrorCode())
+			fmt.Printf("failed to get user: %s (status %d)", *v.GetMessage(), v.ResponseStatusCode)
 		default:
 			fmt.Printf("unknown error: %v", v)
 		}
@@ -48,7 +54,7 @@ func Main() {
 	if err != nil {
 		switch v := err.(type) {
 		case *sdk_models.HttpError:
-			fmt.Printf("failed to get job: %s :error_code(%d)", *v.GetMessage(), *v.GetCedanaErrorCode())
+			fmt.Printf("failed to get job: %s (status %d)", *v.GetMessage(), v.ResponseStatusCode)
 		default:
 			fmt.Printf("unknown error: %v", v)
 		}
@@ -62,7 +68,7 @@ func Main() {
 	if err != nil {
 		switch v := err.(type) {
 		case *sdk_models.HttpError:
-			fmt.Printf("failed to get checkpoint: %s :error_code(%d)", *v.GetMessage(), *v.GetCedanaErrorCode())
+			fmt.Printf("failed to get checkpoint: %s (status %d)", *v.GetMessage(), v.ResponseStatusCode)
 		default:
 			fmt.Printf("unknown error: %v", v)
 		}
@@ -76,7 +82,7 @@ func Main() {
 	if err != nil {
 		switch v := err.(type) {
 		case *sdk_models.HttpError:
-			fmt.Printf("failed to create checkpoint: %s :error_code(%d)", *v.GetMessage(), *v.GetCedanaErrorCode())
+			fmt.Printf("failed to create checkpoint: %s (status %d)", *v.GetMessage(), v.ResponseStatusCode)
 		default:
 			fmt.Printf("unknown error: %v", v)
 		}
@@ -92,7 +98,7 @@ func testCheckpointsUpload() {
 	if err != nil {
 		switch v := err.(type) {
 		case *sdk_models.HttpError:
-			fmt.Printf("failed to get upload url for checkpoint: %s :error_code(%d)", *v.GetMessage(), *v.GetCedanaErrorCode())
+			fmt.Printf("failed to get upload url for checkpoint: %s (status %d)", *v.GetMessage(), v.ResponseStatusCode)
 		default:
 			fmt.Printf("unknown error: %v", v)
 		}
@@ -108,7 +114,7 @@ func testCheckpointsDownload() {
 	if err != nil {
 		switch v := err.(type) {
 		case *sdk_models.HttpError:
-			fmt.Printf("failed to get download url for checkpoint: %s :error_code(%d)", *v.GetMessage(), *v.GetCedanaErrorCode())
+			fmt.Printf("failed to get download url for checkpoint: %s (status %d)", *v.GetMessage(), v.ResponseStatusCode)
 		default:
 			fmt.Printf("unknown error: %v", v)
 		}

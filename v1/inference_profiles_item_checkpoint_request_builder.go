@@ -55,12 +55,18 @@ func NewInferenceProfilesItemCheckpointRequestBuilder(rawUrl string, requestAdap
 
 // Get the latest checkpoint request for a profile, outstanding or finished
 // returns a CheckpointRequestViewable when successful
+// returns a HttpError error when the service returns a 404 status code
+// returns a HttpError error when the service returns a 4XX or 5XX status code
 func (m *InferenceProfilesItemCheckpointRequestBuilder) Get(ctx context.Context, requestConfiguration *InferenceProfilesItemCheckpointRequestBuilderGetRequestConfiguration) (i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CheckpointRequestViewable, error) {
 	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
 	if err != nil {
 		return nil, err
 	}
-	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateCheckpointRequestViewFromDiscriminatorValue, nil)
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"404": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"XXX": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateCheckpointRequestViewFromDiscriminatorValue, errorMapping)
 	if err != nil {
 		return nil, err
 	}
@@ -72,12 +78,20 @@ func (m *InferenceProfilesItemCheckpointRequestBuilder) Get(ctx context.Context,
 
 // Patch report progress on a checkpoint request (controller only)
 // returns a CheckpointRequestViewable when successful
+// returns a HttpError error when the service returns a 400 status code
+// returns a HttpError error when the service returns a 404 status code
+// returns a HttpError error when the service returns a 4XX or 5XX status code
 func (m *InferenceProfilesItemCheckpointRequestBuilder) Patch(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.UpdateCheckpointRequestable, requestConfiguration *InferenceProfilesItemCheckpointRequestBuilderPatchRequestConfiguration) (i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CheckpointRequestViewable, error) {
 	requestInfo, err := m.ToPatchRequestInformation(ctx, body, requestConfiguration)
 	if err != nil {
 		return nil, err
 	}
-	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateCheckpointRequestViewFromDiscriminatorValue, nil)
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"400": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"404": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"XXX": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateCheckpointRequestViewFromDiscriminatorValue, errorMapping)
 	if err != nil {
 		return nil, err
 	}
@@ -89,12 +103,20 @@ func (m *InferenceProfilesItemCheckpointRequestBuilder) Patch(ctx context.Contex
 
 // Post ask for a checkpoint of this profile's worker now. Covers the two cases theautomatic path refuses: a restored worker, and replacing an existing checkpoint.
 // returns a CheckpointRequestViewable when successful
+// returns a HttpError error when the service returns a 404 status code
+// returns a HttpError error when the service returns a 409 status code
+// returns a HttpError error when the service returns a 4XX or 5XX status code
 func (m *InferenceProfilesItemCheckpointRequestBuilder) Post(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.RequestCheckpointable, requestConfiguration *InferenceProfilesItemCheckpointRequestBuilderPostRequestConfiguration) (i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CheckpointRequestViewable, error) {
 	requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration)
 	if err != nil {
 		return nil, err
 	}
-	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateCheckpointRequestViewFromDiscriminatorValue, nil)
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"404": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"409": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"XXX": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateCheckpointRequestViewFromDiscriminatorValue, errorMapping)
 	if err != nil {
 		return nil, err
 	}

@@ -47,12 +47,20 @@ func NewCedanaJobCheckpointsCheckpointsItemRequestBuilder(rawUrl string, request
 
 // Delete delete a checkpoint for a Cedana job
 // returns a []byte when successful
+// returns a HttpError error when the service returns a 400 status code
+// returns a HttpError error when the service returns a 500 status code
+// returns a HttpError error when the service returns a 4XX or 5XX status code
 func (m *CedanaJobCheckpointsCheckpointsItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *CedanaJobCheckpointsCheckpointsItemRequestBuilderDeleteRequestConfiguration) ([]byte, error) {
 	requestInfo, err := m.ToDeleteRequestInformation(ctx, requestConfiguration)
 	if err != nil {
 		return nil, err
 	}
-	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"400": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"XXX": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", errorMapping)
 	if err != nil {
 		return nil, err
 	}
@@ -64,12 +72,20 @@ func (m *CedanaJobCheckpointsCheckpointsItemRequestBuilder) Delete(ctx context.C
 
 // Put create or update a checkpoint for a Cedana job
 // returns a *string when successful
+// returns a HttpError error when the service returns a 400 status code
+// returns a HttpError error when the service returns a 500 status code
+// returns a HttpError error when the service returns a 4XX or 5XX status code
 func (m *CedanaJobCheckpointsCheckpointsItemRequestBuilder) Put(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CedanaJobCheckpointable, requestConfiguration *CedanaJobCheckpointsCheckpointsItemRequestBuilderPutRequestConfiguration) (*string, error) {
 	requestInfo, err := m.ToPutRequestInformation(ctx, body, requestConfiguration)
 	if err != nil {
 		return nil, err
 	}
-	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", nil)
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"400": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"XXX": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "string", errorMapping)
 	if err != nil {
 		return nil, err
 	}
@@ -87,7 +103,7 @@ func (m *CedanaJobCheckpointsCheckpointsItemRequestBuilder) ToDeleteRequestInfor
 		requestInfo.Headers.AddAll(requestConfiguration.Headers)
 		requestInfo.AddRequestOptions(requestConfiguration.Options)
 	}
-	requestInfo.Headers.TryAdd("Accept", "text/plain;q=0.9")
+	requestInfo.Headers.TryAdd("Accept", "application/json")
 	return requestInfo, nil
 }
 

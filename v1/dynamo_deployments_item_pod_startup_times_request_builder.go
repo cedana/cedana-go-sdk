@@ -50,12 +50,18 @@ func NewDynamoDeploymentsItemPodStartupTimesRequestBuilder(rawUrl string, reques
 
 // Get returns one row per worker pod with the time it took to reach Ready, and whetherCedana restored it from a checkpoint (cedana_restore=true) or it cold-started.
 // returns a []PodStartupTimeable when successful
+// returns a HttpError error when the service returns a 500 status code
+// returns a HttpError error when the service returns a 4XX or 5XX status code
 func (m *DynamoDeploymentsItemPodStartupTimesRequestBuilder) Get(ctx context.Context, requestConfiguration *DynamoDeploymentsItemPodStartupTimesRequestBuilderGetRequestConfiguration) ([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.PodStartupTimeable, error) {
 	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
 	if err != nil {
 		return nil, err
 	}
-	res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreatePodStartupTimeFromDiscriminatorValue, nil)
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"XXX": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreatePodStartupTimeFromDiscriminatorValue, errorMapping)
 	if err != nil {
 		return nil, err
 	}

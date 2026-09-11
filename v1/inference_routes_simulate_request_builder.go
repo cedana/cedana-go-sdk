@@ -39,12 +39,20 @@ func NewInferenceRoutesSimulateRequestBuilder(rawUrl string, requestAdapter i2ae
 
 // Post project routing outcomes for a traffic mix. A step function on p50, and a profilewith nothing measured yet falls back to estimates rather than measurements.
 // returns a SimulationResultable when successful
+// returns a HttpError error when the service returns a 400 status code
+// returns a HttpError error when the service returns a 404 status code
+// returns a HttpError error when the service returns a 4XX or 5XX status code
 func (m *InferenceRoutesSimulateRequestBuilder) Post(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.SimulateRouteable, requestConfiguration *InferenceRoutesSimulateRequestBuilderPostRequestConfiguration) (i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.SimulationResultable, error) {
 	requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration)
 	if err != nil {
 		return nil, err
 	}
-	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateSimulationResultFromDiscriminatorValue, nil)
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"400": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"404": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"XXX": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateSimulationResultFromDiscriminatorValue, errorMapping)
 	if err != nil {
 		return nil, err
 	}

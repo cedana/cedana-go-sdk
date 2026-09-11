@@ -39,12 +39,16 @@ func NewInferenceCapacityIntentsRequestBuilder(rawUrl string, requestAdapter i2a
 
 // Get list the latest capacity intent per profile. One per profile, newest first byupdate, whatever its status, so a caller can show what was last asked for.
 // returns a []CapacityIntentable when successful
+// returns a HttpError error when the service returns a 4XX or 5XX status code
 func (m *InferenceCapacityIntentsRequestBuilder) Get(ctx context.Context, requestConfiguration *InferenceCapacityIntentsRequestBuilderGetRequestConfiguration) ([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CapacityIntentable, error) {
 	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
 	if err != nil {
 		return nil, err
 	}
-	res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateCapacityIntentFromDiscriminatorValue, nil)
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"XXX": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateCapacityIntentFromDiscriminatorValue, errorMapping)
 	if err != nil {
 		return nil, err
 	}

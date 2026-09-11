@@ -62,12 +62,20 @@ func NewInferenceArtifactsWithArtifact_ItemRequestBuilder(rawUrl string, request
 
 // Delete soft-delete an artefact (golden requires force)
 // returns a UntypedNodeable when successful
+// returns a HttpError error when the service returns a 404 status code
+// returns a HttpError error when the service returns a 409 status code
+// returns a HttpError error when the service returns a 4XX or 5XX status code
 func (m *InferenceArtifactsWithArtifact_ItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *InferenceArtifactsWithArtifact_ItemRequestBuilderDeleteRequestConfiguration) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable, error) {
 	requestInfo, err := m.ToDeleteRequestInformation(ctx, requestConfiguration)
 	if err != nil {
 		return nil, err
 	}
-	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue, nil)
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"404": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"409": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"XXX": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue, errorMapping)
 	if err != nil {
 		return nil, err
 	}
@@ -79,12 +87,18 @@ func (m *InferenceArtifactsWithArtifact_ItemRequestBuilder) Delete(ctx context.C
 
 // Get get a checkpoint artefact
 // returns a CheckpointArtifactViewable when successful
+// returns a HttpError error when the service returns a 404 status code
+// returns a HttpError error when the service returns a 4XX or 5XX status code
 func (m *InferenceArtifactsWithArtifact_ItemRequestBuilder) Get(ctx context.Context, requestConfiguration *InferenceArtifactsWithArtifact_ItemRequestBuilderGetRequestConfiguration) (i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CheckpointArtifactViewable, error) {
 	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
 	if err != nil {
 		return nil, err
 	}
-	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateCheckpointArtifactViewFromDiscriminatorValue, nil)
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"404": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"XXX": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateCheckpointArtifactViewFromDiscriminatorValue, errorMapping)
 	if err != nil {
 		return nil, err
 	}
@@ -96,12 +110,20 @@ func (m *InferenceArtifactsWithArtifact_ItemRequestBuilder) Get(ctx context.Cont
 
 // Patch update artefact status / restore count
 // returns a CheckpointArtifactViewable when successful
+// returns a HttpError error when the service returns a 400 status code
+// returns a HttpError error when the service returns a 404 status code
+// returns a HttpError error when the service returns a 4XX or 5XX status code
 func (m *InferenceArtifactsWithArtifact_ItemRequestBuilder) Patch(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.UpdateArtifactable, requestConfiguration *InferenceArtifactsWithArtifact_ItemRequestBuilderPatchRequestConfiguration) (i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CheckpointArtifactViewable, error) {
 	requestInfo, err := m.ToPatchRequestInformation(ctx, body, requestConfiguration)
 	if err != nil {
 		return nil, err
 	}
-	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateCheckpointArtifactViewFromDiscriminatorValue, nil)
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"400": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"404": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"XXX": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateCheckpointArtifactViewFromDiscriminatorValue, errorMapping)
 	if err != nil {
 		return nil, err
 	}

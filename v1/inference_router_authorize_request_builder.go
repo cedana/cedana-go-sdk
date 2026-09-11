@@ -39,12 +39,24 @@ func NewInferenceRouterAuthorizeRequestBuilder(rawUrl string, requestAdapter i2a
 
 // Post authenticate with the inbound Cedana inference key and issue an opaqueauthorization that resolve consumes exactly once.
 // returns a AuthorizeResponseable when successful
+// returns a HttpError error when the service returns a 402 status code
+// returns a HttpError error when the service returns a 403 status code
+// returns a HttpError error when the service returns a 404 status code
+// returns a HttpError error when the service returns a 429 status code
+// returns a HttpError error when the service returns a 4XX or 5XX status code
 func (m *InferenceRouterAuthorizeRequestBuilder) Post(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.AuthorizeRequestable, requestConfiguration *InferenceRouterAuthorizeRequestBuilderPostRequestConfiguration) (i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.AuthorizeResponseable, error) {
 	requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration)
 	if err != nil {
 		return nil, err
 	}
-	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateAuthorizeResponseFromDiscriminatorValue, nil)
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"402": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"403": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"404": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"429": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"XXX": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateAuthorizeResponseFromDiscriminatorValue, errorMapping)
 	if err != nil {
 		return nil, err
 	}

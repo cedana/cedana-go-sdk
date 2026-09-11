@@ -60,12 +60,16 @@ func NewInferenceRetentionPoliciesRequestBuilder(rawUrl string, requestAdapter i
 
 // Get list retention policies
 // returns a []RetentionPolicyable when successful
+// returns a HttpError error when the service returns a 4XX or 5XX status code
 func (m *InferenceRetentionPoliciesRequestBuilder) Get(ctx context.Context, requestConfiguration *InferenceRetentionPoliciesRequestBuilderGetRequestConfiguration) ([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.RetentionPolicyable, error) {
 	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
 	if err != nil {
 		return nil, err
 	}
-	res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateRetentionPolicyFromDiscriminatorValue, nil)
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"XXX": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateRetentionPolicyFromDiscriminatorValue, errorMapping)
 	if err != nil {
 		return nil, err
 	}
@@ -80,12 +84,18 @@ func (m *InferenceRetentionPoliciesRequestBuilder) Get(ctx context.Context, requ
 
 // Post create or update a retention policy
 // returns a RetentionPolicyable when successful
+// returns a HttpError error when the service returns a 400 status code
+// returns a HttpError error when the service returns a 4XX or 5XX status code
 func (m *InferenceRetentionPoliciesRequestBuilder) Post(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.RetentionPolicyUpsertable, requestConfiguration *InferenceRetentionPoliciesRequestBuilderPostRequestConfiguration) (i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.RetentionPolicyable, error) {
 	requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration)
 	if err != nil {
 		return nil, err
 	}
-	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateRetentionPolicyFromDiscriminatorValue, nil)
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"400": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"XXX": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateRetentionPolicyFromDiscriminatorValue, errorMapping)
 	if err != nil {
 		return nil, err
 	}

@@ -8,68 +8,69 @@ import (
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-type OtelErrorResponse struct {
+// HttpError standard JSON error body for all 4xx/5xx responses.Handlers return plain-text errors internally; [`normalize_error_response`]converts anything the stack produces (handlers, extractors, the auth layer)to this shape, so generated SDK clients can rely on a single error schema.
+type HttpError struct {
 	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ApiError
 	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 	additionalData map[string]any
-	// The error property
-	errorEscaped *string
+	// Human-readable description of what went wrong
+	message *string
 }
 
-// NewOtelErrorResponse instantiates a new OtelErrorResponse and sets the default values.
-func NewOtelErrorResponse() *OtelErrorResponse {
-	m := &OtelErrorResponse{
+// NewHttpError instantiates a new HttpError and sets the default values.
+func NewHttpError() *HttpError {
+	m := &HttpError{
 		ApiError: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewApiError(),
 	}
 	m.SetAdditionalData(make(map[string]any))
 	return m
 }
 
-// CreateOtelErrorResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
+// CreateHttpErrorFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateOtelErrorResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-	return NewOtelErrorResponse(), nil
+func CreateHttpErrorFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewHttpError(), nil
 }
 
 // Error the primary error message.
 // returns a string when successful
-func (m *OtelErrorResponse) Error() string {
-	return m.ApiError.Error()
+func (m *HttpError) Error() string {
+	return *(m.GetMessage())
 }
 
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *OtelErrorResponse) GetAdditionalData() map[string]any {
+func (m *HttpError) GetAdditionalData() map[string]any {
 	return m.additionalData
-}
-
-// GetErrorEscaped gets the error property value. The error property
-// returns a *string when successful
-func (m *OtelErrorResponse) GetErrorEscaped() *string {
-	return m.errorEscaped
 }
 
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
-func (m *OtelErrorResponse) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+func (m *HttpError) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
-	res["error"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res["message"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 		val, err := n.GetStringValue()
 		if err != nil {
 			return err
 		}
 		if val != nil {
-			m.SetErrorEscaped(val)
+			m.SetMessage(val)
 		}
 		return nil
 	}
 	return res
 }
 
+// GetMessage gets the message property value. Human-readable description of what went wrong
+// returns a *string when successful
+func (m *HttpError) GetMessage() *string {
+	return m.message
+}
+
 // Serialize serializes information the current object
-func (m *OtelErrorResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+func (m *HttpError) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
 	{
-		err := writer.WriteStringValue("error", m.GetErrorEscaped())
+		err := writer.WriteStringValue("message", m.GetMessage())
 		if err != nil {
 			return err
 		}
@@ -84,18 +85,18 @@ func (m *OtelErrorResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27
 }
 
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *OtelErrorResponse) SetAdditionalData(value map[string]any) {
+func (m *HttpError) SetAdditionalData(value map[string]any) {
 	m.additionalData = value
 }
 
-// SetErrorEscaped sets the error property value. The error property
-func (m *OtelErrorResponse) SetErrorEscaped(value *string) {
-	m.errorEscaped = value
+// SetMessage sets the message property value. Human-readable description of what went wrong
+func (m *HttpError) SetMessage(value *string) {
+	m.message = value
 }
 
-type OtelErrorResponseable interface {
+type HttpErrorable interface {
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-	GetErrorEscaped() *string
-	SetErrorEscaped(value *string)
+	GetMessage() *string
+	SetMessage(value *string)
 }

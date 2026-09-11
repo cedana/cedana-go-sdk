@@ -38,12 +38,16 @@ func NewInferenceProfilesItemWorkerEndpointRequestBuilder(rawUrl string, request
 }
 
 // Put record where a profile's worker publishes its metrics (controller only). Thepropagator can reach the port but cannot find the pod IP itself.
+// returns a HttpError error when the service returns a 4XX or 5XX status code
 func (m *InferenceProfilesItemWorkerEndpointRequestBuilder) Put(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.ReportWorkerEndpointable, requestConfiguration *InferenceProfilesItemWorkerEndpointRequestBuilderPutRequestConfiguration) error {
 	requestInfo, err := m.ToPutRequestInformation(ctx, body, requestConfiguration)
 	if err != nil {
 		return err
 	}
-	err = m.BaseRequestBuilder.RequestAdapter.SendNoContent(ctx, requestInfo, nil)
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"XXX": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+	}
+	err = m.BaseRequestBuilder.RequestAdapter.SendNoContent(ctx, requestInfo, errorMapping)
 	if err != nil {
 		return err
 	}
@@ -58,6 +62,7 @@ func (m *InferenceProfilesItemWorkerEndpointRequestBuilder) ToPutRequestInformat
 		requestInfo.Headers.AddAll(requestConfiguration.Headers)
 		requestInfo.AddRequestOptions(requestConfiguration.Options)
 	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
 	err := requestInfo.SetContentFromParsable(ctx, m.BaseRequestBuilder.RequestAdapter, "application/json", body)
 	if err != nil {
 		return nil, err

@@ -39,14 +39,16 @@ func NewOtelCredentialsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7da
 
 // Get returns Otel credentials (endpoint and headers) for tracing if available.
 // returns a OtelCredsResponseable when successful
-// returns a OtelErrorResponse error when the service returns a 500 status code
+// returns a HttpError error when the service returns a 500 status code
+// returns a HttpError error when the service returns a 4XX or 5XX status code
 func (m *OtelCredentialsRequestBuilder) Get(ctx context.Context, requestConfiguration *OtelCredentialsRequestBuilderGetRequestConfiguration) (i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.OtelCredsResponseable, error) {
 	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
 	if err != nil {
 		return nil, err
 	}
 	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
-		"500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateOtelErrorResponseFromDiscriminatorValue,
+		"500": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+		"XXX": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
 	}
 	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateOtelCredsResponseFromDiscriminatorValue, errorMapping)
 	if err != nil {

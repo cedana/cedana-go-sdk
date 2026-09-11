@@ -47,12 +47,16 @@ func NewInferenceRoutesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7da
 
 // Get list route policies
 // returns a []RoutePolicyable when successful
+// returns a HttpError error when the service returns a 4XX or 5XX status code
 func (m *InferenceRoutesRequestBuilder) Get(ctx context.Context, requestConfiguration *InferenceRoutesRequestBuilderGetRequestConfiguration) ([]i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.RoutePolicyable, error) {
 	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
 	if err != nil {
 		return nil, err
 	}
-	res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateRoutePolicyFromDiscriminatorValue, nil)
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"XXX": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateRoutePolicyFromDiscriminatorValue, errorMapping)
 	if err != nil {
 		return nil, err
 	}
@@ -67,12 +71,16 @@ func (m *InferenceRoutesRequestBuilder) Get(ctx context.Context, requestConfigur
 
 // Post create or update a route policy
 // returns a RoutePolicyable when successful
+// returns a HttpError error when the service returns a 4XX or 5XX status code
 func (m *InferenceRoutesRequestBuilder) Post(ctx context.Context, body i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.UpsertRouteable, requestConfiguration *InferenceRoutesRequestBuilderPostRequestConfiguration) (i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.RoutePolicyable, error) {
 	requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration)
 	if err != nil {
 		return nil, err
 	}
-	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateRoutePolicyFromDiscriminatorValue, nil)
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"XXX": i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateHttpErrorFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i4db02de4fa95db6167263a0a43a6a58c23904074eb83cc381a94eba9021abdb2.CreateRoutePolicyFromDiscriminatorValue, errorMapping)
 	if err != nil {
 		return nil, err
 	}
