@@ -22,7 +22,7 @@ func (*StaticAccessTokenProvider) GetAllowedHostsValidator() *auth.AllowedHostsV
 	return nil
 }
 
-func NewCedanaClient(rawUrl, api_key string) *ApiClient {
+func NewClient(rawUrl, api_key string) *ApiClient {
 	authProvider := auth.NewBaseBearerTokenAuthenticationProvider(&StaticAccessTokenProvider{
 		AccessToken: api_key,
 	})

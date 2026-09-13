@@ -16,9 +16,9 @@ The client is async (kiota's Python HTTP adapter is built on httpx):
 import asyncio
 import os
 
-from cedana_propagator_sdk import new_cedana_client
+from cedana_propagator_sdk import new_client
 
-client = new_cedana_client(
+client = new_client(
     os.environ.get("CEDANA_URL_TEST", "http://localhost:1324"),
     os.environ["CEDANA_AUTH_TOKEN_TEST"],
 )

@@ -22,7 +22,7 @@ var (
 )
 
 func TestUser(t *testing.T) {
-	client := sdk.NewCedanaClient(cedanaUrl, apiKey)
+	client := sdk.NewClient(cedanaUrl, apiKey)
 	fmt.Println("url: ", client.V1().User().RequestAdapter.GetBaseUrl())
 	user, err := client.V1().User().Get(context.Background(), nil)
 	if err != nil {
@@ -33,7 +33,7 @@ func TestUser(t *testing.T) {
 }
 
 func TestCheckpointsList(t *testing.T) {
-	client := sdk.NewCedanaClient(cedanaUrl, apiKey)
+	client := sdk.NewClient(cedanaUrl, apiKey)
 	// testCheckpointsDownload(t)
 	checkpoints, err := client.V1().Checkpoints().Get(context.Background(), nil)
 	if err != nil {
@@ -46,7 +46,7 @@ func TestCheckpointsList(t *testing.T) {
 }
 
 func TestCheckpointsAdd(t *testing.T) {
-	client := sdk.NewCedanaClient(cedanaUrl, apiKey)
+	client := sdk.NewClient(cedanaUrl, apiKey)
 	uuid, err := client.V1().Checkpoints().Post(context.Background(), nil)
 	if err != nil {
 		t.Errorf("failed to add checkpoint: %v", err)

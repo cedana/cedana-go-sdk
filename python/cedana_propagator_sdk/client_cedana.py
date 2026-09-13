@@ -1,5 +1,5 @@
 # Hand-written convenience constructor for the generated client (the Python
-# counterpart of the Go SDK's NewCedanaClient). This file is not touched by
+# counterpart of the Go SDK's NewClient). This file is not touched by
 # generate.sh.
 from kiota_abstractions.authentication.access_token_provider import AccessTokenProvider
 from kiota_abstractions.authentication.allowed_hosts_validator import AllowedHostsValidator
@@ -25,7 +25,7 @@ class StaticAccessTokenProvider(AccessTokenProvider):
         return self._validator
 
 
-def new_cedana_client(base_url: str, api_key: str) -> PropagatorClient:
+def new_client(base_url: str, api_key: str) -> PropagatorClient:
     """Creates a PropagatorClient authenticated with the given API key.
 
     base_url is the propagator URL, e.g. "https://api.cedana.ai".

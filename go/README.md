@@ -58,7 +58,7 @@ var (
 )
 
 func Main() {
-	client := sdk.NewCedanaClient(cedanaUrl, apiKey)
+	client := sdk.NewClient(cedanaUrl, apiKey)
 
 	// get user
 	user, err := client.V1().User().Get(context.Background(), nil)
