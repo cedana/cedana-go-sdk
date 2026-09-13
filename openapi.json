@@ -5840,13 +5840,13 @@
       },
       "PluginType": {
         "enum": [
-          "UNIMPLEMENTED",
-          "DEPRECATED",
-          "EXPERIMENTAL",
-          "EXTERNAL",
-          "SUPPORTED"
+          0,
+          1,
+          2,
+          3,
+          4
         ],
-        "type": "string"
+        "type": "integer"
       },
       "PluginUploadPayload": {
         "properties": {
@@ -8717,12 +8717,12 @@
       },
       "Status": {
         "enum": [
-          "UNKNOWN",
-          "AVAILABLE",
-          "INSTALLED",
-          "OUTDATED"
+          0,
+          1,
+          2,
+          3
         ],
-        "type": "string"
+        "type": "integer"
       },
       "StatusResponse": {
         "properties": {

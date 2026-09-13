@@ -7,8 +7,6 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .plugin_binary import PluginBinary
-    from .plugin_type import PluginType
-    from .status import Status
 
 @dataclass
 class Plugin(AdditionalDataHolder, Parsable):
@@ -28,9 +26,9 @@ class Plugin(AdditionalDataHolder, Parsable):
     # The size property
     size: Optional[int] = None
     # The status property
-    status: Optional[Status] = None
+    status: Optional[int] = None
     # The type property
-    type: Optional[PluginType] = None
+    type: Optional[int] = None
     # The version property
     version: Optional[str] = None
     
@@ -51,12 +49,8 @@ class Plugin(AdditionalDataHolder, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .plugin_binary import PluginBinary
-        from .plugin_type import PluginType
-        from .status import Status
 
         from .plugin_binary import PluginBinary
-        from .plugin_type import PluginType
-        from .status import Status
 
         fields: dict[str, Callable[[Any], None]] = {
             "binaries": lambda n : setattr(self, 'binaries', n.get_collection_of_object_values(PluginBinary)),
@@ -65,8 +59,8 @@ class Plugin(AdditionalDataHolder, Parsable):
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "published_at": lambda n : setattr(self, 'published_at', n.get_datetime_value()),
             "size": lambda n : setattr(self, 'size', n.get_int_value()),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(Status)),
-            "type": lambda n : setattr(self, 'type', n.get_enum_value(PluginType)),
+            "status": lambda n : setattr(self, 'status', n.get_int_value()),
+            "type": lambda n : setattr(self, 'type', n.get_int_value()),
             "version": lambda n : setattr(self, 'version', n.get_str_value()),
         }
         return fields
@@ -85,8 +79,8 @@ class Plugin(AdditionalDataHolder, Parsable):
         writer.write_str_value("name", self.name)
         writer.write_datetime_value("published_at", self.published_at)
         writer.write_int_value("size", self.size)
-        writer.write_enum_value("status", self.status)
-        writer.write_enum_value("type", self.type)
+        writer.write_int_value("status", self.status)
+        writer.write_int_value("type", self.type)
         writer.write_str_value("version", self.version)
         writer.write_additional_data_value(self.additional_data)
     

@@ -24,9 +24,9 @@ type Plugin struct {
 	// The size property
 	size *int64
 	// The status property
-	status *Status
+	status *int32
 	// The type property
-	typeEscaped *PluginType
+	typeEscaped *int32
 	// The version property
 	version *string
 }
@@ -133,22 +133,22 @@ func (m *Plugin) GetFieldDeserializers() map[string]func(i878a80d2330e89d2689638
 		return nil
 	}
 	res["status"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-		val, err := n.GetEnumValue(ParseStatus)
+		val, err := n.GetInt32Value()
 		if err != nil {
 			return err
 		}
 		if val != nil {
-			m.SetStatus(val.(*Status))
+			m.SetStatus(val)
 		}
 		return nil
 	}
 	res["type"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-		val, err := n.GetEnumValue(ParsePluginType)
+		val, err := n.GetInt32Value()
 		if err != nil {
 			return err
 		}
 		if val != nil {
-			m.SetTypeEscaped(val.(*PluginType))
+			m.SetTypeEscaped(val)
 		}
 		return nil
 	}
@@ -196,14 +196,14 @@ func (m *Plugin) GetSize() *int64 {
 }
 
 // GetStatus gets the status property value. The status property
-// returns a *Status when successful
-func (m *Plugin) GetStatus() *Status {
+// returns a *int32 when successful
+func (m *Plugin) GetStatus() *int32 {
 	return m.status
 }
 
 // GetTypeEscaped gets the type property value. The type property
-// returns a *PluginType when successful
-func (m *Plugin) GetTypeEscaped() *PluginType {
+// returns a *int32 when successful
+func (m *Plugin) GetTypeEscaped() *int32 {
 	return m.typeEscaped
 }
 
@@ -263,16 +263,14 @@ func (m *Plugin) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c
 			return err
 		}
 	}
-	if m.GetStatus() != nil {
-		cast := (*m.GetStatus()).String()
-		err := writer.WriteStringValue("status", &cast)
+	{
+		err := writer.WriteInt32Value("status", m.GetStatus())
 		if err != nil {
 			return err
 		}
 	}
-	if m.GetTypeEscaped() != nil {
-		cast := (*m.GetTypeEscaped()).String()
-		err := writer.WriteStringValue("type", &cast)
+	{
+		err := writer.WriteInt32Value("type", m.GetTypeEscaped())
 		if err != nil {
 			return err
 		}
@@ -328,12 +326,12 @@ func (m *Plugin) SetSize(value *int64) {
 }
 
 // SetStatus sets the status property value. The status property
-func (m *Plugin) SetStatus(value *Status) {
+func (m *Plugin) SetStatus(value *int32) {
 	m.status = value
 }
 
 // SetTypeEscaped sets the type property value. The type property
-func (m *Plugin) SetTypeEscaped(value *PluginType) {
+func (m *Plugin) SetTypeEscaped(value *int32) {
 	m.typeEscaped = value
 }
 
@@ -351,8 +349,8 @@ type Pluginable interface {
 	GetName() *string
 	GetPublishedAt() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 	GetSize() *int64
-	GetStatus() *Status
-	GetTypeEscaped() *PluginType
+	GetStatus() *int32
+	GetTypeEscaped() *int32
 	GetVersion() *string
 	SetBinaries(value []PluginBinaryable)
 	SetLatestVersion(value *string)
@@ -360,7 +358,7 @@ type Pluginable interface {
 	SetName(value *string)
 	SetPublishedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
 	SetSize(value *int64)
-	SetStatus(value *Status)
-	SetTypeEscaped(value *PluginType)
+	SetStatus(value *int32)
+	SetTypeEscaped(value *int32)
 	SetVersion(value *string)
 }
