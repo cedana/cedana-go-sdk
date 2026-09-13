@@ -3,6 +3,7 @@ package cedanapropagatorsdk
 import (
 	"context"
 	"log"
+	nethttp "net/http"
 	"net/url"
 
 	auth "github.com/microsoft/kiota-abstractions-go/authentication"
@@ -22,7 +23,12 @@ func (*StaticAccessTokenProvider) GetAllowedHostsValidator() *auth.AllowedHostsV
 	return nil
 }
 
-func NewClient(rawUrl, api_key string) *ApiClient {
+// NewClient builds a propagator API client. An optional *net/http.Client may be
+// passed to customize the transport (e.g. to inject extra headers via a custom
+// RoundTripper); wrap kiota's http.GetDefaultClient() to keep its default
+// middleware (retries, redirects, compression). Without one, kiota's default
+// client is used.
+func NewClient(rawUrl, api_key string, httpClient ...*nethttp.Client) *ApiClient {
 	authProvider := auth.NewBaseBearerTokenAuthenticationProvider(&StaticAccessTokenProvider{
 		AccessToken: api_key,
 	})
@@ -31,7 +37,12 @@ func NewClient(rawUrl, api_key string) *ApiClient {
 		log.Fatalf("Error parsing raw URL: %v\n", err)
 	}
 
-	adapter, err := http.NewNetHttpRequestAdapter(authProvider)
+	var adapter *http.NetHttpRequestAdapter
+	if len(httpClient) > 0 && httpClient[0] != nil {
+		adapter, err = http.NewNetHttpRequestAdapterWithParseNodeFactoryAndSerializationWriterFactoryAndHttpClient(authProvider, nil, nil, httpClient[0])
+	} else {
+		adapter, err = http.NewNetHttpRequestAdapter(authProvider)
+	}
 	if err != nil {
 		log.Fatalf("Error creating request adapter: %v\n", err)
 	}
