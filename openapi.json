@@ -2589,11 +2589,6 @@
         ],
         "type": "object"
       },
-      "DynamoResource": {
-        "description": "Raw JSON of a Dynamo Kubernetes resource",
-        "title": "DynamoResource",
-        "type": "object"
-      },
       "DynamoScrapeRequest": {
         "description": "Body sent by the dynamo-watcher after scraping /v1/models from the live frontend.",
         "properties": {
@@ -3819,142 +3814,26 @@
         ],
         "type": "object"
       },
-      "K8sJob": {
-        "description": "Entire json for the Kubernetes Job",
-        "title": "K8sJob",
-        "type": "object"
-      },
-      "K8sNode": {
-        "description": "Entire json for the Kubernetes Node",
-        "title": "K8sNode",
-        "type": "object"
-      },
       "K8sResource": {
-        "oneOf": [
-          {
-            "properties": {
-              "type": {
-                "enum": [
-                  "None"
-                ],
-                "type": "string"
-              }
-            },
-            "required": [
-              "type"
+        "description": "A Kubernetes resource tagged by \"type\", with the resource's raw JSON fields alongside the tag",
+        "properties": {
+          "type": {
+            "enum": [
+              "None",
+              "Pod",
+              "Node",
+              "Job",
+              "DynamoGraphDeployment",
+              "DynamoService"
             ],
-            "type": "object"
-          },
-          {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Pod"
-              },
-              {
-                "properties": {
-                  "type": {
-                    "enum": [
-                      "Pod"
-                    ],
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "type"
-                ],
-                "type": "object"
-              }
-            ]
-          },
-          {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/K8sNode"
-              },
-              {
-                "properties": {
-                  "type": {
-                    "enum": [
-                      "Node"
-                    ],
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "type"
-                ],
-                "type": "object"
-              }
-            ]
-          },
-          {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/K8sJob"
-              },
-              {
-                "properties": {
-                  "type": {
-                    "enum": [
-                      "Job"
-                    ],
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "type"
-                ],
-                "type": "object"
-              }
-            ]
-          },
-          {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/DynamoResource",
-                "description": "A DynamoGraphDeployment CRD synced from the cluster"
-              },
-              {
-                "properties": {
-                  "type": {
-                    "enum": [
-                      "DynamoGraphDeployment"
-                    ],
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "type"
-                ],
-                "type": "object"
-              }
-            ],
-            "description": "A DynamoGraphDeployment CRD synced from the cluster"
-          },
-          {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/DynamoResource",
-                "description": "A Service with label dynamo.cedana.ai/expose=true (the Dynamo Frontend endpoint)"
-              },
-              {
-                "properties": {
-                  "type": {
-                    "enum": [
-                      "DynamoService"
-                    ],
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "type"
-                ],
-                "type": "object"
-              }
-            ],
-            "description": "A Service with label dynamo.cedana.ai/expose=true (the Dynamo Frontend endpoint)"
+            "type": "string"
           }
-        ]
+        },
+        "required": [
+          "type"
+        ],
+        "title": "K8sResource",
+        "type": "object"
       },
       "KvCacheState": {
         "description": "What a profile's engine is currently reusing.",
@@ -5878,11 +5757,6 @@
             ]
           }
         },
-        "type": "object"
-      },
-      "Pod": {
-        "description": "Entire json for the Kubernetes ",
-        "title": "Pod",
         "type": "object"
       },
       "PodCheckpointCpu": {
@@ -15264,10 +15138,9 @@
         "tags": [
           "inference"
         ]
-      }
-    },
-    "/v1/inference/lifecycle/events": {
+      },
       "post": {
+        "description": "Documented at /inference/lifecycle-events (same collection as the GET) so\ngenerated SDKs get a single builder with both methods; the legacy\n/inference/lifecycle/events path collides with it under kiota's name\nsanitization, dropping the POST from the SDK. The legacy path stays\nregistered as an undocumented alias in api.rs for older clients.",
         "operationId": "ingest_lifecycle_event",
         "requestBody": {
           "content": {

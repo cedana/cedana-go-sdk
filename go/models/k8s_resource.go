@@ -7,43 +7,44 @@ import (
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-type Sync struct {
+// K8sResource a Kubernetes resource tagged by "type", with the resource's raw JSON fields alongside the tag
+type K8sResource struct {
 	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 	additionalData map[string]any
 	// The type property
-	typeEscaped *Sync_type
+	typeEscaped *K8sResource_type
 }
 
-// NewSync instantiates a new Sync and sets the default values.
-func NewSync() *Sync {
-	m := &Sync{}
+// NewK8sResource instantiates a new K8sResource and sets the default values.
+func NewK8sResource() *K8sResource {
+	m := &K8sResource{}
 	m.SetAdditionalData(make(map[string]any))
 	return m
 }
 
-// CreateSyncFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
+// CreateK8sResourceFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateSyncFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-	return NewSync(), nil
+func CreateK8sResourceFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewK8sResource(), nil
 }
 
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *Sync) GetAdditionalData() map[string]any {
+func (m *K8sResource) GetAdditionalData() map[string]any {
 	return m.additionalData
 }
 
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
-func (m *Sync) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+func (m *K8sResource) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
 	res["type"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-		val, err := n.GetEnumValue(ParseSync_type)
+		val, err := n.GetEnumValue(ParseK8sResource_type)
 		if err != nil {
 			return err
 		}
 		if val != nil {
-			m.SetTypeEscaped(val.(*Sync_type))
+			m.SetTypeEscaped(val.(*K8sResource_type))
 		}
 		return nil
 	}
@@ -51,13 +52,13 @@ func (m *Sync) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a
 }
 
 // GetTypeEscaped gets the type property value. The type property
-// returns a *Sync_type when successful
-func (m *Sync) GetTypeEscaped() *Sync_type {
+// returns a *K8sResource_type when successful
+func (m *K8sResource) GetTypeEscaped() *K8sResource_type {
 	return m.typeEscaped
 }
 
 // Serialize serializes information the current object
-func (m *Sync) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+func (m *K8sResource) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
 	if m.GetTypeEscaped() != nil {
 		cast := (*m.GetTypeEscaped()).String()
 		err := writer.WriteStringValue("type", &cast)
@@ -75,18 +76,18 @@ func (m *Sync) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
 }
 
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Sync) SetAdditionalData(value map[string]any) {
+func (m *K8sResource) SetAdditionalData(value map[string]any) {
 	m.additionalData = value
 }
 
 // SetTypeEscaped sets the type property value. The type property
-func (m *Sync) SetTypeEscaped(value *Sync_type) {
+func (m *K8sResource) SetTypeEscaped(value *K8sResource_type) {
 	m.typeEscaped = value
 }
 
-type Syncable interface {
+type K8sResourceable interface {
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-	GetTypeEscaped() *Sync_type
-	SetTypeEscaped(value *Sync_type)
+	GetTypeEscaped() *K8sResource_type
+	SetTypeEscaped(value *K8sResource_type)
 }

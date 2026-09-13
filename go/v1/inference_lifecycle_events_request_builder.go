@@ -32,6 +32,14 @@ type InferenceLifecycleEventsRequestBuilderGetRequestConfiguration struct {
 	QueryParameters *InferenceLifecycleEventsRequestBuilderGetQueryParameters
 }
 
+// InferenceLifecycleEventsRequestBuilderPostRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
+type InferenceLifecycleEventsRequestBuilderPostRequestConfiguration struct {
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+}
+
 // NewInferenceLifecycleEventsRequestBuilderInternal instantiates a new InferenceLifecycleEventsRequestBuilder and sets the default values.
 func NewInferenceLifecycleEventsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *InferenceLifecycleEventsRequestBuilder {
 	m := &InferenceLifecycleEventsRequestBuilder{
@@ -73,6 +81,29 @@ func (m *InferenceLifecycleEventsRequestBuilder) Get(ctx context.Context, reques
 	return val, nil
 }
 
+// Post documented at /inference/lifecycle-events (same collection as the GET) sogenerated SDKs get a single builder with both methods; the legacy/inference/lifecycle/events path collides with it under kiota's namesanitization, dropping the POST from the SDK. The legacy path staysregistered as an undocumented alias in api.rs for older clients.
+// returns a HttpError error when the service returns a 400 status code
+// returns a HttpError error when the service returns a 401 status code
+// returns a HttpError error when the service returns a 409 status code
+// returns a HttpError error when the service returns a 4XX or 5XX status code
+func (m *InferenceLifecycleEventsRequestBuilder) Post(ctx context.Context, body i89856fb30cc728ac649e5f2184f35b3dbca9c394c0e717f9e3ad3070b5506e89.LifecycleEnvelopeable, requestConfiguration *InferenceLifecycleEventsRequestBuilderPostRequestConfiguration) error {
+	requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration)
+	if err != nil {
+		return err
+	}
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"400": i89856fb30cc728ac649e5f2184f35b3dbca9c394c0e717f9e3ad3070b5506e89.CreateHttpErrorFromDiscriminatorValue,
+		"401": i89856fb30cc728ac649e5f2184f35b3dbca9c394c0e717f9e3ad3070b5506e89.CreateHttpErrorFromDiscriminatorValue,
+		"409": i89856fb30cc728ac649e5f2184f35b3dbca9c394c0e717f9e3ad3070b5506e89.CreateHttpErrorFromDiscriminatorValue,
+		"XXX": i89856fb30cc728ac649e5f2184f35b3dbca9c394c0e717f9e3ad3070b5506e89.CreateHttpErrorFromDiscriminatorValue,
+	}
+	err = m.BaseRequestBuilder.RequestAdapter.SendNoContent(ctx, requestInfo, errorMapping)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 // ToGetRequestInformation the cluster's recent lifecycle events across all profiles, time-ascending, so aUI can replay how the routing topology changed over time.
 // returns a *RequestInformation when successful
 func (m *InferenceLifecycleEventsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *InferenceLifecycleEventsRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
@@ -85,6 +116,22 @@ func (m *InferenceLifecycleEventsRequestBuilder) ToGetRequestInformation(ctx con
 		requestInfo.AddRequestOptions(requestConfiguration.Options)
 	}
 	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
+}
+
+// ToPostRequestInformation documented at /inference/lifecycle-events (same collection as the GET) sogenerated SDKs get a single builder with both methods; the legacy/inference/lifecycle/events path collides with it under kiota's namesanitization, dropping the POST from the SDK. The legacy path staysregistered as an undocumented alias in api.rs for older clients.
+// returns a *RequestInformation when successful
+func (m *InferenceLifecycleEventsRequestBuilder) ToPostRequestInformation(ctx context.Context, body i89856fb30cc728ac649e5f2184f35b3dbca9c394c0e717f9e3ad3070b5506e89.LifecycleEnvelopeable, requestConfiguration *InferenceLifecycleEventsRequestBuilderPostRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	err := requestInfo.SetContentFromParsable(ctx, m.BaseRequestBuilder.RequestAdapter, "application/json", body)
+	if err != nil {
+		return nil, err
+	}
 	return requestInfo, nil
 }
 

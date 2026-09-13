@@ -16,7 +16,6 @@ if TYPE_CHECKING:
     from .experiments.experiments_request_builder import ExperimentsRequestBuilder
     from .fleets.fleets_request_builder import FleetsRequestBuilder
     from .keys.keys_request_builder import KeysRequestBuilder
-    from .lifecycle.lifecycle_request_builder import LifecycleRequestBuilder
     from .lifecycle_events.lifecycle_events_request_builder import LifecycleEventsRequestBuilder
     from .metrics.metrics_request_builder import MetricsRequestBuilder
     from .models_requests.models_request_builder import ModelsRequestBuilder
@@ -132,15 +131,6 @@ class InferenceRequestBuilder(BaseRequestBuilder):
         from .keys.keys_request_builder import KeysRequestBuilder
 
         return KeysRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def lifecycle(self) -> LifecycleRequestBuilder:
-        """
-        The lifecycle property
-        """
-        from .lifecycle.lifecycle_request_builder import LifecycleRequestBuilder
-
-        return LifecycleRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def lifecycle_events(self) -> LifecycleEventsRequestBuilder:

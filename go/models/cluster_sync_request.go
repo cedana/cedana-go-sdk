@@ -15,8 +15,8 @@ type ClusterSyncRequest struct {
 	cluster_id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
 	// The metadata property
 	metadata i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
-	// The resource property
-	resource Syncable
+	// A Kubernetes resource tagged by "type", with the resource's raw JSON fields alongside the tag
+	resource K8sResourceable
 }
 
 // NewClusterSyncRequest instantiates a new ClusterSyncRequest and sets the default values.
@@ -69,12 +69,12 @@ func (m *ClusterSyncRequest) GetFieldDeserializers() map[string]func(i878a80d233
 		return nil
 	}
 	res["resource"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-		val, err := n.GetObjectValue(CreateSyncFromDiscriminatorValue)
+		val, err := n.GetObjectValue(CreateK8sResourceFromDiscriminatorValue)
 		if err != nil {
 			return err
 		}
 		if val != nil {
-			m.SetResource(val.(Syncable))
+			m.SetResource(val.(K8sResourceable))
 		}
 		return nil
 	}
@@ -87,9 +87,9 @@ func (m *ClusterSyncRequest) GetMetadata() i878a80d2330e89d26896388a3f487eef27b0
 	return m.metadata
 }
 
-// GetResource gets the resource property value. The resource property
-// returns a Syncable when successful
-func (m *ClusterSyncRequest) GetResource() Syncable {
+// GetResource gets the resource property value. A Kubernetes resource tagged by "type", with the resource's raw JSON fields alongside the tag
+// returns a K8sResourceable when successful
+func (m *ClusterSyncRequest) GetResource() K8sResourceable {
 	return m.resource
 }
 
@@ -137,8 +137,8 @@ func (m *ClusterSyncRequest) SetMetadata(value i878a80d2330e89d26896388a3f487eef
 	m.metadata = value
 }
 
-// SetResource sets the resource property value. The resource property
-func (m *ClusterSyncRequest) SetResource(value Syncable) {
+// SetResource sets the resource property value. A Kubernetes resource tagged by "type", with the resource's raw JSON fields alongside the tag
+func (m *ClusterSyncRequest) SetResource(value K8sResourceable) {
 	m.resource = value
 }
 
@@ -147,8 +147,8 @@ type ClusterSyncRequestable interface {
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
 	GetClusterId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
 	GetMetadata() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
-	GetResource() Syncable
+	GetResource() K8sResourceable
 	SetClusterId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
 	SetMetadata(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
-	SetResource(value Syncable)
+	SetResource(value K8sResourceable)
 }

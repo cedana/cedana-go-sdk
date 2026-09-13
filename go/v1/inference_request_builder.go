@@ -87,12 +87,6 @@ func (m *InferenceRequestBuilder) Keys() *InferenceKeysRequestBuilder {
 	return NewInferenceKeysRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 
-// Lifecycle the lifecycle property
-// returns a *InferenceLifecycleRequestBuilder when successful
-func (m *InferenceRequestBuilder) Lifecycle() *InferenceLifecycleRequestBuilder {
-	return NewInferenceLifecycleRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
-}
-
 // LifecycleEvents the lifecycleEvents property
 // returns a *InferenceLifecycleEventsRequestBuilder when successful
 func (m *InferenceRequestBuilder) LifecycleEvents() *InferenceLifecycleEventsRequestBuilder {

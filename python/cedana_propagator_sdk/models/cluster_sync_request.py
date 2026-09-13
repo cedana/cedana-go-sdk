@@ -6,7 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
 if TYPE_CHECKING:
-    from .sync import Sync
+    from .k8s_resource import K8sResource
 
 @dataclass
 class ClusterSyncRequest(AdditionalDataHolder, Parsable):
@@ -15,8 +15,8 @@ class ClusterSyncRequest(AdditionalDataHolder, Parsable):
 
     # The cluster_id property
     cluster_id: Optional[UUID] = None
-    # The resource property
-    resource: Optional[Sync] = None
+    # A Kubernetes resource tagged by "type", with the resource's raw JSON fields alongside the tag
+    resource: Optional[K8sResource] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ClusterSyncRequest:
@@ -34,13 +34,13 @@ class ClusterSyncRequest(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .sync import Sync
+        from .k8s_resource import K8sResource
 
-        from .sync import Sync
+        from .k8s_resource import K8sResource
 
         fields: dict[str, Callable[[Any], None]] = {
             "cluster_id": lambda n : setattr(self, 'cluster_id', n.get_uuid_value()),
-            "resource": lambda n : setattr(self, 'resource', n.get_object_value(Sync)),
+            "resource": lambda n : setattr(self, 'resource', n.get_object_value(K8sResource)),
         }
         return fields
     
